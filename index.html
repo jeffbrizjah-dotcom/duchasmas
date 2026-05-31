@@ -222,9 +222,37 @@ nav a:hover::after{width:100%}
   display:flex;align-items:center;justify-content:center;
   overflow:hidden;
   background:
-    radial-gradient(ellipse at 70% 40%,rgba(201,168,76,0.05) 0%,transparent 55%),
-    radial-gradient(ellipse at 10% 80%,rgba(255,255,255,0.02) 0%,transparent 45%),
-    linear-gradient(160deg,#050505 0%,#0C0C0C 35%,#080808 65%,#050505 100%);
+    /* brillo metálico diagonal — simula luz reflejada en acero */
+    linear-gradient(112deg,
+      transparent       0%,
+      transparent      28%,
+      rgba(255,255,255,0.025) 32%,
+      rgba(255,255,255,0.045) 36%,
+      rgba(255,255,255,0.025) 40%,
+      transparent      44%,
+      transparent      62%,
+      rgba(255,255,255,0.018) 65%,
+      rgba(255,255,255,0.030) 68%,
+      rgba(255,255,255,0.018) 71%,
+      transparent      75%),
+    /* variación tonal metálica horizontal */
+    linear-gradient(180deg,
+      #111111 0%,
+      #0A0A0A 18%,
+      #141414 35%,
+      #080808 52%,
+      #131313 68%,
+      #0B0B0B 82%,
+      #101010 100%),
+    /* acento dorado sutil en esquina ducha */
+    radial-gradient(ellipse at 78% 38%,rgba(201,168,76,0.055) 0%,transparent 48%),
+    /* textura brushed metal — líneas finas horizontales */
+    repeating-linear-gradient(
+      180deg,
+      transparent          0px,
+      transparent          3px,
+      rgba(255,255,255,0.008) 3px,
+      rgba(255,255,255,0.008) 4px);
 }
 
 /* ══════════════════════════════════════
