@@ -1124,36 +1124,164 @@ footer{
 /* ═══════════════════════════════════════════════
    RESPONSIVE
 ═══════════════════════════════════════════════ */
+/* ── TABLET (≤1024px) ── */
 @media(max-width:1024px){
-  .footer-inner{grid-template-columns:1fr 1fr;gap:36px}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:32px}
   .services-grid{grid-template-columns:1fr 1fr}
+  .why-grid{grid-template-columns:1fr 1fr}
+  .qual-grid{grid-template-columns:1fr 1fr}
+  .opts-grid{grid-template-columns:1fr 1fr}
 }
+
+/* ── TABLET PORTRAIT (≤768px) ── */
 @media(max-width:768px){
+  /* Header */
+  header{padding:0 18px;height:64px}
   nav{display:none}
   .burger{display:flex}
-  .stats-inner{grid-template-columns:repeat(2,1fr)}
-  .stat+.stat::before{display:none}
-  .services-grid{grid-template-columns:1fr}
-  .footer-inner{grid-template-columns:1fr 1fr;gap:28px}
-  .footer-bottom{flex-direction:column;text-align:center}
-  .form-row{grid-template-columns:1fr}
-  .dim-grid{grid-template-columns:1fr}
-  .dim-wrap{max-width:280px}
-  .prog-label{display:none}
-  .prog-dot{width:34px;height:34px;font-size:12px}
+  .h-logo img{height:38px}
+  .h-logo-name{font-size:15px;letter-spacing:2px}
+  .h-logo-tag{display:none}            /* ocultar tagline en móvil */
+  .btn-call{font-size:10px;padding:9px 16px;letter-spacing:1px}
+
+  /* Mobile nav mejorado */
+  .mob-nav{
+    display:flex;
+    padding:40px 32px;
+    gap:28px;
+    background:rgba(5,5,5,0.98);
+    border-top:1px solid rgba(201,168,76,0.12);
+  }
+  .mob-nav a{
+    font-size:22px;letter-spacing:3px;
+    padding:10px 0;
+    border-bottom:1px solid rgba(201,168,76,0.08);
+    width:100%;text-align:center;
+  }
+  .mob-nav a:last-child{
+    margin-top:12px;
+    border-bottom:none;
+    background:var(--gold-grad);
+    color:var(--sap) !important;
+    padding:14px 32px;
+    border-radius:50px;
+    font-size:13px;
+    width:auto;
+  }
+
+  /* Hero */
   .hero-shower{display:none}
-}
-@media(max-width:480px){
-  .stats-inner{grid-template-columns:1fr 1fr}
-  .footer-inner{grid-template-columns:1fr}
-  .hero-btns{flex-direction:column;align-items:center}
-  .btn-primary,.btn-secondary{width:100%;justify-content:center;max-width:320px}
-  .cta-btns{flex-direction:column;align-items:center}
-  .res-btns{flex-direction:column;align-items:center}
-  .res-btns .btn-primary,.res-btns .btn-wa{width:100%;justify-content:center;max-width:300px}
-  #liveBar{padding:12px 16px}
-  .hero-trust{gap:12px}
+  .hero-orb{width:300px;height:300px;right:-50px}
+  .hero-content{padding:80px 24px 60px}
+  .hero-eyebrow{font-size:10px;letter-spacing:3px}
+  .hero-btns{flex-direction:column;align-items:stretch;gap:12px;max-width:340px;margin:0 auto 36px}
+  .btn-primary,.btn-secondary{width:100%;justify-content:center;padding:16px 24px}
+  .hero-trust{gap:14px;flex-wrap:wrap;justify-content:center}
   .trust-divider{display:none}
+  .trust-item{font-size:11px}
+
+  /* Stats */
+  .stats-inner{grid-template-columns:1fr 1fr;gap:0}
+  .stat{padding:20px 12px}
+  .stat+.stat::before{display:none}
+  .stat-num{font-size:32px}
+  .stat-label{font-size:10px}
+
+  /* Services */
+  .services-grid{grid-template-columns:1fr;max-width:480px;margin:0 auto}
+  .srv-card{padding:28px 24px}
+
+  /* Calculator */
+  .calc-container{max-width:100%}
+  .progress-bar{gap:0;padding:0 8px}
+  .prog-dot{width:32px;height:32px;font-size:11px}
+  .prog-label{display:none}
+  .prog-step::after{top:16px}
+  .panel-wrap{padding:28px 20px}
+  .opts-grid{grid-template-columns:1fr;gap:14px}
+  .qual-grid{grid-template-columns:1fr 1fr;gap:12px}
+  .qual-card{padding:18px 14px}
+  .qual-name{font-size:15px}
+  .qual-price{font-size:18px}
+  .extras-grid{grid-template-columns:1fr 1fr}
+  .dim-wrap{max-width:100%}
+  .dim-grid{grid-template-columns:1fr 1fr}
+  .form-row{grid-template-columns:1fr 1fr}
+  .calc-nav{gap:12px}
+  .btn-next{padding:13px 24px;font-size:11px}
+  .btn-back{font-size:11px}
+
+  /* Result */
+  .result-box{padding:32px 20px}
+  .price-range{font-size:34px}
+  .res-btns{flex-direction:column;align-items:stretch;gap:12px;max-width:320px;margin:0 auto 20px}
+  .res-btns a{justify-content:center}
+
+  /* Why / Testimonials */
+  .why-grid{grid-template-columns:1fr 1fr}
+  .testi-grid{grid-template-columns:1fr}
+
+  /* Live bar */
+  #liveBar{padding:12px 18px}
+  .lb-price{font-size:20px}
+
+  /* CTA */
+  .cta-btns{flex-direction:column;align-items:stretch;gap:12px;max-width:320px;margin:0 auto}
+  .cta-btns a{justify-content:center}
+
+  /* Footer */
+  .footer-inner{grid-template-columns:1fr 1fr;gap:28px}
+  .footer-bottom{flex-direction:column;text-align:center;gap:8px}
+
+  /* WhatsApp */
+  #wa-btn{width:52px;height:52px;bottom:20px;right:16px}
+  #wa-btn svg{width:26px;height:26px}
+}
+
+/* ── MOBILE (≤480px) ── */
+@media(max-width:480px){
+  /* Header */
+  header{padding:0 14px;height:60px}
+  .h-logo img{height:34px}
+  .h-logo-name{font-size:13px;letter-spacing:1.5px}
+  .btn-call{display:none}   /* solo burger en móvil pequeño */
+
+  /* Hero */
+  .hero-content{padding:70px 16px 50px}
+  .hero-h1{font-size:clamp(30px,9vw,44px)}
+  .hero-btns{max-width:100%}
+
+  /* Stats */
+  .stats-inner{grid-template-columns:1fr 1fr}
+  .stats-bar{padding:24px 16px}
+
+  /* Calculator */
+  .panel-wrap{padding:22px 14px}
+  .panel-title{font-size:20px}
+  .qual-grid{grid-template-columns:1fr}
+  .extras-grid{grid-template-columns:1fr}
+  .dim-grid{grid-template-columns:1fr 1fr}
+  .form-row{grid-template-columns:1fr}
+  .calc-nav{flex-direction:row;justify-content:space-between}
+  .btn-next{width:auto;padding:13px 22px}
+  .progress-bar{padding:0 4px}
+  .prog-dot{width:28px;height:28px;font-size:10px}
+
+  /* Why */
+  .why-grid{grid-template-columns:1fr}
+
+  /* Footer */
+  .footer-inner{grid-template-columns:1fr}
+  .f-brand-desc{max-width:100%}
+
+  /* Live bar */
+  #liveBar{padding:10px 14px;gap:8px}
+  .lb-price{font-size:18px}
+  .lb-right{display:none}
+
+  /* WhatsApp */
+  #wa-btn{bottom:16px;right:12px}
+  .wa-tooltip{display:none}
 }
 </style>
 </head>
