@@ -1,0 +1,2043 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="description" content="DUCHASMAS — Reforma de baño premium. Calcula tu presupuesto online al instante. Instalación en 1 día, garantía 5 años."/>
+<title>DUCHASMAS | Reforma de Baño de Lujo · Presupuesto Online</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+
+<style>
+/* ═══════════════════════════════════════════════
+   TOKENS
+═══════════════════════════════════════════════ */
+:root{
+  --sap:        #060B14;
+  --sap-1:      #0B1628;
+  --sap-2:      #0D1F38;
+  --sap-3:      #162240;
+  --sap-4:      #1E3050;
+  --gold:       #C9A84C;
+  --gold-lt:    #E8C96A;
+  --gold-dk:    #8A6820;
+  --gold-xlt:   #F5E0A0;
+  --marble:     #EAE6DF;
+  --marble-2:   #F5F2ED;
+  --glass-bg:   rgba(11,22,40,0.55);
+  --glass-bdr:  rgba(201,168,76,0.18);
+  --white:      #FFFFFF;
+  --muted:      #8899AA;
+  --r:          14px;
+  --r-lg:       20px;
+  --gold-grad:  linear-gradient(135deg,#C9A84C 0%,#F0D070 40%,#C9A84C 70%,#8A6820 100%);
+  --sap-grad:   linear-gradient(160deg,#060B14 0%,#0D1F38 50%,#060B14 100%);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:'Lato',sans-serif;
+  background:var(--sap);
+  color:var(--white);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ─── MARBLE TEXTURE MIXIN ─────────────────── */
+.marble-bg{
+  position:relative;
+  background:
+    radial-gradient(ellipse at 15% 25%,rgba(201,168,76,0.04) 0%,transparent 55%),
+    radial-gradient(ellipse at 85% 75%,rgba(201,168,76,0.03) 0%,transparent 50%),
+    linear-gradient(160deg,#0A0E1A 0%,#0F1B30 30%,#091424 60%,#0D1A2E 100%);
+}
+.marble-bg::before{
+  content:'';pointer-events:none;position:absolute;inset:0;opacity:.35;
+  background-image:
+    repeating-linear-gradient(118deg,transparent 0,transparent 60px,rgba(201,168,76,0.04) 60px,rgba(201,168,76,0.04) 61px),
+    repeating-linear-gradient(32deg,transparent 0,transparent 90px,rgba(255,255,255,0.012) 90px,rgba(255,255,255,0.012) 91px),
+    repeating-linear-gradient(200deg,transparent 0,transparent 45px,rgba(201,168,76,0.025) 45px,rgba(201,168,76,0.025) 46px);
+}
+.marble-bg::after{
+  content:'';pointer-events:none;position:absolute;inset:0;
+  background:radial-gradient(ellipse at 40% 60%,rgba(201,168,76,0.06) 0%,transparent 60%);
+}
+
+/* ─── GLASS CARD ───────────────────────────── */
+.glass{
+  background:var(--glass-bg);
+  backdrop-filter:blur(22px) saturate(1.4);
+  -webkit-backdrop-filter:blur(22px) saturate(1.4);
+  border:1px solid var(--glass-bdr);
+  border-radius:var(--r-lg);
+}
+
+/* ─── GOLD LINE ────────────────────────────── */
+.gold-line{
+  display:block;width:60px;height:2px;
+  background:var(--gold-grad);
+  margin:0 auto;border-radius:2px;
+}
+
+/* ─── SECTION LABEL ────────────────────────── */
+.sec-label{
+  font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;
+  color:var(--gold);text-transform:uppercase;margin-bottom:10px;
+  display:block;
+}
+
+/* ═══════════════════════════════════════════════
+   PRELOADER
+═══════════════════════════════════════════════ */
+#preloader{
+  position:fixed;inset:0;z-index:9999;
+  background:var(--sap);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;
+  transition:opacity .6s ease, visibility .6s ease;
+}
+#preloader.out{opacity:0;visibility:hidden}
+
+.pre-logo{
+  font-family:'Cinzel',serif;font-size:clamp(28px,5vw,46px);
+  font-weight:900;letter-spacing:8px;
+  background:var(--gold-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+  animation:fadeUp .8s ease both;
+}
+.pre-sub{
+  font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:5px;
+  color:var(--muted);text-transform:uppercase;
+  animation:fadeUp .8s .2s ease both;
+}
+.pre-bar-wrap{
+  width:180px;height:2px;background:rgba(201,168,76,0.15);border-radius:2px;overflow:hidden;
+  animation:fadeUp .8s .4s ease both;
+}
+.pre-bar{
+  height:100%;background:var(--gold-grad);border-radius:2px;
+  animation:loadBar 1.6s .5s cubic-bezier(.4,0,.2,1) forwards;width:0;
+}
+@keyframes loadBar{to{width:100%}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* ═══════════════════════════════════════════════
+   HEADER
+═══════════════════════════════════════════════ */
+header{
+  position:sticky;top:0;z-index:500;
+  padding:0 clamp(20px,5vw,60px);
+  height:72px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(6,11,20,0.82);
+  backdrop-filter:blur(24px) saturate(1.6);
+  -webkit-backdrop-filter:blur(24px) saturate(1.6);
+  border-bottom:1px solid rgba(201,168,76,0.14);
+  transition:background .3s;
+}
+
+.h-logo{display:flex;align-items:center;gap:14px;text-decoration:none}
+.h-logo img{height:46px;filter:drop-shadow(0 2px 10px rgba(201,168,76,0.35))}
+.h-logo-text{display:flex;flex-direction:column}
+.h-logo-name{
+  font-family:'Cinzel',serif;font-size:19px;font-weight:700;letter-spacing:4px;
+  background:var(--gold-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  line-height:1;
+}
+.h-logo-tag{
+  font-family:'Cormorant Garamond',serif;font-size:10px;letter-spacing:3px;
+  color:var(--muted);text-transform:uppercase;margin-top:3px;
+}
+
+nav{display:flex;align-items:center;gap:32px}
+nav a{
+  font-family:'Lato',sans-serif;font-size:11px;letter-spacing:2px;
+  color:var(--muted);text-decoration:none;text-transform:uppercase;
+  transition:color .2s;position:relative;
+}
+nav a::after{
+  content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;
+  background:var(--gold);transition:width .3s;
+}
+nav a:hover{color:var(--gold-lt)}
+nav a:hover::after{width:100%}
+
+.h-cta{
+  display:flex;align-items:center;gap:16px;
+}
+.btn-call{
+  font-family:'Lato',sans-serif;font-size:11px;letter-spacing:2px;font-weight:700;
+  color:var(--sap);background:var(--gold-grad);
+  padding:10px 22px;border-radius:50px;text-decoration:none;
+  box-shadow:0 4px 20px rgba(201,168,76,0.25);
+  transition:all .25s;white-space:nowrap;
+}
+.btn-call:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(201,168,76,0.4)}
+
+.burger{
+  display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;
+  background:none;border:none;
+}
+.burger span{
+  display:block;width:24px;height:2px;background:var(--gold);
+  border-radius:2px;transition:all .3s;
+}
+
+/* mobile nav */
+.mob-nav{
+  display:none;position:fixed;inset:72px 0 0;z-index:499;
+  background:rgba(6,11,20,0.97);backdrop-filter:blur(20px);
+  flex-direction:column;align-items:center;justify-content:center;gap:36px;
+  opacity:0;pointer-events:none;transition:opacity .3s;
+}
+.mob-nav.open{opacity:1;pointer-events:all}
+.mob-nav a{
+  font-family:'Cinzel',serif;font-size:18px;letter-spacing:4px;
+  color:var(--muted);text-decoration:none;text-transform:uppercase;
+  transition:color .2s;
+}
+.mob-nav a:hover{color:var(--gold-lt)}
+
+/* ═══════════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════════ */
+.hero{
+  position:relative;min-height:100svh;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+  background:
+    radial-gradient(ellipse at 70% 40%,rgba(30,48,80,0.7) 0%,transparent 55%),
+    radial-gradient(ellipse at 10% 80%,rgba(201,168,76,0.06) 0%,transparent 45%),
+    linear-gradient(160deg,#040810 0%,#071220 35%,#0A1828 65%,#040810 100%);
+}
+
+/* Marble wall panels */
+.hero-panels{
+  position:absolute;inset:0;display:grid;
+  grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(4,1fr);
+  opacity:.22;pointer-events:none;
+}
+.hero-panel{border:1px solid rgba(201,168,76,0.12)}
+.hero-panel:nth-child(odd){
+  background:
+    radial-gradient(circle at 30% 70%,rgba(255,255,255,0.04) 0%,transparent 60%),
+    linear-gradient(135deg,#0D1828,#0A1422);
+}
+.hero-panel:nth-child(even){
+  background:
+    radial-gradient(circle at 70% 30%,rgba(201,168,76,0.03) 0%,transparent 60%),
+    linear-gradient(135deg,#0A1422,#0F1E35);
+}
+
+/* Water drops */
+.drops{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.drop{
+  position:absolute;border-radius:50%;
+  background:radial-gradient(circle at 35% 35%,rgba(255,255,255,0.18),rgba(255,255,255,0.02));
+  border:1px solid rgba(255,255,255,0.08);
+  animation:dropFall linear infinite;
+}
+.drop:nth-child(1) {width:6px;height:8px;left:12%;animation-duration:8s;animation-delay:0s;opacity:.5}
+.drop:nth-child(2) {width:4px;height:6px;left:28%;animation-duration:11s;animation-delay:2s;opacity:.35}
+.drop:nth-child(3) {width:8px;height:11px;left:45%;animation-duration:9s;animation-delay:4s;opacity:.45}
+.drop:nth-child(4) {width:5px;height:7px;left:62%;animation-duration:13s;animation-delay:1s;opacity:.3}
+.drop:nth-child(5) {width:7px;height:9px;left:78%;animation-duration:10s;animation-delay:3s;opacity:.4}
+.drop:nth-child(6) {width:3px;height:5px;left:91%;animation-duration:12s;animation-delay:5s;opacity:.25}
+.drop:nth-child(7) {width:6px;height:8px;left:35%;animation-duration:7s;animation-delay:6s;opacity:.3}
+.drop:nth-child(8) {width:4px;height:6px;left:55%;animation-duration:14s;animation-delay:0.5s;opacity:.2}
+@keyframes dropFall{
+  0%  {top:-20px;transform:scaleY(1)}
+  80% {transform:scaleY(1.2)}
+  100%{top:110vh;transform:scaleY(1)}
+}
+
+/* Gold vein lines */
+.hero-vein{
+  position:absolute;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(201,168,76,0.08),transparent);
+  height:1px;
+}
+.hero-vein:nth-child(1){width:40%;top:22%;left:5%;transform:rotate(-8deg)}
+.hero-vein:nth-child(2){width:25%;top:55%;left:60%;transform:rotate(12deg)}
+.hero-vein:nth-child(3){width:35%;top:78%;left:20%;transform:rotate(-4deg)}
+
+/* Gold glow orb */
+.hero-orb{
+  position:absolute;
+  width:min(600px,80vw);height:min(600px,80vw);
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(201,168,76,0.07) 0%,transparent 65%);
+  top:50%;right:-10%;transform:translateY(-50%);
+  pointer-events:none;animation:pulse 6s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:.7;transform:translateY(-50%) scale(1)}50%{opacity:1;transform:translateY(-50%) scale(1.05)}}
+
+/* Shower silhouette */
+.hero-shower{
+  position:absolute;right:clamp(20px,8vw,120px);bottom:0;
+  width:clamp(180px,25vw,360px);
+  pointer-events:none;opacity:.08;
+}
+.hero-shower svg{width:100%;height:auto}
+
+.hero-content{
+  position:relative;z-index:2;
+  text-align:center;
+  padding:clamp(80px,10vh,120px) clamp(20px,5vw,60px) clamp(60px,8vh,100px);
+  max-width:900px;
+  animation:fadeUp .9s .4s ease both;
+}
+
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:12px;
+  font-family:'Cormorant Garamond',serif;font-size:12px;letter-spacing:5px;
+  color:var(--gold);text-transform:uppercase;margin-bottom:28px;
+}
+.hero-eyebrow::before,.hero-eyebrow::after{
+  content:'';width:40px;height:1px;background:var(--gold-grad);
+}
+
+.hero-h1{
+  font-family:'Cinzel',serif;
+  font-size:clamp(36px,7vw,82px);
+  font-weight:700;line-height:1.05;letter-spacing:1px;
+  margin-bottom:28px;
+}
+.hero-h1 em{
+  font-style:normal;
+  background:var(--gold-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-h1 span{color:rgba(255,255,255,0.85)}
+
+.hero-sub{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(17px,2.5vw,22px);font-weight:300;font-style:italic;
+  color:rgba(255,255,255,0.55);line-height:1.7;
+  max-width:580px;margin:0 auto 44px;
+}
+
+.hero-btns{
+  display:flex;align-items:center;justify-content:center;
+  gap:16px;flex-wrap:wrap;margin-bottom:56px;
+}
+.btn-primary{
+  font-family:'Lato',sans-serif;font-size:12px;letter-spacing:2.5px;font-weight:700;
+  text-transform:uppercase;text-decoration:none;
+  color:var(--sap);background:var(--gold-grad);
+  padding:16px 40px;border-radius:50px;border:none;cursor:pointer;
+  box-shadow:0 8px 32px rgba(201,168,76,0.35);
+  transition:all .25s;display:inline-flex;align-items:center;gap:10px;
+}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 44px rgba(201,168,76,0.5)}
+.btn-secondary{
+  font-family:'Lato',sans-serif;font-size:12px;letter-spacing:2.5px;font-weight:700;
+  text-transform:uppercase;text-decoration:none;
+  color:var(--gold-lt);
+  padding:15px 36px;border-radius:50px;border:1px solid rgba(201,168,76,0.35);cursor:pointer;
+  background:transparent;
+  transition:all .25s;display:inline-flex;align-items:center;gap:10px;
+}
+.btn-secondary:hover{border-color:var(--gold);background:rgba(201,168,76,0.07);transform:translateY(-2px)}
+
+/* Hero trust strip */
+.hero-trust{
+  display:flex;align-items:center;justify-content:center;
+  gap:clamp(16px,3vw,40px);flex-wrap:wrap;
+}
+.trust-item{
+  display:flex;align-items:center;gap:8px;
+  font-size:12px;color:rgba(255,255,255,0.4);letter-spacing:.5px;
+}
+.trust-item svg{width:16px;height:16px;fill:none;stroke:var(--gold);stroke-width:1.5}
+.trust-divider{
+  width:1px;height:24px;background:rgba(201,168,76,0.2);
+}
+
+/* Scroll indicator */
+.scroll-hint{
+  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:6px;z-index:2;
+}
+.scroll-hint span{font-size:9px;letter-spacing:3px;color:var(--muted);text-transform:uppercase}
+.scroll-wheel{
+  width:22px;height:34px;border:1px solid rgba(201,168,76,0.3);border-radius:11px;
+  display:flex;justify-content:center;padding-top:5px;
+}
+.scroll-dot{
+  width:4px;height:7px;background:var(--gold);border-radius:2px;
+  animation:scrollDot 2s ease-in-out infinite;
+}
+@keyframes scrollDot{0%{transform:translateY(0);opacity:1}100%{transform:translateY(12px);opacity:0}}
+
+/* ═══════════════════════════════════════════════
+   STATS BAR
+═══════════════════════════════════════════════ */
+.stats-bar{
+  position:relative;z-index:10;
+  background:
+    linear-gradient(90deg,rgba(6,11,20,0.9),rgba(13,31,56,0.95),rgba(6,11,20,0.9));
+  border-top:1px solid rgba(201,168,76,0.18);
+  border-bottom:1px solid rgba(201,168,76,0.18);
+  padding:32px clamp(20px,5vw,60px);
+  backdrop-filter:blur(10px);
+}
+.stats-bar::before{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(90deg,transparent,transparent 59px,rgba(201,168,76,0.04) 59px,rgba(201,168,76,0.04) 60px);
+  pointer-events:none;
+}
+.stats-inner{
+  max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:20px;
+}
+.stat{text-align:center;position:relative}
+.stat+.stat::before{
+  content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);
+  width:1px;height:40px;background:rgba(201,168,76,0.15);
+}
+.stat-num{
+  font-family:'Cinzel',serif;font-size:clamp(28px,4vw,42px);font-weight:700;
+  background:var(--gold-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  line-height:1;display:block;
+}
+.stat-label{
+  font-family:'Cormorant Garamond',serif;font-size:clamp(11px,1.5vw,14px);
+  color:var(--muted);letter-spacing:2px;text-transform:uppercase;
+  margin-top:6px;display:block;font-style:italic;
+}
+
+/* ═══════════════════════════════════════════════
+   SECTION HEADER
+═══════════════════════════════════════════════ */
+.sec-head{text-align:center;margin-bottom:clamp(36px,5vw,60px)}
+.sec-head .sec-label{justify-content:center}
+.sec-title{
+  font-family:'Cinzel',serif;
+  font-size:clamp(26px,4vw,46px);font-weight:600;
+  line-height:1.15;margin-bottom:14px;
+}
+.sec-title em{
+  font-style:normal;
+  background:var(--gold-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.sec-desc{
+  font-family:'Cormorant Garamond',serif;font-size:clamp(15px,2vw,19px);
+  color:var(--muted);font-style:italic;max-width:560px;margin:14px auto 0;line-height:1.8;
+}
+
+/* ═══════════════════════════════════════════════
+   SERVICES SECTION
+═══════════════════════════════════════════════ */
+.services-sec{
+  padding:clamp(60px,8vh,100px) clamp(20px,5vw,60px);
+  position:relative;overflow:hidden;
+}
+.services-sec .marble-bg{position:absolute;inset:0;z-index:0}
+
+.services-grid{
+  position:relative;z-index:1;
+  max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+}
+
+.srv-card{
+  position:relative;overflow:hidden;border-radius:var(--r-lg);
+  padding:clamp(28px,3vw,44px) clamp(22px,2.5vw,36px);
+  cursor:pointer;transition:all .35s cubic-bezier(.4,0,.2,1);
+  border:1px solid rgba(201,168,76,0.12);
+}
+.srv-card::before{
+  content:'';position:absolute;inset:0;border-radius:var(--r-lg);
+  background:var(--glass-bg);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  z-index:0;
+}
+.srv-card::after{
+  content:'';position:absolute;inset:0;border-radius:var(--r-lg);
+  background:linear-gradient(135deg,rgba(201,168,76,0.06) 0%,transparent 60%);
+  opacity:0;transition:opacity .35s;z-index:0;
+}
+.srv-card:hover::after{opacity:1}
+.srv-card:hover{transform:translateY(-8px);border-color:rgba(201,168,76,0.35);box-shadow:0 20px 60px rgba(0,0,0,0.5),0 0 30px rgba(201,168,76,0.08)}
+
+.srv-card>*{position:relative;z-index:1}
+
+.srv-icon{
+  width:56px;height:56px;margin-bottom:20px;
+  background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.2);
+  border-radius:14px;display:flex;align-items:center;justify-content:center;
+  font-size:26px;
+  transition:all .3s;
+}
+.srv-card:hover .srv-icon{background:rgba(201,168,76,0.15);border-color:rgba(201,168,76,0.4)}
+
+.srv-name{
+  font-family:'Cinzel',serif;font-size:clamp(16px,2vw,20px);font-weight:600;
+  color:var(--white);margin-bottom:10px;line-height:1.2;
+}
+.srv-desc{
+  font-family:'Cormorant Garamond',serif;font-size:15px;
+  color:var(--muted);font-style:italic;line-height:1.75;margin-bottom:20px;
+}
+.srv-from{
+  font-family:'Cinzel',serif;font-size:13px;
+  color:var(--gold-lt);letter-spacing:1px;
+}
+.srv-from span{font-size:22px;font-weight:700;color:var(--gold-xlt)}
+
+.srv-arrow{
+  position:absolute;bottom:28px;right:28px;
+  width:36px;height:36px;border-radius:50%;
+  border:1px solid rgba(201,168,76,0.25);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--gold);font-size:16px;
+  transition:all .3s;z-index:1;
+}
+.srv-card:hover .srv-arrow{
+  background:var(--gold);color:var(--sap);border-color:var(--gold);
+  transform:translate(3px,-3px);
+}
+
+/* ═══════════════════════════════════════════════
+   CALCULATOR SECTION
+═══════════════════════════════════════════════ */
+.calc-sec{
+  padding:clamp(60px,8vh,100px) clamp(20px,5vw,60px);
+  position:relative;
+  background:
+    radial-gradient(ellipse at 80% 20%,rgba(201,168,76,0.04) 0%,transparent 50%),
+    var(--sap-grad);
+}
+
+.calc-container{
+  max-width:900px;margin:0 auto;
+}
+
+/* Progress */
+.progress-bar{
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:clamp(32px,4vw,52px);
+  gap:0;
+  position:relative;
+  padding:0 20px;
+}
+.prog-step{
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  flex:1;position:relative;z-index:1;
+}
+.prog-step::after{
+  content:'';position:absolute;top:20px;left:50%;
+  width:100%;height:2px;
+  background:rgba(201,168,76,0.12);
+  z-index:0;transition:background .5s;
+}
+.prog-step:last-child::after{display:none}
+.prog-step.done::after{background:var(--gold)}
+
+.prog-dot{
+  width:40px;height:40px;border-radius:50%;
+  border:2px solid rgba(201,168,76,0.2);
+  background:rgba(6,11,20,0.8);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cinzel',serif;font-size:13px;font-weight:700;
+  color:var(--muted);
+  position:relative;z-index:1;
+  transition:all .4s;
+}
+.prog-step.active .prog-dot{
+  background:var(--gold-grad);
+  border-color:var(--gold);
+  color:var(--sap);
+  box-shadow:0 0 24px rgba(201,168,76,0.5);
+}
+.prog-step.done .prog-dot{
+  background:rgba(201,168,76,0.15);
+  border-color:var(--gold);
+  color:var(--gold);
+}
+.prog-label{
+  font-size:10px;letter-spacing:1.5px;color:var(--muted);
+  text-transform:uppercase;font-family:'Cinzel',serif;
+  white-space:nowrap;
+}
+.prog-step.active .prog-label{color:var(--gold-lt)}
+
+/* Step panel */
+.step-panel{display:none;animation:panelIn .45s ease}
+.step-panel.active{display:block}
+@keyframes panelIn{
+  from{opacity:0;transform:translateX(30px)}
+  to{opacity:1;transform:none}
+}
+
+/* Panel wrapper */
+.panel-wrap{
+  background:rgba(8,14,26,0.7);
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  border:1px solid rgba(201,168,76,0.14);
+  border-radius:var(--r-lg);
+  padding:clamp(28px,4vw,52px);
+  position:relative;overflow:hidden;
+}
+.panel-wrap::before{
+  content:'';position:absolute;top:-1px;left:10%;right:10%;height:2px;
+  background:var(--gold-grad);border-radius:2px;opacity:.7;
+}
+
+.panel-head{text-align:center;margin-bottom:36px}
+.panel-head .sec-label{display:block;text-align:center;margin-bottom:8px}
+.panel-title{
+  font-family:'Cinzel',serif;font-size:clamp(20px,3vw,30px);font-weight:600;
+  color:var(--white);margin-bottom:8px;
+}
+.panel-sub{
+  font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;
+  color:var(--muted);
+}
+
+/* Service option cards */
+.opts-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:18px;margin-bottom:36px;
+}
+.opt-card{
+  position:relative;overflow:hidden;border-radius:var(--r);
+  padding:30px 22px;text-align:center;cursor:pointer;
+  border:1px solid rgba(201,168,76,0.12);
+  background:rgba(13,22,38,0.6);
+  transition:all .3s cubic-bezier(.4,0,.2,1);
+}
+.opt-card:hover{border-color:rgba(201,168,76,0.35);transform:translateY(-4px);background:rgba(20,32,52,0.7)}
+.opt-card.sel{
+  border-color:var(--gold);
+  background:rgba(201,168,76,0.07);
+  box-shadow:0 0 30px rgba(201,168,76,0.12),inset 0 0 30px rgba(201,168,76,0.03);
+}
+.opt-check{
+  position:absolute;top:12px;right:12px;
+  width:24px;height:24px;border-radius:50%;
+  background:var(--gold-grad);
+  display:none;align-items:center;justify-content:center;
+  font-size:11px;color:var(--sap);font-weight:900;
+}
+.opt-card.sel .opt-check{display:flex}
+.opt-ico{font-size:44px;display:block;margin-bottom:16px;filter:drop-shadow(0 4px 12px rgba(201,168,76,0.2))}
+.opt-name{
+  font-family:'Cinzel',serif;font-size:15px;font-weight:600;
+  color:var(--white);margin-bottom:8px;
+}
+.opt-card.sel .opt-name{color:var(--gold-lt)}
+.opt-txt{font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:var(--muted);line-height:1.65;margin-bottom:12px}
+.opt-from{font-size:12px;font-weight:700;color:var(--gold-lt);letter-spacing:.5px}
+
+/* Quality cards */
+.qual-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  gap:16px;margin-bottom:36px;
+}
+.qual-card{
+  border-radius:var(--r);padding:24px 18px;
+  border:1px solid rgba(201,168,76,0.12);
+  background:rgba(13,22,38,0.6);
+  cursor:pointer;transition:all .3s;position:relative;
+}
+.qual-card:hover{border-color:rgba(201,168,76,0.35);transform:translateY(-3px)}
+.qual-card.sel{
+  border-color:var(--gold);
+  background:rgba(201,168,76,0.07);
+  box-shadow:0 0 28px rgba(201,168,76,0.1);
+}
+.qual-badge{
+  display:inline-block;
+  background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.25);
+  border-radius:50px;padding:4px 14px;
+  font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:var(--gold);
+  text-transform:uppercase;margin-bottom:12px;
+}
+.qual-card.sel .qual-badge{background:var(--gold-grad);color:var(--sap);border-color:transparent}
+.qual-name{
+  font-family:'Cinzel',serif;font-size:18px;font-weight:600;
+  color:var(--white);margin-bottom:6px;
+}
+.qual-price{
+  font-family:'Cinzel',serif;font-size:22px;color:var(--gold-xlt);font-weight:700;
+}
+.qual-price sub{font-size:12px;color:var(--muted);font-weight:400;vertical-align:middle;font-family:'Lato',sans-serif}
+.qual-feats{list-style:none;margin-top:14px}
+.qual-feats li{
+  font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;
+  color:var(--muted);padding:4px 0 4px 16px;position:relative;
+  border-bottom:1px solid rgba(255,255,255,0.04);
+}
+.qual-feats li:last-child{border-bottom:none}
+.qual-feats li::before{content:'◆';position:absolute;left:0;font-size:6px;color:var(--gold);top:7px}
+
+/* Dimensions */
+.dim-wrap{max-width:480px;margin:0 auto 36px}
+.dim-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.dim-field{display:flex;flex-direction:column;gap:8px}
+.dim-lbl{
+  font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;
+  color:var(--gold);text-transform:uppercase;
+}
+.inp-wrap{position:relative}
+.dim-inp{
+  width:100%;background:rgba(6,11,20,0.7);
+  border:1px solid rgba(201,168,76,0.25);border-radius:10px;
+  padding:15px 48px 15px 18px;
+  font-family:'Cinzel',serif;font-size:22px;font-weight:700;
+  color:var(--white);outline:none;
+  transition:border-color .2s;
+}
+.dim-inp:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,0.1)}
+.dim-inp.result-inp{
+  background:rgba(201,168,76,0.06);color:var(--gold-lt);
+  font-size:18px;cursor:default;
+}
+.dim-unit{
+  position:absolute;right:16px;top:50%;transform:translateY(-50%);
+  font-size:12px;color:var(--muted);letter-spacing:1px;
+}
+.dim-hint{
+  text-align:center;font-family:'Cormorant Garamond',serif;
+  font-size:14px;font-style:italic;color:var(--muted);margin-top:-8px;margin-bottom:24px;
+}
+
+/* Extras */
+.extras-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:14px;margin-bottom:36px;
+}
+.extra-card{
+  display:flex;align-items:center;gap:14px;
+  background:rgba(13,22,38,0.6);border:1px solid rgba(201,168,76,0.1);
+  border-radius:var(--r);padding:16px;cursor:pointer;
+  transition:all .25s;
+}
+.extra-card:hover{border-color:rgba(201,168,76,0.3)}
+.extra-card.sel{border-color:var(--gold);background:rgba(201,168,76,0.07)}
+.extra-ico{font-size:28px;flex-shrink:0}
+.extra-info{flex:1;min-width:0}
+.extra-nm{font-size:13px;font-weight:700;color:var(--white);margin-bottom:2px}
+.extra-pr{font-size:12px;color:var(--gold-lt);font-weight:700}
+.extra-chk{
+  width:22px;height:22px;border-radius:6px;flex-shrink:0;
+  border:1.5px solid rgba(201,168,76,0.25);
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;color:transparent;transition:all .2s;
+}
+.extra-card.sel .extra-chk{background:var(--gold-grad);border-color:transparent;color:var(--sap);font-weight:900}
+
+/* Contact */
+.contact-form{
+  max-width:520px;margin:0 auto 36px;
+  display:grid;gap:18px;
+}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.ff{display:flex;flex-direction:column;gap:8px}
+.ff label{
+  font-family:'Cinzel',serif;font-size:9px;letter-spacing:2.5px;
+  color:var(--gold);text-transform:uppercase;
+}
+.ff input,.ff select,.ff textarea{
+  background:rgba(6,11,20,0.7);
+  border:1px solid rgba(201,168,76,0.22);border-radius:10px;
+  padding:14px 18px;color:var(--white);
+  font-family:'Lato',sans-serif;font-size:15px;outline:none;
+  transition:border-color .2s;
+}
+.ff input:focus,.ff select:focus,.ff textarea:focus{
+  border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,0.08);
+}
+.ff select option{background:var(--sap-2)}
+.ff textarea{resize:vertical;min-height:80px}
+.privacy-note{
+  font-family:'Cormorant Garamond',serif;font-size:13px;
+  font-style:italic;color:var(--muted);line-height:1.65;text-align:center;
+}
+.privacy-note a{color:var(--gold-lt);text-decoration:none}
+
+/* Result box */
+.result-box{
+  background:rgba(8,14,26,0.85);
+  border:1px solid rgba(201,168,76,0.25);
+  border-radius:var(--r-lg);padding:clamp(28px,4vw,52px);
+  text-align:center;position:relative;overflow:hidden;
+}
+.result-box::before{
+  content:'';position:absolute;top:-1px;left:5%;right:5%;height:2px;
+  background:var(--gold-grad);
+}
+.result-ico{font-size:64px;display:block;margin-bottom:16px;filter:drop-shadow(0 4px 16px rgba(201,168,76,0.3))}
+.result-name{
+  font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;
+  color:var(--muted);margin-bottom:24px;
+}
+.price-card{
+  background:rgba(201,168,76,0.06);
+  border:1px solid rgba(201,168,76,0.2);border-radius:14px;
+  padding:24px 32px;margin-bottom:28px;
+}
+.price-lbl{
+  font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;
+  color:var(--gold);text-transform:uppercase;margin-bottom:10px;
+}
+.price-range{
+  font-family:'Cinzel',serif;font-size:clamp(32px,5vw,52px);font-weight:700;
+  background:var(--gold-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  line-height:1;
+}
+.price-iva{font-size:12px;color:var(--muted);margin-top:6px;letter-spacing:.5px}
+
+.breakdown{text-align:left;margin-bottom:28px}
+.bd-title{
+  font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;
+  color:var(--gold);text-transform:uppercase;
+  text-align:center;margin-bottom:14px;
+}
+.bd-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:9px 0;border-bottom:1px solid rgba(255,255,255,0.05);
+  font-size:13px;
+}
+.bd-row:last-child{
+  border-bottom:none;border-top:1px solid rgba(201,168,76,0.2);
+  padding-top:14px;margin-top:6px;
+}
+.bd-k{color:var(--muted);font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px}
+.bd-v{color:var(--white);font-weight:700}
+.bd-row:last-child .bd-k,.bd-row:last-child .bd-v{color:var(--gold-lt);font-family:'Cinzel',serif;font-style:normal}
+
+.result-note{
+  font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;
+  color:var(--muted);line-height:1.7;margin-bottom:28px;max-width:480px;margin-inline:auto;
+}
+
+.res-btns{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:20px}
+.btn-wa{
+  background:#25D366;color:var(--white);
+  font-family:'Lato',sans-serif;font-size:12px;letter-spacing:2px;font-weight:700;
+  text-transform:uppercase;text-decoration:none;
+  padding:14px 28px;border-radius:50px;border:none;cursor:pointer;
+  box-shadow:0 6px 24px rgba(37,211,102,0.3);transition:all .25s;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.btn-wa:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(37,211,102,0.4)}
+
+/* Nav buttons */
+.calc-nav{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.btn-back{
+  background:transparent;border:none;cursor:pointer;
+  font-family:'Lato',sans-serif;font-size:11px;letter-spacing:2px;
+  color:var(--muted);text-transform:uppercase;padding:12px 0;
+  display:flex;align-items:center;gap:6px;transition:color .2s;
+}
+.btn-back:hover{color:var(--white)}
+.btn-next{
+  font-family:'Lato',sans-serif;font-size:12px;letter-spacing:2px;font-weight:700;
+  text-transform:uppercase;
+  color:var(--sap);background:var(--gold-grad);
+  padding:14px 36px;border-radius:50px;border:none;cursor:pointer;
+  box-shadow:0 6px 24px rgba(201,168,76,0.3);transition:all .25s;
+  display:flex;align-items:center;gap:8px;
+}
+.btn-next:hover{transform:translateY(-2px);box-shadow:0 10px 36px rgba(201,168,76,0.45)}
+.btn-next:disabled{opacity:.3;cursor:not-allowed;transform:none;box-shadow:none}
+
+/* ═══════════════════════════════════════════════
+   LIVE TOTAL
+═══════════════════════════════════════════════ */
+#liveBar{
+  position:fixed;bottom:0;left:0;right:0;z-index:400;
+  background:rgba(6,11,20,0.93);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-top:1px solid rgba(201,168,76,0.2);
+  padding:14px clamp(16px,4vw,48px);
+  display:flex;align-items:center;justify-content:space-between;
+  transform:translateY(100%);transition:transform .4s cubic-bezier(.4,0,.2,1);
+}
+#liveBar.show{transform:none}
+.lb-left .lb-label{font-size:10px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:2px}
+.lb-price{
+  font-family:'Cinzel',serif;font-size:clamp(20px,3vw,28px);font-weight:700;
+  background:var(--gold-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.lb-right{text-align:right;font-size:11px;color:var(--muted);line-height:1.6}
+
+/* ═══════════════════════════════════════════════
+   WHY US
+═══════════════════════════════════════════════ */
+.why-sec{
+  padding:clamp(60px,8vh,100px) clamp(20px,5vw,60px);
+  position:relative;
+}
+.why-sec .marble-bg{position:absolute;inset:0;z-index:0}
+.why-inner{position:relative;z-index:1;max-width:1100px;margin:0 auto}
+
+.why-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:24px;
+}
+.why-card{
+  padding:32px 26px;border-radius:var(--r-lg);
+  position:relative;overflow:hidden;
+  transition:transform .3s;
+}
+.why-card::before{
+  content:'';position:absolute;inset:0;border-radius:var(--r-lg);
+  background:rgba(8,16,30,0.65);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border:1px solid rgba(201,168,76,0.1);z-index:0;
+  transition:border-color .3s;
+}
+.why-card:hover{transform:translateY(-6px)}
+.why-card:hover::before{border-color:rgba(201,168,76,0.28)}
+.why-card>*{position:relative;z-index:1}
+
+.why-ico{
+  width:52px;height:52px;margin-bottom:20px;
+  background:linear-gradient(135deg,rgba(201,168,76,0.12),rgba(201,168,76,0.04));
+  border:1px solid rgba(201,168,76,0.2);border-radius:14px;
+  display:flex;align-items:center;justify-content:center;font-size:24px;
+}
+.why-title{
+  font-family:'Cinzel',serif;font-size:16px;font-weight:600;
+  color:var(--white);margin-bottom:10px;
+}
+.why-txt{
+  font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;
+  color:var(--muted);line-height:1.75;
+}
+
+/* ═══════════════════════════════════════════════
+   TESTIMONIALS
+═══════════════════════════════════════════════ */
+.testi-sec{
+  padding:clamp(60px,8vh,100px) clamp(20px,5vw,60px);
+  background:var(--sap-grad);position:relative;overflow:hidden;
+}
+.testi-sec::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 50%,rgba(201,168,76,0.04) 0%,transparent 65%);
+  pointer-events:none;
+}
+.testi-grid{
+  max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;
+}
+.testi-card{
+  padding:32px 28px;border-radius:var(--r-lg);
+  background:rgba(13,22,38,0.6);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border:1px solid rgba(201,168,76,0.1);
+  transition:border-color .3s,transform .3s;
+}
+.testi-card:hover{border-color:rgba(201,168,76,0.25);transform:translateY(-4px)}
+.stars{color:var(--gold);font-size:16px;letter-spacing:2px;margin-bottom:14px}
+.testi-txt{
+  font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;
+  color:rgba(255,255,255,0.75);line-height:1.8;margin-bottom:20px;
+}
+.testi-author{
+  display:flex;align-items:center;gap:12px;
+}
+.testi-av{
+  width:40px;height:40px;border-radius:50%;
+  background:var(--gold-grad);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cinzel',serif;font-size:16px;font-weight:700;color:var(--sap);
+  flex-shrink:0;
+}
+.testi-name{font-family:'Cinzel',serif;font-size:13px;font-weight:600;color:var(--white)}
+.testi-city{font-family:'Cormorant Garamond',serif;font-size:12px;color:var(--muted);font-style:italic}
+
+/* ═══════════════════════════════════════════════
+   CTA BANNER
+═══════════════════════════════════════════════ */
+.cta-sec{
+  padding:clamp(60px,8vh,100px) clamp(20px,5vw,60px);
+  position:relative;overflow:hidden;
+  background:linear-gradient(135deg,#0A1020 0%,#0D1830 35%,#091422 70%,#0A1020 100%);
+}
+.cta-sec::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 20% 50%,rgba(201,168,76,0.06) 0%,transparent 45%),
+    radial-gradient(ellipse at 80% 50%,rgba(30,48,80,0.4) 0%,transparent 50%);
+  pointer-events:none;
+}
+.cta-sec::after{
+  content:'';position:absolute;top:0;bottom:0;left:50%;
+  width:1px;background:linear-gradient(to bottom,transparent,rgba(201,168,76,0.12),transparent);
+}
+.cta-inner{
+  position:relative;z-index:1;text-align:center;max-width:700px;margin:0 auto;
+}
+.cta-title{
+  font-family:'Cinzel',serif;font-size:clamp(28px,4.5vw,52px);font-weight:700;
+  line-height:1.1;margin-bottom:16px;
+}
+.cta-title em{
+  font-style:normal;
+  background:var(--gold-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.cta-sub{
+  font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;
+  color:var(--muted);margin-bottom:40px;line-height:1.7;
+}
+.cta-btns{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+
+/* ═══════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════ */
+footer{
+  background:#03060C;
+  border-top:1px solid rgba(201,168,76,0.12);
+  padding:clamp(40px,6vw,80px) clamp(20px,5vw,60px) 32px;
+}
+.footer-inner{
+  max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;
+  margin-bottom:52px;
+}
+.f-brand-name{
+  font-family:'Cinzel',serif;font-size:24px;font-weight:700;letter-spacing:5px;
+  background:var(--gold-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:6px;
+}
+.f-brand-tag{
+  font-family:'Cormorant Garamond',serif;font-size:12px;font-style:italic;
+  letter-spacing:3px;color:var(--muted);margin-bottom:20px;
+}
+.f-brand-desc{
+  font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;
+  color:var(--muted);line-height:1.8;max-width:280px;margin-bottom:24px;
+}
+.f-social{display:flex;gap:12px}
+.f-soc-btn{
+  width:38px;height:38px;border-radius:50%;
+  border:1px solid rgba(201,168,76,0.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;text-decoration:none;
+  transition:all .25s;color:var(--muted);
+}
+.f-soc-btn:hover{border-color:var(--gold);background:rgba(201,168,76,0.1);color:var(--gold-lt)}
+
+.f-col-title{
+  font-family:'Cinzel',serif;font-size:11px;letter-spacing:3px;
+  color:var(--gold);text-transform:uppercase;margin-bottom:20px;
+}
+.f-links{list-style:none;display:flex;flex-direction:column;gap:10px}
+.f-links a{
+  font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;
+  color:var(--muted);text-decoration:none;transition:color .2s;
+}
+.f-links a:hover{color:var(--gold-lt)}
+
+.footer-bottom{
+  border-top:1px solid rgba(201,168,76,0.08);
+  padding-top:24px;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;
+}
+.footer-bottom p{
+  font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;
+  color:var(--muted);
+}
+.footer-bottom a{color:var(--gold-lt);text-decoration:none}
+
+/* ═══════════════════════════════════════════════
+   SCROLL ANIMATIONS
+═══════════════════════════════════════════════ */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal-l{opacity:0;transform:translateX(-40px);transition:opacity .7s ease,transform .7s ease}
+.reveal-l.visible{opacity:1;transform:none}
+.reveal-r{opacity:0;transform:translateX(40px);transition:opacity .7s ease,transform .7s ease}
+.reveal-r.visible{opacity:1;transform:none}
+[data-delay="1"]{transition-delay:.1s}
+[data-delay="2"]{transition-delay:.2s}
+[data-delay="3"]{transition-delay:.3s}
+[data-delay="4"]{transition-delay:.4s}
+
+/* ═══════════════════════════════════════════════
+   WHATSAPP BUTTON
+═══════════════════════════════════════════════ */
+#wa-btn{
+  position:fixed;bottom:28px;right:28px;z-index:600;
+  width:58px;height:58px;border-radius:50%;
+  background:linear-gradient(135deg,#25D366,#128C7E);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 28px rgba(37,211,102,0.45);
+  text-decoration:none;
+  transition:transform .3s cubic-bezier(.4,0,.2,1),box-shadow .3s;
+  animation:waPop .6s 2.2s cubic-bezier(.4,0,.2,1) both;
+}
+#wa-btn svg{width:30px;height:30px}
+#wa-btn:hover{transform:scale(1.12) translateY(-3px);box-shadow:0 12px 36px rgba(37,211,102,0.55)}
+
+.wa-tooltip{
+  position:absolute;right:68px;
+  background:rgba(6,11,20,0.92);
+  color:var(--white);
+  font-family:'Lato',sans-serif;font-size:12px;font-weight:700;
+  letter-spacing:1px;white-space:nowrap;
+  padding:8px 14px;border-radius:8px;
+  border:1px solid rgba(37,211,102,0.3);
+  opacity:0;pointer-events:none;
+  transform:translateX(8px);
+  transition:all .25s;
+}
+.wa-tooltip::after{
+  content:'';position:absolute;left:100%;top:50%;transform:translateY(-50%);
+  border:6px solid transparent;border-left-color:rgba(6,11,20,0.92);
+}
+#wa-btn:hover .wa-tooltip{opacity:1;transform:translateX(0)}
+
+.wa-ping{
+  position:absolute;top:2px;right:2px;
+  width:14px;height:14px;border-radius:50%;
+  background:#25D366;
+  animation:waPing 2s ease-in-out infinite;
+}
+@keyframes waPing{
+  0%,100%{transform:scale(1);opacity:1}
+  50%{transform:scale(2);opacity:0}
+}
+@keyframes waPop{
+  from{opacity:0;transform:scale(.4)}
+  to{opacity:1;transform:scale(1)}
+}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════ */
+@media(max-width:1024px){
+  .footer-inner{grid-template-columns:1fr 1fr;gap:36px}
+  .services-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  nav{display:none}
+  .burger{display:flex}
+  .stats-inner{grid-template-columns:repeat(2,1fr)}
+  .stat+.stat::before{display:none}
+  .services-grid{grid-template-columns:1fr}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:28px}
+  .footer-bottom{flex-direction:column;text-align:center}
+  .form-row{grid-template-columns:1fr}
+  .dim-grid{grid-template-columns:1fr}
+  .dim-wrap{max-width:280px}
+  .prog-label{display:none}
+  .prog-dot{width:34px;height:34px;font-size:12px}
+  .hero-shower{display:none}
+}
+@media(max-width:480px){
+  .stats-inner{grid-template-columns:1fr 1fr}
+  .footer-inner{grid-template-columns:1fr}
+  .hero-btns{flex-direction:column;align-items:center}
+  .btn-primary,.btn-secondary{width:100%;justify-content:center;max-width:320px}
+  .cta-btns{flex-direction:column;align-items:center}
+  .res-btns{flex-direction:column;align-items:center}
+  .res-btns .btn-primary,.res-btns .btn-wa{width:100%;justify-content:center;max-width:300px}
+  #liveBar{padding:12px 16px}
+  .hero-trust{gap:12px}
+  .trust-divider{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     PRELOADER
+════════════════════════════════════════ -->
+<div id="preloader">
+  <img src="LOGO DE DUCHASMAS.PNG" alt="DUCHASMAS" style="height:clamp(100px,18vw,160px);filter:drop-shadow(0 4px 24px rgba(201,168,76,0.45));animation:fadeUp .8s ease both;"/>
+  <div class="pre-sub" style="animation-delay:.3s">Reforma de Baño Premium</div>
+  <div class="pre-bar-wrap"><div class="pre-bar"></div></div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     HEADER
+════════════════════════════════════════ -->
+<header id="site-header">
+  <a class="h-logo" href="#">
+    <img src="LOGO DE DUCHASMAS.PNG" alt="DUCHASMAS" onerror="this.style.display='none'"/>
+    <div class="h-logo-text">
+      <span class="h-logo-name">DUCHASMAS</span>
+      <span class="h-logo-tag">Reforma de Baño Premium</span>
+    </div>
+  </a>
+
+  <nav>
+    <a href="#servicios">Servicios</a>
+    <a href="#calculadora">Presupuesto</a>
+    <a href="#garantias">Garantías</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+
+  <div class="h-cta">
+    <a href="tel:+34900000000" class="btn-call">📞 Llámanos</a>
+    <button class="burger" id="burgerBtn" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile nav -->
+<nav class="mob-nav" id="mobNav">
+  <a href="#servicios" onclick="closeMob()">Servicios</a>
+  <a href="#calculadora" onclick="closeMob()">Presupuesto</a>
+  <a href="#garantias" onclick="closeMob()">Garantías</a>
+  <a href="#contacto" onclick="closeMob()">Contacto</a>
+  <a href="tel:+34900000000" class="btn-call">📞 Llamar ahora</a>
+</nav>
+
+<!-- ═══════════════════════════════════════
+     HERO
+════════════════════════════════════════ -->
+<section class="hero">
+  <!-- marble panels -->
+  <div class="hero-panels">
+    <div class="hero-panel"></div><div class="hero-panel"></div>
+    <div class="hero-panel"></div><div class="hero-panel"></div>
+    <div class="hero-panel"></div><div class="hero-panel"></div>
+    <div class="hero-panel"></div><div class="hero-panel"></div>
+    <div class="hero-panel"></div><div class="hero-panel"></div>
+    <div class="hero-panel"></div><div class="hero-panel"></div>
+    <div class="hero-panel"></div><div class="hero-panel"></div>
+    <div class="hero-panel"></div><div class="hero-panel"></div>
+    <div class="hero-panel"></div><div class="hero-panel"></div>
+    <div class="hero-panel"></div><div class="hero-panel"></div>
+    <div class="hero-panel"></div><div class="hero-panel"></div>
+    <div class="hero-panel"></div><div class="hero-panel"></div>
+  </div>
+  <!-- vein lines -->
+  <div class="hero-vein"></div>
+  <div class="hero-vein"></div>
+  <div class="hero-vein"></div>
+  <!-- gold orb -->
+  <div class="hero-orb"></div>
+  <!-- water drops -->
+  <div class="drops">
+    <div class="drop"></div><div class="drop"></div><div class="drop"></div>
+    <div class="drop"></div><div class="drop"></div><div class="drop"></div>
+    <div class="drop"></div><div class="drop"></div>
+  </div>
+  <!-- shower silhouette -->
+  <div class="hero-shower">
+    <svg viewBox="0 0 200 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="80" y="20" width="8" height="180" fill="currentColor"/>
+      <circle cx="84" cy="16" r="14" fill="currentColor" opacity=".6"/>
+      <line x1="84" y1="30" x2="60" y2="60" stroke="currentColor" stroke-width="2" opacity=".4"/>
+      <line x1="84" y1="30" x2="84" y2="65" stroke="currentColor" stroke-width="2" opacity=".4"/>
+      <line x1="84" y1="30" x2="108" y2="60" stroke="currentColor" stroke-width="2" opacity=".4"/>
+      <line x1="84" y1="40" x2="55" y2="80" stroke="currentColor" stroke-width="1.5" opacity=".3"/>
+      <line x1="84" y1="40" x2="113" y2="80" stroke="currentColor" stroke-width="1.5" opacity=".3"/>
+      <rect x="40" y="340" width="120" height="8" rx="4" fill="currentColor" opacity=".5"/>
+      <rect x="60" y="200" width="48" height="148" rx="4" fill="currentColor" opacity=".3"/>
+    </svg>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Artesanía en cada detalle</div>
+    <h1 class="hero-h1">
+      Tu baño ideal,<br/>
+      <em>transformado</em><br/>
+      <span>en un solo día</span>
+    </h1>
+    <p class="hero-sub">
+      Especialistas en reforma de baño de alta gama. Materiales nobles,
+      instalación impecable y garantía de 5 años en cada proyecto.
+    </p>
+    <div class="hero-btns">
+      <a href="#calculadora" class="btn-primary">
+        ✦ Calcular mi presupuesto
+      </a>
+      <a href="tel:+34900000000" class="btn-secondary">
+        ☎ Llamar gratis
+      </a>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Instalación en 1 día
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Garantía 5 años
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Presupuesto en 2 min
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Sin compromiso
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Descubrir</span>
+    <div class="scroll-wheel"><div class="scroll-dot"></div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     STATS
+════════════════════════════════════════ -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat reveal" data-delay="1">
+      <span class="stat-num" data-count="15">0</span>
+      <span class="stat-label">Años de experiencia</span>
+    </div>
+    <div class="stat reveal" data-delay="2">
+      <span class="stat-num" data-count="3200">0</span>
+      <span class="stat-label">Baños reformados</span>
+    </div>
+    <div class="stat reveal" data-delay="3">
+      <span class="stat-num" data-count="98">0</span>
+      <span class="stat-label">% Clientes satisfechos</span>
+    </div>
+    <div class="stat reveal" data-delay="4">
+      <span class="stat-num" data-count="5">0</span>
+      <span class="stat-label">Años de garantía</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SERVICES
+════════════════════════════════════════ -->
+<section class="services-sec marble-bg" id="servicios">
+  <div style="position:relative;z-index:1;max-width:1100px;margin:0 auto">
+    <div class="sec-head reveal">
+      <span class="sec-label">Nuestros servicios</span>
+      <h2 class="sec-title">Soluciones de <em>baño de lujo</em></h2>
+      <p class="sec-desc">Cada reforma es una obra maestra. Seleccionamos los mejores materiales y artesanos para transformar tu espacio.</p>
+    </div>
+    <div class="services-grid">
+      <div class="srv-card reveal" data-delay="1">
+        <div class="srv-icon">🚿</div>
+        <div class="srv-name">Bañera por Ducha</div>
+        <div class="srv-desc">Convertimos tu bañera en una elegante ducha italiana con plato de resina mineral y mampara de vidrio templado. Instalación garantizada en un solo día.</div>
+        <div class="srv-from">desde <span>1.200 €</span></div>
+        <a href="#calculadora" class="srv-arrow">→</a>
+      </div>
+      <div class="srv-card reveal" data-delay="2">
+        <div class="srv-icon">🏛️</div>
+        <div class="srv-name">Reforma Completa de Baño</div>
+        <div class="srv-desc">Renovación integral llave en mano. Suelo, paredes, sanitarios suspendidos, muebles lacados, iluminación LED y acabados premium seleccionados.</div>
+        <div class="srv-from">desde <span>3.000 €</span></div>
+        <a href="#calculadora" class="srv-arrow">→</a>
+      </div>
+      <div class="srv-card reveal" data-delay="3">
+        <div class="srv-icon">✨</div>
+        <div class="srv-name">Ducha de Obra Nueva</div>
+        <div class="srv-desc">Diseñamos e instalamos tu ducha desde cero en espacios nuevos. Platos a medida, mamparas personalizadas y revestimientos exclusivos.</div>
+        <div class="srv-from">desde <span>900 €</span></div>
+        <a href="#calculadora" class="srv-arrow">→</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     CALCULATOR
+════════════════════════════════════════ -->
+<section class="calc-sec" id="calculadora">
+  <div class="calc-container">
+    <div class="sec-head reveal">
+      <span class="sec-label">Presupuesto online</span>
+      <h2 class="sec-title">Calcula tu <em>reforma</em> ahora</h2>
+      <p class="sec-desc">Obtén un presupuesto orientativo personalizado en menos de 2 minutos. Sin esperas, sin compromiso.</p>
+    </div>
+
+    <!-- Progress -->
+    <div class="progress-bar reveal" id="progBar">
+      <div class="prog-step active" data-step="1">
+        <div class="prog-dot">1</div>
+        <div class="prog-label">Servicio</div>
+      </div>
+      <div class="prog-step" data-step="2">
+        <div class="prog-dot">2</div>
+        <div class="prog-label">Medidas</div>
+      </div>
+      <div class="prog-step" data-step="3">
+        <div class="prog-dot">3</div>
+        <div class="prog-label">Calidad</div>
+      </div>
+      <div class="prog-step" data-step="4">
+        <div class="prog-dot">4</div>
+        <div class="prog-label">Extras</div>
+      </div>
+      <div class="prog-step" data-step="5">
+        <div class="prog-dot">5</div>
+        <div class="prog-label">Contacto</div>
+      </div>
+      <div class="prog-step" data-step="6">
+        <div class="prog-dot">✦</div>
+        <div class="prog-label">Resultado</div>
+      </div>
+    </div>
+
+    <!-- ── STEP 1 ── -->
+    <div class="step-panel active" id="sp1">
+      <div class="panel-wrap reveal">
+        <div class="panel-head">
+          <span class="sec-label">Paso 1 de 5</span>
+          <div class="panel-title">¿Qué reforma necesitas?</div>
+          <div class="panel-sub">Selecciona el tipo de trabajo que deseas realizar</div>
+        </div>
+        <div class="opts-grid">
+          <div class="opt-card" data-val="banera" onclick="selOpt(this,'service')">
+            <div class="opt-check">✓</div>
+            <span class="opt-ico">🚿</span>
+            <div class="opt-name">Bañera por Ducha</div>
+            <div class="opt-txt">Sustituimos tu bañera por una ducha moderna con plato antideslizante y mampara de vidrio.</div>
+            <div class="opt-from">Desde 1.200 €</div>
+          </div>
+          <div class="opt-card" data-val="reforma" onclick="selOpt(this,'service')">
+            <div class="opt-check">✓</div>
+            <span class="opt-ico">🏛️</span>
+            <div class="opt-name">Reforma Completa de Baño</div>
+            <div class="opt-txt">Renovación integral con suelo, paredes, sanitarios, muebles y acabados de primera calidad.</div>
+            <div class="opt-from">Desde 3.000 €</div>
+          </div>
+          <div class="opt-card" data-val="ducha_nueva" onclick="selOpt(this,'service')">
+            <div class="opt-check">✓</div>
+            <span class="opt-ico">✨</span>
+            <div class="opt-name">Ducha de Obra Nueva</div>
+            <div class="opt-txt">Instalamos tu ducha en un espacio nuevo sin bañera previa. Plato y mamparas incluidos.</div>
+            <div class="opt-from">Desde 900 €</div>
+          </div>
+        </div>
+        <div class="calc-nav">
+          <span></span>
+          <button class="btn-next" id="btn-s1" onclick="goStep(2)" disabled>Siguiente ›</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── STEP 2 ── -->
+    <div class="step-panel" id="sp2">
+      <div class="panel-wrap">
+        <div class="panel-head">
+          <span class="sec-label">Paso 2 de 5</span>
+          <div class="panel-title">Medidas de tu baño</div>
+          <div class="panel-sub">Introduce las dimensiones aproximadas del espacio</div>
+        </div>
+        <div class="dim-wrap">
+          <div class="dim-grid">
+            <div class="dim-field">
+              <label class="dim-lbl">Ancho</label>
+              <div class="inp-wrap">
+                <input class="dim-inp" type="number" id="d_ancho" placeholder="150" min="60" max="500" oninput="calcDim()"/>
+                <span class="dim-unit">cm</span>
+              </div>
+            </div>
+            <div class="dim-field">
+              <label class="dim-lbl">Largo</label>
+              <div class="inp-wrap">
+                <input class="dim-inp" type="number" id="d_largo" placeholder="200" min="60" max="700" oninput="calcDim()"/>
+                <span class="dim-unit">cm</span>
+              </div>
+            </div>
+            <div class="dim-field">
+              <label class="dim-lbl">Alto</label>
+              <div class="inp-wrap">
+                <input class="dim-inp" type="number" id="d_alto" placeholder="240" min="180" max="320" oninput="calcDim()"/>
+                <span class="dim-unit">cm</span>
+              </div>
+            </div>
+            <div class="dim-field">
+              <label class="dim-lbl">Superficie</label>
+              <div class="inp-wrap">
+                <input class="dim-inp result-inp" id="d_m2" value="3.00" readonly/>
+                <span class="dim-unit">m²</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="dim-hint">Si no conoces las medidas exactas, dejalo en blanco — usaremos dimensiones estándar.</p>
+        <div class="calc-nav">
+          <button class="btn-back" onclick="goStep(1)">‹ Atrás</button>
+          <button class="btn-next" onclick="goStep(3)">Siguiente ›</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── STEP 3 ── -->
+    <div class="step-panel" id="sp3">
+      <div class="panel-wrap">
+        <div class="panel-head">
+          <span class="sec-label">Paso 3 de 5</span>
+          <div class="panel-title">Calidad de materiales</div>
+          <div class="panel-sub">Elige la gama que mejor se adapta a tu gusto y presupuesto</div>
+        </div>
+        <div class="qual-grid" id="qualGrid"></div>
+        <div class="calc-nav">
+          <button class="btn-back" onclick="goStep(2)">‹ Atrás</button>
+          <button class="btn-next" id="btn-s3" onclick="goStep(4)" disabled>Siguiente ›</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── STEP 4 ── -->
+    <div class="step-panel" id="sp4">
+      <div class="panel-wrap">
+        <div class="panel-head">
+          <span class="sec-label">Paso 4 de 5</span>
+          <div class="panel-title">Extras y complementos</div>
+          <div class="panel-sub">Añade los complementos que deseas — todos opcionales</div>
+        </div>
+        <div class="extras-grid" id="extGrid"></div>
+        <div class="calc-nav">
+          <button class="btn-back" onclick="goStep(3)">‹ Atrás</button>
+          <button class="btn-next" onclick="goStep(5)">Siguiente ›</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── STEP 5 ── -->
+    <div class="step-panel" id="sp5">
+      <div class="panel-wrap">
+        <div class="panel-head">
+          <span class="sec-label">Paso 5 de 5</span>
+          <div class="panel-title">Tus datos</div>
+          <div class="panel-sub">Para enviarte el presupuesto detallado sin compromiso</div>
+        </div>
+        <form class="contact-form" onsubmit="return false">
+          <div class="form-row">
+            <div class="ff">
+              <label>Nombre *</label>
+              <input type="text" id="c_nom" placeholder="Tu nombre" required/>
+            </div>
+            <div class="ff">
+              <label>Apellidos *</label>
+              <input type="text" id="c_ape" placeholder="Apellidos" required/>
+            </div>
+          </div>
+          <div class="ff">
+            <label>Teléfono *</label>
+            <input type="tel" id="c_tel" placeholder="600 000 000" required/>
+          </div>
+          <div class="ff">
+            <label>Email</label>
+            <input type="email" id="c_email" placeholder="tu@email.com"/>
+          </div>
+          <div class="ff">
+            <label>Provincia</label>
+            <select id="c_prov">
+              <option value="">Selecciona tu provincia...</option>
+              <option>Madrid</option><option>Barcelona</option><option>Valencia</option>
+              <option>Sevilla</option><option>Alicante</option><option>Málaga</option>
+              <option>Murcia</option><option>Zaragoza</option><option>Bilbao</option>
+              <option>Asturias</option><option>Otra</option>
+            </select>
+          </div>
+          <div class="ff">
+            <label>Comentarios</label>
+            <textarea id="c_com" placeholder="¿Algo que quieras contarnos sobre tu baño?"></textarea>
+          </div>
+          <p class="privacy-note">Al continuar aceptas nuestra <a href="#">política de privacidad</a>. Tus datos son tratados con total confidencialidad.</p>
+        </form>
+        <div class="calc-nav">
+          <button class="btn-back" onclick="goStep(4)">‹ Atrás</button>
+          <button class="btn-next" onclick="submitCalc()">Ver mi presupuesto ›</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── STEP 6 RESULT ── -->
+    <div class="step-panel" id="sp6">
+      <div class="result-box">
+        <span class="result-ico">🏆</span>
+        <div class="panel-title" style="margin-bottom:8px;">Tu presupuesto orientativo</div>
+        <div class="result-name" id="r_name">Hola, <strong>—</strong></div>
+        <div class="price-card">
+          <div class="price-lbl">Presupuesto estimado</div>
+          <div class="price-range" id="r_price">—</div>
+          <div class="price-iva">Precio orientativo · IVA incluido</div>
+        </div>
+        <div class="breakdown">
+          <div class="bd-title">Desglose del presupuesto</div>
+          <div id="r_breakdown"></div>
+        </div>
+        <p class="result-note">Este presupuesto es orientativo. Un especialista DUCHASMAS se pondrá en contacto contigo en menos de 24 h para confirmar el precio exacto tras una visita sin compromiso.</p>
+        <div class="res-btns">
+          <a id="btn_wa" href="#" class="btn-wa">💬 Confirmar por WhatsApp</a>
+          <a href="tel:+34900000000" class="btn-primary">📞 Llamar ahora</a>
+        </div>
+        <div style="margin-top:18px;text-align:center">
+          <button onclick="resetCalc()" style="background:none;border:1px solid rgba(201,168,76,0.25);color:var(--muted);padding:10px 22px;border-radius:50px;cursor:pointer;font-size:11px;letter-spacing:2px;text-transform:uppercase;transition:all .25s" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold-lt)'" onmouseout="this.style.borderColor='rgba(201,168,76,0.25)';this.style.color='var(--muted)'">↺ Calcular otro presupuesto</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /calc-container -->
+</section>
+
+<!-- ═══════════════════════════════════════
+     WHY US
+════════════════════════════════════════ -->
+<section class="why-sec marble-bg" id="garantias">
+  <div class="why-inner">
+    <div class="sec-head reveal">
+      <span class="sec-label">Por qué elegirnos</span>
+      <h2 class="sec-title">La excelencia <em>en cada detalle</em></h2>
+      <p class="sec-desc">Más de 15 años transformando baños con la más alta calidad de materiales y mano de obra especializada.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal" data-delay="1">
+        <div class="why-ico">⚡</div>
+        <div class="why-title">Instalación en 1 Día</div>
+        <div class="why-txt">Nuestro método exclusivo nos permite completar el cambio de bañera por ducha en una sola jornada, sin obra sucia ni polvo.</div>
+      </div>
+      <div class="why-card reveal" data-delay="2">
+        <div class="why-ico">🛡️</div>
+        <div class="why-title">Garantía 5 Años</div>
+        <div class="why-txt">Respaldamos cada instalación con 5 años de garantía total. Si algo falla, lo resolvemos sin coste adicional.</div>
+      </div>
+      <div class="why-card reveal" data-delay="3">
+        <div class="why-ico">💎</div>
+        <div class="why-title">Materiales Premium</div>
+        <div class="why-txt">Solo trabajamos con materiales de primera: platos de resina mineral, vidrio templado de seguridad y revestimientos cerámicos de gran formato.</div>
+      </div>
+      <div class="why-card reveal" data-delay="4">
+        <div class="why-ico">✦</div>
+        <div class="why-title">Precio Transparente</div>
+        <div class="why-txt">Presupuesto cerrado sin sorpresas. El precio acordado es el precio final, con todos los materiales y la mano de obra incluidos.</div>
+      </div>
+      <div class="why-card reveal" data-delay="1">
+        <div class="why-ico">🏆</div>
+        <div class="why-title">Artesanos Certificados</div>
+        <div class="why-txt">Nuestro equipo está formado por instaladores certificados con más de 10 años de experiencia en reformas de baño de alta gama.</div>
+      </div>
+      <div class="why-card reveal" data-delay="2">
+        <div class="why-ico">💳</div>
+        <div class="why-title">Financiación Disponible</div>
+        <div class="why-txt">Financiamos tu reforma hasta en 36 meses con cuotas cómodas. Consulta nuestras opciones sin compromiso.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     TESTIMONIALS
+════════════════════════════════════════ -->
+<section class="testi-sec">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="sec-head reveal">
+      <span class="sec-label">Lo que dicen nuestros clientes</span>
+      <h2 class="sec-title">Más de <em>3.200 familias</em> confían en nosotros</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal" data-delay="1">
+        <div class="stars">★★★★★</div>
+        <p class="testi-txt">"Increíble servicio. Llegaron a las 8 de la mañana y a las 6 de la tarde teníamos la ducha lista. El resultado es espectacular, parece un baño de hotel de lujo."</p>
+        <div class="testi-author">
+          <div class="testi-av">M</div>
+          <div>
+            <div class="testi-name">María García</div>
+            <div class="testi-city">Madrid · Reforma Completa</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal" data-delay="2">
+        <div class="stars">★★★★★</div>
+        <p class="testi-txt">"El presupuesto online fue exactamente lo que pagué al final. Nada de sorpresas. Los materiales son de primerísima calidad. Muy recomendable."</p>
+        <div class="testi-author">
+          <div class="testi-av">J</div>
+          <div>
+            <div class="testi-name">Javier Martínez</div>
+            <div class="testi-city">Barcelona · Bañera por Ducha</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal" data-delay="3">
+        <div class="stars">★★★★★</div>
+        <p class="testi-txt">"Habíamos pedido presupuesto a varias empresas. DUCHASMAS fue la más profesional, la más rápida y la que mejor relación calidad-precio ofreció. Resultado 10/10."</p>
+        <div class="testi-author">
+          <div class="testi-av">A</div>
+          <div>
+            <div class="testi-name">Ana López</div>
+            <div class="testi-city">Valencia · Ducha Nueva</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     CTA
+════════════════════════════════════════ -->
+<section class="cta-sec" id="contacto">
+  <div class="cta-inner">
+    <div class="reveal">
+      <span class="sec-label">¿Listo para transformar tu baño?</span>
+      <h2 class="cta-title">Tu <em>baño de lujo</em><br/>a un clic de distancia</h2>
+      <p class="cta-sub">Calcula tu presupuesto ahora mismo o llámanos y un especialista te asesorará sin compromiso.</p>
+      <div class="cta-btns">
+        <a href="#calculadora" class="btn-primary">✦ Calcular presupuesto gratis</a>
+        <a href="tel:+34900000000" class="btn-secondary">📞 Llamar ahora</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+════════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="f-brand-name">DUCHASMAS</div>
+      <div class="f-brand-tag">Reforma de Baño Premium</div>
+      <p class="f-brand-desc">Especialistas en reformas de baño de alta gama desde 2009. Instalación en un día, materiales premium y garantía total de 5 años.</p>
+      <div class="f-social">
+        <a href="#" class="f-soc-btn" aria-label="Instagram">📷</a>
+        <a href="#" class="f-soc-btn" aria-label="Facebook">👍</a>
+        <a href="#" class="f-soc-btn" aria-label="WhatsApp">💬</a>
+        <a href="#" class="f-soc-btn" aria-label="YouTube">▶</a>
+      </div>
+    </div>
+    <div>
+      <div class="f-col-title">Servicios</div>
+      <ul class="f-links">
+        <li><a href="#">Bañera por Ducha</a></li>
+        <li><a href="#">Reforma Completa</a></li>
+        <li><a href="#">Ducha de Obra Nueva</a></li>
+        <li><a href="#">Mamparas a Medida</a></li>
+        <li><a href="#">Fontanería</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="f-col-title">Empresa</div>
+      <ul class="f-links">
+        <li><a href="#">Sobre Nosotros</a></li>
+        <li><a href="#">Galería de Obras</a></li>
+        <li><a href="#">Testimonios</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Trabaja con nosotros</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="f-col-title">Contacto</div>
+      <ul class="f-links">
+        <li><a href="tel:+34900000000">📞 900 000 000</a></li>
+        <li><a href="mailto:info@duchasmas.es">✉ info@duchasmas.es</a></li>
+        <li><a href="#">Horario: L-V 8h–19h</a></li>
+        <li><a href="#">Zonas de actuación</a></li>
+        <li><a href="#">Presupuesto online</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 DUCHASMAS — Todos los derechos reservados</p>
+    <p>
+      <a href="#">Política de privacidad</a> &nbsp;·&nbsp;
+      <a href="#">Aviso legal</a> &nbsp;·&nbsp;
+      <a href="#">Cookies</a>
+    </p>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════
+     WHATSAPP BUTTON
+════════════════════════════════════════ -->
+<a href="https://wa.me/34600000000?text=Hola%20DUCHASMAS%2C%20me%20gustar%C3%ADa%20solicitar%20informaci%C3%B3n%20sobre%20una%20reforma%20de%20ba%C3%B1o." target="_blank" rel="noopener" id="wa-btn" aria-label="Contactar por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.557 4.126 1.528 5.862L.057 23.215a.75.75 0 00.917.931l5.453-1.431A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.71 9.71 0 01-4.953-1.355l-.355-.214-3.676.964.983-3.589-.233-.37A9.712 9.712 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/>
+  </svg>
+  <span class="wa-tooltip">¿Hablamos?</span>
+  <span class="wa-ping"></span>
+</a>
+
+<!-- ═══════════════════════════════════════
+     LIVE TOTAL BAR
+════════════════════════════════════════ -->
+<div id="liveBar">
+  <div class="lb-left">
+    <div class="lb-label">Presupuesto estimado</div>
+    <div class="lb-price" id="lb_price">—</div>
+  </div>
+  <div class="lb-right">
+    <div>Precio orientativo · IVA incluido</div>
+    <div id="lb_info">Completa los pasos para calcular</div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════════ -->
+<script>
+/* ── PRELOADER ── */
+window.addEventListener('load',()=>{
+  setTimeout(()=>document.getElementById('preloader').classList.add('out'),1800);
+});
+
+/* ── BURGER ── */
+const burger=document.getElementById('burgerBtn');
+const mobNav=document.getElementById('mobNav');
+burger.addEventListener('click',()=>{
+  mobNav.classList.toggle('open');
+  const spans=burger.querySelectorAll('span');
+  if(mobNav.classList.contains('open')){
+    spans[0].style.cssText='transform:rotate(45deg) translate(5px,5px)';
+    spans[1].style.cssText='opacity:0;transform:scaleX(0)';
+    spans[2].style.cssText='transform:rotate(-45deg) translate(5px,-5px)';
+  } else { spans.forEach(s=>s.style.cssText=''); }
+});
+function closeMob(){
+  mobNav.classList.remove('open');
+  burger.querySelectorAll('span').forEach(s=>s.style.cssText='');
+}
+
+/* ── SCROLL REVEAL ── */
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+},{threshold:.12});
+document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el=>observer.observe(el));
+
+/* ── COUNTER ANIMATION ── */
+function animCount(el){
+  const target=parseInt(el.dataset.count);
+  const dur=1800;const step=16;
+  const inc=target/(dur/step);
+  let cur=0;
+  const t=setInterval(()=>{
+    cur+=inc;
+    if(cur>=target){cur=target;clearInterval(t);}
+    el.textContent=(cur>=100?Math.floor(cur):cur.toFixed(cur<10?1:0))+(el.dataset.count==='98'?'%':'');
+  },step);
+}
+const cntObserver=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const num=e.target.querySelector('.stat-num');
+      if(num&&!num.dataset.counted){num.dataset.counted='1';animCount(num);}
+    }
+  });
+},{threshold:.5});
+document.querySelectorAll('.stat').forEach(s=>cntObserver.observe(s));
+
+/* ══════════════════════════════
+   CALCULATOR STATE & DATA
+══════════════════════════════ */
+const S={
+  step:1, service:null, quality:null, extras:[],
+  ancho:150, largo:200, alto:240, m2:3.0,
+};
+
+const QUALITY={
+  banera:[
+    {id:'basico',label:'BÁSICO',name:'Básico',base:1200,perM2:0,
+     feats:['Plato ducha estándar','Mampara fija básica','Grifo monomando','Alicatado básico','Instalación completa']},
+    {id:'estandar',label:'ESTÁNDAR',name:'Estándar',base:1800,perM2:0,
+     feats:['Plato antideslizante premium','Mampara corredera vidrio templado','Grifo termostático','Azulejo de calidad media','Nicho integrado']},
+    {id:'premium',label:'PREMIUM',name:'Premium',base:2600,perM2:0,
+     feats:['Plato de resina mineral','Mampara a medida sin marco','Grifo Grohe / Hansgrohe','Microcemento o gran formato','Iluminación LED integrada']},
+    {id:'exclusive',label:'EXCLUSIVE',name:'Exclusive',base:3800,perM2:0,
+     feats:['Ducha italiana a ras de suelo','Vidrio ultra-transparente','Sistema de hidromasaje','Materiales nobles a elección','Proyecto personalizado']},
+  ],
+  reforma:[
+    {id:'basico',label:'BÁSICO',name:'Básico',base:3000,perM2:180,
+     feats:['Suelo y paredes nuevas','Sanitarios básicos','Grifo estándar','Fontanería y electricidad','Pintura y acabados']},
+    {id:'estandar',label:'ESTÁNDAR',name:'Estándar',base:4800,perM2:250,
+     feats:['Azulejo gran formato','Sanitarios suspendidos','Mueble con espejo LED','Grifo termostático','Iluminación LED']},
+    {id:'premium',label:'PREMIUM',name:'Premium',base:7500,perM2:380,
+     feats:['Microcemento o piedra natural','Sanitarios de diseño','Mueble lacado a medida','Ducha italiana + bañera exenta','Domótica básica']},
+    {id:'exclusive',label:'EXCLUSIVE',name:'Exclusive',base:12000,perM2:600,
+     feats:['Mármol / ónix / travertino','Proyecto de interiorismo','Spa home con hidroterapia','Smart home completo','Llave en mano integral']},
+  ],
+  ducha_nueva:[
+    {id:'basico',label:'BÁSICO',name:'Básico',base:900,perM2:0,
+     feats:['Plato estándar','Mampara básica','Grifo monomando','Fontanería incluida','Alicatado incluido']},
+    {id:'estandar',label:'ESTÁNDAR',name:'Estándar',base:1500,perM2:0,
+     feats:['Plato antideslizante premium','Mampara corredera templada','Grifo termostático','Azulejo calidad media','Nicho empotrado']},
+    {id:'premium',label:'PREMIUM',name:'Premium',base:2200,perM2:0,
+     feats:['Plato de resina mineral','Mampara a medida sin marco','Grifo termostático diseño','Gran formato / microcemento','LED empotrado']},
+    {id:'exclusive',label:'EXCLUSIVE',name:'Exclusive',base:3200,perM2:0,
+     feats:['Ducha italiana a ras suelo','Vidrio ultra-transparente','Lluvia + ducha lateral','Materiales nobles','Proyecto personalizado']},
+  ],
+};
+
+const EXTRAS=[
+  {id:'mamp_b',  ico:'🪞',name:'Mampara básica',          price:290},
+  {id:'mamp_p',  ico:'🔲',name:'Mampara premium sin marco',price:580},
+  {id:'grifo_t', ico:'🌡️',name:'Grifo termostático',       price:240},
+  {id:'suelo_a', ico:'🦺',name:'Suelo antideslizante',      price:180},
+  {id:'inod_s',  ico:'🚽',name:'Inodoro suspendido',        price:450},
+  {id:'mueble',  ico:'🗄️',name:'Mueble baño + espejo LED',  price:520},
+  {id:'led',     ico:'💡',name:'Iluminación LED',            price:175},
+  {id:'nicho',   ico:'📦',name:'Nicho empotrado',            price:120},
+  {id:'toall',   ico:'🔥',name:'Toallero calefactor',        price:320},
+  {id:'barras',  ico:'🤝',name:'Barras de seguridad',        price: 95},
+  {id:'extrac',  ico:'💨',name:'Extracción aire premium',    price:210},
+  {id:'pavim',   ico:'🏁',name:'Pavimento gran formato',     price:350},
+];
+
+const SVC_NAMES={banera:'Bañera por Ducha',reforma:'Reforma Completa',ducha_nueva:'Ducha Nueva'};
+const fmt=n=>n.toLocaleString('es-ES')+'€';
+
+/* ── TOTAL CALC ── */
+function calcTotal(){
+  if(!S.service||!S.quality) return null;
+  const q=QUALITY[S.service].find(x=>x.id===S.quality);
+  if(!q) return null;
+  let t=q.base+(q.perM2*S.m2);
+  S.extras.forEach(id=>{const e=EXTRAS.find(x=>x.id===id);if(e)t+=e.price;});
+  return Math.round(t);
+}
+
+/* ── LIVE BAR ── */
+function updateBar(){
+  const bar=document.getElementById('liveBar');
+  const t=calcTotal();
+  if(t&&S.step>=3){
+    bar.classList.add('show');
+    document.getElementById('lb_price').textContent=fmt(t);
+    document.getElementById('lb_info').textContent=S.extras.length+' extra(s) · Paso '+S.step+'/5';
+  } else {
+    bar.classList.remove('show');
+  }
+}
+
+/* ── STEP NAVIGATION ── */
+function goStep(n){
+  document.getElementById('sp'+S.step).classList.remove('active');
+  document.getElementById('sp'+n).classList.add('active');
+  document.querySelectorAll('.prog-step').forEach(el=>{
+    const s=parseInt(el.dataset.step);
+    el.classList.remove('active','done');
+    if(s<n) el.classList.add('done');
+    if(s===n) el.classList.add('active');
+  });
+  S.step=n;
+  window.scrollTo({top:document.getElementById('calculadora').offsetTop-80,behavior:'smooth'});
+  if(n===3) buildQual();
+  if(n===4) buildExt();
+  updateBar();
+}
+
+/* ── OPTION SELECT ── */
+function selOpt(el,type){
+  el.closest('.opts-grid').querySelectorAll('.opt-card').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel');
+  if(type==='service'){
+    S.service=el.dataset.val;
+    S.quality=null;S.extras=[];
+    document.getElementById('btn-s1').disabled=false;
+  }
+  updateBar();
+}
+
+function selQual(id){
+  S.quality=id;
+  document.querySelectorAll('.qual-card').forEach(c=>c.classList.toggle('sel',c.dataset.id===id));
+  document.getElementById('btn-s3').disabled=false;
+  updateBar();
+}
+
+function togExtra(id){
+  const i=S.extras.indexOf(id);
+  if(i===-1) S.extras.push(id); else S.extras.splice(i,1);
+  document.querySelector('.extra-card[data-id="'+id+'"]').classList.toggle('sel',S.extras.includes(id));
+  updateBar();
+}
+
+/* ── BUILD QUAL GRID ── */
+function buildQual(){
+  const list=QUALITY[S.service]||QUALITY.banera;
+  document.getElementById('qualGrid').innerHTML=list.map(q=>{
+    const p=q.base+(q.perM2*S.m2);
+    return`<div class="qual-card${S.quality===q.id?' sel':''}" data-id="${q.id}" onclick="selQual('${q.id}')">
+      <div class="qual-badge">${q.label}</div>
+      <div class="qual-name">${q.name}</div>
+      <div class="qual-price">${fmt(Math.round(p))} <sub>desde</sub></div>
+      <ul class="qual-feats">${q.feats.map(f=>`<li>${f}</li>`).join('')}</ul>
+    </div>`;
+  }).join('');
+  if(S.quality) document.getElementById('btn-s3').disabled=false;
+}
+
+/* ── BUILD EXT GRID ── */
+function buildExt(){
+  document.getElementById('extGrid').innerHTML=EXTRAS.map(e=>`
+    <div class="extra-card${S.extras.includes(e.id)?' sel':''}" data-id="${e.id}" onclick="togExtra('${e.id}')">
+      <div class="extra-ico">${e.ico}</div>
+      <div class="extra-info"><div class="extra-nm">${e.name}</div><div class="extra-pr">+ ${fmt(e.price)}</div></div>
+      <div class="extra-chk">✓</div>
+    </div>`).join('');
+}
+
+/* ── DIMENSIONS ── */
+function calcDim(){
+  const a=parseFloat(document.getElementById('d_ancho').value)||150;
+  const l=parseFloat(document.getElementById('d_largo').value)||200;
+  S.ancho=a;S.largo=l;
+  S.alto=parseFloat(document.getElementById('d_alto').value)||240;
+  S.m2=parseFloat(((a/100)*(l/100)).toFixed(2));
+  document.getElementById('d_m2').value=S.m2;
+  updateBar();
+}
+
+/* ── SUBMIT ── */
+function submitCalc(){
+  const nom=document.getElementById('c_nom').value.trim();
+  const tel=document.getElementById('c_tel').value.trim();
+  if(!nom){alert('Por favor, introduce tu nombre.');return;}
+  if(!tel){alert('Por favor, introduce tu teléfono.');return;}
+  showResult(nom,tel);
+  goStep(6);
+  document.getElementById('liveBar').classList.remove('show');
+}
+
+function showResult(nom,tel){
+  const t=calcTotal();
+  const min=Math.round(t*.9),max=Math.round(t*1.1);
+  const q=QUALITY[S.service].find(x=>x.id===S.quality);
+  const svcName=SVC_NAMES[S.service];
+  document.getElementById('r_name').innerHTML='Hola, <strong>'+nom+'</strong> 👋';
+  document.getElementById('r_price').textContent=fmt(min)+' – '+fmt(max);
+  const exRows=S.extras.map(id=>{
+    const e=EXTRAS.find(x=>x.id===id);
+    return`<div class="bd-row"><span class="bd-k">+ ${e.name}</span><span class="bd-v">+${fmt(e.price)}</span></div>`;
+  }).join('');
+  document.getElementById('r_breakdown').innerHTML=
+    `<div class="bd-row"><span class="bd-k">Servicio: ${svcName}</span><span class="bd-v">${q.name}</span></div>`+
+    `<div class="bd-row"><span class="bd-k">Superficie: ${S.m2} m²</span><span class="bd-v">${fmt(Math.round(q.base+q.perM2*S.m2))}</span></div>`+
+    exRows+
+    `<div class="bd-row"><span class="bd-k">Total estimado</span><span class="bd-v">${fmt(t)}</span></div>`;
+  const msg=encodeURIComponent(`Hola DUCHASMAS 👋, soy ${nom}.\nPresupuesto calculado en vuestra web:\n- Servicio: ${svcName}\n- Calidad: ${q.name}\n- Medidas: ${S.ancho}×${S.largo} cm (${S.m2} m²)\n- Extras: ${S.extras.length?S.extras.map(id=>EXTRAS.find(x=>x.id===id).name).join(', '):'Ninguno'}\n- Estimado: ${fmt(min)} – ${fmt(max)}\nTeléfono: ${tel}`);
+  document.getElementById('btn_wa').href='https://wa.me/34600000000?text='+msg;
+}
+
+/* ── RESET ── */
+function resetCalc(){
+  S.step=1;S.service=null;S.quality=null;S.extras=[];S.m2=3.0;
+  document.querySelectorAll('.step-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('sp1').classList.add('active');
+  document.querySelectorAll('.opt-card').forEach(c=>c.classList.remove('sel'));
+  document.getElementById('btn-s1').disabled=true;
+  document.querySelectorAll('.prog-step').forEach(d=>{d.classList.remove('active','done');if(d.dataset.step==='1')d.classList.add('active');});
+  document.getElementById('liveBar').classList.remove('show');
+  ['d_ancho','d_largo','d_alto','c_nom','c_ape','c_tel','c_email','c_com'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  document.getElementById('d_m2').value='3.00';
+  window.scrollTo({top:document.getElementById('calculadora').offsetTop-80,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
