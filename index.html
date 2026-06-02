@@ -202,17 +202,124 @@ nav a:hover::after{width:100%}
 /* mobile nav */
 .mob-nav{
   display:none;position:fixed;inset:72px 0 0;z-index:499;
-  background:rgba(6,11,20,0.97);backdrop-filter:blur(20px);
-  flex-direction:column;align-items:center;justify-content:center;gap:36px;
-  opacity:0;pointer-events:none;transition:opacity .3s;
+  background:
+    repeating-linear-gradient(105deg,transparent 0,transparent 55px,rgba(255,255,255,0.01) 55px,rgba(255,255,255,0.01) 56px),
+    repeating-linear-gradient(15deg,transparent 0,transparent 80px,rgba(201,168,76,0.015) 80px,rgba(201,168,76,0.015) 81px),
+    linear-gradient(160deg,#030303 0%,#070707 50%,#040404 100%);
+  backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);
+  flex-direction:column;
+  opacity:0;pointer-events:none;
+  transition:opacity .38s ease;
+  overflow:hidden;
+}
+.mob-nav::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:var(--gold-grad);opacity:.85;pointer-events:none;z-index:1;
 }
 .mob-nav.open{opacity:1;pointer-events:all}
-.mob-nav a{
-  font-family:'Cinzel',serif;font-size:18px;letter-spacing:4px;
-  color:var(--muted);text-decoration:none;text-transform:uppercase;
-  transition:color .2s;
+
+/* ── brand inside menu ── */
+.mn-brand{
+  padding:22px 28px 18px;
+  border-bottom:1px solid rgba(201,168,76,0.1);
+  flex-shrink:0;
+  opacity:0;transform:translateY(-10px);
+  transition:opacity .3s ease,transform .3s ease;
 }
-.mob-nav a:hover{color:var(--gold-lt)}
+.mob-nav.open .mn-brand{opacity:1;transform:none;transition-delay:.07s}
+.mn-brand-name{
+  font-family:'Cinzel',serif;font-size:20px;font-weight:700;letter-spacing:5px;
+  background:var(--gold-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  line-height:1;margin-bottom:4px;
+}
+.mn-brand-tag{
+  font-family:'Cormorant Garamond',serif;font-size:11px;
+  letter-spacing:3px;color:var(--muted);font-style:italic;
+}
+
+/* ── nav links ── */
+.mn-links{flex:1;display:flex;flex-direction:column;overflow-y:auto}
+.mn-link{
+  display:flex;align-items:center;gap:16px;
+  padding:18px 28px;
+  text-decoration:none;
+  border-bottom:1px solid rgba(201,168,76,0.07);
+  position:relative;overflow:hidden;
+  opacity:0;transform:translateX(-18px);
+  transition:opacity .3s ease,transform .3s ease,background .25s;
+}
+.mn-link::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:var(--gold-grad);transform:scaleY(0);transition:transform .3s;transform-origin:bottom;
+}
+.mn-link:hover{background:rgba(201,168,76,0.04)}
+.mn-link:hover::before{transform:scaleY(1)}
+.mob-nav.open .mn-link:nth-child(1){opacity:1;transform:none;transition-delay:.15s}
+.mob-nav.open .mn-link:nth-child(2){opacity:1;transform:none;transition-delay:.21s}
+.mob-nav.open .mn-link:nth-child(3){opacity:1;transform:none;transition-delay:.27s}
+.mob-nav.open .mn-link:nth-child(4){opacity:1;transform:none;transition-delay:.33s}
+
+.mn-num{
+  font-family:'Cinzel',serif;font-size:11px;font-weight:700;letter-spacing:1px;
+  color:rgba(201,168,76,0.3);min-width:22px;transition:color .25s;
+}
+.mn-link:hover .mn-num{color:var(--gold)}
+.mn-link-body{flex:1;display:flex;flex-direction:column;gap:3px}
+.mn-text{
+  font-family:'Cinzel',serif;font-size:20px;font-weight:600;
+  letter-spacing:3px;color:rgba(255,255,255,0.75);
+  text-transform:uppercase;transition:color .25s;line-height:1;
+}
+.mn-sub{
+  font-family:'Cormorant Garamond',serif;font-size:12px;font-style:italic;
+  color:rgba(255,255,255,0.22);letter-spacing:1px;transition:color .25s;
+}
+.mn-link:hover .mn-text{color:var(--white)}
+.mn-link:hover .mn-sub{color:rgba(201,168,76,0.55)}
+.mn-arrow{
+  font-size:20px;color:rgba(201,168,76,0.22);
+  transition:all .25s;line-height:1;
+}
+.mn-link:hover .mn-arrow{color:var(--gold);transform:translateX(4px)}
+
+/* ── bottom block ── */
+.mn-bottom{
+  padding:18px 28px 20px;
+  border-top:1px solid rgba(201,168,76,0.1);
+  flex-shrink:0;
+  opacity:0;transform:translateY(10px);
+  transition:opacity .3s ease,transform .3s ease;
+}
+.mob-nav.open .mn-bottom{opacity:1;transform:none;transition-delay:.41s}
+.mn-cta{
+  display:block;text-align:center;
+  padding:14px 28px;
+  background:var(--gold-grad);color:var(--sap);
+  text-decoration:none;border-radius:50px;
+  font-family:'Lato',sans-serif;font-size:12px;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;
+  box-shadow:0 5px 20px rgba(201,168,76,0.25);
+  transition:all .25s;margin-bottom:16px;
+}
+.mn-cta:hover{box-shadow:0 8px 28px rgba(201,168,76,0.4);transform:translateY(-2px)}
+.mn-footer{
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:10px;
+}
+.mn-foot-info{display:flex;flex-direction:column;gap:4px}
+.mn-foot-info span{
+  font-family:'Cormorant Garamond',serif;font-size:12px;font-style:italic;
+  color:rgba(255,255,255,0.28);letter-spacing:.5px;
+}
+.mn-socials{display:flex;gap:8px}
+.mn-soc{
+  width:32px;height:32px;border-radius:50%;
+  border:1px solid rgba(201,168,76,0.18);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;text-decoration:none;color:var(--muted);
+  transition:all .25s;
+}
+.mn-soc:hover{border-color:var(--gold);background:rgba(201,168,76,0.1)}
 
 /* ═══════════════════════════════════════════════
    HERO
@@ -1463,30 +1570,8 @@ body{font-display:swap}
   .h-logo-tag{display:none}            /* ocultar tagline en móvil */
   .btn-call{font-size:10px;padding:9px 16px;letter-spacing:1px}
 
-  /* Mobile nav mejorado */
-  .mob-nav{
-    display:flex;
-    padding:40px 32px;
-    gap:28px;
-    background:rgba(5,5,5,0.98);
-    border-top:1px solid rgba(201,168,76,0.12);
-  }
-  .mob-nav a{
-    font-size:22px;letter-spacing:3px;
-    padding:10px 0;
-    border-bottom:1px solid rgba(201,168,76,0.08);
-    width:100%;text-align:center;
-  }
-  .mob-nav a:last-child{
-    margin-top:12px;
-    border-bottom:none;
-    background:var(--gold-grad);
-    color:var(--sap) !important;
-    padding:14px 32px;
-    border-radius:50px;
-    font-size:13px;
-    width:auto;
-  }
+  /* Mobile nav */
+  .mob-nav{display:flex;inset:64px 0 0}
 
   /* Hero */
   .hero-content{padding:80px 24px 60px}
@@ -1599,6 +1684,9 @@ body{font-display:swap}
   /* WhatsApp */
   #wa-btn{bottom:16px;right:12px}
   .wa-tooltip{display:none}
+  /* Mobile nav */
+  .mob-nav{inset:60px 0 0}
+  .mn-text{font-size:18px}
 }
 </style>
 </head>
@@ -1642,11 +1730,58 @@ body{font-display:swap}
 
 <!-- Mobile nav -->
 <nav class="mob-nav" id="mobNav">
-  <a href="#servicios" onclick="closeMob()">Servicios</a>
-  <a href="#calculadora" onclick="closeMob()">Presupuesto</a>
-  <a href="#garantias" onclick="closeMob()">Garantías</a>
-  <a href="#contacto" onclick="closeMob()">Contacto</a>
-  <a href="tel:+34900000000" class="btn-call">📞 Llamar ahora</a>
+  <div class="mn-brand">
+    <div class="mn-brand-name">DUCHASMAS</div>
+    <div class="mn-brand-tag">Reforma de Baño Premium</div>
+  </div>
+  <div class="mn-links">
+    <a href="#servicios" onclick="closeMob()" class="mn-link">
+      <span class="mn-num">01</span>
+      <div class="mn-link-body">
+        <span class="mn-text">Servicios</span>
+        <span class="mn-sub">Nuestros trabajos</span>
+      </div>
+      <span class="mn-arrow">›</span>
+    </a>
+    <a href="#calculadora" onclick="closeMob()" class="mn-link">
+      <span class="mn-num">02</span>
+      <div class="mn-link-body">
+        <span class="mn-text">Presupuesto</span>
+        <span class="mn-sub">Calcula tu reforma</span>
+      </div>
+      <span class="mn-arrow">›</span>
+    </a>
+    <a href="#garantias" onclick="closeMob()" class="mn-link">
+      <span class="mn-num">03</span>
+      <div class="mn-link-body">
+        <span class="mn-text">Garantías</span>
+        <span class="mn-sub">Por qué elegirnos</span>
+      </div>
+      <span class="mn-arrow">›</span>
+    </a>
+    <a href="#contacto" onclick="closeMob()" class="mn-link">
+      <span class="mn-num">04</span>
+      <div class="mn-link-body">
+        <span class="mn-text">Contacto</span>
+        <span class="mn-sub">Habla con nosotros</span>
+      </div>
+      <span class="mn-arrow">›</span>
+    </a>
+  </div>
+  <div class="mn-bottom">
+    <a href="tel:+34900000000" class="mn-cta">📞 Llamar ahora</a>
+    <div class="mn-footer">
+      <div class="mn-foot-info">
+        <span>📞 900 000 000</span>
+        <span>✉ info@duchasmas.es</span>
+      </div>
+      <div class="mn-socials">
+        <a href="#" class="mn-soc" aria-label="Instagram">📷</a>
+        <a href="#" class="mn-soc" aria-label="Facebook">👍</a>
+        <a href="#" class="mn-soc" aria-label="WhatsApp">💬</a>
+      </div>
+    </div>
+  </div>
 </nav>
 
 <!-- ═══════════════════════════════════════
