@@ -1,20 +1,20 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<meta name="description" content="DUCHASMAS — Reforma de baño premium. Calcula tu presupuesto online al instante. Instalación en 1 día, garantía 5 años."/>
-<title>DUCHASMAS | Reforma de Baño de Lujo · Presupuesto Online</title>
+<meta name="description" content="Duchas & Reformas — Reforma de baño premium. Calcula tu presupuesto online al instante. Instalación en 1 día, garantía 5 años."/>
+<title>Duchas & Reformas | Reforma de Baño de Lujo · Presupuesto Online</title>
 <meta name="theme-color" content="#080808"/>
-<link rel="icon" type="image/png" href="LOGO-DUCHASMAS.PNG"/>
-<link rel="apple-touch-icon" href="LOGO-DUCHASMAS.PNG"/>
+<link rel="icon" type="image/png" href="LOGO DUCHAS REFORMAS.PNG"/>
+<link rel="apple-touch-icon" href="LOGO DUCHAS REFORMAS.PNG"/>
 <!-- DNS + conexión anticipada -->
 <link rel="dns-prefetch" href="https://fonts.googleapis.com"/>
 <link rel="dns-prefetch" href="https://fonts.gstatic.com"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <!-- Preload logo (above the fold) -->
-<link rel="preload" href="LOGO-DUCHASMAS.PNG" as="image" fetchpriority="high"/>
+<link rel="preload" href="LOGO DUCHAS REFORMAS.PNG" as="image" fetchpriority="high"/>
 <!-- Fuentes: solo los pesos usados, display=swap evita FOIT -->
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Lato:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
 <noscript><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Lato:wght@400;700&display=swap" rel="stylesheet"/></noscript>
@@ -600,6 +600,46 @@ nav a:hover::after{width:100%}
 /* warm spotlight — sutil glow sin forma visible */
 .s-light{display:none}
 
+/* ── STEAM / VAPOR ── */
+.steam-wrap{
+  position:absolute;
+  bottom:4px;
+  right:8px;
+  width:90px;
+  height:85%;
+  overflow:hidden;
+  pointer-events:none;
+  transform:translateZ(6px);
+}
+.stm{
+  position:absolute;
+  bottom:0;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(220,235,248,0.55) 0%, rgba(200,220,240,0.18) 50%, transparent 70%);
+  filter:blur(6px);
+  opacity:0;
+  animation-name:steamRise;
+  animation-timing-function:ease-out;
+  animation-iteration-count:infinite;
+  animation-play-state:paused;
+}
+.shower-3d-scene:hover .stm{animation-play-state:running}
+
+.stm:nth-child(1){width:36px;height:36px;left:8%; animation-duration:3.2s;animation-delay:0s}
+.stm:nth-child(2){width:28px;height:28px;left:28%;animation-duration:2.8s;animation-delay:.6s}
+.stm:nth-child(3){width:40px;height:40px;left:50%;animation-duration:3.5s;animation-delay:.2s}
+.stm:nth-child(4){width:30px;height:30px;left:70%;animation-duration:3.0s;animation-delay:1.0s}
+.stm:nth-child(5){width:24px;height:24px;left:18%;animation-duration:2.6s;animation-delay:1.5s}
+.stm:nth-child(6){width:34px;height:34px;left:55%;animation-duration:3.3s;animation-delay:.8s}
+
+@keyframes steamRise{
+  0%  {transform:translateY(0)   scaleX(1)   opacity:0}
+  10% {opacity:.7}
+  40% {transform:translateY(-35%) scaleX(1.3) opacity:.5}
+  70% {transform:translateY(-65%) scaleX(1.8) opacity:.25}
+  100%{transform:translateY(-100%) scaleX(2.2) opacity:0}
+}
+
 /* ── FLOATING TRUST BADGE — desktop only ── */
 .trust-badge{
   position:absolute;
@@ -858,6 +898,15 @@ nav a:hover::after{width:100%}
 
 .srv-card>*{position:relative;z-index:1}
 
+.srv-img-wrap{
+  width:calc(100% + clamp(44px,6vw,72px));
+  margin:-clamp(28px,3vw,44px) -clamp(22px,2.5vw,36px) 20px;
+  height:500px;
+  border-radius:var(--r-lg) var(--r-lg) 0 0;
+  overflow:hidden;
+}
+.srv-img-wrap img{width:100%;height:100%;object-fit:cover;object-position:center bottom;display:block;transition:transform .4s ease}
+.srv-card:hover .srv-img-wrap img{transform:scale(1.03)}
 .srv-icon{
   width:56px;height:56px;margin-bottom:20px;
   background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.2);
@@ -867,32 +916,52 @@ nav a:hover::after{width:100%}
 }
 .srv-card:hover .srv-icon{background:rgba(201,168,76,0.15);border-color:rgba(201,168,76,0.4)}
 
+.srv-body{padding:clamp(20px,2.5vw,32px);position:relative;z-index:1}
+.srv-badge{
+  display:inline-block;
+  font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;
+  text-transform:uppercase;color:var(--gold);
+  border:1px solid rgba(201,168,76,0.3);
+  background:rgba(201,168,76,0.07);
+  padding:4px 12px;border-radius:50px;
+  margin-bottom:14px;
+}
 .srv-name{
-  font-family:'Cinzel',serif;font-size:clamp(16px,2vw,20px);font-weight:600;
-  color:var(--white);margin-bottom:10px;line-height:1.2;
+  font-family:'Cinzel',serif;font-size:clamp(20px,2.2vw,26px);font-weight:700;
+  color:var(--white);margin-bottom:12px;line-height:1.1;
+  letter-spacing:2px;
+}
+.srv-gold-line{
+  width:40px;height:2px;
+  background:var(--gold-grad);
+  border-radius:2px;margin-bottom:16px;
 }
 .srv-desc{
   font-family:'Cormorant Garamond',serif;font-size:15px;
-  color:var(--muted);font-style:italic;line-height:1.75;margin-bottom:20px;
+  color:var(--muted);font-style:italic;line-height:1.75;margin-bottom:22px;
 }
-.srv-from{
-  font-family:'Cinzel',serif;font-size:13px;
-  color:var(--gold-lt);letter-spacing:1px;
+.srv-price-block{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  padding-top:18px;
+  border-top:1px solid rgba(201,168,76,0.1);
 }
-.srv-from span{font-size:22px;font-weight:700;color:var(--gold-xlt)}
-
-.srv-arrow{
-  position:absolute;bottom:28px;right:28px;
-  width:36px;height:36px;border-radius:50%;
-  border:1px solid rgba(201,168,76,0.25);
-  display:flex;align-items:center;justify-content:center;
-  color:var(--gold);font-size:16px;
-  transition:all .3s;z-index:1;
+.srv-price-label{
+  font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;
+  color:var(--gold);text-transform:uppercase;
 }
-.srv-card:hover .srv-arrow{
-  background:var(--gold);color:var(--sap);border-color:var(--gold);
-  transform:translate(3px,-3px);
+.srv-price-num{
+  font-family:'Cinzel',serif;font-size:clamp(22px,2.5vw,28px);font-weight:700;
+  background:var(--gold-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;flex:1;
 }
+.srv-btn{
+  font-family:'Lato',sans-serif;font-size:10px;letter-spacing:1.5px;font-weight:700;
+  text-transform:uppercase;text-decoration:none;
+  color:var(--sap);background:var(--gold-grad);
+  padding:9px 16px;border-radius:50px;white-space:nowrap;
+  transition:all .25s;box-shadow:0 4px 14px rgba(201,168,76,0.25);
+}
+.srv-btn:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(201,168,76,0.4)}
 
 /* ═══════════════════════════════════════════════
    CALCULATOR SECTION
@@ -1274,33 +1343,39 @@ nav a:hover::after{width:100%}
 .why-inner{position:relative;z-index:1;max-width:1100px;margin:0 auto}
 
 .why-grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  display:grid;grid-template-columns:repeat(4,1fr);
   gap:24px;
 }
 .why-card{
-  padding:32px 26px;border-radius:var(--r-lg);
+  padding:36px 28px;border-radius:var(--r-lg);
   position:relative;overflow:hidden;
-  transition:transform .3s;
+  transition:transform .3s,box-shadow .3s;
 }
 .why-card::before{
   content:'';position:absolute;inset:0;border-radius:var(--r-lg);
-  background:rgba(8,16,30,0.65);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-  border:1px solid rgba(201,168,76,0.1);z-index:0;
+  background:rgba(8,16,30,0.7);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border:1px solid rgba(201,168,76,0.12);z-index:0;
   transition:border-color .3s;
 }
-.why-card:hover{transform:translateY(-6px)}
-.why-card:hover::before{border-color:rgba(201,168,76,0.28)}
+.why-card:hover{transform:translateY(-8px);box-shadow:0 20px 60px rgba(0,0,0,0.4)}
+.why-card:hover::before{border-color:rgba(201,168,76,0.35)}
 .why-card>*{position:relative;z-index:1}
 
 .why-ico{
-  width:52px;height:52px;margin-bottom:20px;
-  background:linear-gradient(135deg,rgba(201,168,76,0.12),rgba(201,168,76,0.04));
-  border:1px solid rgba(201,168,76,0.2);border-radius:14px;
-  display:flex;align-items:center;justify-content:center;font-size:24px;
+  width:56px;height:56px;margin-bottom:24px;
+  background:linear-gradient(135deg,rgba(201,168,76,0.15),rgba(201,168,76,0.05));
+  border:1px solid rgba(201,168,76,0.25);border-radius:16px;
+  display:flex;align-items:center;justify-content:center;font-size:26px;
+  box-shadow:0 4px 16px rgba(201,168,76,0.1);
 }
 .why-title{
-  font-family:'Cinzel',serif;font-size:16px;font-weight:600;
-  color:var(--white);margin-bottom:10px;
+  font-family:'Cinzel',serif;font-size:15px;font-weight:700;
+  color:var(--white);margin-bottom:6px;letter-spacing:.5px;
+}
+.why-card::after{
+  content:'';display:block;width:32px;height:2px;
+  background:var(--gold-grad);border-radius:2px;
+  margin:10px 0 14px;position:relative;z-index:1;
 }
 .why-txt{
   font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;
@@ -1308,18 +1383,122 @@ nav a:hover::after{width:100%}
 }
 
 /* ═══════════════════════════════════════════════
-   TESTIMONIALS
+   REVIEWS CAROUSEL
 ═══════════════════════════════════════════════ */
-.testi-sec{
-  padding:clamp(60px,8vh,100px) clamp(20px,5vw,60px);
-  background:linear-gradient(160deg,#060606 0%,#0F0F0F 50%,#060606 100%);
+.rev-sec{
+  padding:clamp(60px,8vh,100px) 0;
+  background:linear-gradient(160deg,#050505 0%,#0A0A0A 50%,#050505 100%);
   position:relative;overflow:hidden;
 }
-.testi-sec::before{
+.rev-sec::before{
   content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse at 50% 50%,rgba(201,168,76,0.04) 0%,transparent 65%);
+  background:radial-gradient(ellipse at 50% 50%,rgba(201,168,76,0.05) 0%,transparent 65%);
   pointer-events:none;
 }
+.rev-inner{
+  display:flex;align-items:center;gap:48px;
+  max-width:1300px;margin:0 auto;
+  padding:0 clamp(20px,5vw,60px);
+}
+/* Panel izquierdo */
+.rev-panel{flex:0 0 220px}
+.rev-panel-lbl{
+  font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;
+  color:var(--gold);text-transform:uppercase;margin-bottom:10px;display:block;
+}
+.rev-panel-score{
+  font-family:'Cinzel',serif;font-size:58px;font-weight:700;line-height:1;
+  background:var(--gold-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;margin-bottom:6px;
+}
+.rev-panel-stars{font-size:18px;letter-spacing:3px;color:var(--gold);margin-bottom:8px;display:block}
+.rev-panel-count{
+  font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;
+  color:var(--muted);margin-bottom:22px;line-height:1.7;
+}
+.rev-plats{display:flex;align-items:center;gap:8px;margin-bottom:22px}
+.rev-plat{
+  width:30px;height:30px;border-radius:50%;
+  border:1px solid rgba(201,168,76,0.2);background:rgba(8,8,8,0.8);
+  display:flex;align-items:center;justify-content:center;font-size:14px;
+}
+.rev-plat-txt{font-family:'Cormorant Garamond',serif;font-size:12px;font-style:italic;color:var(--muted)}
+.rev-btn{
+  display:inline-block;text-decoration:none;
+  font-family:'Lato',sans-serif;font-size:10px;letter-spacing:2px;font-weight:700;
+  text-transform:uppercase;color:var(--sap);background:var(--gold-grad);
+  padding:11px 20px;border-radius:50px;
+  box-shadow:0 4px 16px rgba(201,168,76,0.28);transition:all .25s;
+}
+.rev-btn:hover{transform:translateY(-2px);box-shadow:0 8px 26px rgba(201,168,76,0.42)}
+/* Carrusel */
+.rev-carousel{
+  flex:1;overflow:hidden;
+  -webkit-mask-image:linear-gradient(to right,transparent 0%,#000 8%,#000 92%,transparent 100%);
+  mask-image:linear-gradient(to right,transparent 0%,#000 8%,#000 92%,transparent 100%);
+  contain:paint;
+}
+.rev-track{
+  display:flex;gap:16px;width:max-content;padding:8px 0;
+  will-change:transform;backface-visibility:hidden;
+}
+.rev-track-1{animation:revL 40s linear infinite}
+.rev-track-2{animation:revR 44s linear infinite;margin-top:16px}
+.rev-track:hover{animation-play-state:paused}
+@keyframes revL{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes revR{0%{transform:translateX(-50%)}100%{transform:translateX(0)}}
+/* Tarjeta */
+.rev-card{
+  width:280px;flex-shrink:0;
+  background:rgba(10,10,10,0.88);
+  border:1px solid rgba(201,168,76,0.1);
+  border-radius:var(--r-lg);padding:20px 22px;
+  display:flex;flex-direction:column;gap:12px;
+  transition:border-color .3s,transform .3s,box-shadow .3s;
+  backdrop-filter:blur(12px);
+}
+.rev-card:hover{
+  border-color:rgba(201,168,76,0.32);
+  transform:translateY(-4px);
+  box-shadow:0 14px 40px rgba(0,0,0,0.45),0 0 20px rgba(201,168,76,0.06);
+}
+.rev-card-top{display:flex;align-items:center;gap:10px}
+.rev-av{
+  width:38px;height:38px;border-radius:50%;flex-shrink:0;
+  background:var(--gold-grad);display:flex;align-items:center;justify-content:center;
+  font-family:'Cinzel',serif;font-size:15px;font-weight:700;color:var(--sap);
+}
+.rev-info{flex:1;min-width:0}
+.rev-name{
+  font-family:'Cinzel',serif;font-size:12.5px;font-weight:600;
+  color:var(--white);letter-spacing:.3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.rev-src{font-size:10.5px;color:var(--muted);letter-spacing:.5px;margin-top:1px}
+.rev-ico{font-size:15px;opacity:.75;flex-shrink:0}
+.rev-stars{color:var(--gold);font-size:12px;letter-spacing:2px}
+.rev-txt{
+  font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;
+  color:rgba(255,255,255,0.6);line-height:1.72;
+}
+.rev-foot{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-top:10px;border-top:1px solid rgba(201,168,76,0.07);
+}
+.rev-tag{
+  font-family:'Cinzel',serif;font-size:8.5px;letter-spacing:1.5px;
+  color:var(--gold);text-transform:uppercase;
+  background:rgba(201,168,76,0.07);border:1px solid rgba(201,168,76,0.15);
+  padding:3px 9px;border-radius:50px;
+}
+.rev-date{font-size:10px;color:rgba(255,255,255,0.18);letter-spacing:.5px}
+@media(max-width:900px){
+  .rev-inner{flex-direction:column;padding:0 20px}
+  .rev-panel{flex:auto;width:100%;text-align:center}
+  .rev-plats{justify-content:center}
+}
+
+/* Legacy testi classes — keep for compat */
+.testi-sec{display:none}
 .testi-grid{
   max-width:1100px;margin:0 auto;
   display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;
@@ -1556,6 +1735,7 @@ body{font-display:swap}
   .services-grid{grid-template-columns:1fr 1fr}
   .why-grid{grid-template-columns:1fr 1fr}
   .qual-grid{grid-template-columns:1fr 1fr}
+
   .opts-grid{grid-template-columns:1fr 1fr}
 }
 
@@ -1688,6 +1868,97 @@ body{font-display:swap}
   .mob-nav{inset:60px 0 0}
   .mn-text{font-size:18px}
 }
+
+/* ═══════════════════════════════════════════════
+   CALCULATOR V2 — 12 PASOS
+═══════════════════════════════════════════════ */
+.calc-layout{display:grid;grid-template-columns:1fr 320px;gap:28px;max-width:1140px;margin:0 auto;align-items:start}
+.calc-main{background:rgba(8,8,8,0.85);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(201,168,76,0.16);border-radius:var(--r-lg);padding:clamp(28px,4vw,56px);position:relative;overflow:hidden}
+.calc-main::before{content:'';position:absolute;top:-1px;left:8%;right:8%;height:2px;background:var(--gold-grad);border-radius:2px;opacity:.8}
+.cstep-header{margin-bottom:32px}
+.cstep-num{font-family:'Cinzel',serif;font-size:11px;letter-spacing:4px;color:var(--gold);text-transform:uppercase;margin-bottom:10px}
+.cstep-title{font-family:'Cinzel',serif;font-size:clamp(22px,3vw,32px);font-weight:600;color:var(--white);margin-bottom:18px;line-height:1.2}
+.cstep-bar{height:4px;background:rgba(201,168,76,0.12);border-radius:2px;overflow:hidden}
+.cstep-fill{height:100%;background:var(--gold-grad);border-radius:2px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+/* Tarjetas visuales — tamaño generoso */
+.vopts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin-bottom:32px}
+.vopt{border-radius:var(--r-lg);border:1.5px solid rgba(201,168,76,0.14);background:rgba(12,12,12,0.75);cursor:pointer;transition:all .3s cubic-bezier(.4,0,.2,1);overflow:hidden;position:relative}
+.vopt:hover{border-color:rgba(201,168,76,0.5);transform:translateY(-5px);box-shadow:0 16px 48px rgba(0,0,0,0.5)}
+.vopt.vsel{border-color:var(--gold);background:rgba(201,168,76,0.09);box-shadow:0 0 32px rgba(201,168,76,0.18),0 16px 48px rgba(0,0,0,0.4)}
+.vopt-chk{position:absolute;top:10px;right:10px;width:26px;height:26px;border-radius:50%;background:var(--gold-grad);display:none;align-items:center;justify-content:center;font-size:12px;color:var(--sap);font-weight:900;z-index:2;box-shadow:0 2px 10px rgba(201,168,76,0.4)}
+.vopt.vsel .vopt-chk{display:flex}
+.vopt-ico{width:100%;height:240px;display:flex;align-items:center;justify-content:center;font-size:58px;background:rgba(16,16,16,0.9);border-bottom:1px solid rgba(201,168,76,0.1);overflow:hidden}
+.vopt-img-wrap{padding:0 !important;height:auto !important;aspect-ratio:1080/1580}
+.vopt-img-wrap img{width:100%;height:100%;object-fit:cover;object-position:center center;display:block}
+.vopt-body{padding:18px 20px 22px}
+.vopt-nm{font-family:'Cinzel',serif;font-size:15px;font-weight:700;color:var(--white);margin-bottom:8px;line-height:1.3;letter-spacing:.5px}
+.vopt.vsel .vopt-nm{color:var(--gold-lt)}
+.vopt-ds{font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:var(--muted);line-height:1.65;margin-bottom:12px}
+.vopt-pr{font-family:'Cinzel',serif;font-size:15px;font-weight:700;color:var(--gold-lt)}
+.vopt-pr.free{color:rgba(255,255,255,0.3)}
+/* Swatches de color */
+.cswatches{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:26px;padding:4px 0}
+.csw{display:flex;flex-direction:column;align-items:center;gap:7px;cursor:pointer}
+.csw-circle{width:46px;height:46px;border-radius:50%;border:2px solid rgba(201,168,76,0.15);transition:all .22s;box-shadow:0 2px 10px rgba(0,0,0,0.35)}
+.csw:hover .csw-circle{border-color:var(--gold);transform:scale(1.08)}
+.csw.vsel .csw-circle{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,0.28),0 2px 10px rgba(0,0,0,0.35)}
+.csw-nm{font-family:'Cinzel',serif;font-size:9px;letter-spacing:1px;color:var(--muted);text-transform:uppercase;text-align:center;max-width:56px;line-height:1.3}
+.csw.vsel .csw-nm{color:var(--gold-lt)}
+/* Selector tamaños */
+.szgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:11px;margin-bottom:26px}
+.szcard{border:1.5px solid rgba(201,168,76,0.12);border-radius:var(--r);padding:16px 12px;text-align:center;cursor:pointer;background:rgba(10,10,10,0.7);transition:all .25s}
+.szcard:hover{border-color:rgba(201,168,76,0.38);transform:translateY(-2px)}
+.szcard.vsel{border-color:var(--gold);background:rgba(201,168,76,0.08)}
+.szval{font-family:'Cinzel',serif;font-size:17px;font-weight:700;color:var(--gold-lt);margin-bottom:3px}
+.szcard.vsel .szval{color:var(--gold-xlt)}
+.szlbl{font-family:'Cormorant Garamond',serif;font-size:12px;font-style:italic;color:var(--muted)}
+/* Multi-select complementos */
+.compgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:11px;margin-bottom:26px}
+.compcard{display:flex;align-items:center;gap:11px;background:rgba(10,10,10,0.7);border:1.5px solid rgba(201,168,76,0.1);border-radius:var(--r);padding:13px;cursor:pointer;transition:all .22s}
+.compcard:hover{border-color:rgba(201,168,76,0.32)}
+.compcard.vsel{border-color:var(--gold);background:rgba(201,168,76,0.07)}
+.comp-i{font-size:22px;flex-shrink:0}
+.comp-inf{flex:1;min-width:0}
+.comp-n{font-size:12.5px;font-weight:700;color:var(--white);margin-bottom:1px}
+.comp-p{font-size:11px;color:var(--gold-lt);font-weight:700}
+.comp-ck{width:19px;height:19px;border-radius:5px;flex-shrink:0;border:1.5px solid rgba(201,168,76,0.22);display:flex;align-items:center;justify-content:center;font-size:10px;color:transparent;transition:all .2s}
+.compcard.vsel .comp-ck{background:var(--gold-grad);border-color:transparent;color:var(--sap);font-weight:900}
+/* Medidas */
+.medwrap{max-width:440px;margin:0 auto 26px}
+.medgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+/* Skip note */
+.skip-note{text-align:center;font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:rgba(255,255,255,0.3);margin-top:-8px;margin-bottom:18px}
+/* Formulario contacto */
+.ctform{max-width:500px;margin:0 auto 26px;display:grid;gap:16px}
+/* Resumen lateral */
+.calc-summary{background:rgba(8,8,8,0.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(201,168,76,0.18);border-radius:var(--r-lg);padding:24px 20px;position:sticky;top:88px}
+.cs-ttl{font-family:'Cinzel',serif;font-size:11px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid rgba(201,168,76,0.12)}
+.cs-empty{font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:rgba(255,255,255,0.22);text-align:center;padding:18px 0}
+.cs-row{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:12.5px}
+.cs-row:last-child{border-bottom:none}
+.cs-rk{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--muted);line-height:1.4;flex:1;font-size:13px}
+.cs-rv{font-family:'Cinzel',serif;font-size:11px;font-weight:700;color:var(--white);white-space:nowrap}
+.cs-total{margin-top:14px;padding-top:14px;border-top:1px solid rgba(201,168,76,0.18);text-align:center}
+.cs-total-lbl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:5px}
+.cs-total-price{font-family:'Cinzel',serif;font-size:clamp(20px,2.5vw,28px);font-weight:700;background:var(--gold-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:4px}
+.cs-total-iva{font-size:10px;color:var(--muted);letter-spacing:.4px;margin-bottom:14px}
+.cs-cta{width:100%;font-family:'Lato',sans-serif;font-size:11px;letter-spacing:2px;font-weight:700;text-transform:uppercase;color:var(--sap);background:var(--gold-grad);padding:12px 18px;border-radius:50px;border:none;cursor:pointer;box-shadow:0 4px 16px rgba(201,168,76,0.28);transition:all .25s}
+.cs-cta:hover{transform:translateY(-2px);box-shadow:0 8px 26px rgba(201,168,76,0.42)}
+/* Nav V2 */
+.calc-nav2{display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding-top:24px;border-top:1px solid rgba(201,168,76,0.1)}
+.btn-bk2{background:transparent;border:none;cursor:pointer;font-family:'Lato',sans-serif;font-size:12px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;padding:14px 0;display:flex;align-items:center;gap:6px;transition:color .2s}
+.btn-bk2:hover{color:var(--white)}
+.btn-bk2:disabled{opacity:.2;cursor:not-allowed}
+.btn-nx2{font-family:'Lato',sans-serif;font-size:13px;letter-spacing:2.5px;font-weight:700;text-transform:uppercase;color:var(--sap);background:var(--gold-grad);padding:16px 42px;border-radius:50px;border:none;cursor:pointer;box-shadow:0 6px 26px rgba(201,168,76,0.32);transition:all .25s;display:flex;align-items:center;gap:10px}
+.btn-nx2:hover{transform:translateY(-3px);box-shadow:0 12px 38px rgba(201,168,76,0.48)}
+.btn-nx2:disabled{opacity:.3;cursor:not-allowed;transform:none;box-shadow:none}
+/* Resultado V2 */
+.rbox2{background:rgba(8,14,26,0.85);border:1px solid rgba(201,168,76,0.25);border-radius:var(--r-lg);padding:clamp(26px,4vw,46px);text-align:center;position:relative;overflow:hidden}
+.rbox2::before{content:'';position:absolute;top:-1px;left:5%;right:5%;height:2px;background:var(--gold-grad)}
+/* Responsive calc v2 */
+@media(max-width:960px){.calc-layout{grid-template-columns:1fr}.calc-summary{position:static;order:2}.calc-main{order:1}}
+@media(max-width:600px){.vopts{grid-template-columns:1fr}.vopt-ico{height:200px;font-size:44px}.vopt-nm{font-size:13px}.szgrid{grid-template-columns:repeat(3,1fr)}.compgrid{grid-template-columns:1fr}}
+@media(max-width:400px){.vopts{grid-template-columns:1fr}.vopt-ico{height:180px}}
 </style>
 </head>
 <body>
@@ -1696,9 +1967,8 @@ body{font-display:swap}
      PRELOADER
 ════════════════════════════════════════ -->
 <div id="preloader">
-  <img src="LOGO-DUCHASMAS.PNG" alt="DUCHASMAS" style="height:clamp(100px,18vw,160px);filter:drop-shadow(0 4px 24px rgba(201,168,76,0.45));animation:fadeUp .8s ease both;"/>
-  <div class="pre-sub" style="animation-delay:.3s">Reformas</div>
-  <div class="pre-bar-wrap"><div class="pre-bar"></div></div>
+  <img src="LOGO DUCHAS REFORMAS.PNG" alt="Duchas & Reformas" style="height:clamp(100px,18vw,160px);filter:drop-shadow(0 4px 24px rgba(201,168,76,0.45));animation:fadeUp .8s ease both;"/>
+  <div class="pre-bar-wrap" style="margin-top:-6px"><div class="pre-bar"></div></div>
 </div>
 
 <!-- ═══════════════════════════════════════
@@ -1706,10 +1976,10 @@ body{font-display:swap}
 ════════════════════════════════════════ -->
 <header id="site-header">
   <a class="h-logo" href="#">
-    <img src="LOGO-DUCHASMAS.PNG" alt="DUCHASMAS" onerror="this.style.display='none'"/>
+    <img src="LOGO DUCHAS REFORMAS.PNG" alt="Duchas & Reformas" onerror="this.style.display='none'"/>
     <div class="h-logo-text">
-      <span class="h-logo-name">DUCHASMAS</span>
-      <span class="h-logo-tag">Reforma de Baño Premium</span>
+      <span class="h-logo-name">Duchas & Reformas</span>
+      <span class="h-logo-tag">Reformas Premium</span>
     </div>
   </a>
 
@@ -1731,8 +2001,8 @@ body{font-display:swap}
 <!-- Mobile nav -->
 <nav class="mob-nav" id="mobNav">
   <div class="mn-brand">
-    <div class="mn-brand-name">DUCHASMAS</div>
-    <div class="mn-brand-tag">Reforma de Baño Premium</div>
+    <div class="mn-brand-name">Duchas & Reformas</div>
+    <div class="mn-brand-tag">Reformas Premium</div>
   </div>
   <div class="mn-links">
     <a href="#servicios" onclick="closeMob()" class="mn-link">
@@ -1788,6 +2058,8 @@ body{font-display:swap}
      HERO
 ════════════════════════════════════════ -->
 <section class="hero">
+  <!-- Steam cursor canvas -->
+  <canvas id="steamCanvas" style="position:absolute;inset:0;width:100%;height:100%;z-index:10;pointer-events:none;"></canvas>
   <!-- Floating trust badge — desktop only -->
   <div class="trust-badge">
     <div class="tb-score">
@@ -1826,6 +2098,10 @@ body{font-display:swap}
         <div class="rain-d"></div><div class="rain-d"></div><div class="rain-d"></div>
         <div class="rain-d"></div><div class="rain-d"></div><div class="rain-d"></div>
         <div class="rain-d"></div><div class="rain-d"></div><div class="rain-d"></div>
+      </div>
+      <div class="steam-wrap">
+        <div class="stm"></div><div class="stm"></div><div class="stm"></div>
+        <div class="stm"></div><div class="stm"></div><div class="stm"></div>
       </div>
     </div>
   </div>
@@ -1904,25 +2180,46 @@ body{font-display:swap}
     </div>
     <div class="services-grid">
       <div class="srv-card reveal" data-delay="1">
-        <div class="srv-icon">🚿</div>
-        <div class="srv-name">Bañera por Ducha</div>
-        <div class="srv-desc">Convertimos tu bañera en una elegante ducha italiana con plato de resina mineral y mampara de vidrio templado. Instalación garantizada en un solo día.</div>
-        <div class="srv-from">desde <span>1.200 €</span></div>
-        <a href="#calculadora" class="srv-arrow">→</a>
+        <div class="srv-img-wrap"><img src="PLAN ELITE FINAL, ALTA CALIDAD.PNG" alt="ELITE"/></div>
+        <div class="srv-body">
+          <span class="srv-badge">Plan Premium</span>
+          <div class="srv-name">ELITE</div>
+          <div class="srv-gold-line"></div>
+          <div class="srv-desc">La top de Duchas & Reformas. Acero inoxidable, plato de resina mineral, mampara sin marco y acabados de máxima gama. Instalación en un solo día.</div>
+          <div class="srv-price-block">
+            <span class="srv-price-label">desde</span>
+            <span class="srv-price-num">2.290 €</span>
+            <a href="#calculadora" class="srv-btn">Calcular presupuesto →</a>
+          </div>
+        </div>
       </div>
       <div class="srv-card reveal" data-delay="2">
-        <div class="srv-icon">🏛️</div>
-        <div class="srv-name">Reforma Completa de Baño</div>
-        <div class="srv-desc">Renovación integral llave en mano. Suelo, paredes, sanitarios suspendidos, muebles lacados, iluminación LED y acabados premium seleccionados.</div>
-        <div class="srv-from">desde <span>3.000 €</span></div>
-        <a href="#calculadora" class="srv-arrow">→</a>
+        <div class="srv-img-wrap"><img src="PLAN EXCLUSIVO FINAL ALTA CALIDAD.PNG" alt="EXCLUSIVO"/></div>
+        <div class="srv-body">
+          <span class="srv-badge">Más popular</span>
+          <div class="srv-name">EXCLUSIVO</div>
+          <div class="srv-gold-line"></div>
+          <div class="srv-desc">Nuestra número 1. Calidad superior con diseño elegante, mampara de vidrio templado y materiales seleccionados. La elección más popular.</div>
+          <div class="srv-price-block">
+            <span class="srv-price-label">desde</span>
+            <span class="srv-price-num">1.990 €</span>
+            <a href="#calculadora" class="srv-btn">Calcular presupuesto →</a>
+          </div>
+        </div>
       </div>
       <div class="srv-card reveal" data-delay="3">
-        <div class="srv-icon">✨</div>
-        <div class="srv-name">Ducha de Obra Nueva</div>
-        <div class="srv-desc">Diseñamos e instalamos tu ducha desde cero en espacios nuevos. Platos a medida, mamparas personalizadas y revestimientos exclusivos.</div>
-        <div class="srv-from">desde <span>900 €</span></div>
-        <a href="#calculadora" class="srv-arrow">→</a>
+        <div class="srv-img-wrap"><img src="PLAN MEDIUM FINAL ALTA CALIDAD.PNG" alt="MODERADO"/></div>
+        <div class="srv-body">
+          <span class="srv-badge">Mejor precio</span>
+          <div class="srv-name">MODERADO</div>
+          <div class="srv-gold-line"></div>
+          <div class="srv-desc">Precio insuperable. Toda la calidad de Duchas & Reformas al mejor precio del mercado. Garantía de 5 años incluida en todos los materiales.</div>
+          <div class="srv-price-block">
+            <span class="srv-price-label">desde</span>
+            <span class="srv-price-num">1.690 €</span>
+            <a href="#calculadora" class="srv-btn">Calcular presupuesto →</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1932,234 +2229,42 @@ body{font-display:swap}
      CALCULATOR
 ════════════════════════════════════════ -->
 <section class="calc-sec" id="calculadora">
-  <div class="calc-container">
+  <div class="calc-container" style="max-width:1100px;margin:0 auto">
     <div class="sec-head reveal">
       <span class="sec-label">Presupuesto online</span>
-      <h2 class="sec-title">Calcula tu <em>reforma</em> ahora</h2>
-      <p class="sec-desc">Obtén un presupuesto orientativo personalizado en menos de 2 minutos. Sin esperas, sin compromiso.</p>
+      <h2 class="sec-title">Configura tu <em>reforma</em> paso a paso</h2>
+      <p class="sec-desc">Elige cada detalle de tu baño y obtén un presupuesto personalizado al instante. Sin compromiso.</p>
     </div>
 
-    <!-- Progress -->
-    <div class="progress-bar reveal" id="progBar">
-      <div class="prog-step active" data-step="1">
-        <div class="prog-dot">1</div>
-        <div class="prog-label">Servicio</div>
-      </div>
-      <div class="prog-step" data-step="2">
-        <div class="prog-dot">2</div>
-        <div class="prog-label">Medidas</div>
-      </div>
-      <div class="prog-step" data-step="3">
-        <div class="prog-dot">3</div>
-        <div class="prog-label">Calidad</div>
-      </div>
-      <div class="prog-step" data-step="4">
-        <div class="prog-dot">4</div>
-        <div class="prog-label">Extras</div>
-      </div>
-      <div class="prog-step" data-step="5">
-        <div class="prog-dot">5</div>
-        <div class="prog-label">Contacto</div>
-      </div>
-      <div class="prog-step" data-step="6">
-        <div class="prog-dot">✦</div>
-        <div class="prog-label">Resultado</div>
-      </div>
-    </div>
+    <div class="calc-layout">
 
-    <!-- ── STEP 1 ── -->
-    <div class="step-panel active" id="sp1">
-      <div class="panel-wrap reveal">
-        <div class="panel-head">
-          <span class="sec-label">Paso 1 de 5</span>
-          <div class="panel-title">¿Qué reforma necesitas?</div>
-          <div class="panel-sub">Selecciona el tipo de trabajo que deseas realizar</div>
+      <!-- ── PASOS (izquierda) ── -->
+      <div class="calc-main" id="calcMain">
+        <div class="cstep-header">
+          <div class="cstep-num">Paso <span id="cStepNum">1</span> de 12</div>
+          <div class="cstep-title" id="cStepTitle">Elige entre nuestras 3 ofertas</div>
+          <div class="cstep-bar"><div class="cstep-fill" id="cStepFill" style="width:8.33%"></div></div>
         </div>
-        <div class="opts-grid">
-          <div class="opt-card" data-val="banera" onclick="selOpt(this,'service')">
-            <div class="opt-check">✓</div>
-            <span class="opt-ico">🚿</span>
-            <div class="opt-name">Bañera por Ducha</div>
-            <div class="opt-txt">Sustituimos tu bañera por una ducha moderna con plato antideslizante y mampara de vidrio.</div>
-            <div class="opt-from">Desde 1.200 €</div>
-          </div>
-          <div class="opt-card" data-val="reforma" onclick="selOpt(this,'service')">
-            <div class="opt-check">✓</div>
-            <span class="opt-ico">🏛️</span>
-            <div class="opt-name">Reforma Completa de Baño</div>
-            <div class="opt-txt">Renovación integral con suelo, paredes, sanitarios, muebles y acabados de primera calidad.</div>
-            <div class="opt-from">Desde 3.000 €</div>
-          </div>
-          <div class="opt-card" data-val="ducha_nueva" onclick="selOpt(this,'service')">
-            <div class="opt-check">✓</div>
-            <span class="opt-ico">✨</span>
-            <div class="opt-name">Ducha de Obra Nueva</div>
-            <div class="opt-txt">Instalamos tu ducha en un espacio nuevo sin bañera previa. Plato y mamparas incluidos.</div>
-            <div class="opt-from">Desde 900 €</div>
-          </div>
-        </div>
-        <div class="calc-nav">
-          <span></span>
-          <button class="btn-next" id="btn-s1" onclick="goStep(2)" disabled>Siguiente ›</button>
+        <div id="cStepBody"></div>
+        <div class="calc-nav2">
+          <button class="btn-bk2" id="btnPrev" onclick="cPrev()" disabled>‹ Anterior</button>
+          <button class="btn-nx2" id="btnNext" onclick="cNext()">Siguiente ›</button>
         </div>
       </div>
-    </div>
 
-    <!-- ── STEP 2 ── -->
-    <div class="step-panel" id="sp2">
-      <div class="panel-wrap">
-        <div class="panel-head">
-          <span class="sec-label">Paso 2 de 5</span>
-          <div class="panel-title">Medidas de tu baño</div>
-          <div class="panel-sub">Introduce las dimensiones aproximadas del espacio</div>
+      <!-- ── RESUMEN (derecha) ── -->
+      <div class="calc-summary">
+        <div class="cs-ttl">Tu presupuesto</div>
+        <div id="csSummary"><div class="cs-empty">Completa los pasos para ver el resumen</div></div>
+        <div class="cs-total">
+          <div class="cs-total-lbl">Total estimado</div>
+          <div class="cs-total-price" id="csTotal">—</div>
+          <div class="cs-total-iva">IVA incluido · Precio orientativo</div>
         </div>
-        <div class="dim-wrap">
-          <div class="dim-grid">
-            <div class="dim-field">
-              <label class="dim-lbl">Ancho</label>
-              <div class="inp-wrap">
-                <input class="dim-inp" type="number" id="d_ancho" placeholder="150" min="60" max="500" oninput="calcDim()"/>
-                <span class="dim-unit">cm</span>
-              </div>
-            </div>
-            <div class="dim-field">
-              <label class="dim-lbl">Largo</label>
-              <div class="inp-wrap">
-                <input class="dim-inp" type="number" id="d_largo" placeholder="200" min="60" max="700" oninput="calcDim()"/>
-                <span class="dim-unit">cm</span>
-              </div>
-            </div>
-            <div class="dim-field">
-              <label class="dim-lbl">Alto</label>
-              <div class="inp-wrap">
-                <input class="dim-inp" type="number" id="d_alto" placeholder="240" min="180" max="320" oninput="calcDim()"/>
-                <span class="dim-unit">cm</span>
-              </div>
-            </div>
-            <div class="dim-field">
-              <label class="dim-lbl">Superficie</label>
-              <div class="inp-wrap">
-                <input class="dim-inp result-inp" id="d_m2" value="3.00" readonly/>
-                <span class="dim-unit">m²</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <p class="dim-hint">Si no conoces las medidas exactas, dejalo en blanco — usaremos dimensiones estándar.</p>
-        <div class="calc-nav">
-          <button class="btn-back" onclick="goStep(1)">‹ Atrás</button>
-          <button class="btn-next" onclick="goStep(3)">Siguiente ›</button>
-        </div>
+        <button class="cs-cta" onclick="cJumpContact()">Solicitar presupuesto →</button>
       </div>
-    </div>
 
-    <!-- ── STEP 3 ── -->
-    <div class="step-panel" id="sp3">
-      <div class="panel-wrap">
-        <div class="panel-head">
-          <span class="sec-label">Paso 3 de 5</span>
-          <div class="panel-title">Calidad de materiales</div>
-          <div class="panel-sub">Elige la gama que mejor se adapta a tu gusto y presupuesto</div>
-        </div>
-        <div class="qual-grid" id="qualGrid"></div>
-        <div class="calc-nav">
-          <button class="btn-back" onclick="goStep(2)">‹ Atrás</button>
-          <button class="btn-next" id="btn-s3" onclick="goStep(4)" disabled>Siguiente ›</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── STEP 4 ── -->
-    <div class="step-panel" id="sp4">
-      <div class="panel-wrap">
-        <div class="panel-head">
-          <span class="sec-label">Paso 4 de 5</span>
-          <div class="panel-title">Extras y complementos</div>
-          <div class="panel-sub">Añade los complementos que deseas — todos opcionales</div>
-        </div>
-        <div class="extras-grid" id="extGrid"></div>
-        <div class="calc-nav">
-          <button class="btn-back" onclick="goStep(3)">‹ Atrás</button>
-          <button class="btn-next" onclick="goStep(5)">Siguiente ›</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── STEP 5 ── -->
-    <div class="step-panel" id="sp5">
-      <div class="panel-wrap">
-        <div class="panel-head">
-          <span class="sec-label">Paso 5 de 5</span>
-          <div class="panel-title">Tus datos</div>
-          <div class="panel-sub">Para enviarte el presupuesto detallado sin compromiso</div>
-        </div>
-        <form class="contact-form" onsubmit="return false">
-          <div class="form-row">
-            <div class="ff">
-              <label>Nombre *</label>
-              <input type="text" id="c_nom" placeholder="Tu nombre" required/>
-            </div>
-            <div class="ff">
-              <label>Apellidos *</label>
-              <input type="text" id="c_ape" placeholder="Apellidos" required/>
-            </div>
-          </div>
-          <div class="ff">
-            <label>Teléfono *</label>
-            <input type="tel" id="c_tel" placeholder="600 000 000" required/>
-          </div>
-          <div class="ff">
-            <label>Email</label>
-            <input type="email" id="c_email" placeholder="tu@email.com"/>
-          </div>
-          <div class="ff">
-            <label>Provincia</label>
-            <select id="c_prov">
-              <option value="">Selecciona tu provincia...</option>
-              <option>Madrid</option><option>Barcelona</option><option>Valencia</option>
-              <option>Sevilla</option><option>Alicante</option><option>Málaga</option>
-              <option>Murcia</option><option>Zaragoza</option><option>Bilbao</option>
-              <option>Asturias</option><option>Otra</option>
-            </select>
-          </div>
-          <div class="ff">
-            <label>Comentarios</label>
-            <textarea id="c_com" placeholder="¿Algo que quieras contarnos sobre tu baño?"></textarea>
-          </div>
-          <p class="privacy-note">Al continuar aceptas nuestra <a href="#">política de privacidad</a>. Tus datos son tratados con total confidencialidad.</p>
-        </form>
-        <div class="calc-nav">
-          <button class="btn-back" onclick="goStep(4)">‹ Atrás</button>
-          <button class="btn-next" onclick="submitCalc()">Ver mi presupuesto ›</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── STEP 6 RESULT ── -->
-    <div class="step-panel" id="sp6">
-      <div class="result-box">
-        <span class="result-ico">🏆</span>
-        <div class="panel-title" style="margin-bottom:8px;">Tu presupuesto orientativo</div>
-        <div class="result-name" id="r_name">Hola, <strong>—</strong></div>
-        <div class="price-card">
-          <div class="price-lbl">Presupuesto estimado</div>
-          <div class="price-range" id="r_price">—</div>
-          <div class="price-iva">Precio orientativo · IVA incluido</div>
-        </div>
-        <div class="breakdown">
-          <div class="bd-title">Desglose del presupuesto</div>
-          <div id="r_breakdown"></div>
-        </div>
-        <p class="result-note">Este presupuesto es orientativo. Un especialista DUCHASMAS se pondrá en contacto contigo en menos de 24 h para confirmar el precio exacto tras una visita sin compromiso.</p>
-        <div class="res-btns">
-          <a id="btn_wa" href="#" class="btn-wa">💬 Confirmar por WhatsApp</a>
-          <a href="tel:+34900000000" class="btn-primary">📞 Llamar ahora</a>
-        </div>
-        <div style="margin-top:18px;text-align:center">
-          <button onclick="resetCalc()" style="background:none;border:1px solid rgba(201,168,76,0.25);color:var(--muted);padding:10px 22px;border-radius:50px;cursor:pointer;font-size:11px;letter-spacing:2px;text-transform:uppercase;transition:all .25s" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold-lt)'" onmouseout="this.style.borderColor='rgba(201,168,76,0.25)';this.style.color='var(--muted)'">↺ Calcular otro presupuesto</button>
-        </div>
-      </div>
-    </div>
+    </div><!-- /calc-layout -->
 
   </div><!-- /calc-container -->
 </section>
@@ -2177,83 +2282,109 @@ body{font-display:swap}
     <div class="why-grid">
       <div class="why-card reveal" data-delay="1">
         <div class="why-ico">⚡</div>
-        <div class="why-title">Instalación en 1 Día</div>
-        <div class="why-txt">Nuestro método exclusivo nos permite completar el cambio de bañera por ducha en una sola jornada, sin obra sucia ni polvo.</div>
+        <div class="why-title">Instalación Express</div>
+        <div class="why-txt">Nuestro método exclusivo minimiza los tiempos de obra al máximo, sin suciedad ni polvo, para que disfrutes de tu nuevo baño cuanto antes.</div>
       </div>
       <div class="why-card reveal" data-delay="2">
-        <div class="why-ico">🛡️</div>
-        <div class="why-title">Garantía 5 Años</div>
-        <div class="why-txt">Respaldamos cada instalación con 5 años de garantía total. Si algo falla, lo resolvemos sin coste adicional.</div>
-      </div>
-      <div class="why-card reveal" data-delay="3">
         <div class="why-ico">💎</div>
         <div class="why-title">Materiales Premium</div>
         <div class="why-txt">Solo trabajamos con materiales de primera: platos de resina mineral, vidrio templado de seguridad y revestimientos cerámicos de gran formato.</div>
       </div>
-      <div class="why-card reveal" data-delay="4">
+      <div class="why-card reveal" data-delay="3">
         <div class="why-ico">✦</div>
         <div class="why-title">Precio Transparente</div>
         <div class="why-txt">Presupuesto cerrado sin sorpresas. El precio acordado es el precio final, con todos los materiales y la mano de obra incluidos.</div>
       </div>
-      <div class="why-card reveal" data-delay="1">
+      <div class="why-card reveal" data-delay="4">
         <div class="why-ico">🏆</div>
         <div class="why-title">Artesanos Certificados</div>
         <div class="why-txt">Nuestro equipo está formado por instaladores certificados con más de 10 años de experiencia en reformas de baño de alta gama.</div>
-      </div>
-      <div class="why-card reveal" data-delay="2">
-        <div class="why-ico">💳</div>
-        <div class="why-title">Financiación Disponible</div>
-        <div class="why-txt">Financiamos tu reforma hasta en 36 meses con cuotas cómodas. Consulta nuestras opciones sin compromiso.</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ═══════════════════════════════════════
-     TESTIMONIALS
+     REVIEWS CAROUSEL
 ════════════════════════════════════════ -->
-<section class="testi-sec">
-  <div style="max-width:1100px;margin:0 auto">
-    <div class="sec-head reveal">
-      <span class="sec-label">Lo que dicen nuestros clientes</span>
-      <h2 class="sec-title">Más de <em>3.200 familias</em> confían en nosotros</h2>
+<section class="rev-sec">
+  <div class="rev-inner">
+
+    <!-- Panel izquierdo -->
+    <div class="rev-panel">
+      <span class="rev-panel-lbl">Nuestros clientes opinan</span>
+      <div class="rev-panel-score">4.9</div>
+      <span class="rev-panel-stars">★★★★★</span>
+      <p class="rev-panel-count">Basado en <strong style="color:var(--white)">+320 reseñas</strong><br/>verificadas en Google y Facebook</p>
+      <div class="rev-plats">
+        <div class="rev-plat">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+        </div>
+        <div class="rev-plat">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </div>
+        <span class="rev-plat-txt">Google · Facebook</span>
+      </div>
+      <a href="#" class="rev-btn">⭐ Deja tu reseña</a>
     </div>
-    <div class="testi-grid">
-      <div class="testi-card reveal" data-delay="1">
-        <div class="stars">★★★★★</div>
-        <p class="testi-txt">"Increíble servicio. Llegaron a las 8 de la mañana y a las 6 de la tarde teníamos la ducha lista. El resultado es espectacular, parece un baño de hotel de lujo."</p>
-        <div class="testi-author">
-          <div class="testi-av">M</div>
-          <div>
-            <div class="testi-name">María García</div>
-            <div class="testi-city">Madrid · Reforma Completa</div>
-          </div>
-        </div>
+
+    <!-- Carrusel doble fila -->
+    <div class="rev-carousel">
+
+      <!-- FILA 1 — izquierda -->
+      <div class="rev-track rev-track-1">
+        <!-- 10 reseñas originales -->
+        <div class="rev-card"><div class="rev-card-top"><div class="rev-av">M</div><div class="rev-info"><div class="rev-name">María García</div><div class="rev-src">Google · Madrid</div></div><div class="rev-ico">🔵</div></div><div class="rev-stars">★★★★★</div><p class="rev-txt">"Contraté la bañera por ducha y el resultado es impresionante. El equipo fue muy profesional, trabajaron limpio y sin apenas ruido. Parece un baño de hotel de 5 estrellas."</p><div class="rev-foot"><span class="rev-tag">Bañera por Ducha</span><span class="rev-date">Ene 2026</span></div></div>
+        <div class="rev-card"><div class="rev-card-top"><div class="rev-av">A</div><div class="rev-info"><div class="rev-name">Antonio López</div><div class="rev-src">Google · Barcelona</div></div><div class="rev-ico">🔵</div></div><div class="rev-stars">★★★★★</div><p class="rev-txt">"Reforma completa del baño en tiempo récord. Los azulejos de gran formato quedaron perfectos y el inodoro suspendido es una pasada. 100% recomendable."</p><div class="rev-foot"><span class="rev-tag">Reforma Completa</span><span class="rev-date">Feb 2026</span></div></div>
+        <div class="rev-card"><div class="rev-card-top"><div class="rev-av">C</div><div class="rev-info"><div class="rev-name">Carmen Ruiz</div><div class="rev-src">Google · Valencia</div></div><div class="rev-ico">🔵</div></div><div class="rev-stars">★★★★★</div><p class="rev-txt">"Elegí el plan ELITE y no me arrepiento. La mampara sin marco, la grifería Grohe y el plato de resina mineral son de una calidad excepcional. El baño ha quedado de lujo."</p><div class="rev-foot"><span class="rev-tag">Plan ELITE</span><span class="rev-date">Mar 2026</span></div></div>
+        <div class="rev-card"><div class="rev-card-top"><div class="rev-av">J</div><div class="rev-info"><div class="rev-name">José M. Díaz</div><div class="rev-src">Facebook · Sevilla</div></div><div class="rev-ico">🔷</div></div><div class="rev-stars">★★★★★</div><p class="rev-txt">"Pedí presupuesto online el lunes, me llamaron el martes y en menos de una semana tenía la ducha nueva instalada. La rejilla oculta que elegí es un detalle precioso."</p><div class="rev-foot"><span class="rev-tag">Ducha Nueva</span><span class="rev-date">Ene 2026</span></div></div>
+        <div class="rev-card"><div class="rev-card-top"><div class="rev-av">I</div><div class="rev-info"><div class="rev-name">Isabel Romero</div><div class="rev-src">Google · Bilbao</div></div><div class="rev-ico">🔵</div></div><div class="rev-stars">★★★★★</div><p class="rev-txt">"La ducha italiana que me instalaron es espectacular. Ras de suelo, sin barreras, perfecta para toda la familia. La atención desde el primer momento fue de diez."</p><div class="rev-foot"><span class="rev-tag">Ducha Italiana</span><span class="rev-date">Feb 2026</span></div></div>
+        <div class="rev-card"><div class="rev-card-top"><div class="rev-av">F</div><div class="rev-info"><div class="rev-name">Francisco Morales</div><div class="rev-src">Google · Málaga</div></div><div class="rev-ico">🔵</div></div><div class="rev-stars">★★★★★</div><p class="rev-txt">"Lo que más me sorprendió fue que el presupuesto online fue exactamente lo que pagué al final. Sin sorpresas, sin letra pequeña. Profesionalidad total."</p><div class="rev-foot"><span class="rev-tag">Bañera por Ducha</span><span class="rev-date">Mar 2026</span></div></div>
+        <div class="rev-card"><div class="rev-card-top"><div class="rev-av">A</div><div class="rev-info"><div class="rev-name">Ana Martínez</div><div class="rev-src">Facebook · Zaragoza</div></div><div class="rev-ico">🔷</div></div><div class="rev-stars">★★★★★</div><p class="rev-txt">"Es la segunda vez que contrato a Duchas & Reformas. Esta vez hice el baño completo y el resultado supera el de la primera vez. Son los mejores sin duda."</p><div class="rev-foot"><span class="rev-tag">Reforma Completa</span><span class="rev-date">Abr 2026</span></div></div>
+        <div class="rev-card"><div class="rev-card-top"><div class="rev-av">M</div><div class="rev-info"><div class="rev-name">Miguel Ángel Torres</div><div class="rev-src">Google · Alicante</div></div><div class="rev-ico">🔵</div></div><div class="rev-stars">★★★★★</div><p class="rev-txt">"El equipo llegó puntual, colocaron malla protectora en todo el pasillo y trabajaron sin dejar ni una mota de polvo. La ducha nueva ha quedado espectacular."</p><div class="rev-foot"><span class="rev-tag">Ducha Nueva</span><span class="rev-date">Feb 2026</span></div></div>
+        <div class="rev-card"><div class="rev-card-top"><div class="rev-av">L</div><div class="rev-info"><div class="rev-name">Laura Hernández</div><div class="rev-src">Google · Madrid</div></div><div class="rev-ico">🔵</div></div><div class="rev-stars">★★★★★</div><p class="rev-txt">"Cambié la bañera por ducha y añadí el nicho empotrado y el toallero calefactor. El resultado es digno de revista de decoración. Estoy encantada."</p><div class="rev-foot"><span class="rev-tag">Bañera por Ducha</span><span class="rev-date">Ene 2026</span></div></div>
+        <div class="rev-card"><div class="rev-card-top"><div class="rev-av">C</div><div class="rev-info"><div class="rev-name">Carlos Jiménez</div><div class="rev-src">Facebook · Murcia</div></div><div class="rev-ico">🔷</div></div><div class="rev-stars">★★★★★</div><p class="rev-txt">"Contraté el plan EXCLUSIVO con mampara corredera y grifería premium. La calidad de los materiales es increíble. Mi baño parece el de un hotel de lujo."</p><div class="rev-foot"><span class="rev-tag">Plan EXCLUSIVO</span><span class="rev-date">Mar 2026</span></div></div>
+        <!-- Duplicados fila 1 para loop infinito -->
+        <div class="rev-card"><div class="rev-card-top"><div class="rev-av">M</div><div class="rev-info"><div class="rev-name">María García</div><div class="rev-src">Google · Madrid</div></div><div class="rev-ico">🔵</div></div><div class="rev-stars">★★★★★</div><p class="rev-txt">"Contraté la bañera por ducha y el resultado es impresionante. El equipo fue muy profesional, trabajaron limpio y sin apenas ruido. Parece un baño de hotel de 5 estrellas."</p><div class="rev-foot"><span class="rev-tag">Bañera por Ducha</span><span class="rev-date">Ene 2026</span></div></div>
+        <div class="rev-card"><div class="rev-card-top"><div class="rev-av">A</div><div class="rev-info"><div class="rev-name">Antonio López</div><div class="rev-src">Google · Barcelona</div></div><div class="rev-ico">🔵</div></div><div class="rev-stars">★★★★★</div><p class="rev-txt">"Reforma completa del baño en tiempo récord. Los azulejos de gran formato quedaron perfectos y el inodoro suspendido es una pasada. 100% recomendable."</p><div class="rev-foot"><span class="rev-tag">Reforma Completa</span><span class="rev-date">Feb 2026</span></div></div>
+        <div class="rev-card"><div class="rev-card-top"><div class="rev-av">C</div><div class="rev-info"><div class="rev-name">Carmen Ruiz</div><div class="rev-src">Google · Valencia</div></div><div class="rev-ico">🔵</div></div><div class="rev-stars">★★★★★</div><p class="rev-txt">"Elegí el plan ELITE y no me arrepiento. La mampara sin marco, la grifería Grohe y el plato de resina mineral son de una calidad excepcional. El baño ha quedado de lujo."</p><div class="rev-foot"><span class="rev-tag">Plan ELITE</span><span class="rev-date">Mar 2026</span></div></div>
+        <div class="rev-card"><div class="rev-card-top"><div class="rev-av">J</div><div class="rev-info"><div class="rev-name">José M. Díaz</div><div class="rev-src">Facebook · Sevilla</div></div><div class="rev-ico">🔷</div></div><div class="rev-stars">★★★★★</div><p class="rev-txt">"Pedí presupuesto online el lunes, me llamaron el martes y en menos de una semana tenía la ducha nueva instalada. La rejilla oculta que elegí es un detalle precioso."</p><div class="rev-foot"><span class="rev-tag">Ducha Nueva</span><span class="rev-date">Ene 2026</span></div></div>
+        <div class="rev-card"><div class="rev-card-top"><div class="rev-av">I</div><div class="rev-info"><div class="rev-name">Isabel Romero</div><div class="rev-src">Google · Bilbao</div></div><div class="rev-ico">🔵</div></div><div class="rev-stars">★★★★★</div><p class="rev-txt">"La ducha italiana que me instalaron es espectacular. Ras de suelo, sin barreras, perfecta para toda la familia. La atención desde el primer momento fue de diez."</p><div class="rev-foot"><span class="rev-tag">Ducha Italiana</span><span class="rev-date">Feb 2026</span></div></div>
+        <div class="rev-card"><div class="rev-card-top"><div class="rev-av">F</div><div class="rev-info"><div class="rev-name">Francisco Morales</div><div class="rev-src">Google · Málaga</div></div><div class="rev-ico">🔵</div></div><div class="rev-stars">★★★★★</div><p class="rev-txt">"Lo que más me sorprendió fue que el presupuesto online fue exactamente lo que pagué al final. Sin sorpresas, sin letra pequeña. Profesionalidad total."</p><div class="rev-foot"><span class="rev-tag">Bañera por Ducha</span><span class="rev-date">Mar 2026</span></div></div>
+        <div class="rev-card"><div class="rev-card-top"><div class="rev-av">A</div><div class="rev-info"><div class="rev-name">Ana Martínez</div><div class="rev-src">Facebook · Zaragoza</div></div><div class="rev-ico">🔷</div></div><div class="rev-stars">★★★★★</div><p class="rev-txt">"Es la segunda vez que contrato a Duchas & Reformas. Esta vez hice el baño completo y el resultado supera el de la primera vez. Son los mejores sin duda."</p><div class="rev-foot"><span class="rev-tag">Reforma Completa</span><span class="rev-date">Abr 2026</span></div></div>
+        <div class="rev-card"><div class="rev-card-top"><div class="rev-av">M</div><div class="rev-info"><div class="rev-name">Miguel Ángel Torres</div><div class="rev-src">Google · Alicante</div></div><div class="rev-ico">🔵</div></div><div class="rev-stars">★★★★★</div><p class="rev-txt">"El equipo llegó puntual, colocaron malla protectora en todo el pasillo y trabajaron sin dejar ni una mota de polvo. La ducha nueva ha quedado espectacular."</p><div class="rev-foot"><span class="rev-tag">Ducha Nueva</span><span class="rev-date">Feb 2026</span></div></div>
+        <div class="rev-card"><div class="rev-card-top"><div class="rev-av">L</div><div class="rev-info"><div class="rev-name">Laura Hernández</div><div class="rev-src">Google · Madrid</div></div><div class="rev-ico">🔵</div></div><div class="rev-stars">★★★★★</div><p class="rev-txt">"Cambié la bañera por ducha y añadí el nicho empotrado y el toallero calefactor. El resultado es digno de revista de decoración. Estoy encantada."</p><div class="rev-foot"><span class="rev-tag">Bañera por Ducha</span><span class="rev-date">Ene 2026</span></div></div>
+        <div class="rev-card"><div class="rev-card-top"><div class="rev-av">C</div><div class="rev-info"><div class="rev-name">Carlos Jiménez</div><div class="rev-src">Facebook · Murcia</div></div><div class="rev-ico">🔷</div></div><div class="rev-stars">★★★★★</div><p class="rev-txt">"Contraté el plan EXCLUSIVO con mampara corredera y grifería premium. La calidad de los materiales es increíble. Mi baño parece el de un hotel de lujo."</p><div class="rev-foot"><span class="rev-tag">Plan EXCLUSIVO</span><span class="rev-date">Mar 2026</span></div></div>
       </div>
-      <div class="testi-card reveal" data-delay="2">
-        <div class="stars">★★★★★</div>
-        <p class="testi-txt">"El presupuesto online fue exactamente lo que pagué al final. Nada de sorpresas. Los materiales son de primerísima calidad. Muy recomendable."</p>
-        <div class="testi-author">
-          <div class="testi-av">J</div>
-          <div>
-            <div class="testi-name">Javier Martínez</div>
-            <div class="testi-city">Barcelona · Bañera por Ducha</div>
-          </div>
-        </div>
+
+      <!-- FILA 2 — derecha (sentido contrario) -->
+      <div class="rev-track rev-track-2">
+        <!-- 10 reseñas originales fila 2 -->
+        <div class="rev-card"><div class="rev-card-top"><div class="rev-av">R</div><div class="rev-info"><div class="rev-name">Rosa Fernández</div><div class="rev-src">Google · Madrid</div></div><div class="rev-ico">🔵</div></div><div class="rev-stars">★★★★★</div><p class="rev-txt">"Añadí el nicho empotrado y el espejo LED al plan y quedé alucinada. Esos detalles transforman el baño por completo. El instalador fue muy cuidadoso."</p><div class="rev-foot"><span class="rev-tag">Bañera por Ducha</span><span class="rev-date">Feb 2026</span></div></div>
+        <div class="rev-card"><div class="rev-card-top"><div class="rev-av">D</div><div class="rev-info"><div class="rev-name">David González</div><div class="rev-src">Google · Barcelona</div></div><div class="rev-ico">🔵</div></div><div class="rev-stars">★★★★★</div><p class="rev-txt">"El presupuesto online en 5 minutos es una maravilla. Lo hice un domingo por la noche y el lunes ya me llamaron para concretar. Rapidez y seriedad."</p><div class="rev-foot"><span class="rev-tag">Reforma Completa</span><span class="rev-date">Mar 2026</span></div></div>
+        <div class="rev-card"><div class="rev-card-top"><div class="rev-av">E</div><div class="rev-info"><div class="rev-name">Elena Vázquez</div><div class="rev-src">Facebook · Valencia</div></div><div class="rev-ico">🔷</div></div><div class="rev-stars">★★★★★</div><p class="rev-txt">"El toallero calefactor es lo mejor que he añadido al baño en años. Junto con la iluminación LED empotrada el resultado es de película. Muy recomendables."</p><div class="rev-foot"><span class="rev-tag">Ducha Nueva</span><span class="rev-date">Ene 2026</span></div></div>
+        <div class="rev-card"><div class="rev-card-top"><div class="rev-av">S</div><div class="rev-info"><div class="rev-name">Sergio Ramírez</div><div class="rev-src">Google · Sevilla</div></div><div class="rev-ico">🔵</div></div><div class="rev-stars">★★★★★</div><p class="rev-txt">"Habíamos pedido presupuesto a tres empresas. Duchas & Reformas fue la más profesional, la más transparente y la que mejores materiales ofreció. Resultado espectacular."</p><div class="rev-foot"><span class="rev-tag">Plan EXCLUSIVO</span><span class="rev-date">Abr 2026</span></div></div>
+        <div class="rev-card"><div class="rev-card-top"><div class="rev-av">P</div><div class="rev-info"><div class="rev-name">Patricia Molina</div><div class="rev-src">Google · Bilbao</div></div><div class="rev-ico">🔵</div></div><div class="rev-stars">★★★★★</div><p class="rev-txt">"La ducha de obra nueva que me instalaron es exactamente lo que quería: amplia, luminosa y con mamparas abatibles. El espacio ha ganado muchísimo."</p><div class="rev-foot"><span class="rev-tag">Ducha Nueva</span><span class="rev-date">Feb 2026</span></div></div>
+        <div class="rev-card"><div class="rev-card-top"><div class="rev-av">A</div><div class="rev-info"><div class="rev-name">Alberto Castillo</div><div class="rev-src">Facebook · Málaga</div></div><div class="rev-ico">🔷</div></div><div class="rev-stars">★★★★★</div><p class="rev-txt">"Los paneles XXL que elegimos para las paredes son absolutamente espectaculares. El baño parece sacado de un hotel boutique. Todo el mundo que viene a casa alucina."</p><div class="rev-foot"><span class="rev-tag">Reforma Completa</span><span class="rev-date">Mar 2026</span></div></div>
+        <div class="rev-card"><div class="rev-card-top"><div class="rev-av">C</div><div class="rev-info"><div class="rev-name">Cristina Navarro</div><div class="rev-src">Google · Zaragoza</div></div><div class="rev-ico">🔵</div></div><div class="rev-stars">★★★★★</div><p class="rev-txt">"Reforma integral completa: suelo porcelánico, paredes XL, inodoro suspendido y mueble lacado a medida. Todo impecable. El precio fue justo y sin sorpresas."</p><div class="rev-foot"><span class="rev-tag">Plan ELITE</span><span class="rev-date">Ene 2026</span></div></div>
+        <div class="rev-card"><div class="rev-card-top"><div class="rev-av">J</div><div class="rev-info"><div class="rev-name">Javier Guerrero</div><div class="rev-src">Google · Alicante</div></div><div class="rev-ico">🔵</div></div><div class="rev-stars">★★★★★</div><p class="rev-txt">"Elegí el plan MODERADO por el precio y la calidad es muy superior a lo esperado. La garantía incluida me da mucha tranquilidad. Volvería a contratarles sin dudarlo."</p><div class="rev-foot"><span class="rev-tag">Plan MODERADO</span><span class="rev-date">Feb 2026</span></div></div>
+        <div class="rev-card"><div class="rev-card-top"><div class="rev-av">N</div><div class="rev-info"><div class="rev-name">Nuria López</div><div class="rev-src">Facebook · Madrid</div></div><div class="rev-ico">🔷</div></div><div class="rev-stars">★★★★★</div><p class="rev-txt">"La rejilla oculta que escogí en el configurador online es una maravilla. El suelo de la ducha queda limpio y liso, sin nada que rompa la estética. Perfectos."</p><div class="rev-foot"><span class="rev-tag">Bañera por Ducha</span><span class="rev-date">Mar 2026</span></div></div>
+        <div class="rev-card"><div class="rev-card-top"><div class="rev-av">R</div><div class="rev-info"><div class="rev-name">Roberto Blanco</div><div class="rev-src">Google · Murcia</div></div><div class="rev-ico">🔵</div></div><div class="rev-stars">★★★★★</div><p class="rev-txt">"La columna de ducha con lluvia y lateral que instalaron es una experiencia de spa. Cada mañana es un lujo. Gracias al equipo por el trabajo tan bien hecho."</p><div class="rev-foot"><span class="rev-tag">Ducha Italiana</span><span class="rev-date">Abr 2026</span></div></div>
+        <!-- Duplicados fila 2 para loop infinito -->
+        <div class="rev-card"><div class="rev-card-top"><div class="rev-av">R</div><div class="rev-info"><div class="rev-name">Rosa Fernández</div><div class="rev-src">Google · Madrid</div></div><div class="rev-ico">🔵</div></div><div class="rev-stars">★★★★★</div><p class="rev-txt">"Añadí el nicho empotrado y el espejo LED al plan y quedé alucinada. Esos detalles transforman el baño por completo. El instalador fue muy cuidadoso."</p><div class="rev-foot"><span class="rev-tag">Bañera por Ducha</span><span class="rev-date">Feb 2026</span></div></div>
+        <div class="rev-card"><div class="rev-card-top"><div class="rev-av">D</div><div class="rev-info"><div class="rev-name">David González</div><div class="rev-src">Google · Barcelona</div></div><div class="rev-ico">🔵</div></div><div class="rev-stars">★★★★★</div><p class="rev-txt">"El presupuesto online en 5 minutos es una maravilla. Lo hice un domingo por la noche y el lunes ya me llamaron para concretar. Rapidez y seriedad."</p><div class="rev-foot"><span class="rev-tag">Reforma Completa</span><span class="rev-date">Mar 2026</span></div></div>
+        <div class="rev-card"><div class="rev-card-top"><div class="rev-av">E</div><div class="rev-info"><div class="rev-name">Elena Vázquez</div><div class="rev-src">Facebook · Valencia</div></div><div class="rev-ico">🔷</div></div><div class="rev-stars">★★★★★</div><p class="rev-txt">"El toallero calefactor es lo mejor que he añadido al baño en años. Junto con la iluminación LED empotrada el resultado es de película. Muy recomendables."</p><div class="rev-foot"><span class="rev-tag">Ducha Nueva</span><span class="rev-date">Ene 2026</span></div></div>
+        <div class="rev-card"><div class="rev-card-top"><div class="rev-av">S</div><div class="rev-info"><div class="rev-name">Sergio Ramírez</div><div class="rev-src">Google · Sevilla</div></div><div class="rev-ico">🔵</div></div><div class="rev-stars">★★★★★</div><p class="rev-txt">"Habíamos pedido presupuesto a tres empresas. Duchas & Reformas fue la más profesional, la más transparente y la que mejores materiales ofreció. Resultado espectacular."</p><div class="rev-foot"><span class="rev-tag">Plan EXCLUSIVO</span><span class="rev-date">Abr 2026</span></div></div>
+        <div class="rev-card"><div class="rev-card-top"><div class="rev-av">P</div><div class="rev-info"><div class="rev-name">Patricia Molina</div><div class="rev-src">Google · Bilbao</div></div><div class="rev-ico">🔵</div></div><div class="rev-stars">★★★★★</div><p class="rev-txt">"La ducha de obra nueva que me instalaron es exactamente lo que quería: amplia, luminosa y con mamparas abatibles. El espacio ha ganado muchísimo."</p><div class="rev-foot"><span class="rev-tag">Ducha Nueva</span><span class="rev-date">Feb 2026</span></div></div>
+        <div class="rev-card"><div class="rev-card-top"><div class="rev-av">A</div><div class="rev-info"><div class="rev-name">Alberto Castillo</div><div class="rev-src">Facebook · Málaga</div></div><div class="rev-ico">🔷</div></div><div class="rev-stars">★★★★★</div><p class="rev-txt">"Los paneles XXL que elegimos para las paredes son absolutamente espectaculares. El baño parece sacado de un hotel boutique. Todo el mundo que viene a casa alucina."</p><div class="rev-foot"><span class="rev-tag">Reforma Completa</span><span class="rev-date">Mar 2026</span></div></div>
+        <div class="rev-card"><div class="rev-card-top"><div class="rev-av">C</div><div class="rev-info"><div class="rev-name">Cristina Navarro</div><div class="rev-src">Google · Zaragoza</div></div><div class="rev-ico">🔵</div></div><div class="rev-stars">★★★★★</div><p class="rev-txt">"Reforma integral completa: suelo porcelánico, paredes XL, inodoro suspendido y mueble lacado a medida. Todo impecable. El precio fue justo y sin sorpresas."</p><div class="rev-foot"><span class="rev-tag">Plan ELITE</span><span class="rev-date">Ene 2026</span></div></div>
+        <div class="rev-card"><div class="rev-card-top"><div class="rev-av">J</div><div class="rev-info"><div class="rev-name">Javier Guerrero</div><div class="rev-src">Google · Alicante</div></div><div class="rev-ico">🔵</div></div><div class="rev-stars">★★★★★</div><p class="rev-txt">"Elegí el plan MODERADO por el precio y la calidad es muy superior a lo esperado. La garantía incluida me da mucha tranquilidad. Volvería a contratarles sin dudarlo."</p><div class="rev-foot"><span class="rev-tag">Plan MODERADO</span><span class="rev-date">Feb 2026</span></div></div>
+        <div class="rev-card"><div class="rev-card-top"><div class="rev-av">N</div><div class="rev-info"><div class="rev-name">Nuria López</div><div class="rev-src">Facebook · Madrid</div></div><div class="rev-ico">🔷</div></div><div class="rev-stars">★★★★★</div><p class="rev-txt">"La rejilla oculta que escogí en el configurador online es una maravilla. El suelo de la ducha queda limpio y liso, sin nada que rompa la estética. Perfectos."</p><div class="rev-foot"><span class="rev-tag">Bañera por Ducha</span><span class="rev-date">Mar 2026</span></div></div>
+        <div class="rev-card"><div class="rev-card-top"><div class="rev-av">R</div><div class="rev-info"><div class="rev-name">Roberto Blanco</div><div class="rev-src">Google · Murcia</div></div><div class="rev-ico">🔵</div></div><div class="rev-stars">★★★★★</div><p class="rev-txt">"La columna de ducha con lluvia y lateral que instalaron es una experiencia de spa. Cada mañana es un lujo. Gracias al equipo por el trabajo tan bien hecho."</p><div class="rev-foot"><span class="rev-tag">Ducha Italiana</span><span class="rev-date">Abr 2026</span></div></div>
       </div>
-      <div class="testi-card reveal" data-delay="3">
-        <div class="stars">★★★★★</div>
-        <p class="testi-txt">"Habíamos pedido presupuesto a varias empresas. DUCHASMAS fue la más profesional, la más rápida y la que mejor relación calidad-precio ofreció. Resultado 10/10."</p>
-        <div class="testi-author">
-          <div class="testi-av">A</div>
-          <div>
-            <div class="testi-name">Ana López</div>
-            <div class="testi-city">Valencia · Ducha Nueva</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+
+    </div><!-- /rev-carousel -->
+  </div><!-- /rev-inner -->
 </section>
 
 <!-- ═══════════════════════════════════════
@@ -2263,11 +2394,11 @@ body{font-display:swap}
   <div class="cta-inner">
     <div class="reveal">
       <span class="sec-label">¿Listo para transformar tu baño?</span>
-      <h2 class="cta-title">Tu <em>baño de lujo</em><br/>a un clic de distancia</h2>
+      <h2 class="cta-title">Tu <em>reforma de lujo</em><br/>a un clic de distancia</h2>
       <p class="cta-sub">Calcula tu presupuesto ahora mismo o llámanos y un especialista te asesorará sin compromiso.</p>
       <div class="cta-btns">
         <a href="#calculadora" class="btn-primary">✦ Calcular presupuesto gratis</a>
-        <a href="tel:+34900000000" class="btn-secondary">📞 Llamar ahora</a>
+        <a href="tel:+34900000000" class="btn-secondary">📅 Agendar llamada ahora</a>
       </div>
     </div>
   </div>
@@ -2279,14 +2410,25 @@ body{font-display:swap}
 <footer>
   <div class="footer-inner">
     <div>
-      <div class="f-brand-name">DUCHASMAS</div>
-      <div class="f-brand-tag">Reforma de Baño Premium</div>
+      <div class="f-brand-name">Duchas & Reformas</div>
+      <div class="f-brand-tag">Reformas Premium</div>
       <p class="f-brand-desc">Especialistas en reformas de baño de alta gama desde 2009. Instalación en un día, materiales premium y garantía total de 5 años.</p>
       <div class="f-social">
-        <a href="#" class="f-soc-btn" aria-label="Instagram">📷</a>
-        <a href="#" class="f-soc-btn" aria-label="Facebook">👍</a>
-        <a href="#" class="f-soc-btn" aria-label="WhatsApp">💬</a>
-        <a href="#" class="f-soc-btn" aria-label="YouTube">▶</a>
+        <a href="#" class="f-soc-btn" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+        </a>
+        <a href="#" class="f-soc-btn" aria-label="TikTok">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/>
+          </svg>
+        </a>
+        <a href="#" class="f-soc-btn" aria-label="Facebook">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </a>
       </div>
     </div>
     <div>
@@ -2321,7 +2463,7 @@ body{font-display:swap}
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2026 DUCHASMAS — Todos los derechos reservados</p>
+    <p>© 2026 Duchas & Reformas — Todos los derechos reservados</p>
     <p>
       <a href="#">Política de privacidad</a> &nbsp;·&nbsp;
       <a href="#">Aviso legal</a> &nbsp;·&nbsp;
@@ -2333,7 +2475,7 @@ body{font-display:swap}
 <!-- ═══════════════════════════════════════
      WHATSAPP BUTTON
 ════════════════════════════════════════ -->
-<a href="https://wa.me/34600000000?text=Hola%20DUCHASMAS%2C%20me%20gustar%C3%ADa%20solicitar%20informaci%C3%B3n%20sobre%20una%20reforma%20de%20ba%C3%B1o." target="_blank" rel="noopener" id="wa-btn" aria-label="Contactar por WhatsApp">
+<a href="https://wa.me/34600000000?text=Hola%20Duchas%20%26%20Reformas%2C%20me%20gustar%C3%ADa%20solicitar%20informaci%C3%B3n%20sobre%20una%20reforma%20de%20ba%C3%B1o." target="_blank" rel="noopener" id="wa-btn" aria-label="Contactar por WhatsApp">
   <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
     <path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.557 4.126 1.528 5.862L.057 23.215a.75.75 0 00.917.931l5.453-1.431A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.71 9.71 0 01-4.953-1.355l-.355-.214-3.676.964.983-3.589-.233-.37A9.712 9.712 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/>
@@ -2419,228 +2561,377 @@ const cntObserver=new IntersectionObserver((entries)=>{
 },{threshold:.4});
 document.querySelectorAll('.stat').forEach(s=>cntObserver.observe(s));
 
+
 /* ══════════════════════════════
-   CALCULATOR STATE & DATA
+   CALCULATOR V2 — 12 PASOS
 ══════════════════════════════ */
-const S={
-  step:1, service:null, quality:null, extras:[],
-  ancho:150, largo:200, alto:240, m2:3.0,
-};
-
-const QUALITY={
-  banera:[
-    {id:'basico',label:'BÁSICO',name:'Básico',base:1200,perM2:0,
-     feats:['Plato ducha estándar','Mampara fija básica','Grifo monomando','Alicatado básico','Instalación completa']},
-    {id:'estandar',label:'ESTÁNDAR',name:'Estándar',base:1800,perM2:0,
-     feats:['Plato antideslizante premium','Mampara corredera vidrio templado','Grifo termostático','Azulejo de calidad media','Nicho integrado']},
-    {id:'premium',label:'PREMIUM',name:'Premium',base:2600,perM2:0,
-     feats:['Plato de resina mineral','Mampara a medida sin marco','Grifo Grohe / Hansgrohe','Microcemento o gran formato','Iluminación LED integrada']},
-    {id:'exclusive',label:'EXCLUSIVE',name:'Exclusive',base:3800,perM2:0,
-     feats:['Ducha italiana a ras de suelo','Vidrio ultra-transparente','Sistema de hidromasaje','Materiales nobles a elección','Proyecto personalizado']},
-  ],
-  reforma:[
-    {id:'basico',label:'BÁSICO',name:'Básico',base:3000,perM2:180,
-     feats:['Suelo y paredes nuevas','Sanitarios básicos','Grifo estándar','Fontanería y electricidad','Pintura y acabados']},
-    {id:'estandar',label:'ESTÁNDAR',name:'Estándar',base:4800,perM2:250,
-     feats:['Azulejo gran formato','Sanitarios suspendidos','Mueble con espejo LED','Grifo termostático','Iluminación LED']},
-    {id:'premium',label:'PREMIUM',name:'Premium',base:7500,perM2:380,
-     feats:['Microcemento o piedra natural','Sanitarios de diseño','Mueble lacado a medida','Ducha italiana + bañera exenta','Domótica básica']},
-    {id:'exclusive',label:'EXCLUSIVE',name:'Exclusive',base:12000,perM2:600,
-     feats:['Mármol / ónix / travertino','Proyecto de interiorismo','Spa home con hidroterapia','Smart home completo','Llave en mano integral']},
-  ],
-  ducha_nueva:[
-    {id:'basico',label:'BÁSICO',name:'Básico',base:900,perM2:0,
-     feats:['Plato estándar','Mampara básica','Grifo monomando','Fontanería incluida','Alicatado incluido']},
-    {id:'estandar',label:'ESTÁNDAR',name:'Estándar',base:1500,perM2:0,
-     feats:['Plato antideslizante premium','Mampara corredera templada','Grifo termostático','Azulejo calidad media','Nicho empotrado']},
-    {id:'premium',label:'PREMIUM',name:'Premium',base:2200,perM2:0,
-     feats:['Plato de resina mineral','Mampara a medida sin marco','Grifo termostático diseño','Gran formato / microcemento','LED empotrado']},
-    {id:'exclusive',label:'EXCLUSIVE',name:'Exclusive',base:3200,perM2:0,
-     feats:['Ducha italiana a ras suelo','Vidrio ultra-transparente','Lluvia + ducha lateral','Materiales nobles','Proyecto personalizado']},
-  ],
-};
-
-const EXTRAS=[
-  {id:'mamp_b',  ico:'🪞',name:'Mampara básica',          price:290},
-  {id:'mamp_p',  ico:'🔲',name:'Mampara premium sin marco',price:580},
-  {id:'grifo_t', ico:'🌡️',name:'Grifo termostático',       price:240},
-  {id:'suelo_a', ico:'🦺',name:'Suelo antideslizante',      price:180},
-  {id:'inod_s',  ico:'🚽',name:'Inodoro suspendido',        price:450},
-  {id:'mueble',  ico:'🗄️',name:'Mueble baño + espejo LED',  price:520},
-  {id:'led',     ico:'💡',name:'Iluminación LED',            price:175},
-  {id:'nicho',   ico:'📦',name:'Nicho empotrado',            price:120},
-  {id:'toall',   ico:'🔥',name:'Toallero calefactor',        price:320},
-  {id:'barras',  ico:'🤝',name:'Barras de seguridad',        price: 95},
-  {id:'extrac',  ico:'💨',name:'Extracción aire premium',    price:210},
-  {id:'pavim',   ico:'🏁',name:'Pavimento gran formato',     price:350},
+const CSTEPS=[
+  {id:'servicio',title:'Elige entre nuestras 3 ofertas',type:'cards',req:true,opts:[
+    {id:'exclusive',ico:'🏆',img:'PLAN ELITE FINAL, ALTA CALIDAD.PNG',nm:'ELITE',ds:'La top de Duchas & Reformas — acero inoxidable, materiales de máxima gama y acabado premium',price:2290,pl:'desde 2.290 €'},
+    {id:'luxe',     ico:'✨',img:'PLAN EXCLUSIVO FINAL ALTA CALIDAD.PNG',    nm:'EXCLUSIVO',     ds:'Nuestra número 1 — calidad superior con diseño elegante y mampara de vidrio templado',       price:1990,pl:'desde 1.990 €'},
+    {id:'medium',   ico:'⭐',img:'PLAN MEDIUM FINAL ALTA CALIDAD.PNG',nm:'MODERADO',ds:'Precio insuperable — calidad garantizada al mejor precio del mercado',                        price:1690,pl:'desde 1.690 €'},
+  ]},
+  {id:'plato',title:'Tipo de plato de ducha',type:'cards',req:true,opts:[
+    {id:'rejilla_vista', ico:'⬜',nm:'Rejilla vista',   ds:'Canal de desagüe lateral visible, fácil limpieza',         price:0,  pl:'Incluido'},
+    {id:'rejilla_oculta',ico:'▫️', nm:'Rejilla oculta',  ds:'Desagüe integrado bajo el plato, acabado minimalista',     price:150,pl:'+150 €'},
+    {id:'ras_suelo',     ico:'🔲',nm:'Ras de suelo',    ds:'Plato ultra bajo perfil, accesibilidad y máxima elegancia', price:350,pl:'+350 €'},
+  ]},
+  {id:'color',title:'Color del plato',type:'colors',req:true,opts:[
+    {id:'blanco', nm:'Blanco',  color:'#F2F0EC',price:0},
+    {id:'gris',   nm:'Gris',   color:'#A8A8A8',price:0},
+    {id:'grafito',nm:'Grafito',color:'#444444',price:0},
+    {id:'beige',  nm:'Beige',  color:'#C8B99A',price:0},
+    {id:'pizarra',nm:'Pizarra',color:'#5A5A6A',price:0},
+    {id:'negro',  nm:'Negro',  color:'#1C1C1C',price:50,pl:'+50 €'},
+  ]},
+  {id:'tamano',title:'Tamaño del plato',type:'sizes',req:true,opts:[
+    {id:'70x90',  val:'70×90 cm',  lbl:'Estándar',price:0},
+    {id:'80x80',  val:'80×80 cm',  lbl:'Estándar',price:0},
+    {id:'80x90',  val:'80×90 cm',  lbl:'+50 €',   price:50},
+    {id:'90x90',  val:'90×90 cm',  lbl:'+100 €',  price:100},
+    {id:'100x100',val:'100×100 cm',lbl:'+180 €',  price:180},
+    {id:'medida', val:'A medida',  lbl:'+200 €',  price:200},
+  ]},
+  {id:'medidas',title:'Medidas del baño',type:'dims',req:false},
+  {id:'alicatado',title:'Altura del alicatado',type:'cards',req:true,opts:[
+    {id:'zocalo',  ico:'📐',nm:'Zócalo 50 cm',        ds:'Solo la zona baja del baño, solución económica',          price:0,  pl:'Incluido'},
+    {id:'media',   ico:'🧱',nm:'Media pared 120 cm',   ds:'Hasta la mitad, equilibrio estético y precio',            price:200,pl:'+200 €'},
+    {id:'completa',ico:'🏠',nm:'Pared completa 240 cm',ds:'De suelo a techo, máxima protección y acabado premium',   price:450,pl:'+450 €'},
+  ]},
+  {id:'azulejo',title:'Formato del azulejo',type:'cards',req:true,opts:[
+    {id:'estandar',ico:'▪️',nm:'Estándar 20×60 cm',  ds:'Gran variedad de modelos y colores disponibles',          price:0,  pl:'Incluido'},
+    {id:'xl',      ico:'◾', nm:'Gran Formato 60×120', ds:'Menos juntas, aspecto más moderno y actual',              price:180,pl:'+180 €'},
+    {id:'xxl',     ico:'⬛',nm:'Panel XXL 120×240',   ds:'Efecto mármol continuo, máximo lujo y amplitud visual',   price:380,pl:'+380 €'},
+  ]},
+  {id:'griferia',title:'Grifería',type:'cards',req:true,opts:[
+    {id:'basica',      ico:'🚿',nm:'Kit básico monomando',  ds:'Alcachofa fija con mango, funcional y resistente',       price:0,  pl:'Incluido'},
+    {id:'termostatica',ico:'🌡️',nm:'Duchón + termostato',   ds:'Control preciso de temperatura, mayor confort diario',   price:120,pl:'+120 €'},
+    {id:'columna',     ico:'💦',nm:'Columna de ducha',       ds:'Lluvia + lateral + mano, todo en uno',                   price:280,pl:'+280 €'},
+    {id:'premium',     ico:'✨',nm:'Grifería Premium Grohe', ds:'Tecnología alemana de alta gama, garantía 5 años',       price:450,pl:'+450 €'},
+  ]},
+  {id:'mampara',title:'Mampara de ducha',type:'cards',req:true,opts:[
+    {id:'sin',        ico:'🚿',nm:'Sin mampara',       ds:'Cortina o espacio abierto, solución sencilla',              price:0,  pl:'Sin coste'},
+    {id:'fija',       ico:'🪟',nm:'Fija 1 hoja',        ds:'Vidrio templado fijo, diseño limpio y elegante',             price:290,pl:'+290 €'},
+    {id:'corredera',  ico:'↔️',nm:'Corredera 2 hojas',  ds:'Apertura lateral deslizante, ideal espacios pequeños',      price:380,pl:'+380 €'},
+    {id:'abatible',   ico:'🔄',nm:'Abatible',           ds:'Apertura frontal tipo puerta, cómoda entrada',              price:420,pl:'+420 €'},
+    {id:'frontal_lat',ico:'🔲',nm:'Frontal + lateral',  ds:'Cierre total del espacio de ducha, máxima estanqueidad',    price:580,pl:'+580 €'},
+  ]},
+  {id:'complementos',title:'Complementos (opcional)',type:'multi',req:false,opts:[
+    {id:'nicho',    ico:'📦',nm:'Nicho empotrado',      price:120},
+    {id:'barra',    ico:'🤝',nm:'Barra de seguridad',   price: 95},
+    {id:'toallero', ico:'🔥',nm:'Toallero calefactor',  price:320},
+    {id:'espejo',   ico:'💡',nm:'Espejo con luz LED',   price:280},
+    {id:'led',      ico:'⭐',nm:'Iluminación LED techo',price:175},
+    {id:'inodoro',  ico:'🚽',nm:'Inodoro suspendido',   price:450},
+  ]},
+  {id:'suelo',title:'Suelo del baño',type:'cards',req:true,opts:[
+    {id:'sin_cambio', ico:'⬜',nm:'Sin cambio de suelo',      ds:'Mantenemos el suelo actual en perfectas condiciones',    price:0,  pl:'Sin coste'},
+    {id:'plaquetas',  ico:'🏁',nm:'Plaquetas antideslizantes',ds:'Seguridad y durabilidad, ideal para mayores y niños',    price:180,pl:'+180 €'},
+    {id:'porcelanico',ico:'✦', nm:'Porcelánico gran formato', ds:'Acabado premium de alta durabilidad y resistencia',      price:350,pl:'+350 €'},
+  ]},
+  {id:'contacto',title:'Tus datos',type:'contact',req:true},
 ];
 
-const SVC_NAMES={banera:'Bañera por Ducha',reforma:'Reforma Completa',ducha_nueva:'Ducha Nueva'};
-const fmt=n=>n.toLocaleString('es-ES')+'€';
+const CTOTAL=CSTEPS.length;
+const fmt2=n=>n.toLocaleString('es-ES')+' €';
+const CS={step:0,sel:{}};
 
-/* ── TOTAL CALC ── */
-function calcTotal(){
-  if(!S.service||!S.quality) return null;
-  const q=QUALITY[S.service].find(x=>x.id===S.quality);
-  if(!q) return null;
-  let t=q.base+(q.perM2*S.m2);
-  S.extras.forEach(id=>{const e=EXTRAS.find(x=>x.id===id);if(e)t+=e.price;});
-  return Math.round(t);
-}
+/* ── INIT ── */
+(function(){renderStep(0);updateSummary();})();
 
-/* ── LIVE BAR ── */
-function updateBar(){
-  const bar=document.getElementById('liveBar');
-  const t=calcTotal();
-  if(t&&S.step>=3){
-    bar.classList.add('show');
-    document.getElementById('lb_price').textContent=fmt(t);
-    document.getElementById('lb_info').textContent=S.extras.length+' extra(s) · Paso '+S.step+'/5';
-  } else {
-    bar.classList.remove('show');
+/* ── RENDER ── */
+function renderStep(idx){
+  const s=CSTEPS[idx];
+  document.getElementById('cStepNum').textContent=idx+1;
+  document.getElementById('cStepTitle').textContent=s.title;
+  document.getElementById('cStepFill').style.width=((idx+1)/CTOTAL*100).toFixed(2)+'%';
+  const prev=document.getElementById('btnPrev');
+  const next=document.getElementById('btnNext');
+  if(!prev||!next)return;
+  prev.disabled=idx===0;
+  next.textContent=idx===CTOTAL-1?'Ver mi presupuesto ›':'Siguiente ›';
+  next.disabled=s.req&&!CS.sel[s.id]&&s.type!=='dims'&&s.type!=='contact'&&s.type!=='multi';
+  let html='';
+  switch(s.type){
+    case 'cards':  html=rCards(s);   break;
+    case 'colors': html=rColors(s);  break;
+    case 'sizes':  html=rSizes(s);   break;
+    case 'multi':  html=rMulti(s);   break;
+    case 'dims':   html=rDims(s);    break;
+    case 'contact':html=rContact(s); break;
   }
+  document.getElementById('cStepBody').innerHTML=html;
 }
 
-/* ── STEP NAVIGATION ── */
-function goStep(n){
-  document.getElementById('sp'+S.step).classList.remove('active');
-  document.getElementById('sp'+n).classList.add('active');
-  document.querySelectorAll('.prog-step').forEach(el=>{
-    const s=parseInt(el.dataset.step);
-    el.classList.remove('active','done');
-    if(s<n) el.classList.add('done');
-    if(s===n) el.classList.add('active');
-  });
-  S.step=n;
+function rCards(s){
+  const cur=CS.sel[s.id];
+  return'<div class="vopts">'+s.opts.map(o=>{
+    const media=o.img
+      ?`<div class="vopt-ico vopt-img-wrap"><img src="${o.img}" alt="${o.nm}" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>`
+      :`<div class="vopt-ico">${o.ico}</div>`;
+    return`<div class="vopt${cur===o.id?' vsel':''}" onclick="cSel('${s.id}','${o.id}')"><div class="vopt-chk">✓</div>${media}<div class="vopt-body"><div class="vopt-nm">${o.nm}</div><div class="vopt-ds">${o.ds}</div><div class="vopt-pr${o.price===0?' free':''}">${o.pl}</div></div></div>`;
+  }).join('')+'</div>';
+}
+function rColors(s){
+  const cur=CS.sel[s.id];
+  return'<div class="cswatches">'+s.opts.map(o=>`<div class="csw${cur===o.id?' vsel':''}" onclick="cSel('${s.id}','${o.id}')"><div class="csw-circle" style="background:${o.color}"></div><div class="csw-nm">${o.nm}</div></div>`).join('')+'</div>';
+}
+function rSizes(s){
+  const cur=CS.sel[s.id];
+  return'<div class="szgrid">'+s.opts.map(o=>`<div class="szcard${cur===o.id?' vsel':''}" onclick="cSel('${s.id}','${o.id}')"><div class="szval">${o.val}</div><div class="szlbl">${o.lbl}</div></div>`).join('')+'</div>';
+}
+function rMulti(s){
+  const cur=CS.sel[s.id]||[];
+  return'<p class="skip-note">Opcional — puedes saltar este paso</p><div class="compgrid">'+s.opts.map(o=>`<div class="compcard${cur.includes(o.id)?' vsel':''}" onclick="cTogMulti('${s.id}','${o.id}')"><div class="comp-i">${o.ico}</div><div class="comp-inf"><div class="comp-n">${o.nm}</div><div class="comp-p">+ ${fmt2(o.price)}</div></div><div class="comp-ck">✓</div></div>`).join('')+'</div>';
+}
+function rDims(s){
+  const d=CS.sel[s.id]||{};
+  return`<p class="skip-note">Opcional — introduce las medidas aproximadas de tu baño</p>
+  <div class="medwrap"><div class="medgrid">
+    <div class="dim-field"><label class="dim-lbl">Ancho</label><div class="inp-wrap"><input class="dim-inp" type="number" id="d2_ancho" placeholder="150" min="60" max="500" value="${d.ancho||''}" oninput="cSaveDims()"/><span class="dim-unit">cm</span></div></div>
+    <div class="dim-field"><label class="dim-lbl">Largo</label><div class="inp-wrap"><input class="dim-inp" type="number" id="d2_largo" placeholder="200" min="60" max="700" value="${d.largo||''}" oninput="cSaveDims()"/><span class="dim-unit">cm</span></div></div>
+    <div class="dim-field"><label class="dim-lbl">Alto</label><div class="inp-wrap"><input class="dim-inp" type="number" id="d2_alto" placeholder="240" min="180" max="320" value="${d.alto||''}" oninput="cSaveDims()"/><span class="dim-unit">cm</span></div></div>
+    <div class="dim-field"><label class="dim-lbl">Superficie</label><div class="inp-wrap"><input class="dim-inp result-inp" id="d2_m2" value="${d.m2||'3.00'}" readonly/><span class="dim-unit">m²</span></div></div>
+  </div></div>`;
+}
+function rContact(s){
+  const d=CS.sel[s.id]||{};
+  const provs=['Madrid','Barcelona','Valencia','Sevilla','Alicante','Málaga','Murcia','Zaragoza','Bilbao','Asturias','Otra'];
+  return`<div class="ctform">
+    <div class="form-row">
+      <div class="ff"><label>Nombre *</label><input type="text" id="c2_nom" placeholder="Tu nombre" value="${d.nom||''}"/></div>
+      <div class="ff"><label>Apellidos</label><input type="text" id="c2_ape" placeholder="Apellidos" value="${d.ape||''}"/></div>
+    </div>
+    <div class="ff"><label>Teléfono *</label><input type="tel" id="c2_tel" placeholder="600 000 000" value="${d.tel||''}"/></div>
+    <div class="ff"><label>Email</label><input type="email" id="c2_email" placeholder="tu@email.com" value="${d.email||''}"/></div>
+    <div class="ff"><label>Provincia</label><select id="c2_prov"><option value="">Selecciona tu provincia...</option>${provs.map(p=>`<option${d.prov===p?' selected':''}>${p}</option>`).join('')}</select></div>
+    <div class="ff"><label>Comentarios</label><textarea id="c2_com" placeholder="¿Algo que quieras contarnos sobre tu baño?">${d.com||''}</textarea></div>
+    <p class="privacy-note">Al continuar aceptas nuestra <a href="#">política de privacidad</a>. Tus datos son tratados con total confidencialidad.</p>
+  </div>`;
+}
+
+/* ── SELECCIÓN ── */
+function cSel(sid,oid){
+  CS.sel[sid]=oid;
+  renderStep(CS.step);
+  updateSummary();
+}
+function cTogMulti(sid,oid){
+  if(!CS.sel[sid])CS.sel[sid]=[];
+  const i=CS.sel[sid].indexOf(oid);
+  if(i===-1)CS.sel[sid].push(oid);else CS.sel[sid].splice(i,1);
+  renderStep(CS.step);
+  updateSummary();
+}
+function cSaveDims(){
+  const a=parseFloat(document.getElementById('d2_ancho').value)||150;
+  const l=parseFloat(document.getElementById('d2_largo').value)||200;
+  const h=parseFloat(document.getElementById('d2_alto').value)||240;
+  const m2=parseFloat(((a/100)*(l/100)).toFixed(2));
+  document.getElementById('d2_m2').value=m2;
+  CS.sel['medidas']={ancho:a,largo:l,alto:h,m2};
+  updateSummary();
+}
+function cSaveContact(){
+  CS.sel['contacto']={
+    nom:(document.getElementById('c2_nom')?.value||'').trim(),
+    ape:(document.getElementById('c2_ape')?.value||'').trim(),
+    tel:(document.getElementById('c2_tel')?.value||'').trim(),
+    email:(document.getElementById('c2_email')?.value||'').trim(),
+    prov:(document.getElementById('c2_prov')?.value||'').trim(),
+    com:(document.getElementById('c2_com')?.value||'').trim(),
+  };
+}
+
+/* ── NAVEGACIÓN ── */
+function cNext(){
+  if(CS.step===CTOTAL-1){cSaveContact();cSubmit();return;}
+  CS.step++;
+  renderStep(CS.step);
   window.scrollTo({top:document.getElementById('calculadora').offsetTop-80,behavior:'smooth'});
-  if(n===3) buildQual();
-  if(n===4) buildExt();
-  updateBar();
+}
+function cPrev(){
+  if(CS.step===0)return;
+  CS.step--;
+  renderStep(CS.step);
+  window.scrollTo({top:document.getElementById('calculadora').offsetTop-80,behavior:'smooth'});
+}
+function cJumpContact(){
+  CS.step=CTOTAL-1;
+  renderStep(CS.step);
+  window.scrollTo({top:document.getElementById('calculadora').offsetTop-80,behavior:'smooth'});
 }
 
-/* ── OPTION SELECT ── */
-function selOpt(el,type){
-  el.closest('.opts-grid').querySelectorAll('.opt-card').forEach(c=>c.classList.remove('sel'));
-  el.classList.add('sel');
-  if(type==='service'){
-    S.service=el.dataset.val;
-    S.quality=null;S.extras=[];
-    document.getElementById('btn-s1').disabled=false;
+/* ── TOTAL ── */
+function cCalcTotal(){
+  let t=0;
+  CSTEPS.forEach(s=>{
+    if(!CS.sel[s.id])return;
+    if(s.type==='multi'){(CS.sel[s.id]||[]).forEach(id=>{const o=s.opts.find(x=>x.id===id);if(o)t+=o.price;});}
+    else if(s.opts){const o=s.opts.find(x=>x.id===CS.sel[s.id]);if(o)t+=o.price;}
+  });
+  return t||null;
+}
+
+/* ── RESUMEN ── */
+function updateSummary(){
+  const items=[];
+  CSTEPS.forEach(s=>{
+    const sel=CS.sel[s.id];
+    if(!sel)return;
+    if(s.type==='multi'){
+      (sel||[]).forEach(id=>{const o=s.opts.find(x=>x.id===id);if(o)items.push({k:o.nm,v:'+'+fmt2(o.price)});});
+    }else if(s.type==='dims'&&sel.m2){
+      items.push({k:'Superficie baño',v:sel.m2+' m²'});
+    }else if(s.opts){
+      const o=s.opts.find(x=>x.id===sel);
+      if(o)items.push({k:s.title,v:o.nm+(o.price>0?' +'+fmt2(o.price):'')});
+    }
+  });
+  const sumEl=document.getElementById('csSummary');
+  const totEl=document.getElementById('csTotal');
+  if(items.length===0){
+    sumEl.innerHTML='<div class="cs-empty">Completa los pasos para ver el resumen</div>';
+    totEl.textContent='—';
+  }else{
+    sumEl.innerHTML=items.map(i=>`<div class="cs-row"><span class="cs-rk">${i.k}</span><span class="cs-rv">${i.v}</span></div>`).join('');
+    const total=cCalcTotal();
+    totEl.textContent=total?fmt2(total):'—';
+    if(total){document.getElementById('liveBar').classList.add('show');document.getElementById('lb_price').textContent=fmt2(total);document.getElementById('lb_info').textContent='Paso '+(CS.step+1)+'/'+CTOTAL;}
   }
-  updateBar();
 }
 
-function selQual(id){
-  S.quality=id;
-  document.querySelectorAll('.qual-card').forEach(c=>c.classList.toggle('sel',c.dataset.id===id));
-  document.getElementById('btn-s3').disabled=false;
-  updateBar();
-}
-
-function togExtra(id){
-  const i=S.extras.indexOf(id);
-  if(i===-1) S.extras.push(id); else S.extras.splice(i,1);
-  document.querySelector('.extra-card[data-id="'+id+'"]').classList.toggle('sel',S.extras.includes(id));
-  updateBar();
-}
-
-/* ── BUILD QUAL GRID ── */
-function buildQual(){
-  const list=QUALITY[S.service]||QUALITY.banera;
-  document.getElementById('qualGrid').innerHTML=list.map(q=>{
-    const p=q.base+(q.perM2*S.m2);
-    return`<div class="qual-card${S.quality===q.id?' sel':''}" data-id="${q.id}" onclick="selQual('${q.id}')">
-      <div class="qual-badge">${q.label}</div>
-      <div class="qual-name">${q.name}</div>
-      <div class="qual-price">${fmt(Math.round(p))} <sub>desde</sub></div>
-      <ul class="qual-feats">${q.feats.map(f=>`<li>${f}</li>`).join('')}</ul>
+/* ── SUBMIT / RESULTADO ── */
+function cSubmit(){
+  const ct=CS.sel['contacto']||{};
+  if(!ct.nom){alert('Por favor, introduce tu nombre.');return;}
+  if(!ct.tel){alert('Por favor, introduce tu teléfono.');return;}
+  const total=cCalcTotal()||0;
+  const min=Math.round(total*.9),max=Math.round(total*1.1);
+  const srv=CSTEPS[0].opts.find(x=>x.id===CS.sel['servicio']);
+  let rows='';
+  const lines=[`Hola Duchas & Reformas 👋, soy ${ct.nom}.`,'Presupuesto calculado en vuestra web:'];
+  CSTEPS.forEach(s=>{
+    const sel=CS.sel[s.id];
+    if(!sel||s.type==='contact'||s.type==='dims')return;
+    if(s.type==='multi'){
+      (sel||[]).forEach(id=>{const o=s.opts.find(x=>x.id===id);if(o){rows+=`<div class="bd-row"><span class="bd-k">+ ${o.nm}</span><span class="bd-v">+${fmt2(o.price)}</span></div>`;lines.push(`+ ${o.nm}: +${fmt2(o.price)}`);}});
+    }else{
+      const o=s.opts.find(x=>x.id===sel);
+      if(o){if(o.price>0)rows+=`<div class="bd-row"><span class="bd-k">${s.title}</span><span class="bd-v">+${fmt2(o.price)}</span></div>`;lines.push(`- ${s.title}: ${o.nm}`);}
+    }
+  });
+  lines.push(`- Estimado: ${fmt2(min)} – ${fmt2(max)}`);
+  lines.push(`Teléfono: ${ct.tel}`);
+  const waMsg=encodeURIComponent(lines.join('\n'));
+  document.getElementById('calcMain').innerHTML=`
+    <div class="rbox2">
+      <span class="result-ico">🏆</span>
+      <div class="panel-title" style="margin-bottom:8px">Tu presupuesto orientativo</div>
+      <div class="result-name">Hola, <strong>${ct.nom}</strong> 👋</div>
+      <div class="price-card">
+        <div class="price-lbl">Presupuesto estimado</div>
+        <div class="price-range">${fmt2(min)} – ${fmt2(max)}</div>
+        <div class="price-iva">Precio orientativo · IVA incluido</div>
+      </div>
+      <div class="breakdown">
+        <div class="bd-title">Desglose</div>
+        <div class="bd-row"><span class="bd-k">Servicio base: ${srv?.nm||''}</span><span class="bd-v">${fmt2(srv?.price||0)}</span></div>
+        ${rows}
+        <div class="bd-row"><span class="bd-k">Total estimado</span><span class="bd-v">${fmt2(total)}</span></div>
+      </div>
+      <p class="result-note">Este presupuesto es orientativo. Un especialista Duchas & Reformas se pondrá en contacto contigo en menos de 24 h para confirmar el precio exacto tras una visita sin compromiso.</p>
+      <div class="res-btns">
+        <a href="https://wa.me/34600000000?text=${waMsg}" class="btn-wa" target="_blank">💬 Confirmar por WhatsApp</a>
+        <a href="tel:+34900000000" class="btn-primary">📞 Llamar ahora</a>
+      </div>
+      <div style="margin-top:18px;text-align:center">
+        <button onclick="cReset()" style="background:none;border:1px solid rgba(201,168,76,0.25);color:var(--muted);padding:10px 22px;border-radius:50px;cursor:pointer;font-size:11px;letter-spacing:2px;text-transform:uppercase;transition:all .25s" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold-lt)'" onmouseout="this.style.borderColor='rgba(201,168,76,0.25)';this.style.color='var(--muted)'">↺ Calcular otro presupuesto</button>
+      </div>
     </div>`;
-  }).join('');
-  if(S.quality) document.getElementById('btn-s3').disabled=false;
-}
-
-/* ── BUILD EXT GRID ── */
-function buildExt(){
-  document.getElementById('extGrid').innerHTML=EXTRAS.map(e=>`
-    <div class="extra-card${S.extras.includes(e.id)?' sel':''}" data-id="${e.id}" onclick="togExtra('${e.id}')">
-      <div class="extra-ico">${e.ico}</div>
-      <div class="extra-info"><div class="extra-nm">${e.name}</div><div class="extra-pr">+ ${fmt(e.price)}</div></div>
-      <div class="extra-chk">✓</div>
-    </div>`).join('');
-}
-
-/* ── DIMENSIONS ── */
-function calcDim(){
-  const a=parseFloat(document.getElementById('d_ancho').value)||150;
-  const l=parseFloat(document.getElementById('d_largo').value)||200;
-  S.ancho=a;S.largo=l;
-  S.alto=parseFloat(document.getElementById('d_alto').value)||240;
-  S.m2=parseFloat(((a/100)*(l/100)).toFixed(2));
-  document.getElementById('d_m2').value=S.m2;
-  updateBar();
-}
-
-/* ── SUBMIT ── */
-function submitCalc(){
-  const nom=document.getElementById('c_nom').value.trim();
-  const tel=document.getElementById('c_tel').value.trim();
-  if(!nom){alert('Por favor, introduce tu nombre.');return;}
-  if(!tel){alert('Por favor, introduce tu teléfono.');return;}
-  showResult(nom,tel);
-  goStep(6);
   document.getElementById('liveBar').classList.remove('show');
 }
 
-function showResult(nom,tel){
-  const t=calcTotal();
-  const min=Math.round(t*.9),max=Math.round(t*1.1);
-  const q=QUALITY[S.service].find(x=>x.id===S.quality);
-  const svcName=SVC_NAMES[S.service];
-  document.getElementById('r_name').innerHTML='Hola, <strong>'+nom+'</strong> 👋';
-  document.getElementById('r_price').textContent=fmt(min)+' – '+fmt(max);
-  const exRows=S.extras.map(id=>{
-    const e=EXTRAS.find(x=>x.id===id);
-    return`<div class="bd-row"><span class="bd-k">+ ${e.name}</span><span class="bd-v">+${fmt(e.price)}</span></div>`;
-  }).join('');
-  document.getElementById('r_breakdown').innerHTML=
-    `<div class="bd-row"><span class="bd-k">Servicio: ${svcName}</span><span class="bd-v">${q.name}</span></div>`+
-    `<div class="bd-row"><span class="bd-k">Superficie: ${S.m2} m²</span><span class="bd-v">${fmt(Math.round(q.base+q.perM2*S.m2))}</span></div>`+
-    exRows+
-    `<div class="bd-row"><span class="bd-k">Total estimado</span><span class="bd-v">${fmt(t)}</span></div>`;
-  const msg=encodeURIComponent(`Hola DUCHASMAS 👋, soy ${nom}.\nPresupuesto calculado en vuestra web:\n- Servicio: ${svcName}\n- Calidad: ${q.name}\n- Medidas: ${S.ancho}×${S.largo} cm (${S.m2} m²)\n- Extras: ${S.extras.length?S.extras.map(id=>EXTRAS.find(x=>x.id===id).name).join(', '):'Ninguno'}\n- Estimado: ${fmt(min)} – ${fmt(max)}\nTeléfono: ${tel}`);
-  document.getElementById('btn_wa').href='https://wa.me/34600000000?text='+msg;
-}
-
 /* ── RESET ── */
-// Cache de nodos reutilizados
-const _panels=document.querySelectorAll('.step-panel');
-const _optCards=document.querySelectorAll('.opt-card');
-const _progSteps=document.querySelectorAll('.prog-step');
-const _liveBar=document.getElementById('liveBar');
-const _calcSec=document.getElementById('calculadora');
-
-function resetCalc(){
-  S.step=1;S.service=null;S.quality=null;S.extras=[];S.m2=3.0;
-  _panels.forEach(p=>p.classList.remove('active'));
-  document.getElementById('sp1').classList.add('active');
-  _optCards.forEach(c=>c.classList.remove('sel'));
-  document.getElementById('btn-s1').disabled=true;
-  _progSteps.forEach(d=>{d.classList.remove('active','done');if(d.dataset.step==='1')d.classList.add('active');});
-  _liveBar.classList.remove('show');
-  ['d_ancho','d_largo','d_alto','c_nom','c_ape','c_tel','c_email','c_com'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
-  document.getElementById('d_m2').value='3.00';
-  window.scrollTo({top:_calcSec.offsetTop-80,behavior:'smooth'});
+function cReset(){
+  CS.step=0;CS.sel={};
+  document.getElementById('calcMain').innerHTML=`
+    <div class="cstep-header">
+      <div class="cstep-num">Paso <span id="cStepNum">1</span> de 12</div>
+      <div class="cstep-title" id="cStepTitle">Elige tu reforma</div>
+      <div class="cstep-bar"><div class="cstep-fill" id="cStepFill" style="width:8.33%"></div></div>
+    </div>
+    <div id="cStepBody"></div>
+    <div class="calc-nav2">
+      <button class="btn-bk2" id="btnPrev" onclick="cPrev()" disabled>‹ Anterior</button>
+      <button class="btn-nx2" id="btnNext" onclick="cNext()">Siguiente ›</button>
+    </div>`;
+  renderStep(0);updateSummary();
+  window.scrollTo({top:document.getElementById('calculadora').offsetTop-80,behavior:'smooth'});
 }
-
-/* ── LAZY INIT CALCULATOR — no carga grids hasta que sea visible ── */
-let calcInited=false;
-const calcObserver=new IntersectionObserver((entries)=>{
-  if(entries[0].isIntersecting&&!calcInited){
-    calcInited=true;
-    calcObserver.disconnect();
-  }
-},{threshold:.01});
 calcObserver.observe(_calcSec);
+
+/* ── STEAM CURSOR EFFECT ── */
+(function(){
+  const canvas = document.getElementById('steamCanvas');
+  const hero   = document.querySelector('.hero');
+  if(!canvas||!hero) return;
+  const ctx = canvas.getContext('2d');
+  let W=0, H=0, parts=[];
+
+  function resize(){
+    W = canvas.width  = hero.offsetWidth;
+    H = canvas.height = hero.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize, {passive:true});
+
+  function Puff(x,y){
+    this.x  = x + (Math.random()-.5)*24;
+    this.y  = y + (Math.random()-.5)*16;
+    this.r  = 18 + Math.random()*22;
+    this.vx = (Math.random()-.5)*1.2;
+    this.vy = -(0.8 + Math.random()*1.8);
+    this.alpha = 0.55 + Math.random()*0.25;
+    this.life  = 1;
+    this.decay = 0.014 + Math.random()*0.01;
+    this.grow  = 0.4  + Math.random()*0.5;
+  }
+  Puff.prototype.update = function(){
+    this.x += this.vx;
+    this.y += this.vy;
+    this.vy *= 0.985;
+    this.vx += (Math.random()-.5)*0.15;
+    this.r  += this.grow;
+    this.life -= this.decay;
+  };
+  Puff.prototype.draw = function(){
+    const a = this.life * this.alpha;
+    const g = ctx.createRadialGradient(this.x,this.y,0,this.x,this.y,this.r);
+    g.addColorStop(0,   `rgba(210,230,245,${a})`);
+    g.addColorStop(0.45,`rgba(190,215,235,${a*0.55})`);
+    g.addColorStop(1,   `rgba(170,205,225,0)`);
+    ctx.beginPath();
+    ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+    ctx.fillStyle = g;
+    ctx.fill();
+  };
+
+  window.addEventListener('mousemove', e=>{
+    const rect = hero.getBoundingClientRect();
+    const mx   = e.clientX - rect.left;
+    const my   = e.clientY - rect.top;
+    if(mx<0||my<0||mx>W||my>H) return; // solo dentro del hero
+    for(let i=0;i<5;i++) parts.push(new Puff(mx,my));
+  },{passive:true});
+
+  (function loop(){
+    ctx.clearRect(0,0,W,H);
+    parts = parts.filter(p=>p.life>0);
+    parts.forEach(p=>{p.update();p.draw();});
+    requestAnimationFrame(loop);
+  })();
+})();
 
 /* ── PASSIVE SCROLL para analytics/header ── */
 let lastScroll=0;
