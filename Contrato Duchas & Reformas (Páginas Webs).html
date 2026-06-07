@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contrato de Servicios — Duchas & Reformas × Visionarios Company</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #3B82F6;
+    --gold-light: #60A5FA;
+    --gold-dim: #1E5FCC;
+    --cream: #EEF2FF;
+    --dark: #0A0A0A;
+    --dark2: #111111;
+    --dark3: #1A1A1A;
+    --dark4: #242424;
+    --text: #E2E8F0;
+    --text-muted: #7A8A9E;
+    --text-dim: #4A5A6E;
+    --border: rgba(59,130,246,0.18);
+    --border-soft: rgba(255,255,255,0.06);
+    --green: #34D399;
+    --green-dim: rgba(52,211,153,0.10);
+    --green-border: rgba(52,211,153,0.22);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--dark);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--dark); }
+  ::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 2px; }
+
+  /* ── TICKER ── */
+  .ticker-wrap {
+    background: var(--gold);
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 10px 0;
+    position: relative;
+    z-index: 100;
+  }
+  .ticker-track {
+    display: inline-block;
+    animation: ticker 36s linear infinite;
+  }
+  .ticker-track span {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #EEF2FF;
+    text-transform: uppercase;
+    margin: 0 2rem;
+  }
+  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 99;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .nav-logo span { color: var(--text-muted); }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-doc {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    border: 1px solid var(--border-soft);
+    padding: 8px 16px;
+    border-radius: 2px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 5% 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 70% 40%, rgba(59,130,246,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 70%, rgba(59,130,246,0.04) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero-grid-line {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(59,130,246,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59,130,246,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--border);
+    border-radius: 40px;
+    padding: 6px 16px 6px 10px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2.5rem;
+    width: fit-content;
+    animation: fadeInUp 0.5s ease 0.1s both;
+  }
+  .hero-badge-dot {
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.7)} }
+
+  .hero-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+    animation: fadeInUp 0.5s ease 0.2s both;
+  }
+  .hero-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.8rem, 6vw, 6rem);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: var(--cream);
+    margin-bottom: 1.2rem;
+    max-width: 900px;
+    animation: fadeInUp 0.6s ease 0.3s both;
+  }
+  .hero-title em {
+    font-style: normal;
+    color: var(--gold);
+    position: relative;
+    display: inline-block;
+  }
+  .hero-title em::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0; right: 0;
+    height: 3px;
+    background: var(--gold);
+    border-radius: 2px;
+    opacity: 0.5;
+  }
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    max-width: 560px;
+    margin-bottom: 3rem;
+    line-height: 1.8;
+    animation: fadeInUp 0.6s ease 0.45s both;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+    animation: fadeInUp 0.6s ease 0.55s both;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: #EEF2FF;
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 16px 32px;
+    border-radius: 2px;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-ghost {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--gold); border-color: var(--gold); }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 5rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--border-soft);
+    flex-wrap: wrap;
+    animation: fadeInUp 0.6s ease 0.65s both;
+  }
+  .hero-stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .hero-stat-num span { color: var(--gold); }
+  .hero-stat-label { font-size: 11px; color: var(--text-dim); letter-spacing: 0.06em; text-transform: uppercase; }
+
+  /* ── SECTIONS ── */
+  section { padding: 100px 5%; }
+  .section-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 24px; height: 1px;
+    background: var(--gold);
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--cream);
+    margin-bottom: 1.5rem;
+  }
+  .section-title em { font-style: normal; color: var(--gold); }
+  .section-desc {
+    font-size: 1rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    line-height: 1.8;
+  }
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 0 5%;
+  }
+
+  /* ── PARTES ── */
+  #partes { background: var(--dark2); }
+  .partes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+  .parte-card {
+    background: var(--dark3);
+    border: 1px solid var(--border-soft);
+    border-radius: 4px;
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.25s;
+  }
+  .parte-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  .parte-card:hover { border-color: rgba(59,130,246,0.3); }
+  .parte-card:hover::before { transform: scaleX(1); }
+  .parte-card.client-side::before { background: var(--green); }
+  .parte-card.client-side:hover { border-color: var(--green-border); }
+
+  .parte-tag {
+    display: inline-block;
+    background: rgba(59,130,246,0.1);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    padding: 4px 10px;
+    margin-bottom: 1.25rem;
+  }
+  .parte-tag.tag-cliente {
+    background: var(--green-dim);
+    border-color: var(--green-border);
+    color: var(--green);
+  }
+  .parte-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+  .parte-sub {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+  }
+  .parte-id {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 1.25rem;
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    border-top: 1px solid var(--border-soft);
+    padding-top: 1rem;
+  }
+  .parte-id span { color: var(--cream); }
+
+  /* ── OBJETO ── */
+  #objeto { background: var(--dark); }
+  .object-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 3.5rem;
+  }
+  .object-card {
+    background: var(--dark);
+    padding: 2.5rem 2rem;
+    transition: background 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .object-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  .object-card:hover { background: var(--dark3); }
+  .object-card:hover::before { transform: scaleX(1); }
+  .card-number {
+    font-family: 'Syne', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: rgba(59,130,246,0.10);
+    line-height: 1;
+    margin-bottom: 1rem;
+    letter-spacing: -0.04em;
+  }
+  .card-tag {
+    display: inline-block;
+    background: rgba(59,130,246,0.1);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    padding: 4px 10px;
+    margin-bottom: 1rem;
+  }
+  .card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+  .card-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.75; }
+  .card-url {
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: var(--gold-dim);
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    word-break: break-all;
+  }
+
+  /* ── PAGO ── */
+  #pago { background: var(--dark2); }
+  .payment-wrapper {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 1.5rem;
+    margin-top: 4rem;
+    align-items: start;
+  }
+  .payment-main {
+    background: var(--dark3);
+    border: 1px solid var(--gold);
+    border-radius: 4px;
+    padding: 3rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .pay-badge {
+    display: inline-block;
+    background: var(--gold);
+    color: #EEF2FF;
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 2px;
+    margin-bottom: 1.5rem;
+  }
+  .pay-total {
+    font-family: 'Syne', sans-serif;
+    font-size: 5rem;
+    font-weight: 800;
+    color: var(--cream);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    margin-bottom: 0.5rem;
+  }
+  .pay-total sup {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--gold);
+    vertical-align: top;
+    margin-top: 1rem;
+    display: inline-block;
+  }
+  .pay-sub { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 2.5rem; }
+  .pay-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border-soft);
+    border: 1px solid var(--border-soft);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+  .pay-split-item {
+    background: var(--dark4);
+    padding: 1.5rem;
+    text-align: center;
+  }
+  .pay-split-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--cream);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .pay-split-num span { color: var(--gold); font-size: 1rem; }
+  .pay-split-label {
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .pay-split-when {
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  .pay-list { list-style: none; }
+  .pay-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .pay-list li:last-child { border-bottom: none; }
+  .pay-list li::before { content: '✓'; color: var(--gold); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .pay-list li strong { color: var(--cream); font-weight: 500; }
+
+  .payment-side { display: flex; flex-direction: column; gap: 1rem; }
+  .totals-box {
+    background: var(--dark3);
+    border: 1px solid var(--border-soft);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .totals-box-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    padding: 1rem 1.5rem 0.5rem;
+  }
+  .totals-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 1.5rem;
+    border-bottom: 1px solid var(--border-soft);
+    font-size: 0.88rem;
+  }
+  .totals-row:last-child { border-bottom: none; }
+  .totals-row .label { color: var(--text-muted); }
+  .totals-row .value { font-family: 'Syne', sans-serif; font-weight: 700; color: var(--cream); }
+  .totals-row .value.highlight { color: var(--gold); }
+  .totals-row.total-final {
+    background: rgba(59,130,246,0.07);
+    border-top: 1px solid var(--border);
+    padding: 1.1rem 1.5rem;
+    border-bottom: none;
+  }
+  .totals-row.total-final .label {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--cream);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .totals-row.total-final .value {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--cream);
+  }
+  .guarantee-box {
+    background: var(--green-dim);
+    border: 1px solid var(--green-border);
+    border-radius: 4px;
+    padding: 1.5rem;
+    font-size: 0.85rem;
+    color: var(--green);
+    line-height: 1.75;
+  }
+  .guarantee-box strong { font-weight: 600; display: block; margin-bottom: 0.4rem; font-family: 'Syne', sans-serif; font-size: 0.9rem; letter-spacing: 0.02em; }
+
+  /* ── CLÁUSULAS ── */
+  #clausulas { background: var(--dark); }
+  .clause-timeline {
+    margin-top: 4rem;
+    position: relative;
+  }
+  .clause-timeline::before {
+    content: '';
+    position: absolute;
+    left: 28px; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, var(--gold) 0%, rgba(59,130,246,0.1) 100%);
+  }
+  .clause-step {
+    display: flex;
+    gap: 2.5rem;
+    margin-bottom: 3rem;
+    position: relative;
+  }
+  .clause-step:last-child { margin-bottom: 0; }
+  .step-dot {
+    flex-shrink: 0;
+    width: 56px; height: 56px;
+    background: var(--dark3);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--gold);
+    position: relative;
+    z-index: 1;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .clause-step:hover .step-dot { background: var(--gold); color: #EEF2FF; border-color: var(--gold); }
+  .step-content { padding-top: 8px; }
+  .step-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+  }
+  .step-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.8; max-width: 620px; }
+  .step-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-top: 0.5rem;
+  }
+
+  /* ── FIRMA ── */
+  #firma { background: var(--dark2); }
+  .firma-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+  .firma-card {
+    background: var(--dark3);
+    border: 1px solid var(--border-soft);
+    border-radius: 4px;
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .firma-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gold);
+  }
+  .firma-card.client-firma::before { background: var(--green); }
+  .firma-role {
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 1.5rem;
+  }
+  .firma-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--cream);
+    margin-bottom: 0.4rem;
+  }
+  .firma-id {
+    font-size: 0.83rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+  }
+  .firma-line {
+    border-top: 1px solid var(--border);
+    padding-top: 1.25rem;
+    margin-top: 2.5rem;
+  }
+  .firma-box {
+    height: 70px;
+    border: 1px dashed rgba(59,130,246,0.2);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .firma-box-label {
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .firma-date-label {
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 1rem;
+    margin-bottom: 0.4rem;
+  }
+  .firma-date-value {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-muted);
+  }
+
+  .legal-note {
+    margin-top: 2.5rem;
+    background: rgba(59,130,246,0.04);
+    border: 1px dashed rgba(59,130,246,0.2);
+    border-radius: 4px;
+    padding: 1.5rem 2rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  .legal-note-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+  .legal-note-text {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.85;
+  }
+  .legal-note-text strong { color: var(--gold); font-weight: 500; }
+
+  /* ── CTA ── */
+  .cta-section {
+    padding: 120px 5%;
+    text-align: center;
+    background: var(--dark);
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(59,130,246,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cta-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--cream);
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+  .cta-title em { font-style: normal; color: var(--gold); }
+  .cta-sub {
+    font-size: 1rem;
+    color: var(--text-muted);
+    max-width: 480px;
+    margin: 0 auto 3rem;
+    line-height: 1.8;
+  }
+  .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .cta-note { margin-top: 2rem; font-size: 12px; color: var(--text-dim); letter-spacing: 0.04em; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark2);
+    border-top: 1px solid var(--border-soft);
+    padding: 3rem 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .footer-copy { font-size: 12px; color: var(--text-dim); }
+  .footer-link { font-size: 12px; color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+  .footer-link:hover { color: var(--gold); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 960px) {
+    .payment-wrapper { grid-template-columns: 1fr; }
+    .partes-grid { grid-template-columns: 1fr; }
+    .firma-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 768px) {
+    nav .nav-links { display: none; }
+    nav .nav-doc { display: none; }
+    .hero { min-height: auto; padding: 100px 5% 60px; }
+    .hero-stats { gap: 1.5rem; margin-top: 3.5rem; }
+    .object-grid { grid-template-columns: 1fr; }
+    section { padding: 70px 5%; }
+    .cta-section { padding: 80px 5%; }
+    .clause-timeline::before { left: 22px; }
+    .step-dot { width: 44px; height: 44px; font-size: 0.78rem; }
+    .clause-step { gap: 1.5rem; }
+    .pay-split { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 480px) {
+    .hero-stats { gap: 1.25rem; }
+    .hero-stat-num { font-size: 1.8rem; }
+    .pay-total { font-size: 3.5rem; }
+    .payment-main { padding: 2rem 1.5rem; }
+    footer { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <span>Contrato de Servicios</span>
+    <span>★</span>
+    <span>Duchas &amp; Reformas</span>
+    <span>★</span>
+    <span>Visionarios Company</span>
+    <span>★</span>
+    <span>Jefferson Brizjah</span>
+    <span>★</span>
+    <span>900 € · Pago en dos tramos</span>
+    <span>★</span>
+    <span>Ref. VC-2026-001</span>
+    <span>★</span>
+    <span>Contrato de Servicios</span>
+    <span>★</span>
+    <span>Duchas &amp; Reformas</span>
+    <span>★</span>
+    <span>Visionarios Company</span>
+    <span>★</span>
+    <span>Jefferson Brizjah</span>
+    <span>★</span>
+    <span>900 € · Pago en dos tramos</span>
+    <span>★</span>
+    <span>Ref. VC-2026-001</span>
+    <span>★</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Visionarios <span>Company</span></div>
+  <ul class="nav-links">
+    <li><a href="#partes">Las Partes</a></li>
+    <li><a href="#objeto">Servicios</a></li>
+    <li><a href="#pago">Pago</a></li>
+    <li><a href="#clausulas">Cláusulas</a></li>
+    <li><a href="#firma">Firma</a></li>
+  </ul>
+  <div class="nav-doc">Ref. VC-2026-001</div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-line"></div>
+
+  <div class="hero-badge">
+    <div class="hero-badge-dot"></div>
+    Documento legal · Ref. VC-2026-001
+  </div>
+
+  <div class="hero-label">Contrato de Prestación de Servicios Informáticos</div>
+
+  <h1 class="hero-title">
+    Duchas &amp;<br><em>Reformas</em>
+  </h1>
+
+  <p class="hero-sub">
+    Justificante de acuerdo comercial entre el proveedor de servicios informáticos y el cliente,
+    con detalle de los entregables, condiciones económicas y garantías para ambas partes.
+  </p>
+
+  <div class="hero-actions">
+    <a href="#pago" class="btn-primary">Ver condiciones de pago →</a>
+    <a href="#firma" class="btn-ghost">Ir a firmas</a>
+  </div>
+
+  <div class="hero-stats">
+    <div>
+      <div class="hero-stat-num">900<span>€</span></div>
+      <div class="hero-stat-label">Total acordado</div>
+    </div>
+    <div>
+      <div class="hero-stat-num">50<span>%</span></div>
+      <div class="hero-stat-label">Anticipo inicial</div>
+    </div>
+    <div>
+      <div class="hero-stat-num"><span>03</span></div>
+      <div class="hero-stat-label">Servicios incluidos</div>
+    </div>
+    <div>
+      <div class="hero-stat-num">1<span> sem</span></div>
+      <div class="hero-stat-label">Plazo de entrega</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- PARTES -->
+<section id="partes">
+  <div class="section-label">Identificación</div>
+  <h2 class="section-title">Las <em>partes</em> del contrato</h2>
+  <p class="section-desc">Datos identificativos del prestador de servicios y del cliente que suscriben el presente acuerdo.</p>
+
+  <div class="partes-grid">
+    <div class="parte-card">
+      <div class="parte-tag">Prestador de Servicios</div>
+      <div class="parte-name">Jefferson Elohim<br>Brizjah Valero</div>
+      <div class="parte-sub">
+        Informático autónomo · Desarrollo web y soluciones digitales<br>
+        Visionarios Company
+      </div>
+      <div class="parte-id">
+        N.I.E. / Identificación: <span>Y8860851T</span>
+      </div>
+    </div>
+
+    <div class="parte-card client-side">
+      <div class="parte-tag tag-cliente">Cliente</div>
+      <div class="parte-name">Duchas &amp; Reformas</div>
+      <div class="parte-sub">
+        Empresa de reformas de baño y espacios húmedos<br>
+        Madrid, España<br>
+        Sitio web: <a href="https://duchasmas.vercel.app/" target="_blank" style="color:var(--green); text-decoration:none; font-weight:500;">duchasmas.vercel.app</a>
+      </div>
+      <div class="parte-id" style="color:var(--green-border);">
+        Denominación comercial: <span style="color:var(--green);">Duchas &amp; Reformas</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- OBJETO -->
+<section id="objeto">
+  <div class="section-label">Alcance del acuerdo</div>
+  <h2 class="section-title">Servicios <em>contratados</em></h2>
+  <p class="section-desc">Detalle de los tres servicios que comprenden el objeto del presente contrato, entregados como un paquete integral.</p>
+
+  <div class="object-grid">
+
+    <div class="object-card">
+      <div class="card-number">01</div>
+      <div class="card-tag">Diseño Web</div>
+      <h3 class="card-title">Diseño completo del sitio web</h3>
+      <p class="card-desc">Creación y maquetación íntegra del sitio web corporativo para Duchas &amp; Reformas, incluyendo identidad visual, estructura de páginas, adaptación responsive y puesta en producción con dominio y certificado SSL.</p>
+      <div class="card-url">→ https://duchasmas.vercel.app/</div>
+    </div>
+
+    <div class="object-card">
+      <div class="card-number">02</div>
+      <div class="card-tag">Desarrollo de Software</div>
+      <h3 class="card-title">Calculador de presupuestos interactivo</h3>
+      <p class="card-desc">Programa informático integrado en el sitio web: formulario multi-paso con lógica condicional según tipo de reforma, cálculo automático del presupuesto y envío del resultado por email al cliente final.</p>
+    </div>
+
+    <div class="object-card">
+      <div class="card-number">03</div>
+      <div class="card-tag">Mano de Obra</div>
+      <h3 class="card-title">Servicios de informático profesional</h3>
+      <p class="card-desc">Trabajo técnico de desarrollo, integración, configuración, pruebas y despliegue en producción. Incluye 4 rondas de correcciones gratuitas durante los 30 días posteriores a la entrega final.</p>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PAGO -->
+<section id="pago">
+  <div class="section-label">Condiciones económicas</div>
+  <h2 class="section-title">Acuerdo de <em>pago</em></h2>
+  <p class="section-desc">Importe total acordado y estructura de pago en dos tramos que protege a ambas partes durante el desarrollo del proyecto.</p>
+
+  <div class="payment-wrapper">
+    <div class="payment-main">
+      <div class="pay-badge">Condiciones acordadas</div>
+      <div class="pay-total"><sup>€</sup>900</div>
+      <div class="pay-sub">Importe total · IVA no incluido (autónomo en régimen de recargo)</div>
+
+      <div class="pay-split">
+        <div class="pay-split-item">
+          <div class="pay-split-label">Primer pago · Anticipo</div>
+          <div class="pay-split-num">450 <span>€</span></div>
+          <div class="pay-split-when">Al firmar el contrato y confirmar el inicio del proyecto</div>
+        </div>
+        <div class="pay-split-item">
+          <div class="pay-split-label">Segundo pago · Entrega</div>
+          <div class="pay-split-num">450 <span>€</span></div>
+          <div class="pay-split-when">A la entrega del sitio web terminado y en producción</div>
+        </div>
+      </div>
+
+      <ul class="pay-list">
+        <li><strong>Anticipo del 50%</strong> garantiza el inicio inmediato del proyecto</li>
+        <li><strong>Segundo pago</strong> solo se realiza al recibir la web funcionando</li>
+        <li><strong>El cliente retiene el 50%</strong> hasta la entrega satisfactoria</li>
+        <li><strong>Sin costes ocultos</strong> · el precio total es 900 € fijo</li>
+        <li><strong>Dominio + SSL</strong> incluidos en el importe pactado</li>
+      </ul>
+    </div>
+
+    <div class="payment-side">
+      <div class="totals-box">
+        <div class="totals-box-label">Resumen de pagos</div>
+        <div class="totals-row">
+          <span class="label">Anticipo inicial (50%)</span>
+          <span class="value highlight">450 €</span>
+        </div>
+        <div class="totals-row">
+          <span class="label">Pago en entrega (50%)</span>
+          <span class="value">450 €</span>
+        </div>
+        <div class="totals-row total-final">
+          <span class="label">Total</span>
+          <span class="value">900 €</span>
+        </div>
+      </div>
+
+      <div class="guarantee-box">
+        <strong>🛡 Garantía para el cliente</strong>
+        El anticipo del 50% queda justificado con este documento. El cliente no abona el resto hasta recibir el proyecto completamente terminado y operativo. Este contrato protege ambas partes.
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CLÁUSULAS -->
+<section id="clausulas">
+  <div class="section-label">Términos y condiciones</div>
+  <h2 class="section-title">Cláusulas del <em>acuerdo</em></h2>
+  <p class="section-desc">Condiciones que regulan la relación entre las partes durante el desarrollo y entrega del proyecto.</p>
+
+  <div class="clause-timeline">
+
+    <div class="clause-step">
+      <div class="step-dot">01</div>
+      <div class="step-content">
+        <div class="step-title">Plazo y entrega</div>
+        <p class="step-desc">El prestador se compromete a entregar el proyecto en un plazo estimado de <strong style="color:var(--cream);">1 semana</strong> desde la recepción del anticipo y de los materiales necesarios por parte del cliente (textos, imágenes, rangos de precios y tipos de reforma). La entrega se realizará con el sitio publicado y funcional en producción.</p>
+        <div class="step-tag">→ 1 semana desde anticipo + materiales</div>
+      </div>
+    </div>
+
+    <div class="clause-step">
+      <div class="step-dot">02</div>
+      <div class="step-content">
+        <div class="step-title">Correcciones y revisiones</div>
+        <p class="step-desc">El proyecto incluye <strong style="color:var(--cream);">4 rondas de correcciones gratuitas</strong> durante los 30 días posteriores a la entrega. Cualquier modificación fuera de este periodo o fuera del alcance acordado será presupuestada por separado antes de su ejecución.</p>
+        <div class="step-tag">→ 4 correcciones · 30 días post-entrega</div>
+      </div>
+    </div>
+
+    <div class="clause-step">
+      <div class="step-dot">03</div>
+      <div class="step-content">
+        <div class="step-title">Propiedad y cesión de derechos</div>
+        <p class="step-desc">Una vez abonado el importe total de <strong style="color:var(--cream);">900 €</strong>, el cliente adquiere la titularidad completa del sitio web, el código fuente y todos los recursos digitales desarrollados en el marco de este contrato. Hasta el pago íntegro, los derechos permanecen en poder del prestador.</p>
+        <div class="step-tag">→ Cesión completa con el pago final</div>
+      </div>
+    </div>
+
+    <div class="clause-step">
+      <div class="step-dot">04</div>
+      <div class="step-content">
+        <div class="step-title">Responsabilidades del cliente</div>
+        <p class="step-desc">El cliente se compromete a facilitar toda la información requerida (contenidos, imágenes, datos de negocio) en un plazo razonable. Los retrasos ocasionados por la falta de materiales no serán imputables al prestador y podrán extender el plazo de entrega de manera proporcional.</p>
+        <div class="step-tag">→ Materiales previos al inicio del desarrollo</div>
+      </div>
+    </div>
+
+    <div class="clause-step">
+      <div class="step-dot">05</div>
+      <div class="step-content">
+        <div class="step-title">Confidencialidad</div>
+        <p class="step-desc">Ambas partes se comprometen a mantener la confidencialidad sobre los datos, información comercial y condiciones económicas reflejadas en este documento, no pudiendo cederlos a terceros sin el consentimiento expreso de la otra parte.</p>
+        <div class="step-tag">→ Vigente durante y tras la relación comercial</div>
+      </div>
+    </div>
+
+    <div class="clause-step">
+      <div class="step-dot">06</div>
+      <div class="step-content">
+        <div class="step-title">Resolución de conflictos</div>
+        <p class="step-desc">En caso de discrepancia, ambas partes se comprometen a intentar una resolución amistosa. De no llegarse a un acuerdo, se someterán a la legislación española vigente y a los juzgados y tribunales de la ciudad de Madrid como fuero de jurisdicción.</p>
+        <div class="step-tag">→ Legislación española · Madrid</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FIRMA -->
+<section id="firma">
+  <div class="section-label">Conformidad</div>
+  <h2 class="section-title">Firma y <em>aceptación</em></h2>
+  <p class="section-desc">Las partes abajo firmantes declaran haber leído, comprendido y aceptado todas las condiciones recogidas en el presente contrato.</p>
+
+  <div class="firma-grid">
+
+    <div class="firma-card">
+      <div class="firma-role">Prestador de Servicios</div>
+      <div class="firma-name">Jefferson Elohim Brizjah Valero</div>
+      <div class="firma-id">N.I.E.: Y8860851T · Visionarios Company</div>
+      <div class="firma-line">
+        <div class="firma-box">
+          <span class="firma-box-label">Firma del prestador</span>
+        </div>
+        <div class="firma-date-label" style="margin-top:1.25rem;">Fecha</div>
+        <div class="firma-date-value">Madrid, _____ de _____________ de 2026</div>
+      </div>
+    </div>
+
+    <div class="firma-card client-firma">
+      <div class="firma-role">Cliente</div>
+      <div class="firma-name">Duchas &amp; Reformas</div>
+      <div class="firma-id">Representante legal / titular del negocio</div>
+      <div class="firma-line">
+        <div class="firma-box">
+          <span class="firma-box-label">Firma del cliente</span>
+        </div>
+        <div class="firma-date-label" style="margin-top:1.25rem;">Fecha</div>
+        <div class="firma-date-value">Madrid, _____ de _____________ de 2026</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="legal-note">
+    <div class="legal-note-icon">📋</div>
+    <div class="legal-note-text">
+      <strong style="color:var(--cream); font-weight:500;">Nota legal:</strong> El presente documento tiene valor de justificante y acuerdo privado entre las partes. La firma de ambas partes y el abono del primer pago de <strong>450 €</strong> implica la aceptación íntegra de las condiciones aquí descritas. Se recomienda conservar una copia firmada por cada parte. Emitido el <strong>2 de junio de 2026</strong> · Ref. <strong>VC-2026-001</strong>.
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-bg"></div>
+  <h2 class="cta-title">Todo claro.<br>Empezamos con<br><em>confianza.</em></h2>
+  <p class="cta-sub">Una vez firmado este documento y abonado el anticipo de 450 €, el proyecto arranca de inmediato. Tu inversión está protegida.</p>
+  <div class="cta-buttons">
+    <a href="#firma" class="btn-primary">Ir a firmas →</a>
+    <a href="#pago" class="btn-ghost">Revisar condiciones de pago</a>
+  </div>
+  <div class="cta-note">Contrato Ref. VC-2026-001 · Jefferson Elohim Brizjah Valero (Y8860851T) × Duchas &amp; Reformas</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Visionarios Company</div>
+  <div class="footer-copy">Ref. VC-2026-001 · Madrid, España · 2026</div>
+  <a href="mailto:jeffersonbrizjah998@gmail.com" class="footer-link">jeffersonbrizjah998@gmail.com</a>
+</footer>
+
+</body>
+</html>
