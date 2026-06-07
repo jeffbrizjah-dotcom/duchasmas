@@ -1603,6 +1603,9 @@ body{font-display:swap}
 .vopt-ds{font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:var(--muted);line-height:1.65;margin-bottom:12px}
 .vopt-pr{font-family:'Cinzel',serif;font-size:15px;font-weight:700;color:var(--gold-lt)}
 .vopt-pr.free{color:rgba(255,255,255,0.3)}
+/* Botón "siguiente" dentro de tarjeta — solo visible en móvil/tablet */
+.vopt-nx{display:none;width:calc(100% - 40px);margin:0 20px 22px;padding:13px 16px;font-family:'Lato',sans-serif;font-size:11px;letter-spacing:2px;font-weight:700;text-transform:uppercase;color:var(--sap);background:var(--gold-grad);border:none;border-radius:50px;cursor:pointer;box-shadow:0 4px 18px rgba(201,168,76,0.28);transition:transform .2s,box-shadow .2s}
+.vopt-nx:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,168,76,0.42)}
 /* Tarjetas pequeñas (plato ducha) */
 .vopts-sm{display:flex;gap:20px;justify-content:center;margin-bottom:26px;flex-wrap:wrap}
 .vopt-sm{
@@ -1739,6 +1742,7 @@ body{font-display:swap}
   .calc-main{order:1}
   .photo-grid{grid-template-columns:repeat(2,1fr);gap:14px}
   .csw-img-grid{grid-template-columns:repeat(3,1fr);gap:12px}
+  .vopt-nx{display:block}
 }
 @media(max-width:768px){
   .calc-main{padding:28px 20px}
@@ -2590,7 +2594,7 @@ function rCards(s){
     const media=o.img
       ?`<div class="vopt-ico vopt-img-wrap"><img src="${o.img}" alt="${o.nm}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>`
       :`<div class="vopt-ico">${o.ico}</div>`;
-    return`<div class="vopt${cur===o.id?' vsel':''}" onclick="cSel('${s.id}','${o.id}')"><div class="vopt-chk">✓</div>${media}<div class="vopt-body"><div class="vopt-nm">${o.nm}</div><div class="vopt-ds">${o.ds}</div><div class="vopt-pr${o.price===0?' free':''}">${o.pl}</div></div></div>`;
+    return`<div class="vopt${cur===o.id?' vsel':''}" onclick="cSel('${s.id}','${o.id}')"><div class="vopt-chk">✓</div>${media}<div class="vopt-body"><div class="vopt-nm">${o.nm}</div><div class="vopt-ds">${o.ds}</div><div class="vopt-pr${o.price===0?' free':''}">${o.pl}</div></div><button class="vopt-nx" onclick="event.stopPropagation();cSelNext('${s.id}','${o.id}')">Elegir este plan ›</button></div>`;
   }).join('')+'</div>';
 }
 function rCardsPhoto(s){
@@ -2778,6 +2782,7 @@ function cSaveContact(){
 }
 
 /* ── NAVEGACIÓN ── */
+function cSelNext(sid,oid){cSel(sid,oid);setTimeout(cNext,180);}
 function cNext(){
   if(CS.step===CTOTAL-1){cSaveContact();cSubmit();return;}
   CS.step++;
