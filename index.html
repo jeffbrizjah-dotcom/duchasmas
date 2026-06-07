@@ -901,11 +901,11 @@ nav a:hover::after{width:100%}
 .srv-img-wrap{
   width:calc(100% + clamp(44px,6vw,72px));
   margin:-clamp(28px,3vw,44px) -clamp(22px,2.5vw,36px) 20px;
-  height:500px;
+  height:475px;
   border-radius:var(--r-lg) var(--r-lg) 0 0;
   overflow:hidden;
 }
-.srv-img-wrap img{width:100%;height:100%;object-fit:cover;object-position:center bottom;display:block;transition:transform .4s ease}
+.srv-img-wrap img{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;transition:transform .4s ease}
 .srv-card:hover .srv-img-wrap img{transform:scale(1.03)}
 .srv-icon{
   width:56px;height:56px;margin-bottom:20px;
@@ -981,225 +981,10 @@ nav a:hover::after{width:100%}
   max-width:900px;margin:0 auto;
 }
 
-/* Progress */
-.progress-bar{
-  display:flex;align-items:center;justify-content:center;
-  margin-bottom:clamp(32px,4vw,52px);
-  gap:0;
-  position:relative;
-  padding:0 20px;
-}
-.prog-step{
-  display:flex;flex-direction:column;align-items:center;gap:8px;
-  flex:1;position:relative;z-index:1;
-}
-.prog-step::after{
-  content:'';position:absolute;top:20px;left:50%;
-  width:100%;height:2px;
-  background:rgba(201,168,76,0.12);
-  z-index:0;transition:background .5s;
-}
-.prog-step:last-child::after{display:none}
-.prog-step.done::after{background:var(--gold)}
-
-.prog-dot{
-  width:40px;height:40px;border-radius:50%;
-  border:2px solid rgba(201,168,76,0.2);
-  background:rgba(6,11,20,0.8);
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Cinzel',serif;font-size:13px;font-weight:700;
-  color:var(--muted);
-  position:relative;z-index:1;
-  transition:all .4s;
-}
-.prog-step.active .prog-dot{
-  background:var(--gold-grad);
-  border-color:var(--gold);
-  color:var(--sap);
-  box-shadow:0 0 24px rgba(201,168,76,0.5);
-}
-.prog-step.done .prog-dot{
-  background:rgba(201,168,76,0.15);
-  border-color:var(--gold);
-  color:var(--gold);
-}
-.prog-label{
-  font-size:10px;letter-spacing:1.5px;color:var(--muted);
-  text-transform:uppercase;font-family:'Cinzel',serif;
-  white-space:nowrap;
-}
-.prog-step.active .prog-label{color:var(--gold-lt)}
-
-/* Step panel */
-.step-panel{display:none;animation:panelIn .45s ease}
-.step-panel.active{display:block}
-@keyframes panelIn{
-  from{opacity:0;transform:translateX(30px)}
-  to{opacity:1;transform:none}
-}
-
-/* Panel wrapper */
-.panel-wrap{
-  background:rgba(8,8,8,0.82);
-  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
-  border:1px solid rgba(201,168,76,0.14);
-  border-radius:var(--r-lg);
-  padding:clamp(28px,4vw,52px);
-  position:relative;overflow:hidden;
-}
-.panel-wrap::before{
-  content:'';position:absolute;top:-1px;left:10%;right:10%;height:2px;
-  background:var(--gold-grad);border-radius:2px;opacity:.7;
-}
-
-.panel-head{text-align:center;margin-bottom:36px}
-.panel-head .sec-label{display:block;text-align:center;margin-bottom:8px}
+/* Panel title (usado en resultado final) */
 .panel-title{
   font-family:'Cinzel',serif;font-size:clamp(20px,3vw,30px);font-weight:600;
   color:var(--white);margin-bottom:8px;
-}
-.panel-sub{
-  font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;
-  color:var(--muted);
-}
-
-/* Service option cards */
-.opts-grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:18px;margin-bottom:36px;
-}
-.opt-card{
-  position:relative;overflow:hidden;border-radius:var(--r);
-  padding:30px 22px;text-align:center;cursor:pointer;
-  border:1px solid rgba(201,168,76,0.12);
-  background:rgba(12,12,12,0.7);
-  transition:all .3s cubic-bezier(.4,0,.2,1);
-}
-.opt-card:hover{border-color:rgba(201,168,76,0.35);transform:translateY(-4px);background:rgba(20,20,20,0.85)}
-.opt-card.sel{
-  border-color:var(--gold);
-  background:rgba(201,168,76,0.07);
-  box-shadow:0 0 30px rgba(201,168,76,0.12),inset 0 0 30px rgba(201,168,76,0.03);
-}
-.opt-check{
-  position:absolute;top:12px;right:12px;
-  width:24px;height:24px;border-radius:50%;
-  background:var(--gold-grad);
-  display:none;align-items:center;justify-content:center;
-  font-size:11px;color:var(--sap);font-weight:900;
-}
-.opt-card.sel .opt-check{display:flex}
-.opt-ico{font-size:44px;display:block;margin-bottom:16px;filter:drop-shadow(0 4px 12px rgba(201,168,76,0.2))}
-.opt-name{
-  font-family:'Cinzel',serif;font-size:15px;font-weight:600;
-  color:var(--white);margin-bottom:8px;
-}
-.opt-card.sel .opt-name{color:var(--gold-lt)}
-.opt-txt{font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:var(--muted);line-height:1.65;margin-bottom:12px}
-.opt-from{font-size:12px;font-weight:700;color:var(--gold-lt);letter-spacing:.5px}
-
-/* Quality cards */
-.qual-grid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
-  gap:16px;margin-bottom:36px;
-}
-.qual-card{
-  border-radius:var(--r);padding:24px 18px;
-  border:1px solid rgba(201,168,76,0.12);
-  background:rgba(12,12,12,0.7);
-  cursor:pointer;transition:all .3s;position:relative;
-}
-.qual-card:hover{border-color:rgba(201,168,76,0.35);transform:translateY(-3px)}
-.qual-card.sel{
-  border-color:var(--gold);
-  background:rgba(201,168,76,0.07);
-  box-shadow:0 0 28px rgba(201,168,76,0.1);
-}
-.qual-badge{
-  display:inline-block;
-  background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.25);
-  border-radius:50px;padding:4px 14px;
-  font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:var(--gold);
-  text-transform:uppercase;margin-bottom:12px;
-}
-.qual-card.sel .qual-badge{background:var(--gold-grad);color:var(--sap);border-color:transparent}
-.qual-name{
-  font-family:'Cinzel',serif;font-size:18px;font-weight:600;
-  color:var(--white);margin-bottom:6px;
-}
-.qual-price{
-  font-family:'Cinzel',serif;font-size:22px;color:var(--gold-xlt);font-weight:700;
-}
-.qual-price sub{font-size:12px;color:var(--muted);font-weight:400;vertical-align:middle;font-family:'Lato',sans-serif}
-.qual-feats{list-style:none;margin-top:14px}
-.qual-feats li{
-  font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;
-  color:var(--muted);padding:4px 0 4px 16px;position:relative;
-  border-bottom:1px solid rgba(255,255,255,0.04);
-}
-.qual-feats li:last-child{border-bottom:none}
-.qual-feats li::before{content:'◆';position:absolute;left:0;font-size:6px;color:var(--gold);top:7px}
-
-/* Dimensions */
-.dim-wrap{max-width:480px;margin:0 auto 36px}
-.dim-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.dim-field{display:flex;flex-direction:column;gap:8px}
-.dim-lbl{
-  font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;
-  color:var(--gold);text-transform:uppercase;
-}
-.inp-wrap{position:relative}
-.dim-inp{
-  width:100%;background:rgba(6,11,20,0.7);
-  border:1px solid rgba(201,168,76,0.25);border-radius:10px;
-  padding:15px 48px 15px 18px;
-  font-family:'Cinzel',serif;font-size:22px;font-weight:700;
-  color:var(--white);outline:none;
-  transition:border-color .2s;
-}
-.dim-inp:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,0.1)}
-.dim-inp.result-inp{
-  background:rgba(201,168,76,0.06);color:var(--gold-lt);
-  font-size:18px;cursor:default;
-}
-.dim-unit{
-  position:absolute;right:16px;top:50%;transform:translateY(-50%);
-  font-size:12px;color:var(--muted);letter-spacing:1px;
-}
-.dim-hint{
-  text-align:center;font-family:'Cormorant Garamond',serif;
-  font-size:14px;font-style:italic;color:var(--muted);margin-top:-8px;margin-bottom:24px;
-}
-
-/* Extras */
-.extras-grid{
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
-  gap:14px;margin-bottom:36px;
-}
-.extra-card{
-  display:flex;align-items:center;gap:14px;
-  background:rgba(12,12,12,0.7);border:1px solid rgba(201,168,76,0.1);
-  border-radius:var(--r);padding:16px;cursor:pointer;
-  transition:all .25s;
-}
-.extra-card:hover{border-color:rgba(201,168,76,0.3)}
-.extra-card.sel{border-color:var(--gold);background:rgba(201,168,76,0.07)}
-.extra-ico{font-size:28px;flex-shrink:0}
-.extra-info{flex:1;min-width:0}
-.extra-nm{font-size:13px;font-weight:700;color:var(--white);margin-bottom:2px}
-.extra-pr{font-size:12px;color:var(--gold-lt);font-weight:700}
-.extra-chk{
-  width:22px;height:22px;border-radius:6px;flex-shrink:0;
-  border:1.5px solid rgba(201,168,76,0.25);
-  display:flex;align-items:center;justify-content:center;
-  font-size:11px;color:transparent;transition:all .2s;
-}
-.extra-card.sel .extra-chk{background:var(--gold-grad);border-color:transparent;color:var(--sap);font-weight:900}
-
-/* Contact */
-.contact-form{
-  max-width:520px;margin:0 auto 36px;
-  display:grid;gap:18px;
 }
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .ff{display:flex;flex-direction:column;gap:8px}
@@ -1291,26 +1076,6 @@ nav a:hover::after{width:100%}
   display:inline-flex;align-items:center;gap:8px;
 }
 .btn-wa:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(37,211,102,0.4)}
-
-/* Nav buttons */
-.calc-nav{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
-.btn-back{
-  background:transparent;border:none;cursor:pointer;
-  font-family:'Lato',sans-serif;font-size:11px;letter-spacing:2px;
-  color:var(--muted);text-transform:uppercase;padding:12px 0;
-  display:flex;align-items:center;gap:6px;transition:color .2s;
-}
-.btn-back:hover{color:var(--white)}
-.btn-next{
-  font-family:'Lato',sans-serif;font-size:12px;letter-spacing:2px;font-weight:700;
-  text-transform:uppercase;
-  color:var(--sap);background:var(--gold-grad);
-  padding:14px 36px;border-radius:50px;border:none;cursor:pointer;
-  box-shadow:0 6px 24px rgba(201,168,76,0.3);transition:all .25s;
-  display:flex;align-items:center;gap:8px;
-}
-.btn-next:hover{transform:translateY(-2px);box-shadow:0 10px 36px rgba(201,168,76,0.45)}
-.btn-next:disabled{opacity:.3;cursor:not-allowed;transform:none;box-shadow:none}
 
 /* ═══════════════════════════════════════════════
    LIVE TOTAL
@@ -1497,36 +1262,6 @@ nav a:hover::after{width:100%}
   .rev-plats{justify-content:center}
 }
 
-/* Legacy testi classes — keep for compat */
-.testi-sec{display:none}
-.testi-grid{
-  max-width:1100px;margin:0 auto;
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;
-}
-.testi-card{
-  padding:32px 28px;border-radius:var(--r-lg);
-  background:rgba(12,12,12,0.8);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
-  border:1px solid rgba(201,168,76,0.1);
-  transition:border-color .3s,transform .3s;
-}
-.testi-card:hover{border-color:rgba(201,168,76,0.25);transform:translateY(-4px)}
-.stars{color:var(--gold);font-size:16px;letter-spacing:2px;margin-bottom:14px}
-.testi-txt{
-  font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;
-  color:rgba(255,255,255,0.75);line-height:1.8;margin-bottom:20px;
-}
-.testi-author{
-  display:flex;align-items:center;gap:12px;
-}
-.testi-av{
-  width:40px;height:40px;border-radius:50%;
-  background:var(--gold-grad);
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Cinzel',serif;font-size:16px;font-weight:700;color:var(--sap);
-  flex-shrink:0;
-}
-.testi-name{font-family:'Cinzel',serif;font-size:13px;font-weight:600;color:var(--white)}
-.testi-city{font-family:'Cormorant Garamond',serif;font-size:12px;color:var(--muted);font-style:italic}
 
 /* ═══════════════════════════════════════════════
    CTA BANNER
@@ -1643,7 +1378,7 @@ footer{
    WHATSAPP BUTTON
 ═══════════════════════════════════════════════ */
 #wa-btn{
-  position:fixed;bottom:28px;right:28px;z-index:600;
+  position:fixed;bottom:72px;right:28px;z-index:600;
   width:58px;height:58px;border-radius:50%;
   background:linear-gradient(135deg,#25D366,#128C7E);
   display:flex;align-items:center;justify-content:center;
@@ -1705,24 +1440,24 @@ footer{
 .reveal.visible,.reveal-l.visible,.reveal-r.visible{will-change:auto}
 
 /* Contención de paint/layout para secciones aisladas */
-.stats-bar,.services-sec,.calc-sec,.why-sec,.testi-sec,.cta-sec,footer{
+.stats-bar,.services-sec,.calc-sec,.why-sec,.cta-sec,footer{
   contain:layout style;
 }
 
 /* Renderizado diferido de secciones fuera del viewport */
-.services-sec,.calc-sec,.why-sec,.testi-sec,.cta-sec,footer{
+.services-sec,.calc-sec,.why-sec,.cta-sec,footer{
   content-visibility:auto;
   contain-intrinsic-size:0 700px;
 }
 
 /* Promover tarjetas al compositor para evitar repaints en hover */
-.srv-card,.opt-card,.qual-card,.extra-card,.why-card,.testi-card{
+.srv-card,.why-card,.photo-card,.vopt,.vopt-sm{
   transform:translateZ(0);
   backface-visibility:hidden;
 }
 
 /* Optimizar transiciones — solo propiedades compositable */
-.btn-primary,.btn-secondary,.btn-next,.btn-call{
+.btn-primary,.btn-secondary,.btn-call,.btn-nx2{
   transform:translateZ(0);
 }
 
@@ -1734,9 +1469,6 @@ body{font-display:swap}
   .footer-inner{grid-template-columns:1fr 1fr;gap:32px}
   .services-grid{grid-template-columns:1fr 1fr}
   .why-grid{grid-template-columns:1fr 1fr}
-  .qual-grid{grid-template-columns:1fr 1fr}
-
-  .opts-grid{grid-template-columns:1fr 1fr}
 }
 
 /* ── TABLET PORTRAIT (≤768px) ── */
@@ -1775,33 +1507,16 @@ body{font-display:swap}
 
   /* Calculator */
   .calc-container{max-width:100%}
-  .progress-bar{gap:0;padding:0 8px}
-  .prog-dot{width:32px;height:32px;font-size:11px}
-  .prog-label{display:none}
-  .prog-step::after{top:16px}
-  .panel-wrap{padding:28px 20px}
-  .opts-grid{grid-template-columns:1fr;gap:14px}
-  .qual-grid{grid-template-columns:1fr 1fr;gap:12px}
-  .qual-card{padding:18px 14px}
-  .qual-name{font-size:15px}
-  .qual-price{font-size:18px}
-  .extras-grid{grid-template-columns:1fr 1fr}
-  .dim-wrap{max-width:100%}
-  .dim-grid{grid-template-columns:1fr 1fr}
   .form-row{grid-template-columns:1fr 1fr}
-  .calc-nav{gap:12px}
-  .btn-next{padding:13px 24px;font-size:11px}
-  .btn-back{font-size:11px}
 
-  /* Result */
+  /* Result panel */
   .result-box{padding:32px 20px}
   .price-range{font-size:34px}
   .res-btns{flex-direction:column;align-items:stretch;gap:12px;max-width:320px;margin:0 auto 20px}
   .res-btns a{justify-content:center}
 
-  /* Why / Testimonials */
+  /* Why */
   .why-grid{grid-template-columns:1fr 1fr}
-  .testi-grid{grid-template-columns:1fr}
 
   /* Live bar */
   #liveBar{padding:12px 18px}
@@ -1838,16 +1553,8 @@ body{font-display:swap}
   .stats-bar{padding:24px 16px}
 
   /* Calculator */
-  .panel-wrap{padding:22px 14px}
   .panel-title{font-size:20px}
-  .qual-grid{grid-template-columns:1fr}
-  .extras-grid{grid-template-columns:1fr}
-  .dim-grid{grid-template-columns:1fr 1fr}
   .form-row{grid-template-columns:1fr}
-  .calc-nav{flex-direction:row;justify-content:space-between}
-  .btn-next{width:auto;padding:13px 22px}
-  .progress-bar{padding:0 4px}
-  .prog-dot{width:28px;height:28px;font-size:10px}
 
   /* Why */
   .why-grid{grid-template-columns:1fr}
@@ -1896,36 +1603,106 @@ body{font-display:swap}
 .vopt-ds{font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:var(--muted);line-height:1.65;margin-bottom:12px}
 .vopt-pr{font-family:'Cinzel',serif;font-size:15px;font-weight:700;color:var(--gold-lt)}
 .vopt-pr.free{color:rgba(255,255,255,0.3)}
-/* Swatches de color */
-.cswatches{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:26px;padding:4px 0}
-.csw{display:flex;flex-direction:column;align-items:center;gap:7px;cursor:pointer}
-.csw-circle{width:46px;height:46px;border-radius:50%;border:2px solid rgba(201,168,76,0.15);transition:all .22s;box-shadow:0 2px 10px rgba(0,0,0,0.35)}
-.csw:hover .csw-circle{border-color:var(--gold);transform:scale(1.08)}
-.csw.vsel .csw-circle{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,0.28),0 2px 10px rgba(0,0,0,0.35)}
-.csw-nm{font-family:'Cinzel',serif;font-size:9px;letter-spacing:1px;color:var(--muted);text-transform:uppercase;text-align:center;max-width:56px;line-height:1.3}
-.csw.vsel .csw-nm{color:var(--gold-lt)}
-/* Selector tamaños */
-.szgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:11px;margin-bottom:26px}
-.szcard{border:1.5px solid rgba(201,168,76,0.12);border-radius:var(--r);padding:16px 12px;text-align:center;cursor:pointer;background:rgba(10,10,10,0.7);transition:all .25s}
-.szcard:hover{border-color:rgba(201,168,76,0.38);transform:translateY(-2px)}
-.szcard.vsel{border-color:var(--gold);background:rgba(201,168,76,0.08)}
-.szval{font-family:'Cinzel',serif;font-size:17px;font-weight:700;color:var(--gold-lt);margin-bottom:3px}
-.szcard.vsel .szval{color:var(--gold-xlt)}
-.szlbl{font-family:'Cormorant Garamond',serif;font-size:12px;font-style:italic;color:var(--muted)}
-/* Multi-select complementos */
-.compgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:11px;margin-bottom:26px}
-.compcard{display:flex;align-items:center;gap:11px;background:rgba(10,10,10,0.7);border:1.5px solid rgba(201,168,76,0.1);border-radius:var(--r);padding:13px;cursor:pointer;transition:all .22s}
-.compcard:hover{border-color:rgba(201,168,76,0.32)}
-.compcard.vsel{border-color:var(--gold);background:rgba(201,168,76,0.07)}
-.comp-i{font-size:22px;flex-shrink:0}
-.comp-inf{flex:1;min-width:0}
-.comp-n{font-size:12.5px;font-weight:700;color:var(--white);margin-bottom:1px}
-.comp-p{font-size:11px;color:var(--gold-lt);font-weight:700}
-.comp-ck{width:19px;height:19px;border-radius:5px;flex-shrink:0;border:1.5px solid rgba(201,168,76,0.22);display:flex;align-items:center;justify-content:center;font-size:10px;color:transparent;transition:all .2s}
-.compcard.vsel .comp-ck{background:var(--gold-grad);border-color:transparent;color:var(--sap);font-weight:900}
-/* Medidas */
-.medwrap{max-width:440px;margin:0 auto 26px}
-.medgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+/* Tarjetas pequeñas (plato ducha) */
+.vopts-sm{display:flex;gap:20px;justify-content:center;margin-bottom:26px;flex-wrap:wrap}
+.vopt-sm{
+  width:180px;border-radius:var(--r);
+  border:1.5px solid rgba(201,168,76,0.12);
+  background:rgba(10,10,10,0.7);
+  cursor:pointer;transition:all .25s;overflow:hidden;position:relative;
+  text-align:center;
+}
+.vopt-sm:hover{border-color:rgba(201,168,76,0.4);transform:translateY(-4px)}
+.vopt-sm.vsel{border-color:var(--gold);background:rgba(201,168,76,0.07);box-shadow:0 0 20px rgba(201,168,76,0.15)}
+.vopt-sm-chk{
+  position:absolute;top:7px;right:7px;
+  width:22px;height:22px;border-radius:50%;
+  background:var(--gold-grad);display:none;
+  align-items:center;justify-content:center;
+  font-size:10px;color:var(--sap);font-weight:900;z-index:2;
+}
+.vopt-sm.vsel .vopt-sm-chk{display:flex}
+.vopt-sm img{width:100%;height:220px;object-fit:cover;object-position:center;display:block;border-bottom:1px solid rgba(201,168,76,0.08)}
+.vopt-sm-body{padding:10px 12px 14px}
+.vopt-sm-nm{font-family:'Cinzel',serif;font-size:12px;font-weight:600;color:var(--white);margin-bottom:4px}
+.vopt-sm.vsel .vopt-sm-nm{color:var(--gold-lt)}
+.vopt-sm-pr{font-family:'Cinzel',serif;font-size:11px;color:rgba(255,255,255,0.28)}
+
+/* Swatches de color — paleta circular profesional */
+.cswatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:22px 10px;margin-bottom:26px;padding:6px 0}
+.csw{display:flex;flex-direction:column;align-items:center;gap:9px;cursor:pointer;padding:4px;border-radius:12px;transition:background .2s}
+.csw:hover{background:rgba(201,168,76,0.04)}
+.csw-circle{width:74px;height:74px;border-radius:50%;border:3px solid rgba(201,168,76,0.12);transition:all .22s;box-shadow:0 3px 14px rgba(0,0,0,0.45)}
+.csw:hover .csw-circle{border-color:rgba(201,168,76,0.5);transform:scale(1.07);box-shadow:0 6px 22px rgba(0,0,0,0.55)}
+.csw.vsel .csw-circle{border-color:var(--gold);box-shadow:0 0 0 4px rgba(201,168,76,0.22),0 3px 14px rgba(0,0,0,0.45)}
+.csw-nm{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:12.5px;letter-spacing:0.4px;color:rgba(255,255,255,0.52);text-align:center;max-width:84px;line-height:1.3}
+.csw.vsel .csw-nm{color:var(--white)}
+.csw-pr{font-family:'Lato',sans-serif;font-size:10px;letter-spacing:1px;color:var(--gold);font-weight:700;margin-top:-5px;text-align:center}
+.csw-pr.free{color:rgba(154,154,154,0.6);font-weight:400}
+.csw-lbl{display:flex;flex-direction:column;align-items:center;gap:3px;text-align:center}
+.csw-lbl-nm{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13.5px;letter-spacing:0.3px;color:rgba(255,255,255,0.62);line-height:1.2;max-width:96px}
+.csw.vsel .csw-lbl-nm{color:var(--white)}
+.csw-lbl-pr{font-family:'Lato',sans-serif;font-size:10px;letter-spacing:1.2px;color:rgba(154,154,154,0.55);font-weight:400}
+.csw-lbl-pr.paid{color:var(--gold);font-weight:700;letter-spacing:1px}
+.csw.vsel .csw-lbl-pr{color:var(--gold-lt)}
+/* Color cards con imagen de producto */
+.csw-img-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:16px;margin-bottom:26px}
+.csw-img-card{border:1.5px solid rgba(201,168,76,0.12);border-radius:14px;overflow:hidden;cursor:pointer;transition:border-color .24s,transform .24s,box-shadow .24s;background:rgba(255,255,255,0.03);position:relative}
+.csw-img-card:hover{border-color:rgba(201,168,76,0.45);transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,0,0,0.5)}
+.csw-img-card.vsel{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,0.2)}
+.csw-img-card img{width:100%;display:block;aspect-ratio:1/1;object-fit:contain;padding:10px}
+.csw-img-card.vsel::after{content:'✓';position:absolute;top:9px;right:9px;width:24px;height:24px;border-radius:50%;background:var(--gold);color:var(--sap);font-size:12px;font-weight:900;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.4)}
+.csw-img-card .csw-lbl{padding:10px 12px 12px;border-top:1px solid rgba(201,168,76,0.1)}
+.csw-img-card .csw-lbl-nm{font-family:'Cinzel',serif;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.85);text-align:center;display:block;max-width:100%}
+.csw-img-card.vsel .csw-lbl-nm{color:var(--gold-lt)}
+.csw-img-card .csw-lbl-pr{font-family:'Lato',sans-serif;font-size:11px;letter-spacing:0.8px;color:rgba(200,200,200,0.55);display:block;text-align:center;margin-top:3px}
+.csw-img-card .csw-lbl-pr.paid{color:var(--gold);font-weight:700}
+.csw-img-card.vsel .csw-lbl-pr{color:var(--gold-lt)}
+/* Photo option cards (alicatado, etc.) */
+.photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:26px}
+.photo-card{border:1.5px solid rgba(201,168,76,0.12);border-radius:14px;overflow:hidden;cursor:pointer;transition:border-color .24s,transform .24s,box-shadow .24s;background:rgba(8,8,8,0.65);position:relative}
+.photo-card:hover{border-color:rgba(201,168,76,0.45);transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,0.55)}
+.photo-card.vsel{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,0.22)}
+.photo-card.vsel::after{content:'✓';position:absolute;top:10px;right:10px;width:26px;height:26px;line-height:26px;text-align:center;border-radius:50%;background:var(--gold);color:var(--sap);font-size:13px;font-weight:900;box-shadow:0 2px 8px rgba(0,0,0,0.4)}
+.photo-card-img{width:100%;aspect-ratio:3/4;overflow:hidden;position:relative}
+.photo-card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+.photo-card:hover .photo-card-img img{transform:scale(1.04)}
+.photo-card-img--contain{aspect-ratio:1/1;background:rgba(255,255,255,0.04)}
+.photo-card-img--contain img{object-fit:contain;padding:10px}
+/* Zoom lupa */
+[data-zoom]{cursor:zoom-in}
+[data-zoom]::after{content:'🔍';position:absolute;bottom:7px;right:8px;font-size:13px;opacity:0;transition:opacity .2s;pointer-events:none;filter:drop-shadow(0 1px 4px rgba(0,0,0,0.9))}
+.photo-card:hover [data-zoom]::after{opacity:0.8}
+.zoom-panel{position:fixed;width:290px;height:290px;border:1px solid rgba(201,168,76,0.35);border-radius:14px;overflow:hidden;z-index:9999;pointer-events:none;background-repeat:no-repeat;background-color:#080808;box-shadow:0 20px 60px rgba(0,0,0,0.85),0 0 0 1px rgba(201,168,76,0.08);display:none}
+.photo-card-lbl{padding:12px 14px 14px;border-top:1px solid rgba(201,168,76,0.1)}
+.photo-card-nm{font-family:'Cinzel',serif;font-size:11px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;color:rgba(255,255,255,0.88);display:block;margin-bottom:4px}
+.photo-card.vsel .photo-card-nm{color:var(--gold-lt)}
+.photo-card-pr{font-family:'Lato',sans-serif;font-size:11.5px;letter-spacing:0.8px;color:rgba(200,200,200,0.50);font-weight:400}
+.photo-card-pr.paid{color:var(--gold);font-weight:700}
+.photo-card.vsel .photo-card-pr{color:var(--gold-lt)}
+.photo-card-ds{font-family:'Lato',sans-serif;font-size:10.5px;letter-spacing:0.5px;color:rgba(200,200,200,0.45);margin-bottom:4px}
+.photo-note{font-family:'Lato',sans-serif;font-size:11.5px;color:rgba(201,168,76,0.65);margin-top:-10px;margin-bottom:8px;line-height:1.5;padding:0 2px}
+/* Selector tamaños v2 */
+.szv2-main{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;margin-bottom:6px}
+.szv2-main-card{border:1.5px solid rgba(201,168,76,0.14);border-radius:16px;padding:20px 16px 18px;cursor:pointer;transition:all .25s;background:rgba(8,8,8,0.7);text-align:center}
+.szv2-main-card:hover{border-color:rgba(201,168,76,0.4);background:rgba(201,168,76,0.04);transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,0.4)}
+.szv2-main-card.vsel{border-color:var(--gold);background:rgba(201,168,76,0.08);box-shadow:0 0 0 3px rgba(201,168,76,0.12)}
+.szv2-main-nm{font-family:'Cinzel',serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.8);margin-top:12px;margin-bottom:4px}
+.szv2-main-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:12.5px;color:var(--muted);line-height:1.4}
+.szv2-main-card.vsel .szv2-main-nm{color:var(--gold-lt)}
+.szv2-main-card.vsel .szv2-main-sub{color:rgba(201,168,76,0.65)}
+.szv2-sub{margin-top:28px;padding-top:22px;border-top:1px solid rgba(201,168,76,0.1)}
+.szv2-sub-ttl{font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.szv2-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:14px}
+.szv2-card{border:1.5px solid rgba(201,168,76,0.14);border-radius:12px;padding:14px 10px 13px;cursor:pointer;transition:all .22s;background:rgba(8,8,8,0.65)}
+.szv2-card:hover{border-color:rgba(201,168,76,0.38);background:rgba(201,168,76,0.04);transform:translateY(-2px)}
+.szv2-card.vsel{border-color:var(--gold);background:rgba(201,168,76,0.08)}
+.szv2-img{margin-bottom:10px}
+.szv2-nm{font-family:'Cinzel',serif;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.9);text-align:center;line-height:1.4}
+.szv2-card.vsel .szv2-nm{color:var(--gold-lt)}
+.szv2-pr{font-family:'Lato',sans-serif;font-size:11.5px;letter-spacing:0.8px;color:rgba(200,200,200,0.6);text-align:center;margin-top:4px;font-weight:400}
+.szv2-pr.paid{color:var(--gold);font-weight:700}
+.szv2-card.vsel .szv2-pr{color:var(--gold-lt)}
 /* Skip note */
 .skip-note{text-align:center;font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:rgba(255,255,255,0.3);margin-top:-8px;margin-bottom:18px}
 /* Formulario contacto */
@@ -1936,8 +1713,8 @@ body{font-display:swap}
 .cs-empty{font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:rgba(255,255,255,0.22);text-align:center;padding:18px 0}
 .cs-row{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:12.5px}
 .cs-row:last-child{border-bottom:none}
-.cs-rk{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--muted);line-height:1.4;flex:1;font-size:13px}
-.cs-rv{font-family:'Cinzel',serif;font-size:11px;font-weight:700;color:var(--white);white-space:nowrap}
+.cs-rk{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--muted);line-height:1.4;flex:0 0 42%;font-size:13px}
+.cs-rv{font-family:'Cinzel',serif;font-size:10.5px;font-weight:700;color:var(--white);flex:0 0 54%;text-align:right;word-break:break-word;overflow-wrap:break-word;line-height:1.45}
 .cs-total{margin-top:14px;padding-top:14px;border-top:1px solid rgba(201,168,76,0.18);text-align:center}
 .cs-total-lbl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:5px}
 .cs-total-price{font-family:'Cinzel',serif;font-size:clamp(20px,2.5vw,28px);font-weight:700;background:var(--gold-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:4px}
@@ -1955,10 +1732,57 @@ body{font-display:swap}
 /* Resultado V2 */
 .rbox2{background:rgba(8,14,26,0.85);border:1px solid rgba(201,168,76,0.25);border-radius:var(--r-lg);padding:clamp(26px,4vw,46px);text-align:center;position:relative;overflow:hidden}
 .rbox2::before{content:'';position:absolute;top:-1px;left:5%;right:5%;height:2px;background:var(--gold-grad)}
-/* Responsive calc v2 */
-@media(max-width:960px){.calc-layout{grid-template-columns:1fr}.calc-summary{position:static;order:2}.calc-main{order:1}}
-@media(max-width:600px){.vopts{grid-template-columns:1fr}.vopt-ico{height:200px;font-size:44px}.vopt-nm{font-size:13px}.szgrid{grid-template-columns:repeat(3,1fr)}.compgrid{grid-template-columns:1fr}}
-@media(max-width:400px){.vopts{grid-template-columns:1fr}.vopt-ico{height:180px}}
+/* ─── Responsive Calc V2 ─── */
+@media(max-width:960px){
+  .calc-layout{grid-template-columns:1fr}
+  .calc-summary{position:static;order:2}
+  .calc-main{order:1}
+  .photo-grid{grid-template-columns:repeat(2,1fr);gap:14px}
+  .csw-img-grid{grid-template-columns:repeat(3,1fr);gap:12px}
+}
+@media(max-width:768px){
+  .calc-main{padding:28px 20px}
+  .cstep-title{font-size:clamp(15px,4.2vw,22px);margin-bottom:14px}
+  .photo-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .photo-card-nm{font-size:10px;letter-spacing:0.7px}
+  .photo-card-lbl{padding:9px 10px 11px}
+  .szv2-main{grid-template-columns:repeat(2,1fr);gap:14px}
+  .szv2-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .vopts-sm{gap:12px}
+  .vopt-sm{width:calc(50% - 6px)}
+  .csw-img-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .btn-nx2{padding:14px 28px;font-size:12px;letter-spacing:2px}
+  .calc-nav2{margin-top:8px;padding-top:18px}
+}
+@media(max-width:600px){
+  .vopts{grid-template-columns:1fr}
+  .vopt-ico{height:200px;font-size:44px}
+  .vopt-nm{font-size:13px}
+  .calc-main{padding:22px 16px}
+  .cstep-title{font-size:clamp(14px,4.5vw,20px);margin-bottom:12px}
+  .photo-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .photo-card-nm{font-size:9.5px;letter-spacing:0.5px}
+  .szv2-main{grid-template-columns:1fr}
+  .cs-row{flex-wrap:wrap;gap:2px}
+  .cs-rk{flex:0 0 100%;font-size:12px}
+  .cs-rv{flex:0 0 100%;text-align:left;font-size:10.5px}
+}
+@media(max-width:400px){
+  .vopts{grid-template-columns:1fr}
+  .vopt-ico{height:180px}
+  .photo-grid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .photo-card-nm{font-size:9px;letter-spacing:0.4px}
+  .photo-card-lbl{padding:8px 8px 10px}
+  .calc-main{padding:18px 13px}
+  .btn-nx2{padding:13px 20px;font-size:11px;letter-spacing:1.5px}
+  .vopt-sm{width:calc(50% - 5px)}
+}
+/* Touch: ocultar zoom lupa (no hay hover en móvil) */
+@media(hover:none),(pointer:coarse){
+  .zoom-panel{display:none!important}
+  [data-zoom]{cursor:default}
+  [data-zoom]::after{display:none}
+}
 </style>
 </head>
 <body>
@@ -2058,6 +1882,8 @@ body{font-display:swap}
      HERO
 ════════════════════════════════════════ -->
 <section class="hero">
+  <!-- Golden particles canvas -->
+  <canvas id="goldCanvas" style="position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;"></canvas>
   <!-- Steam cursor canvas -->
   <canvas id="steamCanvas" style="position:absolute;inset:0;width:100%;height:100%;z-index:10;pointer-events:none;"></canvas>
   <!-- Floating trust badge — desktop only -->
@@ -2180,7 +2006,7 @@ body{font-display:swap}
     </div>
     <div class="services-grid">
       <div class="srv-card reveal" data-delay="1">
-        <div class="srv-img-wrap"><img src="PLAN ELITE FINAL, ALTA CALIDAD.PNG" alt="ELITE"/></div>
+        <div class="srv-img-wrap"><img src="MODELO ELITE.PNG" alt="ELITE" loading="lazy" decoding="async"/></div>
         <div class="srv-body">
           <span class="srv-badge">Plan Premium</span>
           <div class="srv-name">ELITE</div>
@@ -2194,7 +2020,7 @@ body{font-display:swap}
         </div>
       </div>
       <div class="srv-card reveal" data-delay="2">
-        <div class="srv-img-wrap"><img src="PLAN EXCLUSIVO FINAL ALTA CALIDAD.PNG" alt="EXCLUSIVO"/></div>
+        <div class="srv-img-wrap"><img src="PLAN EXCLUSIVO FINAL ALTA CALIDAD.PNG" alt="EXCLUSIVO" loading="lazy" decoding="async"/></div>
         <div class="srv-body">
           <span class="srv-badge">Más popular</span>
           <div class="srv-name">EXCLUSIVO</div>
@@ -2208,7 +2034,7 @@ body{font-display:swap}
         </div>
       </div>
       <div class="srv-card reveal" data-delay="3">
-        <div class="srv-img-wrap"><img src="PLAN MEDIUM FINAL ALTA CALIDAD.PNG" alt="MODERADO"/></div>
+        <div class="srv-img-wrap"><img src="PLAN MEDIUM FINAL ALTA CALIDAD.PNG" alt="MODERADO" loading="lazy" decoding="async"/></div>
         <div class="srv-body">
           <span class="srv-badge">Mejor precio</span>
           <div class="srv-name">MODERADO</div>
@@ -2410,6 +2236,7 @@ body{font-display:swap}
 <footer>
   <div class="footer-inner">
     <div>
+      <img src="LOGO DUCHAS REFORMAS.PNG" alt="Duchas & Reformas" loading="lazy" decoding="async" style="height:80px;filter:drop-shadow(0 2px 12px rgba(201,168,76,0.3));margin-bottom:14px;display:block;"/>
       <div class="f-brand-name">Duchas & Reformas</div>
       <div class="f-brand-tag">Reformas Premium</div>
       <p class="f-brand-desc">Especialistas en reformas de baño de alta gama desde 2009. Instalación en un día, materiales premium y garantía total de 5 años.</p>
@@ -2567,67 +2394,129 @@ document.querySelectorAll('.stat').forEach(s=>cntObserver.observe(s));
 ══════════════════════════════ */
 const CSTEPS=[
   {id:'servicio',title:'Elige entre nuestras 3 ofertas',type:'cards',req:true,opts:[
-    {id:'exclusive',ico:'🏆',img:'PLAN ELITE FINAL, ALTA CALIDAD.PNG',nm:'ELITE',ds:'La top de Duchas & Reformas — acero inoxidable, materiales de máxima gama y acabado premium',price:2290,pl:'desde 2.290 €'},
+    {id:'exclusive',ico:'🏆',img:'MODELO ELITE.PNG',nm:'ELITE',ds:'La top de Duchas & Reformas — acero inoxidable, materiales de máxima gama y acabado premium',price:2290,pl:'desde 2.290 €'},
     {id:'luxe',     ico:'✨',img:'PLAN EXCLUSIVO FINAL ALTA CALIDAD.PNG',    nm:'EXCLUSIVO',     ds:'Nuestra número 1 — calidad superior con diseño elegante y mampara de vidrio templado',       price:1990,pl:'desde 1.990 €'},
     {id:'medium',   ico:'⭐',img:'PLAN MEDIUM FINAL ALTA CALIDAD.PNG',nm:'MODERADO',ds:'Precio insuperable — calidad garantizada al mejor precio del mercado',                        price:1690,pl:'desde 1.690 €'},
   ]},
-  {id:'plato',title:'Tipo de plato de ducha',type:'cards',req:true,opts:[
-    {id:'rejilla_vista', ico:'⬜',nm:'Rejilla vista',   ds:'Canal de desagüe lateral visible, fácil limpieza',         price:0,  pl:'Incluido'},
-    {id:'rejilla_oculta',ico:'▫️', nm:'Rejilla oculta',  ds:'Desagüe integrado bajo el plato, acabado minimalista',     price:150,pl:'+150 €'},
-    {id:'ras_suelo',     ico:'🔲',nm:'Ras de suelo',    ds:'Plato ultra bajo perfil, accesibilidad y máxima elegancia', price:350,pl:'+350 €'},
+  {id:'plato',title:'¿Qué plato de ducha quieres poner?',type:'cards-sm',req:true,opts:[
+    {id:'rejilla_oculta',img:'rejilla oculta.jpg',nm:'Rejilla Oculta',price:0,pl:'Incluido',colorOpts:[
+      {id:'blanco',  nm:'Blanco',  img:'PASO 3 - BLANCO REJILLA OCULTA.webp',  color:'#F0EDE8',price:0,  pl:'Incluido'},
+      {id:'beige',   nm:'Beige',   img:'PASO 3 - BEIGE REJILLA OCULTA.webp',   color:'#CCBA9E',price:0,  pl:'Incluido'},
+      {id:'moka',    nm:'Moka',    img:'PASO 3 - MOCA REJILLA OCULTA.webp',    color:'#5A3A25',price:80, pl:'+80 €'},
+      {id:'gris',    nm:'Gris',    img:'PASO 3 - GRIS REJILLA OCULTA.webp',    color:'#8C8C8C',price:0,  pl:'Incluido'},
+      {id:'grafito', nm:'Grafito', img:'PASO 3 - GRAFITO REJILLA OCULTA.webp', color:'#464646',price:0,  pl:'Incluido'},
+      {id:'perla',   nm:'Perla',   img:'PASO 3 - PERLA REJILLA OCULTA.webp',   color:'#BFD0D3',price:80, pl:'+80 €'},
+    ]},
+    {id:'rejilla_color',img:'Rejilla de color.jpg',nm:'Rejilla de Color',price:0,pl:'Incluido',colorOpts:[
+      {id:'blanco',  nm:'Blanco',  img:'PASO 3 - BLANCO REJILLA OCULTA.webp',  color:'#F0EDE8',price:0,pl:'Incluido'},
+      {id:'beige',   nm:'Beige',   img:'PASO 3 - BEIGE REJILLA OCULTA.webp',   color:'#CCBA9E',price:0,pl:'Incluido'},
+      {id:'moka',    nm:'Moka',    img:'PASO 3 - MOCA REJILLA OCULTA.webp',    color:'#5A3A25',price:0,pl:'Incluido'},
+      {id:'gris',    nm:'Gris',    img:'PASO 3 - GRIS REJILLA OCULTA.webp',    color:'#8C8C8C',price:0,pl:'Incluido'},
+      {id:'grafito', nm:'Grafito', img:'PASO 3 - GRAFITO REJILLA OCULTA.webp', color:'#464646',price:0,pl:'Incluido'},
+      {id:'perla',   nm:'Perla',   img:'PASO 3 - PERLA REJILLA OCULTA.webp',   color:'#BFD0D3',price:0,pl:'Incluido'},
+    ]},
   ]},
-  {id:'color',title:'Color del plato',type:'colors',req:true,opts:[
-    {id:'blanco', nm:'Blanco',  color:'#F2F0EC',price:0},
-    {id:'gris',   nm:'Gris',   color:'#A8A8A8',price:0},
-    {id:'grafito',nm:'Grafito',color:'#444444',price:0},
-    {id:'beige',  nm:'Beige',  color:'#C8B99A',price:0},
-    {id:'pizarra',nm:'Pizarra',color:'#5A5A6A',price:0},
-    {id:'negro',  nm:'Negro',  color:'#1C1C1C',price:50,pl:'+50 €'},
+  {id:'color',title:'Color del plato',type:'colors-dynamic',req:true},
+  {id:'tamano',title:'Tamaño del plato',type:'sizes-v2',req:true,opts:[
+    {id:'estandar',nm:'Tamaño Estándar',sub:'Hasta 70 × 160 cm',price:0},
+    {id:'amedida', nm:'A Medida',        sub:'Elige tu tamaño exacto',price:0},
+  ],fondo:[
+    {id:'f70', val:'70 cm', price:0},
+    {id:'f80', val:'80 cm', price:40},
+    {id:'f90', val:'90 cm', price:80},
+    {id:'f100',val:'100 cm',price:120},
+    {id:'f110',val:'110 cm',price:160},
+    {id:'f120',val:'120 cm',price:200},
+  ],largo:[
+    {id:'l160',val:'160 cm',price:0},
+    {id:'l170',val:'170 cm',price:40},
+    {id:'l180',val:'180 cm',price:80},
+    {id:'l190',val:'190 cm',price:120},
+    {id:'l200',val:'200 cm',price:160},
+    {id:'l210',val:'210 cm',price:200},
+    {id:'l220',val:'220 cm',price:240},
   ]},
-  {id:'tamano',title:'Tamaño del plato',type:'sizes',req:true,opts:[
-    {id:'70x90',  val:'70×90 cm',  lbl:'Estándar',price:0},
-    {id:'80x80',  val:'80×80 cm',  lbl:'Estándar',price:0},
-    {id:'80x90',  val:'80×90 cm',  lbl:'+50 €',   price:50},
-    {id:'90x90',  val:'90×90 cm',  lbl:'+100 €',  price:100},
-    {id:'100x100',val:'100×100 cm',lbl:'+180 €',  price:180},
-    {id:'medida', val:'A medida',  lbl:'+200 €',  price:200},
+  {id:'alicatado',title:'Altura del alicatado',type:'cards-photo',req:true,opts:[
+    {id:'zocalo',  img:'ALICATADO A 50 CENTIMETROS.PNG',    nm:'Alicatado hasta 50 cm',  price:0,  pl:'Incluido'},
+    {id:'media',   img:'ALICATADO A 120 CENTIMETROS.PNG',   nm:'Alicatado hasta 120 cm', price:300,pl:'+300 €'},
+    {id:'completa',img:'PASO 4 - ALICATADO ENTERO MODELO ELITE.PNG',   nm:'Alicatado hasta 240 cm', price:700,pl:'+700 €'},
   ]},
-  {id:'medidas',title:'Medidas del baño',type:'dims',req:false},
-  {id:'alicatado',title:'Altura del alicatado',type:'cards',req:true,opts:[
-    {id:'zocalo',  ico:'📐',nm:'Zócalo 50 cm',        ds:'Solo la zona baja del baño, solución económica',          price:0,  pl:'Incluido'},
-    {id:'media',   ico:'🧱',nm:'Media pared 120 cm',   ds:'Hasta la mitad, equilibrio estético y precio',            price:200,pl:'+200 €'},
-    {id:'completa',ico:'🏠',nm:'Pared completa 240 cm',ds:'De suelo a techo, máxima protección y acabado premium',   price:450,pl:'+450 €'},
+  {id:'azulejo',title:'¿Cuál es el tamaño del azulejo que quieres que instalemos en las paredes?',type:'cards-photo',req:true,imgContain:true,opts:[
+    {id:'estandar',img:'TAMAÑO ESTANDARD AZULEJOS.webp',nm:'Tamaño estándar',ds:'31x61 cm ó 25x40 cm', price:0,  pl:'Incluido'},
+    {id:'xl',      img:'TAMAÑO XL AZULEJOS.webp',      nm:'Tamaño XL',       ds:'30x90 cm ó 31x91 cm',  price:90, pl:'+90 €'},
+    {id:'xxl',     img:'PANEL XXL AZULEJOS.webp',       nm:'Panel XXL',       ds:'122x244 cm',            price:990,pl:'+990 €'},
   ]},
-  {id:'azulejo',title:'Formato del azulejo',type:'cards',req:true,opts:[
-    {id:'estandar',ico:'▪️',nm:'Estándar 20×60 cm',  ds:'Gran variedad de modelos y colores disponibles',          price:0,  pl:'Incluido'},
-    {id:'xl',      ico:'◾', nm:'Gran Formato 60×120', ds:'Menos juntas, aspecto más moderno y actual',              price:180,pl:'+180 €'},
-    {id:'xxl',     ico:'⬛',nm:'Panel XXL 120×240',   ds:'Efecto mármol continuo, máximo lujo y amplitud visual',   price:380,pl:'+380 €'},
+  {id:'griferia',title:'¿Qué grifería te gustaría que pusiéramos?',type:'cards-photo',req:true,imgContain:true,opts:[
+    {id:'st_redondo',  img:'Kit-duchon-monomando-System-Touch-cuadrado.jpg',     nm:'Kit duchón monomando System Touch redondo',     price:0,  pl:'Incluido'},
+    {id:'st_cuadrado', img:'Kit-duchon-monomando-System-Touch-cuadrado (1).jpg', nm:'Kit duchón termostática System Touch cuadrado', price:0,  pl:'Incluido'},
+    {id:'nite_red',    img:'Kit-monomando-duchon-redondo-NITE-XL.jpg',           nm:'Kit monomando Nite XL duchón redondo',           price:0,  pl:'Incluido'},
+    {id:'nite_cua',    img:'Kit-termostatico-duchon-cuadrado-NITE-XL.jpg',       nm:'Kit monomando Nite XL duchón cuadrado',          price:0,  pl:'Incluido'},
+    {id:'col_mono',    img:'Columna-hidromasaje-termostatica.jpg',               nm:'Columna hidromasaje monomando acero',             price:190,pl:'+190 €'},
+    {id:'col_termo',   img:'Columna-hidromasaje-termostatica.jpg',               nm:'Columna hidromasaje termostática acero',         price:290,pl:'+290 €'},
+    {id:'lavabo',      img:'Monomando-lavabo-Exclusive.jpg',                     nm:'Monomando lavabo Exclusive*',                    price:150,pl:'+150 €'},
+    {id:'bide',        img:'Monomando-bide-Exclusive.jpg',                       nm:'Monomando bidé Exclusive*',                      price:150,pl:'+150 €'},
+    {id:'valvula',     img:'26.jpg',                                             nm:'Válvula tapón*',                                 price:30, pl:'+30 €'},
   ]},
-  {id:'griferia',title:'Grifería',type:'cards',req:true,opts:[
-    {id:'basica',      ico:'🚿',nm:'Kit básico monomando',  ds:'Alcachofa fija con mango, funcional y resistente',       price:0,  pl:'Incluido'},
-    {id:'termostatica',ico:'🌡️',nm:'Duchón + termostato',   ds:'Control preciso de temperatura, mayor confort diario',   price:120,pl:'+120 €'},
-    {id:'columna',     ico:'💦',nm:'Columna de ducha',       ds:'Lluvia + lateral + mano, todo en uno',                   price:280,pl:'+280 €'},
-    {id:'premium',     ico:'✨',nm:'Grifería Premium Grohe', ds:'Tecnología alemana de alta gama, garantía 5 años',       price:450,pl:'+450 €'},
+  {id:'mampara',title:'Elige tu nueva mampara',type:'cards-photo',req:true,imgContain:true,zoomEffect:true,opts:[
+    {id:'m01',img:'1-fijo-ducha-8-mm-70-a-120-cm.jpg',                              nm:'1 fijo 8 mm* 70 a 120 cm (cromo, negro u oro)',                        price:0,  pl:'Incluido'},
+    {id:'m02',img:'1-fijo-1-abatible-8-mm-110-a-160-cm.jpg',                        nm:'1 fijo + 1 abatible 8 mm* 110 a 160 cm (cromo, negro u oro)',          price:0,  pl:'Incluido'},
+    {id:'m03',img:'1-fijo-1-corredera-8mm-96-a-168-cm.jpg',                         nm:'1 fijo + 1 corredera 8 mm* 96 a 168 cm (cromo o negro)',               price:0,  pl:'Incluido'},
+    {id:'m04',img:'1-fijo-1-corredera-8-mm-101-a-186-cm.jpg',                       nm:'1 fijo + 1 corredera 8 mm* 101 a 186 cm (cromo o negro)',              price:120,pl:'+120 €'},
+    {id:'m05',img:'1-fijo-ducha-8-mm-80-a-120-cm.jpg',                              nm:'1 fijo 8 mm 80 a 120 cm (cromo o negro)',                              price:150,pl:'+150 €'},
+    {id:'m06',img:'1-fijo-1-corredera-6-mm-120-a-200-cm.jpg',                       nm:'1 fijo + 1 corredera 6 mm* 115 a 200 cm (cromo o negro)',              price:290,pl:'+290 €'},
+    {id:'m07',img:'2-fijos-2-correderas-6-mm-150-a-200-cm.jpg',                     nm:'2 fijos + 2 correderas 6 mm 145 a 200 cm (cromo o negro)',             price:390,pl:'+390 €'},
+    {id:'m08',img:'2-fijos-2-correderas-angular-65x90-a-140x140-cm.jpg',            nm:'2 fijos + 2 correderas angular 65 a 100 × 90 a 140 cm (cromo o negro)',price:450,pl:'+450 €'},
+    {id:'m09',img:'1-fijo-1-corredera-8-mm-99-a-185-cm.jpg',                        nm:'1 fijo + 1 corredera 8 mm* 99 a 184 cm (cromo, negro u oro)',          price:190,pl:'+190 €'},
+    {id:'m10',img:'2-fijos-2-correderas-8-mm-132-a-200-cm.jpg',                     nm:'2 fijos + 2 correderas 8 mm* 132 a 200 cm (cromo, negro u oro)',       price:290,pl:'+290 €'},
+    {id:'m11',img:'2-fijos-2-correderas-angular-8-mm-66-a-102-x-86-a-139-cm.jpg',  nm:'2 fijos + 2 correderas angular 8 mm* 66 a 102 × 86 a 139 cm (cromo o negro)',price:350,pl:'+350 €'},
   ]},
-  {id:'mampara',title:'Mampara de ducha',type:'cards',req:true,opts:[
-    {id:'sin',        ico:'🚿',nm:'Sin mampara',       ds:'Cortina o espacio abierto, solución sencilla',              price:0,  pl:'Sin coste'},
-    {id:'fija',       ico:'🪟',nm:'Fija 1 hoja',        ds:'Vidrio templado fijo, diseño limpio y elegante',             price:290,pl:'+290 €'},
-    {id:'corredera',  ico:'↔️',nm:'Corredera 2 hojas',  ds:'Apertura lateral deslizante, ideal espacios pequeños',      price:380,pl:'+380 €'},
-    {id:'abatible',   ico:'🔄',nm:'Abatible',           ds:'Apertura frontal tipo puerta, cómoda entrada',              price:420,pl:'+420 €'},
-    {id:'frontal_lat',ico:'🔲',nm:'Frontal + lateral',  ds:'Cierre total del espacio de ducha, máxima estanqueidad',    price:580,pl:'+580 €'},
+  {id:'complementos',title:'¿Necesitas un costado para tu mampara nueva?',type:'cards-photo',req:true,imgContain:true,zoomEffect:true,opts:[
+    {id:'c70',   img:'Si_uno_de_70_u_80_cm_(cromo_o_negro).jpg',          nm:'Sí, uno de 70 u 80 cm (cromo o negro)',        price:0, pl:'Incluido'},
+    {id:'c100',  img:'Si_uno_a_medida_hasta_100_cm_(cromo_o_negro).jpg',  nm:'Sí, uno a medida hasta 100 cm (cromo o negro)', price:0, pl:'Incluido'},
+    {id:'no',    img:'No_lo_necesito.jpg',                                 nm:'No lo necesito',                                price:0, pl:'Incluido'},
   ]},
-  {id:'complementos',title:'Complementos (opcional)',type:'multi',req:false,opts:[
-    {id:'nicho',    ico:'📦',nm:'Nicho empotrado',      price:120},
-    {id:'barra',    ico:'🤝',nm:'Barra de seguridad',   price: 95},
-    {id:'toallero', ico:'🔥',nm:'Toallero calefactor',  price:320},
-    {id:'espejo',   ico:'💡',nm:'Espejo con luz LED',   price:280},
-    {id:'led',      ico:'⭐',nm:'Iluminación LED techo',price:175},
-    {id:'inodoro',  ico:'🚽',nm:'Inodoro suspendido',   price:450},
+  {id:'suelo',title:'Elige tus complementos',type:'multi-photo',req:false,imgContain:true,zoomEffect:true,opts:[
+    {id:'p01',img:'Rinconera acero cromo - 50,00 €.jpg',                                              nm:'Rinconera acero cromo',                                            price:50},
+    {id:'p02',img:'Rinconera doble acero cromo - 90,00 €.jpg',                                        nm:'Rinconera doble acero cromo',                                      price:90},
+    {id:'p03',img:'Estante acero cromo - 50,00 €.jpg',                                                nm:'Estante acero cromo',                                              price:50},
+    {id:'p04',img:'Estante doble acero cromo - 90,00 €.jpg',                                          nm:'Estante doble acero cromo',                                        price:90},
+    {id:'p05',img:'Agarrador cromo o negro 30 cm - 40,00 €.jpg',                                      nm:'Agarrador cromo o negro 30 cm',                                    price:40},
+    {id:'p06',img:'Agarrador cromo o negro 40 cm - 50,00 €.jpg',                                      nm:'Agarrador cromo o negro 40 cm',                                    price:50},
+    {id:'p07',img:'Rinconera + limpiamamparas acero cromo - 70,00 €.jpg',                             nm:'Rinconera + limpiamamparas acero cromo',                           price:70},
+    {id:'p08',img:'Estante + limpiamamparas acero cromo - 70,00 €.jpg',                               nm:'Estante + limpiamamparas acero cromo',                             price:70},
+    {id:'p09',img:'Agarrador doble acero cromo - 60,00 €.jpg',                                        nm:'Agarrador doble acero cromo',                                      price:60},
+    {id:'p10',img:'Asidero wc plegable - 180,00 €.jpg',                                               nm:'Asidero wc plegable',                                              price:180},
+    {id:'p11',img:'Silla rectangular sin respaldo - 70,00 €.jpg',                                     nm:'Silla rectangular sin respaldo',                                   price:70},
+    {id:'p12',img:'Silla rectangular con respaldo - 90,00 €.jpg',                                     nm:'Silla rectangular con respaldo',                                   price:90},
+    {id:'p13',img:'Asiento plegable dos patas - 150,00 €.jpg',                                        nm:'Asiento plegable dos patas',                                       price:150},
+    {id:'p14',img:'Asiento plegable una pata - 280,00 €.jpg',                                         nm:'Asiento plegable una pata',                                        price:280},
+    {id:'p15',img:'Estante colgar grifo acero cromo o negro - 60,00 €.jpg',                           nm:'Estante colgar grifo acero cromo o negro',                         price:60},
+    {id:'p16',img:'Estante doble colgar grifo acero cromo - 90,00 €.jpg',                             nm:'Estante doble colgar grifo acero cromo',                           price:90},
+    {id:'p17',img:'Empotrar tubería agua - 250,00 €.jpg',                                             nm:'Empotrar tubería agua',                                            price:250},
+    {id:'p18',img:'Desplazar grifería de pared - 180,00 €.jpg',                                       nm:'Desplazar grifería de pared',                                      price:180},
+    {id:'p19',img:'Asiento de obra - 290,00 €.jpg',                                                   nm:'Asiento de obra',                                                  price:290},
+    {id:'p20',img:'Perfil decorativo aluminio plata - blanco - negro - 60,00 €.jpg',                  nm:'Perfil decorativo aluminio plata/blanco/negro',                    price:60},
+    {id:'p21',img:'Perfil tubo plata hasta 6 cm - 60,00 €.jpg',                                       nm:'Perfil tubo plata hasta 6 cm',                                     price:60},
+    {id:'p22',img:'Perfil tubo aluminio 8 - 10 - 12 cm - 90,00 €.jpg',                               nm:'Perfil tubo aluminio 8-10-12 cm',                                  price:90},
+    {id:'p23',img:'Anular bidé visto - 90,00 €.jpg',                                                  nm:'Anular bidé visto',                                                price:90},
+    {id:'p24',img:'Anular bidé de obra - 180,00 €.jpg',                                               nm:'Anular bidé de obra',                                              price:180},
+    {id:'p25',img:'Secador corporal blanco o negro - 990,00 €.jpg',                                   nm:'Secador corporal blanco o negro',                                  price:990},
+    {id:'p26',img:'Led integrado en espejo - 130,00 €.jpg',                                           nm:'Led integrado en espejo',                                          price:130},
+    {id:'p27',img:'Lavabo universal + pedestal - 150,00 €.jpg',                                       nm:'Lavabo universal + pedestal*',                                     price:150},
+    {id:'p28',img:'Conjunto Exclusive 60x45 cm (mueble, lavabo, espejo y led) - 590,00 €.jpg',       nm:'Conjunto Exclusive 60×45 cm (mueble, lavabo, espejo y led)*',      price:590},
+    {id:'p29',img:'Conjunto Exclusive 80x45 cm (mueble, lavabo, espejo y led) - 690,00 €.jpg',       nm:'Conjunto Exclusive 80×45 cm (mueble, lavabo, espejo y led)*',      price:690},
+    {id:'p30',img:'Conjunto Exclusive 100x45 cm (mueble, lavabo, espejo y led) - 790,00 €.jpg',      nm:'Conjunto Exclusive 100×45 cm (mueble, lavabo, espejo y led)*',     price:790},
+    {id:'p31',img:'Inodoro completo Exclusive - 490,00 €.jpg',                                        nm:'Inodoro completo Exclusive*',                                      price:490},
+    {id:'p32',img:'Bidé Exclusive - 290,00 €.jpg',                                                    nm:'Bidé Exclusive*',                                                  price:290},
+    {id:'p33',img:'No deseo ningún complemento - 0,00 €.jpg',                                         nm:'No deseo ningún complemento',                                      price:0},
   ]},
-  {id:'suelo',title:'Suelo del baño',type:'cards',req:true,opts:[
-    {id:'sin_cambio', ico:'⬜',nm:'Sin cambio de suelo',      ds:'Mantenemos el suelo actual en perfectas condiciones',    price:0,  pl:'Sin coste'},
-    {id:'plaquetas',  ico:'🏁',nm:'Plaquetas antideslizantes',ds:'Seguridad y durabilidad, ideal para mayores y niños',    price:180,pl:'+180 €'},
-    {id:'porcelanico',ico:'✦', nm:'Porcelánico gran formato', ds:'Acabado premium de alta durabilidad y resistencia',      price:350,pl:'+350 €'},
+  {id:'plaqueta',title:'¿Quieres poner también el suelo de tu baño nuevo? Elige qué plaqueta quieres · Máximo 4 m²',type:'cards-photo',req:true,imgContain:true,zoomEffect:true,opts:[
+    {id:'s01',img:'45x45 cm - 790,00 €.jpg',               nm:'45×45 cm',             price:790, pl:'+790 €'},
+    {id:'s02',img:'65x60 cm - 890,00 €.jpg',               nm:'65×60 cm',             price:890, pl:'+890 €'},
+    {id:'s03',img:'15x90 cm - 890,00 €.jpg',               nm:'15×90 cm',             price:890, pl:'+890 €'},
+    {id:'s04',img:'20x120 cm - 990,00 €.jpg',              nm:'20×120 cm',            price:990, pl:'+990 €'},
+    {id:'s05',img:'25x150 cm - 1.190,00 €.jpg',            nm:'25×150 cm',            price:1190,pl:'+1.190 €'},
+    {id:'s06',img:'Ninguna, dejaré las mías - 0,00 €.jpg', nm:'Ninguna, dejaré las mías', price:0, pl:'Sin coste'},
   ]},
   {id:'contacto',title:'Tus datos',type:'contact',req:true},
 ];
@@ -2638,6 +2527,32 @@ const CS={step:0,sel:{}};
 
 /* ── INIT ── */
 (function(){renderStep(0);updateSummary();})();
+
+/* ── ZOOM LUPA ── */
+(function(){
+  const panel=document.createElement('div');
+  panel.className='zoom-panel';
+  document.body.appendChild(panel);
+  const PW=290,PH=290,ZOOM=3;
+  document.addEventListener('mousemove',function(e){
+    const wrap=e.target.closest('[data-zoom]');
+    if(!wrap){panel.style.display='none';return;}
+    const img=wrap.querySelector('img');
+    if(!img||!img.naturalWidth){panel.style.display='none';return;}
+    const r=wrap.getBoundingClientRect();
+    const xp=Math.max(0,Math.min(1,(e.clientX-r.left)/r.width));
+    const yp=Math.max(0,Math.min(1,(e.clientY-r.top)/r.height));
+    const bw=r.width*ZOOM,bh=r.height*ZOOM;
+    const bx=-(xp*bw-PW/2);
+    const by=-(yp*bh-PH/2);
+    let px=r.right+14;
+    if(px+PW>window.innerWidth-8)px=r.left-PW-14;
+    let py=e.clientY-PH/2;
+    py=Math.max(8,Math.min(window.innerHeight-PH-8,py));
+    panel.style.cssText=`display:block;position:fixed;width:${PW}px;height:${PH}px;left:${px}px;top:${py}px;background-image:url('${img.src}');background-size:${bw}px ${bh}px;background-position:${bx}px ${by}px;background-repeat:no-repeat;background-color:#080808;border:1px solid rgba(201,168,76,0.35);border-radius:14px;overflow:hidden;z-index:9999;pointer-events:none;box-shadow:0 20px 60px rgba(0,0,0,0.85)`;
+  });
+  document.addEventListener('mouseleave',function(){panel.style.display='none';});
+})();
 
 /* ── RENDER ── */
 function renderStep(idx){
@@ -2650,15 +2565,21 @@ function renderStep(idx){
   if(!prev||!next)return;
   prev.disabled=idx===0;
   next.textContent=idx===CTOTAL-1?'Ver mi presupuesto ›':'Siguiente ›';
-  next.disabled=s.req&&!CS.sel[s.id]&&s.type!=='dims'&&s.type!=='contact'&&s.type!=='multi';
+  if(s.type==='sizes-v2'){const t=CS.sel[s.id];next.disabled=!t||(t==='amedida'&&(!CS.sel['tamano_fondo']||!CS.sel['tamano_largo']));}
+  else{next.disabled=s.req&&!CS.sel[s.id]&&s.type!=='dims'&&s.type!=='contact'&&s.type!=='multi';}
   let html='';
   switch(s.type){
-    case 'cards':  html=rCards(s);   break;
-    case 'colors': html=rColors(s);  break;
-    case 'sizes':  html=rSizes(s);   break;
-    case 'multi':  html=rMulti(s);   break;
-    case 'dims':   html=rDims(s);    break;
-    case 'contact':html=rContact(s); break;
+    case 'cards':          html=rCards(s);       break;
+    case 'cards-sm':       html=rCardsSm(s);     break;
+    case 'cards-photo':    html=rCardsPhoto(s);  break;
+    case 'colors':
+    case 'colors-dynamic': html=rColors(s);   break;
+    case 'sizes':          html=rSizes(s);    break;
+    case 'sizes-v2':       html=rSizesV2(s);  break;
+    case 'multi':          html=rMulti(s);        break;
+    case 'multi-photo':    html=rMultiPhoto(s);   break;
+    case 'dims':           html=rDims(s);     break;
+    case 'contact':        html=rContact(s);  break;
   }
   document.getElementById('cStepBody').innerHTML=html;
 }
@@ -2667,18 +2588,129 @@ function rCards(s){
   const cur=CS.sel[s.id];
   return'<div class="vopts">'+s.opts.map(o=>{
     const media=o.img
-      ?`<div class="vopt-ico vopt-img-wrap"><img src="${o.img}" alt="${o.nm}" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>`
+      ?`<div class="vopt-ico vopt-img-wrap"><img src="${o.img}" alt="${o.nm}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>`
       :`<div class="vopt-ico">${o.ico}</div>`;
     return`<div class="vopt${cur===o.id?' vsel':''}" onclick="cSel('${s.id}','${o.id}')"><div class="vopt-chk">✓</div>${media}<div class="vopt-body"><div class="vopt-nm">${o.nm}</div><div class="vopt-ds">${o.ds}</div><div class="vopt-pr${o.price===0?' free':''}">${o.pl}</div></div></div>`;
   }).join('')+'</div>';
 }
-function rColors(s){
+function rCardsPhoto(s){
   const cur=CS.sel[s.id];
-  return'<div class="cswatches">'+s.opts.map(o=>`<div class="csw${cur===o.id?' vsel':''}" onclick="cSel('${s.id}','${o.id}')"><div class="csw-circle" style="background:${o.color}"></div><div class="csw-nm">${o.nm}</div></div>`).join('')+'</div>';
+  let html='<div class="photo-grid">'+s.opts.map(o=>{
+    const priceStr=o.price.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';
+    const isPaid=o.price>0;
+    const dsHtml=o.ds?`<div class="photo-card-ds">${o.ds}</div>`:'';
+    const imgCls=s.imgContain?' photo-card-img--contain':'';
+    const zoomAttr=s.zoomEffect?' data-zoom="1"':'';
+    return`<div class="photo-card${cur===o.id?' vsel':''}" onclick="cSel('${s.id}','${o.id}')"><div class="photo-card-img${imgCls}"${zoomAttr}><img src="${encodeURI(o.img)}" alt="${o.nm}" loading="lazy" decoding="async"/></div><div class="photo-card-lbl"><div class="photo-card-nm">${o.nm}</div>${dsHtml}<div class="photo-card-pr${isPaid?' paid':''}">${isPaid?'+':''}${priceStr}</div></div></div>`;
+  }).join('')+'</div>';
+  if(s.note)html+=`<p class="photo-note">ℹ️ ${s.note}</p>`;
+  return html;
+}
+function rCardsSm(s){
+  const cur=CS.sel[s.id];
+  return'<div class="vopts-sm">'+s.opts.map(o=>`
+    <div class="vopt-sm${cur===o.id?' vsel':''}" onclick="cSel('${s.id}','${o.id}')">
+      <div class="vopt-sm-chk">✓</div>
+      <img src="${o.img}" alt="${o.nm}" loading="lazy" decoding="async"/>
+      <div class="vopt-sm-body">
+        <div class="vopt-sm-nm">${o.nm}</div>
+        <div class="vopt-sm-pr">${o.pl}</div>
+      </div>
+    </div>`).join('')+'</div>';
+}
+function getActiveColorOpts(){
+  const plateSel=CS.sel['plato'];
+  if(!plateSel)return[];
+  const platoStep=CSTEPS.find(s=>s.id==='plato');
+  const plato=platoStep?.opts.find(o=>o.id===plateSel);
+  return plato?.colorOpts||[];
+}
+function rColors(s){
+  const opts=s.type==='colors-dynamic'?getActiveColorOpts():(s.opts||[]);
+  if(!opts.length)return'<p class="skip-note">Selecciona primero el tipo de plato en el paso anterior.</p>';
+  const cur=CS.sel[s.id];
+  const hasImages=opts.some(o=>o.img);
+  if(hasImages){
+    return'<div class="csw-img-grid">'+opts.map(o=>{
+      const priceStr=(o.price>0?'+':'')+o.price.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';
+      const prCls=o.price>0?'paid':'';
+      return`<div class="csw-img-card${cur===o.id?' vsel':''}" onclick="cSel('${s.id}','${o.id}')"><img src="${encodeURI(o.img)}" alt="${o.nm}" loading="lazy" decoding="async"/><div class="csw-lbl"><div class="csw-lbl-nm">${o.nm}</div><div class="csw-lbl-pr ${prCls}">${priceStr}</div></div></div>`;
+    }).join('')+'</div>';
+  }
+  return'<div class="cswatches">'+opts.map(o=>{
+    const bg=o.gradient?`background:${o.gradient}`:`background:${o.color}`;
+    const priceStr=(o.price>0?'+':'')+o.price.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';
+    const prCls=o.price>0?'paid':'';
+    return`<div class="csw${cur===o.id?' vsel':''}" onclick="cSel('${s.id}','${o.id}')"><div class="csw-circle" style="${bg}"></div><div class="csw-lbl"><div class="csw-lbl-nm">${o.nm}</div><div class="csw-lbl-pr ${prCls}">${priceStr}</div></div></div>`;
+  }).join('')+'</div>';
 }
 function rSizes(s){
   const cur=CS.sel[s.id];
   return'<div class="szgrid">'+s.opts.map(o=>`<div class="szcard${cur===o.id?' vsel':''}" onclick="cSel('${s.id}','${o.id}')"><div class="szval">${o.val}</div><div class="szlbl">${o.lbl}</div></div>`).join('')+'</div>';
+}
+function traySVG(label,type){
+  /* type: 'both'=fondo+largo, 'top'=fondo arriba, 'right'=largo derecha, default=centrado */
+  const vb='0 0 210 128';
+  const g=`<defs><linearGradient id="tg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#E4E4E4"/><stop offset="100%" stop-color="#C6C6C6"/></linearGradient></defs>`;
+  const poly=`<polygon points="20,116 40,47 160,47 140,116" fill="url(#tg)" stroke="#ABABAB" stroke-width="1.2"/>`;
+  /* línea horizontal superior (fondo) */
+  const topDim=`<line x1="40" y1="38" x2="160" y2="38" stroke="#606060" stroke-width="1.4"/><line x1="40" y1="33" x2="40" y2="43" stroke="#606060" stroke-width="1.2"/><line x1="160" y1="33" x2="160" y2="43" stroke="#606060" stroke-width="1.2"/>`;
+  /* línea vertical derecha (largo) */
+  const rightDim=`<line x1="172" y1="47" x2="172" y2="116" stroke="#606060" stroke-width="1.4"/><line x1="167" y1="47" x2="177" y2="47" stroke="#606060" stroke-width="1.2"/><line x1="167" y1="116" x2="177" y2="116" stroke="#606060" stroke-width="1.2"/>`;
+  const tf=`font-family="Arial,sans-serif" fill="#3A3A3A"`;
+  let inner='';
+  if(type==='both'){
+    const p=label.split('×');
+    const f=(p[0]||'').trim()+' cm'; /* '70 cm' */
+    const l=(p[1]||'').trim();       /* '160 cm' */
+    inner=poly+topDim+rightDim;
+    inner+=`<text x="100" y="22" text-anchor="middle" dominant-baseline="middle" ${tf} font-size="14" font-weight="700">${f}</text>`;
+    inner+=`<text x="192" y="81" text-anchor="middle" dominant-baseline="middle" ${tf} font-size="12" font-weight="700" transform="rotate(-90,192,81)">${l}</text>`;
+  }else if(type==='top'){
+    inner=poly+topDim;
+    inner+=`<text x="100" y="22" text-anchor="middle" dominant-baseline="middle" ${tf} font-size="15" font-weight="700">${label}</text>`;
+  }else if(type==='right'){
+    inner=poly+rightDim;
+    inner+=`<text x="192" y="81" text-anchor="middle" dominant-baseline="middle" ${tf} font-size="12" font-weight="700" transform="rotate(-90,192,81)">${label}</text>`;
+  }else{
+    inner=poly+topDim;
+    inner+=`<text x="100" y="22" text-anchor="middle" dominant-baseline="middle" ${tf} font-size="15" font-weight="700">${label}</text>`;
+  }
+  return`<svg viewBox="${vb}" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:auto">${g}${inner}</svg>`;
+}
+function rSizesV2(s){
+  const cur=CS.sel['tamano'];
+  const curF=CS.sel['tamano_fondo'];
+  const curL=CS.sel['tamano_largo'];
+  let html=`<div class="szv2-main">`;
+  html+=`<div class="szv2-main-card${cur==='estandar'?' vsel':''}" onclick="cSel('tamano','estandar')">${traySVG('70 × 160 cm','both')}<div class="szv2-main-nm">Tamaño Estándar</div><div class="szv2-main-sub">Hasta 70 × 160 cm — Incluido</div></div>`;
+  html+=`<div class="szv2-main-card${cur==='amedida'?' vsel':''}" onclick="cSel('tamano','amedida')">${traySVG('A medida')}<div class="szv2-main-nm">A Medida</div><div class="szv2-main-sub">Elige el tamaño exacto</div></div>`;
+  html+=`</div>`;
+  if(cur==='amedida'){
+    html+=`<div class="szv2-sub"><div class="szv2-sub-ttl">Medida del fondo</div><div class="szv2-grid">`;
+    html+=s.fondo.map(o=>{
+      const pr=o.price>0?`+${o.price.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})} €`:`0,00 €`;
+      return`<div class="szv2-card${curF===o.id?' vsel':''}" onclick="cSel('tamano_fondo','${o.id}')"><div class="szv2-img">${traySVG(o.val,'top')}</div><div class="szv2-nm">${o.val} de fondo</div><div class="szv2-pr${o.price>0?' paid':''}">${pr}</div></div>`;
+    }).join('');
+    html+=`</div><div class="szv2-sub-ttl" style="margin-top:26px">Medida del largo</div><div class="szv2-grid">`;
+    html+=s.largo.map(o=>{
+      const pr=o.price>0?`+${o.price.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})} €`:`0,00 €`;
+      return`<div class="szv2-card${curL===o.id?' vsel':''}" onclick="cSel('tamano_largo','${o.id}')"><div class="szv2-img">${traySVG(o.val,'right')}</div><div class="szv2-nm">${o.val} de largo</div><div class="szv2-pr${o.price>0?' paid':''}">${pr}</div></div>`;
+    }).join('');
+    html+=`</div></div>`;
+  }
+  return html;
+}
+function rMultiPhoto(s){
+  const cur=CS.sel[s.id]||[];
+  const imgCls=s.imgContain?' photo-card-img--contain':'';
+  const zoomAttr=s.zoomEffect?' data-zoom="1"':'';
+  return'<p class="skip-note">Opcional — puedes añadir varios o ninguno</p><div class="photo-grid">'+s.opts.map(o=>{
+    const isSel=cur.includes(o.id);
+    const priceStr=o.price.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';
+    const isPaid=o.price>0;
+    return`<div class="photo-card${isSel?' vsel':''}" onclick="cTogMulti('${s.id}','${o.id}')"><div class="photo-card-img${imgCls}"${zoomAttr}><img src="${encodeURI(o.img)}" alt="${o.nm}" loading="lazy" decoding="async"/></div><div class="photo-card-lbl"><div class="photo-card-nm">${o.nm}</div><div class="photo-card-pr${isPaid?' paid':''}">${isPaid?'+':''}${priceStr}</div></div></div>`;
+  }).join('')+'</div>';
 }
 function rMulti(s){
   const cur=CS.sel[s.id]||[];
@@ -2713,6 +2745,8 @@ function rContact(s){
 /* ── SELECCIÓN ── */
 function cSel(sid,oid){
   CS.sel[sid]=oid;
+  if(sid==='plato')CS.sel['color']=null;
+  if(sid==='tamano'){CS.sel['tamano_fondo']=null;CS.sel['tamano_largo']=null;}
   renderStep(CS.step);
   updateSummary();
 }
@@ -2767,7 +2801,9 @@ function cCalcTotal(){
   let t=0;
   CSTEPS.forEach(s=>{
     if(!CS.sel[s.id])return;
-    if(s.type==='multi'){(CS.sel[s.id]||[]).forEach(id=>{const o=s.opts.find(x=>x.id===id);if(o)t+=o.price;});}
+    if(s.type==='multi'||s.type==='multi-photo'){(CS.sel[s.id]||[]).forEach(id=>{const o=s.opts.find(x=>x.id===id);if(o)t+=o.price;});}
+    else if(s.type==='colors-dynamic'){const o=getActiveColorOpts().find(x=>x.id===CS.sel[s.id]);if(o)t+=o.price;}
+    else if(s.type==='sizes-v2'){if(CS.sel[s.id]==='amedida'){const f=s.fondo?.find(x=>x.id===CS.sel['tamano_fondo']);const l=s.largo?.find(x=>x.id===CS.sel['tamano_largo']);if(f)t+=f.price;if(l)t+=l.price;}else{const o=s.opts.find(x=>x.id===CS.sel[s.id]);if(o)t+=o.price;}}
     else if(s.opts){const o=s.opts.find(x=>x.id===CS.sel[s.id]);if(o)t+=o.price;}
   });
   return t||null;
@@ -2779,10 +2815,19 @@ function updateSummary(){
   CSTEPS.forEach(s=>{
     const sel=CS.sel[s.id];
     if(!sel)return;
-    if(s.type==='multi'){
+    if(s.type==='multi'||s.type==='multi-photo'){
       (sel||[]).forEach(id=>{const o=s.opts.find(x=>x.id===id);if(o)items.push({k:o.nm,v:'+'+fmt2(o.price)});});
     }else if(s.type==='dims'&&sel.m2){
       items.push({k:'Superficie baño',v:sel.m2+' m²'});
+    }else if(s.type==='colors-dynamic'){
+      const o=getActiveColorOpts().find(x=>x.id===sel);
+      if(o)items.push({k:s.title,v:o.nm+(o.price>0?' +'+fmt2(o.price):'')});
+    }else if(s.type==='sizes-v2'){
+      if(sel==='amedida'){
+        const f=s.fondo?.find(x=>x.id===CS.sel['tamano_fondo']);
+        const l=s.largo?.find(x=>x.id===CS.sel['tamano_largo']);
+        if(f||l){const tot=(f?f.price:0)+(l?l.price:0);items.push({k:s.title,v:`${f?f.val:'?'} × ${l?l.val:'?'}`+(tot>0?' +'+fmt2(tot):'')});}
+      }else{const o=s.opts.find(x=>x.id===sel);if(o)items.push({k:s.title,v:o.nm});}
     }else if(s.opts){
       const o=s.opts.find(x=>x.id===sel);
       if(o)items.push({k:s.title,v:o.nm+(o.price>0?' +'+fmt2(o.price):'')});
@@ -2814,10 +2859,19 @@ function cSubmit(){
   CSTEPS.forEach(s=>{
     const sel=CS.sel[s.id];
     if(!sel||s.type==='contact'||s.type==='dims')return;
-    if(s.type==='multi'){
+    if(s.type==='multi'||s.type==='multi-photo'){
       (sel||[]).forEach(id=>{const o=s.opts.find(x=>x.id===id);if(o){rows+=`<div class="bd-row"><span class="bd-k">+ ${o.nm}</span><span class="bd-v">+${fmt2(o.price)}</span></div>`;lines.push(`+ ${o.nm}: +${fmt2(o.price)}`);}});
+    }else if(s.type==='sizes-v2'){
+      if(sel==='amedida'){
+        const f=s.fondo?.find(x=>x.id===CS.sel['tamano_fondo']);
+        const l=s.largo?.find(x=>x.id===CS.sel['tamano_largo']);
+        const tot=(f?f.price:0)+(l?l.price:0);
+        if(tot>0)rows+=`<div class="bd-row"><span class="bd-k">${s.title}</span><span class="bd-v">+${fmt2(tot)}</span></div>`;
+        lines.push(`- ${s.title}: ${f?f.val:'?'}×${l?l.val:'?'}`);
+      }else{const o=s.opts.find(x=>x.id===sel);if(o)lines.push(`- ${s.title}: ${o.nm}`);}
     }else{
-      const o=s.opts.find(x=>x.id===sel);
+      const opts=s.type==='colors-dynamic'?getActiveColorOpts():(s.opts||[]);
+      const o=opts.find(x=>x.id===sel);
       if(o){if(o.price>0)rows+=`<div class="bd-row"><span class="bd-k">${s.title}</span><span class="bd-v">+${fmt2(o.price)}</span></div>`;lines.push(`- ${s.title}: ${o.nm}`);}
     }
   });
@@ -2843,7 +2897,7 @@ function cSubmit(){
       <p class="result-note">Este presupuesto es orientativo. Un especialista Duchas & Reformas se pondrá en contacto contigo en menos de 24 h para confirmar el precio exacto tras una visita sin compromiso.</p>
       <div class="res-btns">
         <a href="https://wa.me/34600000000?text=${waMsg}" class="btn-wa" target="_blank">💬 Confirmar por WhatsApp</a>
-        <a href="tel:+34900000000" class="btn-primary">📞 Llamar ahora</a>
+        <a href="tel:+34900000000" class="btn-primary">📅 Agendar llamada ahora</a>
       </div>
       <div style="margin-top:18px;text-align:center">
         <button onclick="cReset()" style="background:none;border:1px solid rgba(201,168,76,0.25);color:var(--muted);padding:10px 22px;border-radius:50px;cursor:pointer;font-size:11px;letter-spacing:2px;text-transform:uppercase;transition:all .25s" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold-lt)'" onmouseout="this.style.borderColor='rgba(201,168,76,0.25)';this.style.color='var(--muted)'">↺ Calcular otro presupuesto</button>
@@ -2870,6 +2924,93 @@ function cReset(){
   window.scrollTo({top:document.getElementById('calculadora').offsetTop-80,behavior:'smooth'});
 }
 calcObserver.observe(_calcSec);
+
+/* ── GOLDEN PARTICLES ── */
+(function(){
+  const canvas = document.getElementById('goldCanvas');
+  const hero   = document.querySelector('.hero');
+  if(!canvas||!hero) return;
+  const ctx = canvas.getContext('2d');
+  let W=0, H=0, parts=[];
+  let mx=-9999, my=-9999;
+
+  function resize(){
+    W = canvas.width  = hero.offsetWidth  || window.innerWidth;
+    H = canvas.height = hero.offsetHeight || window.innerHeight;
+  }
+
+  function mkPart(scatter){
+    const bvx = (Math.random()-0.5)*0.5;
+    const bvy = -(0.3 + Math.random()*0.7);
+    return {
+      x:    Math.random() * W,
+      y:    scatter ? Math.random()*H : H + Math.random()*60,
+      r:    1.2 + Math.random()*3,
+      vx:   bvx, vy: bvy,
+      bvx,  bvy,
+      alpha: 0.45 + Math.random()*0.55,
+      life:  scatter ? Math.random()*(200+Math.random()*300) : 0,
+      max:   200 + Math.random()*300,
+      hue:   Math.random()>0.3 ? '201,168,76' : '248,224,140',
+      glow:  Math.random()>0.5,
+    };
+  }
+
+  resize();
+  window.addEventListener('resize', resize, {passive:true});
+  for(let i=0;i<130;i++) parts.push(mkPart(true));
+
+  /* Seguimiento del ratón sobre el hero */
+  hero.addEventListener('mousemove', e=>{
+    const r = hero.getBoundingClientRect();
+    mx = e.clientX - r.left;
+    my = e.clientY - r.top;
+  },{passive:true});
+  hero.addEventListener('mouseleave', ()=>{ mx=-9999; my=-9999; });
+
+  const REPEL=95, REPEL2=REPEL*REPEL;
+
+  (function loop(){
+    ctx.clearRect(0,0,W,H);
+    parts.forEach((p,i)=>{
+
+      /* Repulsión del cursor */
+      const dx=p.x-mx, dy=p.y-my;
+      const d2=dx*dx+dy*dy;
+      if(d2 < REPEL2 && d2>0){
+        const d=Math.sqrt(d2);
+        const f=((REPEL-d)/REPEL)*2.2;
+        p.vx += (dx/d)*f;
+        p.vy += (dy/d)*f;
+      }
+      /* Retorno suave a velocidad base */
+      p.vx += (p.bvx-p.vx)*0.035;
+      p.vy += (p.bvy-p.vy)*0.035;
+
+      p.x += p.vx;
+      p.y += p.vy;
+      p.life++;
+
+      const prog = p.life/p.max;
+      const a    = p.alpha * Math.sin(Math.PI*prog);
+
+      if(p.life>=p.max || p.y<-20 || p.x<-30 || p.x>W+30){
+        parts[i]=mkPart(false); return;
+      }
+      ctx.save();
+      if(p.glow){
+        ctx.shadowBlur  = 12;
+        ctx.shadowColor = `rgba(${p.hue},${a})`;
+      }
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(${p.hue},${a})`;
+      ctx.fill();
+      ctx.restore();
+    });
+    requestAnimationFrame(loop);
+  })();
+})();
 
 /* ── STEAM CURSOR EFFECT ── */
 (function(){
