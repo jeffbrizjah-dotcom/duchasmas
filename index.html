@@ -1361,6 +1361,64 @@ footer{
 .footer-bottom a{color:var(--gold-lt);text-decoration:none}
 
 /* ═══════════════════════════════════════════════
+   COOKIE BANNER
+═══════════════════════════════════════════════ */
+#cookieBanner{
+  position:fixed;bottom:0;left:0;right:0;z-index:10000;
+  background:rgba(8,8,8,0.97);
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  border-top:1px solid rgba(201,168,76,0.28);
+  box-shadow:0 -12px 50px rgba(0,0,0,0.7);
+  padding:22px 32px;
+  transform:translateY(110%);
+  transition:transform .5s cubic-bezier(.4,0,.2,1);
+}
+#cookieBanner.ck-show{transform:translateY(0)}
+.ck-inner{
+  max-width:1100px;margin:0 auto;
+  display:flex;align-items:center;gap:22px;flex-wrap:wrap;
+}
+.ck-icon{font-size:32px;flex-shrink:0;line-height:1}
+.ck-text{flex:1;min-width:220px}
+.ck-title{
+  font-family:'Cinzel',serif;font-size:12px;font-weight:600;
+  letter-spacing:2px;text-transform:uppercase;
+  color:var(--gold-lt);margin-bottom:5px;
+}
+.ck-desc{
+  font-family:'Lato',sans-serif;font-size:12.5px;
+  color:rgba(200,200,200,0.68);line-height:1.65;margin:0;
+}
+.ck-desc a{color:var(--gold-lt);text-decoration:underline;text-underline-offset:3px}
+.ck-btns{display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;align-items:center}
+.ck-accept{
+  font-family:'Lato',sans-serif;font-size:11px;letter-spacing:2px;
+  font-weight:700;text-transform:uppercase;
+  color:var(--sap);background:var(--gold-grad);
+  border:none;border-radius:50px;padding:12px 26px;
+  cursor:pointer;white-space:nowrap;
+  box-shadow:0 4px 18px rgba(201,168,76,0.32);
+  transition:transform .2s,box-shadow .2s;
+}
+.ck-accept:hover{transform:translateY(-2px);box-shadow:0 8px 26px rgba(201,168,76,0.48)}
+.ck-reject{
+  font-family:'Lato',sans-serif;font-size:11px;letter-spacing:1.5px;
+  font-weight:600;text-transform:uppercase;
+  color:rgba(200,200,200,0.6);background:transparent;
+  border:1px solid rgba(201,168,76,0.22);border-radius:50px;
+  padding:12px 22px;cursor:pointer;white-space:nowrap;
+  transition:color .2s,border-color .2s;
+}
+.ck-reject:hover{color:var(--gold-lt);border-color:rgba(201,168,76,0.5)}
+@media(max-width:600px){
+  #cookieBanner{padding:18px 18px}
+  .ck-inner{gap:14px}
+  .ck-icon{display:none}
+  .ck-btns{width:100%}
+  .ck-accept,.ck-reject{flex:1;text-align:center;padding:12px 12px}
+}
+
+/* ═══════════════════════════════════════════════
    SCROLL ANIMATIONS
 ═══════════════════════════════════════════════ */
 .reveal{opacity:0;transform:translateY(36px);transition:opacity .7s ease,transform .7s ease}
@@ -2330,6 +2388,23 @@ body{font-display:swap}
 </div>
 
 
+<!-- ═══════════════════════════════════════
+     COOKIE BANNER
+════════════════════════════════════════ -->
+<div id="cookieBanner" role="dialog" aria-modal="true" aria-label="Aviso de cookies">
+  <div class="ck-inner">
+    <div class="ck-icon">🍪</div>
+    <div class="ck-text">
+      <div class="ck-title">Usamos cookies</div>
+      <p class="ck-desc">Utilizamos cookies propias y de terceros para mejorar tu experiencia y analizar el tráfico. Puedes aceptarlas todas o elegir solo las esenciales. Más info en nuestra <a href="#">política de cookies</a>.</p>
+    </div>
+    <div class="ck-btns">
+      <button class="ck-accept" onclick="ckAccept()">Aceptar todas</button>
+      <button class="ck-reject" onclick="ckReject()">Solo esenciales</button>
+    </div>
+  </div>
+</div>
+
 <!-- ═══════════════════════════════════════════════
      JAVASCRIPT
 ═══════════════════════════════════════════════ -->
@@ -3081,6 +3156,21 @@ calcObserver.observe(_calcSec);
 
 /* ── PASSIVE SCROLL para analytics/header ── */
 let lastScroll=0;
+/* ── COOKIES ── */
+(function(){
+  if(localStorage.getItem('ck_choice'))return;
+  setTimeout(function(){
+    var b=document.getElementById('cookieBanner');
+    if(b)b.classList.add('ck-show');
+  },2200);
+})();
+function ckClose(){
+  var b=document.getElementById('cookieBanner');
+  if(b){b.classList.remove('ck-show');setTimeout(function(){b.style.display='none';},500);}
+}
+function ckAccept(){localStorage.setItem('ck_choice','all');ckClose();}
+function ckReject(){localStorage.setItem('ck_choice','essential');ckClose();}
+
 window.addEventListener('scroll',()=>{
   const y=window.scrollY;
   if(Math.abs(y-lastScroll)<4)return; // throttle
