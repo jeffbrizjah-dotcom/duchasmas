@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8"/>
@@ -103,36 +103,198 @@ body{
 }
 
 /* ═══════════════════════════════════════════════
-   PRELOADER
+   PRELOADER — Luxury Edition
 ═══════════════════════════════════════════════ */
 #preloader{
   position:fixed;inset:0;z-index:9999;
-  background:#050505;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;
-  transition:opacity .6s ease, visibility .6s ease;
+  background:#030303;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+  transition:opacity .9s .05s ease,visibility .9s ease;
 }
 #preloader.out{opacity:0;visibility:hidden}
 
-.pre-logo{
-  font-family:'Cinzel',serif;font-size:clamp(28px,5vw,46px);
-  font-weight:900;letter-spacing:8px;
-  background:var(--gold-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  background-clip:text;
-  animation:fadeUp .8s ease both;
+/* glow central pulsante */
+.pre-glow{
+  position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 70% 55% at 50% 50%,rgba(201,168,76,.10) 0%,transparent 70%);
+  animation:preGlowBreath 2.6s ease-in-out infinite alternate;
 }
-.pre-sub{
-  font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:5px;
-  color:var(--muted);text-transform:uppercase;
-  animation:fadeUp .8s .2s ease both;
+@keyframes preGlowBreath{from{opacity:.4}to{opacity:1}}
+
+/* barrido diagonal dorado */
+.pre-shimmer{
+  position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(125deg,
+    transparent 0%,transparent 35%,
+    rgba(201,168,76,.038) 40%,rgba(201,168,76,.065) 42%,rgba(201,168,76,.038) 44%,
+    transparent 50%,transparent 100%);
+  background-size:200% 200%;
+  animation:preShimmerSwipe 4s ease-in-out infinite;
 }
-.pre-bar-wrap{
-  width:180px;height:2px;background:rgba(201,168,76,0.15);border-radius:2px;overflow:hidden;
-  animation:fadeUp .8s .4s ease both;
+@keyframes preShimmerSwipe{0%{background-position:200% 200%}100%{background-position:-100% -100%}}
+
+/* esquinas doradas */
+.pre-c{
+  position:absolute;
+  width:clamp(26px,4vw,44px);height:clamp(26px,4vw,44px);
+  border-color:rgba(201,168,76,.55);border-style:solid;
+  opacity:0;animation:preCornIn .65s .45s cubic-bezier(.22,1,.36,1) forwards;
 }
-.pre-bar{
-  height:100%;background:var(--gold-grad);border-radius:2px;
-  animation:loadBar 1.6s .5s cubic-bezier(.4,0,.2,1) forwards;width:0;
+.pre-tl{top:clamp(14px,2.5vw,26px);left:clamp(14px,2.5vw,26px);border-width:1.5px 0 0 1.5px}
+.pre-tr{top:clamp(14px,2.5vw,26px);right:clamp(14px,2.5vw,26px);border-width:1.5px 1.5px 0 0}
+.pre-bl{bottom:clamp(14px,2.5vw,26px);left:clamp(14px,2.5vw,26px);border-width:0 0 1.5px 1.5px}
+.pre-br{bottom:clamp(14px,2.5vw,26px);right:clamp(14px,2.5vw,26px);border-width:0 1.5px 1.5px 0}
+@keyframes preCornIn{from{opacity:0;transform:scale(.35)}to{opacity:1;transform:scale(1)}}
+
+/* gotas de agua cayendo */
+.pre-drops{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.pre-drops i{
+  position:absolute;top:-20px;
+  border-radius:50% 50% 65% 35%/50% 50% 70% 30%;
+  opacity:0;will-change:transform,opacity;
+  animation:preDropFall linear infinite;
 }
+.pre-drops i:nth-child(-n+6){background:linear-gradient(160deg,rgba(201,168,76,.68) 0%,rgba(201,168,76,.15) 100%)}
+.pre-drops i:nth-child(n+7) {background:linear-gradient(160deg,rgba(200,232,255,.62) 0%,rgba(120,190,255,.20) 100%)}
+.pre-drops i:nth-child(1) {left:4%;  width:5px;height:8px; animation-duration:2.4s;animation-delay:0s}
+.pre-drops i:nth-child(2) {left:13%;width:3px;height:6px; animation-duration:1.9s;animation-delay:.7s}
+.pre-drops i:nth-child(3) {left:22%;width:6px;height:9px; animation-duration:2.1s;animation-delay:.3s}
+.pre-drops i:nth-child(4) {left:34%;width:4px;height:7px; animation-duration:2.6s;animation-delay:1.1s}
+.pre-drops i:nth-child(5) {left:46%;width:5px;height:8px; animation-duration:1.8s;animation-delay:.2s}
+.pre-drops i:nth-child(6) {left:58%;width:3px;height:5px; animation-duration:2.3s;animation-delay:.9s}
+.pre-drops i:nth-child(7) {left:67%;width:6px;height:9px; animation-duration:2.0s;animation-delay:.5s}
+.pre-drops i:nth-child(8) {left:76%;width:4px;height:7px; animation-duration:2.7s;animation-delay:1.4s}
+.pre-drops i:nth-child(9) {left:84%;width:5px;height:8px; animation-duration:1.7s;animation-delay:.1s}
+.pre-drops i:nth-child(10){left:92%;width:3px;height:6px; animation-duration:2.2s;animation-delay:.8s}
+.pre-drops i:nth-child(11){left:16%;width:4px;height:6px; animation-duration:2.9s;animation-delay:1.6s}
+.pre-drops i:nth-child(12){left:73%;width:3px;height:5px; animation-duration:1.6s;animation-delay:1.2s}
+@keyframes preDropFall{
+  0%  {transform:translateY(0)   scaleX(1);  opacity:0}
+  5%  {opacity:1}
+  88% {opacity:.75}
+  100%{transform:translateY(100vh)scaleX(.82);opacity:0}
+}
+
+/* contenedor central */
+.pre-inner{
+  position:relative;z-index:1;
+  display:flex;flex-direction:column;align-items:center;
+  gap:clamp(7px,1.6vw,15px);
+  text-align:center;padding:0 24px;
+}
+
+/* anillos concéntricos pulsantes */
+.pre-rings{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  pointer-events:none;z-index:0;
+}
+.pre-ring{
+  position:absolute;border-radius:50%;
+  border:1px solid rgba(201,168,76,.22);
+  top:50%;left:50%;
+  animation:preRingBreath ease-in-out infinite;
+}
+.pre-ring:nth-child(1){
+  width:clamp(150px,20vw,230px);height:clamp(150px,20vw,230px);
+  margin-top:calc(clamp(150px,20vw,230px)/-2);margin-left:calc(clamp(150px,20vw,230px)/-2);
+  animation-duration:2.5s;animation-delay:0s;
+}
+.pre-ring:nth-child(2){
+  width:clamp(192px,26vw,290px);height:clamp(192px,26vw,290px);
+  margin-top:calc(clamp(192px,26vw,290px)/-2);margin-left:calc(clamp(192px,26vw,290px)/-2);
+  border-color:rgba(201,168,76,.10);
+  animation-duration:2.5s;animation-delay:.45s;
+}
+.pre-ring:nth-child(3){
+  width:clamp(238px,32vw,355px);height:clamp(238px,32vw,355px);
+  margin-top:calc(clamp(238px,32vw,355px)/-2);margin-left:calc(clamp(238px,32vw,355px)/-2);
+  border-color:rgba(201,168,76,.05);
+  animation-duration:2.5s;animation-delay:.9s;
+}
+@keyframes preRingBreath{
+  0%,100%{transform:scale(1);opacity:.85}
+  50%    {transform:scale(1.055);opacity:.18}
+}
+
+/* logo */
+.pre-logo-img{
+  height:clamp(82px,14vw,145px);
+  filter:drop-shadow(0 0 28px rgba(201,168,76,.55)) drop-shadow(0 4px 18px rgba(0,0,0,.7));
+  will-change:transform,opacity;
+  position:relative;z-index:1;
+  animation:preLogoReveal .95s .15s cubic-bezier(.22,1,.36,1) both;
+}
+@keyframes preLogoReveal{
+  from{opacity:0;transform:scale(.76) translateY(16px)}
+  to  {opacity:1;transform:scale(1)   translateY(0)}
+}
+
+/* nombre de marca */
+.pre-brand{
+  font-family:'Cinzel',serif;
+  font-size:clamp(12px,2.6vw,21px);font-weight:700;
+  letter-spacing:clamp(4px,1.3vw,9px);
+  background:var(--gold-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  text-transform:uppercase;position:relative;z-index:1;
+  animation:preSlideUp .7s .5s ease both;
+}
+
+/* línea divisora */
+.pre-divider{
+  width:clamp(36px,7vw,72px);height:1px;
+  background:linear-gradient(90deg,transparent,rgba(201,168,76,.45),transparent);
+  position:relative;z-index:1;
+  animation:preSlideUp .6s .64s ease both;
+}
+
+/* tagline */
+.pre-tag{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(9px,1.5vw,12px);letter-spacing:clamp(2px,.7vw,4px);
+  color:rgba(255,255,255,.34);text-transform:uppercase;
+  position:relative;z-index:1;
+  animation:preSlideUp .7s .72s ease both;
+}
+@keyframes preSlideUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* barra de progreso */
+.pre-progress{
+  display:flex;flex-direction:column;align-items:center;gap:7px;
+  position:relative;z-index:1;
+  animation:preSlideUp .6s .9s ease both;
+  margin-top:4px;
+}
+.pre-bar-track{
+  width:clamp(165px,30vw,255px);height:1.5px;
+  background:rgba(201,168,76,.13);border-radius:2px;
+  position:relative;overflow:hidden;
+}
+.pre-bar-fill{
+  position:absolute;inset:0;
+  transform-origin:left center;transform:scaleX(0);
+  background:linear-gradient(90deg,#7A5C1E,#C9A84C,#E8D5A3,#C9A84C);
+  border-radius:2px;will-change:transform;
+  animation:preBarScale 1.4s .65s cubic-bezier(.4,0,.2,1) forwards;
+}
+@keyframes preBarScale{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+/* contador */
+.pre-pct{
+  font-family:'Cinzel',serif;font-size:clamp(9px,1.3vw,11px);
+  letter-spacing:3px;color:rgba(201,168,76,.55);font-weight:600;
+}
+
+/* destello de salida */
+.pre-sweep{
+  position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg,transparent 0%,rgba(201,168,76,.09) 50%,transparent 100%);
+  transform:translateX(-110%);
+}
+#preloader.out .pre-sweep{animation:preSweepExit .45s ease forwards}
+@keyframes preSweepExit{to{transform:translateX(110%)}}
+
 @keyframes loadBar{to{width:100%}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
@@ -313,13 +475,13 @@ nav a:hover::after{width:100%}
 }
 .mn-socials{display:flex;gap:8px}
 .mn-soc{
-  width:32px;height:32px;border-radius:50%;
-  border:1px solid rgba(201,168,76,0.18);
+  width:34px;height:34px;border-radius:50%;
+  border:1px solid rgba(201,168,76,0.22);
   display:flex;align-items:center;justify-content:center;
-  font-size:13px;text-decoration:none;color:var(--muted);
+  text-decoration:none;color:rgba(255,255,255,0.55);
   transition:all .25s;
 }
-.mn-soc:hover{border-color:var(--gold);background:rgba(201,168,76,0.1)}
+.mn-soc:hover{border-color:var(--gold);background:rgba(201,168,76,0.12);color:var(--gold)}
 
 /* ═══════════════════════════════════════════════
    HERO
@@ -639,7 +801,6 @@ nav a:hover::after{width:100%}
   70% {transform:translateY(-65%) scaleX(1.8) opacity:.25}
   100%{transform:translateY(-100%) scaleX(2.2) opacity:0}
 }
-
 /* ── FLOATING TRUST BADGE — desktop only ── */
 .trust-badge{
   position:absolute;
@@ -1009,6 +1170,17 @@ nav a:hover::after{width:100%}
   font-style:italic;color:var(--muted);line-height:1.65;text-align:center;
 }
 .privacy-note a{color:var(--gold-lt);text-decoration:none}
+.legal-check{display:flex;align-items:flex-start;gap:12px;cursor:pointer;padding:16px 18px;margin-top:6px;border:1px solid rgba(201,168,76,0.22);border-radius:12px;background:rgba(201,168,76,0.04);transition:border-color .25s,background .25s}
+.legal-check:hover{border-color:rgba(201,168,76,0.4)}
+.legal-check.lc-error{border-color:#e0564a;background:rgba(224,86,74,0.07)}
+.legal-check input{position:absolute;opacity:0;width:0;height:0}
+.legal-check .lc-box{flex-shrink:0;width:22px;height:22px;margin-top:1px;border:2px solid rgba(201,168,76,0.5);border-radius:6px;display:flex;align-items:center;justify-content:center;transition:all .2s;background:transparent}
+.legal-check .lc-box::after{content:'✓';font-size:14px;font-weight:700;color:var(--sap,#0a0a0a);opacity:0;transform:scale(.5);transition:all .2s}
+.legal-check input:checked + .lc-box{background:var(--gold-grad,#C9A84C);border-color:var(--gold,#C9A84C)}
+.legal-check input:checked + .lc-box::after{opacity:1;transform:scale(1)}
+.legal-check .lc-txt{font-family:'Lato',sans-serif;font-size:13.5px;line-height:1.6;color:rgba(255,255,255,0.82)}
+.legal-check .lc-txt a{color:var(--gold-lt);text-decoration:underline}
+.legal-check .lc-req{color:var(--gold-lt);font-weight:700}
 
 /* Result box */
 .result-box{
@@ -1038,7 +1210,17 @@ nav a:hover::after{width:100%}
 .price-range{
   font-family:'Cinzel',serif;font-size:clamp(32px,5vw,52px);font-weight:700;
   background:var(--gold-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  line-height:1;
+  line-height:1;white-space:nowrap;
+}
+/* Móvil: apilado en 2 líneas para que el € nunca quede solo */
+@media(max-width:520px){
+  .price-range{
+    white-space:normal;
+    display:flex;flex-direction:column;align-items:center;
+    gap:2px;line-height:1.15;
+    font-size:clamp(28px,8vw,38px);
+  }
+  .pr-dash{font-size:.4em;letter-spacing:5px;opacity:.65;line-height:1.8}
 }
 .price-iva{font-size:12px;color:var(--muted);margin-top:6px;letter-spacing:.5px}
 
@@ -1146,6 +1328,168 @@ nav a:hover::after{width:100%}
   font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;
   color:var(--muted);line-height:1.75;
 }
+
+/* ═══════════════════════════════════════════════
+   COMPARATIVA DE PLANES
+═══════════════════════════════════════════════ */
+.cmp-sec{padding:100px 24px;background:var(--sap)}
+.cmp-sec .sec-label{text-align:center;margin-bottom:6px}
+.cmp-sec .sec-title{text-align:center;margin-bottom:12px}
+.cmp-sec .sec-sub{text-align:center;max-width:560px;margin:0 auto 52px}
+
+.cmp-wrap{max-width:1100px;margin:0 auto;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-top:16px}
+
+.cmp-table{width:100%;border-collapse:separate;border-spacing:0;min-width:620px}
+
+/* header row */
+.cmp-table thead tr th{padding:0;vertical-align:bottom}
+.cmp-th-empty{width:32%}
+.cmp-th{width:22.6%;padding:18px 10px 0}
+.cmp-head-card{
+  border-radius:16px 16px 0 0;
+  padding:22px 18px 20px;
+  text-align:center;
+  position:relative;
+}
+.cmp-head-card.ch-mod{background:rgba(255,255,255,0.04);border:1px solid rgba(201,168,76,0.15);border-bottom:none}
+.cmp-head-card.ch-exc{background:rgba(201,168,76,0.07);border:1px solid rgba(201,168,76,0.3);border-bottom:none}
+.cmp-head-card.ch-eli{background:linear-gradient(160deg,rgba(201,168,76,0.18),rgba(201,168,76,0.06));border:1px solid rgba(201,168,76,0.55);border-bottom:none}
+
+.cmp-badge-pop{
+  position:absolute;top:-13px;left:50%;transform:translateX(-50%);
+  background:var(--gold-grad);color:var(--sap);
+  font-family:'Lato',sans-serif;font-size:10px;font-weight:800;letter-spacing:1.2px;
+  padding:4px 12px;border-radius:20px;white-space:nowrap;
+}
+.cmp-plan-ico{font-size:24px;margin-bottom:6px}
+.cmp-plan-name{
+  font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;
+  letter-spacing:2px;color:var(--gold);
+}
+.cmp-plan-price{
+  font-family:'Lato',sans-serif;font-size:13px;color:rgba(255,255,255,0.55);
+  margin-top:4px;
+}
+.cmp-plan-price strong{color:var(--gold-lt);font-size:15px}
+.cmp-plan-tag{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;
+  color:var(--gold-lt);margin-top:6px;line-height:1.35;
+}
+.cmp-plan-proof{
+  font-family:'Lato',sans-serif;font-size:10.5px;letter-spacing:.3px;
+  color:rgba(255,255,255,0.45);margin-top:8px;line-height:1.4;
+}
+.cmp-plan-proof strong{color:#4ade80;font-weight:700}
+
+/* body rows */
+.cmp-table tbody tr{transition:background .2s}
+.cmp-table tbody tr:hover td{background:rgba(201,168,76,0.04)}
+
+.cmp-row-label td:first-child{
+  padding:14px 18px 14px 0;
+  font-family:'Lato',sans-serif;font-size:13px;font-weight:700;
+  color:rgba(255,255,255,0.65);letter-spacing:.4px;
+  border-bottom:1px solid rgba(201,168,76,0.08);
+  vertical-align:middle;
+}
+.cmp-cell{
+  text-align:center;padding:14px 10px;
+  border-bottom:1px solid rgba(201,168,76,0.08);
+  font-family:'Lato',sans-serif;font-size:13px;
+  vertical-align:middle;
+}
+.cmp-cell.cm-mod{border-left:1px solid rgba(201,168,76,0.15);border-right:1px solid rgba(201,168,76,0.15)}
+.cmp-cell.cm-exc{border-left:1px solid rgba(201,168,76,0.3);border-right:1px solid rgba(201,168,76,0.3)}
+.cmp-cell.cm-eli{border-left:1px solid rgba(201,168,76,0.55);border-right:1px solid rgba(201,168,76,0.55)}
+
+/* section sub-header */
+.cmp-section-row td{
+  padding:20px 0 8px 0;
+  font-family:'Cormorant Garamond',serif;font-size:13px;font-weight:700;
+  letter-spacing:1.5px;color:var(--gold);text-transform:uppercase;
+  border-bottom:1px solid rgba(201,168,76,0.2);
+}
+.cmp-section-row td:not(:first-child){border-bottom:1px solid rgba(201,168,76,0.2)}
+
+/* icons */
+.ci-yes{color:#4ade80;font-size:16px}
+.ci-no{color:rgba(255,255,255,0.2);font-size:16px}
+.ci-txt{color:var(--white);font-size:12px;line-height:1.3}
+.ci-gold{color:var(--gold-lt);font-weight:700;font-size:12px}
+
+/* footer row CTA */
+.cmp-table tfoot tr td{padding:20px 10px 0}
+.cmp-foot-empty{padding:20px 0 0!important}
+.cmp-cta-card{
+  border-radius:0 0 16px 16px;
+  padding:18px 16px 22px;
+  text-align:center;
+}
+.cmp-cta-card.cf-mod{background:rgba(255,255,255,0.04);border:1px solid rgba(201,168,76,0.15);border-top:none}
+.cmp-cta-card.cf-exc{background:rgba(201,168,76,0.07);border:1px solid rgba(201,168,76,0.3);border-top:none}
+.cmp-cta-card.cf-eli{background:linear-gradient(160deg,rgba(201,168,76,0.18),rgba(201,168,76,0.06));border:1px solid rgba(201,168,76,0.55);border-top:none}
+.cmp-cta-btn{
+  display:inline-block;text-decoration:none;cursor:pointer;
+  font-family:'Lato',sans-serif;font-size:11px;font-weight:800;letter-spacing:1.5px;
+  padding:11px 20px;border-radius:8px;border:none;
+  transition:all .25s;white-space:nowrap;
+}
+.cmp-cta-btn.ccb-mod{background:rgba(201,168,76,0.12);color:var(--gold);border:1px solid rgba(201,168,76,0.3)}
+.cmp-cta-btn.ccb-mod:hover{background:rgba(201,168,76,0.22)}
+.cmp-cta-btn.ccb-exc{background:rgba(201,168,76,0.2);color:var(--gold);border:1px solid rgba(201,168,76,0.5)}
+.cmp-cta-btn.ccb-exc:hover{background:rgba(201,168,76,0.35)}
+.cmp-cta-btn.ccb-eli{background:var(--gold-grad);color:var(--sap)}
+.cmp-cta-btn.ccb-eli:hover{opacity:.88;transform:translateY(-1px)}
+
+/* ── Mobile comparison tabs ── */
+.cmp-mobile{display:none;max-width:480px;margin:0 auto}
+
+@media(max-width:700px){
+  .cmp-sec{padding:70px 16px}
+  .cmp-wrap{display:none}
+  .cmp-mobile{display:block}
+}
+.cmp-tabs{display:flex;gap:0;border-radius:12px;overflow:hidden;border:1px solid rgba(201,168,76,0.25);margin-bottom:20px}
+.cmp-tab-btn{
+  flex:1;padding:11px 6px;background:rgba(255,255,255,0.03);
+  border:none;cursor:pointer;
+  font-family:'Lato',sans-serif;font-size:10px;font-weight:800;letter-spacing:1px;
+  color:rgba(255,255,255,0.38);transition:all .25s;
+  border-right:1px solid rgba(201,168,76,0.15);line-height:1.3;
+}
+.cmp-tab-btn:last-child{border-right:none}
+.cmp-tab-btn.active{background:rgba(201,168,76,0.12);color:var(--gold)}
+.cmp-tab-btn.active.tab-exc{background:rgba(201,168,76,0.2)}
+.cmp-tab-btn.active.tab-eli{background:var(--gold-grad);color:var(--sap)}
+.cmp-tab-panel{display:none}
+.cmp-tab-panel.active{display:block}
+.cmp-mob-card{border-radius:16px;overflow:hidden;border:1px solid rgba(201,168,76,0.15);background:rgba(255,255,255,0.03)}
+.cmp-mob-card.mc-exc{background:rgba(201,168,76,0.07);border-color:rgba(201,168,76,0.3)}
+.cmp-mob-card.mc-eli{background:linear-gradient(160deg,rgba(201,168,76,0.18),rgba(201,168,76,0.06));border-color:rgba(201,168,76,0.55)}
+.cmp-mob-head{padding:22px 20px 16px;text-align:center}
+.cmp-mob-badge{
+  display:inline-block;background:var(--gold-grad);color:var(--sap);
+  font-family:'Lato',sans-serif;font-size:9px;font-weight:800;letter-spacing:1.2px;
+  padding:3px 12px;border-radius:20px;margin-bottom:10px;
+}
+.cmp-mob-sec{
+  padding:10px 16px 6px;
+  font-family:'Cormorant Garamond',serif;font-size:11px;font-weight:700;
+  letter-spacing:1.4px;color:var(--gold);text-transform:uppercase;
+  border-top:1px solid rgba(201,168,76,0.14);
+}
+.cmp-mob-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:9px 16px;
+  border-bottom:1px solid rgba(201,168,76,0.06);
+  font-family:'Lato',sans-serif;
+}
+.cmp-mob-lbl{color:rgba(255,255,255,0.5);font-size:12px;flex:1;padding-right:8px}
+.cmp-mob-val{color:var(--white);font-size:12px;text-align:right;max-width:54%;line-height:1.3}
+.cmp-mob-val.vm-gold{color:var(--gold-lt);font-weight:700}
+.cmp-mob-val.vm-yes{color:#4ade80;font-size:15px}
+.cmp-mob-val.vm-no{color:rgba(255,255,255,0.2);font-size:15px}
+.cmp-mob-foot{padding:16px 20px 22px;text-align:center}
 
 /* ═══════════════════════════════════════════════
    REVIEWS CAROUSEL
@@ -1352,13 +1696,18 @@ footer{
 .footer-bottom{
   border-top:1px solid rgba(201,168,76,0.08);
   padding-top:24px;
-  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;
+  padding-bottom:96px; /* espacio para que la barra flotante de presupuesto no tape los enlaces legales */
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:14px;
 }
 .footer-bottom p{
   font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;
-  color:var(--muted);
+  color:var(--muted);margin:0;
 }
 .footer-bottom a{color:var(--gold-lt);text-decoration:none}
+.f-legal{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px 10px;font-style:normal!important}
+.f-legal a{font-family:'Lato',sans-serif;font-size:13px;letter-spacing:.3px;transition:color .2s}
+.f-legal a:hover{color:var(--gold)}
+.f-legal .f-sep{color:rgba(201,168,76,0.35);font-size:12px}
 
 /* ═══════════════════════════════════════════════
    COOKIE BANNER
@@ -1452,23 +1801,51 @@ footer{
 #wa-btn svg{width:30px;height:30px}
 #wa-btn:hover{transform:scale(1.12) translateY(-3px);box-shadow:0 12px 36px rgba(37,211,102,0.55)}
 
-.wa-tooltip{
-  position:absolute;right:68px;
-  background:rgba(6,11,20,0.92);
-  color:var(--white);
-  font-family:'Lato',sans-serif;font-size:12px;font-weight:700;
-  letter-spacing:1px;white-space:nowrap;
-  padding:8px 14px;border-radius:8px;
-  border:1px solid rgba(37,211,102,0.3);
-  opacity:0;pointer-events:none;
-  transform:translateX(8px);
-  transition:all .25s;
+.wa-tooltip{display:none}
+
+/* ── WA BUBBLE ── */
+#wa-bubble{
+  position:fixed;
+  bottom:82px;right:96px;
+  z-index:599;
+  background:#ffffff;
+  border-radius:16px 16px 4px 16px;
+  padding:13px 18px 13px 16px;
+  box-shadow:0 6px 28px rgba(0,0,0,0.14),0 2px 8px rgba(37,211,102,0.18);
+  border:1px solid rgba(37,211,102,0.25);
+  display:flex;flex-direction:column;gap:2px;
+  animation:waBubbleIn .55s 3.6s cubic-bezier(.34,1.56,.64,1) both;
+  max-width:200px;
 }
-.wa-tooltip::after{
-  content:'';position:absolute;left:100%;top:50%;transform:translateY(-50%);
-  border:6px solid transparent;border-left-color:rgba(6,11,20,0.92);
+#wa-bubble.hidden{display:none}
+#wa-bubble::after{
+  content:'';
+  position:absolute;right:-9px;bottom:14px;
+  border:9px solid transparent;
+  border-left-color:#ffffff;
+  border-right:0;
+  filter:drop-shadow(2px 0 2px rgba(0,0,0,0.07));
 }
-#wa-btn:hover .wa-tooltip{opacity:1;transform:translateX(0)}
+#wa-bubble .wb-title{
+  font-family:'Lato',sans-serif;font-size:13px;font-weight:700;
+  color:#0d0d0d;line-height:1.3;
+}
+#wa-bubble .wb-sub{
+  font-family:'Lato',sans-serif;font-size:12px;font-weight:400;
+  color:#25D366;letter-spacing:.2px;
+}
+#wa-bubble .wb-close{
+  position:absolute;top:6px;right:8px;
+  background:none;border:none;cursor:pointer;
+  color:#aaa;font-size:14px;line-height:1;padding:2px 4px;
+  transition:color .2s;
+}
+#wa-bubble .wb-close:hover{color:#333}
+@keyframes waBubbleIn{
+  from{opacity:0;transform:translateX(12px) scale(.85)}
+  to{opacity:1;transform:translateX(0) scale(1)}
+}
+@media(max-width:600px){#wa-bubble{display:none}}
 
 .wa-ping{
   position:absolute;top:2px;right:2px;
@@ -1495,7 +1872,8 @@ footer{
 /* GPU layers solo en elementos que se animan */
 .shower-3d{will-change:transform}
 .rain-d{will-change:transform,opacity}
-.pre-bar{will-change:transform}
+.pre-bar-fill{will-change:transform}
+.pre-logo-img{will-change:transform,opacity}
 .hero-content{will-change:transform,opacity}
 
 /* Liberar will-change una vez terminada la animación de entrada */
@@ -1669,9 +2047,9 @@ body{font-display:swap}
 .vopt-nx{display:none;width:calc(100% - 40px);margin:0 20px 22px;padding:13px 16px;font-family:'Lato',sans-serif;font-size:11px;letter-spacing:2px;font-weight:700;text-transform:uppercase;color:var(--sap);background:var(--gold-grad);border:none;border-radius:50px;cursor:pointer;box-shadow:0 4px 18px rgba(201,168,76,0.28);transition:transform .2s,box-shadow .2s}
 .vopt-nx:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,168,76,0.42)}
 /* Tarjetas pequeñas (plato ducha) */
-.vopts-sm{display:flex;gap:20px;justify-content:center;margin-bottom:26px;flex-wrap:wrap}
+.vopts-sm{display:flex;gap:16px;justify-content:center;margin-bottom:26px;flex-wrap:wrap}
 .vopt-sm{
-  width:180px;border-radius:var(--r);
+  width:130px;border-radius:var(--r);
   border:1.5px solid rgba(201,168,76,0.12);
   background:rgba(10,10,10,0.7);
   cursor:pointer;transition:all .25s;overflow:hidden;position:relative;
@@ -1680,18 +2058,18 @@ body{font-display:swap}
 .vopt-sm:hover{border-color:rgba(201,168,76,0.4);transform:translateY(-4px)}
 .vopt-sm.vsel{border-color:var(--gold);background:rgba(201,168,76,0.07);box-shadow:0 0 20px rgba(201,168,76,0.15)}
 .vopt-sm-chk{
-  position:absolute;top:7px;right:7px;
-  width:22px;height:22px;border-radius:50%;
+  position:absolute;top:6px;right:6px;
+  width:18px;height:18px;border-radius:50%;
   background:var(--gold-grad);display:none;
   align-items:center;justify-content:center;
-  font-size:10px;color:var(--sap);font-weight:900;z-index:2;
+  font-size:9px;color:var(--sap);font-weight:900;z-index:2;
 }
 .vopt-sm.vsel .vopt-sm-chk{display:flex}
-.vopt-sm img{width:100%;height:220px;object-fit:cover;object-position:center;display:block;border-bottom:1px solid rgba(201,168,76,0.08)}
-.vopt-sm-body{padding:10px 12px 14px}
-.vopt-sm-nm{font-family:'Cinzel',serif;font-size:12px;font-weight:600;color:var(--white);margin-bottom:4px}
+.vopt-sm img{width:100%;height:150px;object-fit:cover;object-position:center;display:block;border-bottom:1px solid rgba(201,168,76,0.08)}
+.vopt-sm-body{padding:8px 10px 11px}
+.vopt-sm-nm{font-family:'Cinzel',serif;font-size:11px;font-weight:600;color:var(--white);margin-bottom:3px}
 .vopt-sm.vsel .vopt-sm-nm{color:var(--gold-lt)}
-.vopt-sm-pr{font-family:'Cinzel',serif;font-size:11px;color:rgba(255,255,255,0.28)}
+.vopt-sm-pr{font-family:'Cinzel',serif;font-size:10px;color:rgba(255,255,255,0.28)}
 
 /* Swatches de color — paleta circular profesional */
 .cswatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:22px 10px;margin-bottom:26px;padding:6px 0}
@@ -1733,6 +2111,8 @@ body{font-display:swap}
 .photo-card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
 .photo-card:hover .photo-card-img img{transform:scale(1.04)}
 .photo-card-img--contain{aspect-ratio:1/1;background:rgba(255,255,255,0.04)}
+.photo-card-img--sm{aspect-ratio:3/4;background:#fff}
+.photo-card-img--sm img{object-fit:contain;padding:10px}
 .photo-card-img--contain img{object-fit:contain;padding:10px}
 /* Zoom lupa */
 [data-zoom]{cursor:zoom-in}
@@ -1814,8 +2194,8 @@ body{font-display:swap}
   .photo-card-lbl{padding:9px 10px 11px}
   .szv2-main{grid-template-columns:repeat(2,1fr);gap:14px}
   .szv2-grid{grid-template-columns:repeat(2,1fr);gap:10px}
-  .vopts-sm{gap:12px}
-  .vopt-sm{width:calc(50% - 6px)}
+  .vopts-sm{gap:10px}
+  .vopt-sm{width:calc(50% - 5px)}
   .csw-img-grid{grid-template-columns:repeat(2,1fr);gap:12px}
   .btn-nx2{padding:14px 28px;font-size:12px;letter-spacing:2px}
   .calc-nav2{margin-top:8px;padding-top:18px}
@@ -1849,6 +2229,29 @@ body{font-display:swap}
   [data-zoom]{cursor:default}
   [data-zoom]::after{display:none}
 }
+/* ═══ MODAL LEGAL (privacidad / aviso legal / cookies) ═══ */
+#legalModal{position:fixed;inset:0;z-index:10000;display:none;align-items:center;justify-content:center;padding:24px}
+#legalModal.open{display:flex}
+#legalModal .lg-backdrop{position:absolute;inset:0;background:rgba(0,0,0,0.78);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0;transition:opacity .35s}
+#legalModal.open .lg-backdrop{opacity:1}
+.lg-box{position:relative;width:100%;max-width:760px;max-height:86vh;display:flex;flex-direction:column;background:linear-gradient(180deg,#111 0%,#0b0b0b 100%);border:1px solid rgba(201,168,76,0.28);border-radius:18px;box-shadow:0 30px 90px rgba(0,0,0,0.7);overflow:hidden;transform:translateY(24px) scale(.97);opacity:0;transition:transform .4s cubic-bezier(.2,.8,.2,1),opacity .4s}
+#legalModal.open .lg-box{transform:translateY(0) scale(1);opacity:1}
+.lg-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 26px;border-bottom:1px solid rgba(201,168,76,0.16);background:rgba(201,168,76,0.04)}
+.lg-title{font-family:'Cinzel',serif;font-size:clamp(17px,3vw,22px);font-weight:700;background:var(--gold-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.2}
+.lg-close{flex-shrink:0;width:38px;height:38px;border-radius:50%;border:1px solid rgba(201,168,76,0.3);background:transparent;color:var(--gold);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .25s}
+.lg-close:hover{background:var(--gold);color:var(--sap);transform:rotate(90deg)}
+.lg-body{padding:24px 26px 30px;overflow-y:auto;color:rgba(255,255,255,0.78);font-family:'Lato',sans-serif;font-size:14px;line-height:1.75}
+.lg-body::-webkit-scrollbar{width:8px}
+.lg-body::-webkit-scrollbar-thumb{background:rgba(201,168,76,0.3);border-radius:4px}
+.lg-body h3{font-family:'Cinzel',serif;color:var(--gold-lt,#F0D070);font-size:15px;font-weight:700;margin:22px 0 8px;letter-spacing:.5px}
+.lg-body h3:first-child{margin-top:0}
+.lg-body p{margin:0 0 12px}
+.lg-body ul{margin:0 0 12px;padding-left:20px}
+.lg-body li{margin-bottom:6px}
+.lg-body a{color:var(--gold);text-decoration:underline}
+.lg-body .lg-ph{color:#E8B84B;background:rgba(201,168,76,0.12);padding:1px 6px;border-radius:4px;font-weight:700;font-size:.92em;white-space:nowrap}
+.lg-body .lg-upd{margin-top:24px;padding-top:16px;border-top:1px solid rgba(201,168,76,0.14);font-size:12px;color:var(--muted)}
+@media(max-width:560px){.lg-head{padding:18px 18px}.lg-body{padding:20px 18px 24px;font-size:13.5px}}
 </style>
 </head>
 <body>
@@ -1857,8 +2260,32 @@ body{font-display:swap}
      PRELOADER
 ════════════════════════════════════════ -->
 <div id="preloader">
-  <img src="logo.png" alt="Duchas & Reformas" style="height:clamp(100px,18vw,160px);filter:drop-shadow(0 4px 24px rgba(201,168,76,0.45));animation:fadeUp .8s ease both;"/>
-  <div class="pre-bar-wrap" style="margin-top:-6px"><div class="pre-bar"></div></div>
+  <div class="pre-glow"></div>
+  <div class="pre-shimmer"></div>
+  <div class="pre-c pre-tl"></div>
+  <div class="pre-c pre-tr"></div>
+  <div class="pre-c pre-bl"></div>
+  <div class="pre-c pre-br"></div>
+  <div class="pre-drops">
+    <i></i><i></i><i></i><i></i><i></i><i></i>
+    <i></i><i></i><i></i><i></i><i></i><i></i>
+  </div>
+  <div class="pre-inner">
+    <div class="pre-rings">
+      <div class="pre-ring"></div>
+      <div class="pre-ring"></div>
+      <div class="pre-ring"></div>
+    </div>
+    <img src="logo.png" alt="Duchas &amp; Reformas" class="pre-logo-img"/>
+    <div class="pre-brand">Duchas &amp; Reformas</div>
+    <div class="pre-divider"></div>
+    <div class="pre-tag">Reformas de Lujo · Instalación Express</div>
+    <div class="pre-progress">
+      <div class="pre-bar-track"><div class="pre-bar-fill"></div></div>
+      <div class="pre-pct" id="prePct">0%</div>
+    </div>
+  </div>
+  <div class="pre-sweep"></div>
 </div>
 
 <!-- ═══════════════════════════════════════
@@ -1881,7 +2308,7 @@ body{font-display:swap}
   </nav>
 
   <div class="h-cta">
-    <a href="tel:+34900000000" class="btn-call">📅 Agendar llamada</a>
+    <a href="https://wa.me/34613714927?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20llamada%20para%20hablar%20sobre%20mi%20reforma%20de%20ba%C3%B1o." class="btn-call" target="_blank" rel="noopener">📅 Agendar llamada</a>
     <button class="burger" id="burgerBtn" aria-label="Menú">
       <span></span><span></span><span></span>
     </button>
@@ -1929,16 +2356,22 @@ body{font-display:swap}
     </a>
   </div>
   <div class="mn-bottom">
-    <a href="tel:+34900000000" class="mn-cta">📞 Llamar ahora</a>
+    <a href="https://wa.me/34613714927?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20llamada%20para%20hablar%20sobre%20mi%20reforma%20de%20ba%C3%B1o." class="mn-cta" target="_blank" rel="noopener">📅 Agendar llamada</a>
     <div class="mn-footer">
       <div class="mn-foot-info">
-        <span>📞 900 000 000</span>
-        <span>✉ info@duchasmas.es</span>
+        <span>📞 602 53 60 81</span>
+        <span>✉ ducha2125@gmail.com</span>
       </div>
       <div class="mn-socials">
-        <a href="#" class="mn-soc" aria-label="Instagram">📷</a>
-        <a href="#" class="mn-soc" aria-label="Facebook">👍</a>
-        <a href="#" class="mn-soc" aria-label="WhatsApp">💬</a>
+        <a href="#" class="mn-soc" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="#" class="mn-soc" aria-label="TikTok">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/duchaymas" target="_blank" rel="noopener noreferrer" class="mn-soc" aria-label="Facebook">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
       </div>
     </div>
   </div>
@@ -1950,8 +2383,6 @@ body{font-display:swap}
 <section class="hero">
   <!-- Golden particles canvas -->
   <canvas id="goldCanvas" style="position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;"></canvas>
-  <!-- Steam cursor canvas -->
-  <canvas id="steamCanvas" style="position:absolute;inset:0;width:100%;height:100%;z-index:10;pointer-events:none;"></canvas>
   <!-- Floating trust badge — desktop only -->
   <div class="trust-badge">
     <div class="tb-score">
@@ -2012,7 +2443,7 @@ body{font-display:swap}
       <a href="#calculadora" class="btn-primary">
         ✦ Calcular mi presupuesto
       </a>
-      <a href="tel:+34900000000" class="btn-secondary">
+      <a href="https://wa.me/34613714927?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20llamada%20para%20hablar%20sobre%20mi%20reforma%20de%20ba%C3%B1o." class="btn-secondary" target="_blank" rel="noopener">
         ☎ Agendar llamada
       </a>
     </div>
@@ -2081,7 +2512,7 @@ body{font-display:swap}
           <div class="srv-price-block">
             <span class="srv-price-label">desde</span>
             <span class="srv-price-num">2.290 €</span>
-            <a href="#calculadora" class="srv-btn">Calcular presupuesto →</a>
+            <a href="#calculadora" class="srv-btn" onclick="openPlan('exclusive');return false;">Calcular presupuesto →</a>
           </div>
         </div>
       </div>
@@ -2095,12 +2526,12 @@ body{font-display:swap}
           <div class="srv-price-block">
             <span class="srv-price-label">desde</span>
             <span class="srv-price-num">1.990 €</span>
-            <a href="#calculadora" class="srv-btn">Calcular presupuesto →</a>
+            <a href="#calculadora" class="srv-btn" onclick="openPlan('luxe');return false;">Calcular presupuesto →</a>
           </div>
         </div>
       </div>
       <div class="srv-card reveal" data-delay="3">
-        <div class="srv-img-wrap"><img src="plan-medium.png" alt="MODERADO" loading="lazy" decoding="async"/></div>
+        <div class="srv-img-wrap"><img src="plan medium foto de plan.PNG" alt="MODERADO" loading="lazy" decoding="async"/></div>
         <div class="srv-body">
           <span class="srv-badge">Mejor precio</span>
           <div class="srv-name">MODERADO</div>
@@ -2109,7 +2540,7 @@ body{font-display:swap}
           <div class="srv-price-block">
             <span class="srv-price-label">desde</span>
             <span class="srv-price-num">1.690 €</span>
-            <a href="#calculadora" class="srv-btn">Calcular presupuesto →</a>
+            <a href="#calculadora" class="srv-btn" onclick="openPlan('medium');return false;">Calcular presupuesto →</a>
           </div>
         </div>
       </div>
@@ -2197,6 +2628,725 @@ body{font-display:swap}
 </section>
 
 <!-- ═══════════════════════════════════════
+     COMPARATIVA DE PLANES
+════════════════════════════════════════ -->
+<section class="cmp-sec reveal">
+  <span class="sec-label">Elige tu reforma</span>
+  <h2 class="sec-title">Comparativa de <span class="gold-text">planes</span></h2>
+  <p class="sec-sub">Descubre exactamente qué incluye cada plan y elige el que mejor se adapta a tu baño y presupuesto.</p>
+
+  <div class="cmp-wrap">
+    <table class="cmp-table" role="table">
+      <thead>
+        <tr>
+          <th class="cmp-th-empty"></th>
+          <th class="cmp-th">
+            <div class="cmp-head-card ch-mod">
+              <div class="cmp-plan-ico">⭐</div>
+              <div class="cmp-plan-name">MODERADO</div>
+              <div class="cmp-plan-price">desde <strong>1.690 €</strong></div>
+              <div class="cmp-plan-tag">"Renueva sin gastar de más"</div>
+              <div class="cmp-plan-proof">Ideal en pisos de alquiler y segunda vivienda</div>
+            </div>
+          </th>
+          <th class="cmp-th">
+            <div class="cmp-head-card ch-exc">
+              <div class="cmp-badge-pop">MÁS POPULAR</div>
+              <div class="cmp-plan-ico">✨</div>
+              <div class="cmp-plan-name">EXCLUSIVO</div>
+              <div class="cmp-plan-price">desde <strong>1.990 €</strong></div>
+              <div class="cmp-plan-tag">"El equilibrio perfecto"</div>
+              <div class="cmp-plan-proof"><strong>El 67%</strong> de nuestros clientes elige este plan</div>
+            </div>
+          </th>
+          <th class="cmp-th">
+            <div class="cmp-head-card ch-eli">
+              <div class="cmp-plan-ico">🏆</div>
+              <div class="cmp-plan-name">ELITE</div>
+              <div class="cmp-plan-price">desde <strong>2.290 €</strong></div>
+              <div class="cmp-plan-tag">"Tu baño de hotel 5 estrellas"</div>
+              <div class="cmp-plan-proof">El favorito en chalets y reformas integrales</div>
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <!-- MATERIALES -->
+        <tr class="cmp-section-row">
+          <td colspan="4">Materiales</td>
+        </tr>
+        <tr class="cmp-row-label">
+          <td>Plato de ducha</td>
+          <td class="cmp-cell cm-mod"><span class="ci-txt">Acrílico reforzado</span></td>
+          <td class="cmp-cell cm-exc"><span class="ci-txt">Resina mineral</span></td>
+          <td class="cmp-cell cm-eli"><span class="ci-gold">Resina mineral Premium</span></td>
+        </tr>
+        <tr class="cmp-row-label">
+          <td>Mampara</td>
+          <td class="cmp-cell cm-mod"><span class="ci-txt">Vidrio templado con perfil</span></td>
+          <td class="cmp-cell cm-exc"><span class="ci-txt">Vidrio templado premium</span></td>
+          <td class="cmp-cell cm-eli"><span class="ci-gold">Sin marco · máxima transparencia</span></td>
+        </tr>
+        <tr class="cmp-row-label">
+          <td>Grifería</td>
+          <td class="cmp-cell cm-mod"><span class="ci-txt">Monomando cromo</span></td>
+          <td class="cmp-cell cm-exc"><span class="ci-txt">Kit duchón XL cromo</span></td>
+          <td class="cmp-cell cm-eli"><span class="ci-gold">Acero inoxidable System Touch</span></td>
+        </tr>
+        <tr class="cmp-row-label">
+          <td>Alicatado incluido</td>
+          <td class="cmp-cell cm-mod"><span class="ci-txt">Hasta 50 cm (zócalo)</span></td>
+          <td class="cmp-cell cm-exc"><span class="ci-txt">Hasta 50 cm (zócalo)</span></td>
+          <td class="cmp-cell cm-eli"><span class="ci-txt">Hasta 50 cm (zócalo)</span></td>
+        </tr>
+        <tr class="cmp-row-label">
+          <td>Acabado rejilla</td>
+          <td class="cmp-cell cm-mod"><span class="ci-txt">Color estándar</span></td>
+          <td class="cmp-cell cm-exc"><span class="ci-txt">Oculta o color</span></td>
+          <td class="cmp-cell cm-eli"><span class="ci-gold">Oculta integrada</span></td>
+        </tr>
+
+        <!-- SERVICIO -->
+        <tr class="cmp-section-row">
+          <td colspan="4">Servicio e instalación</td>
+        </tr>
+        <tr class="cmp-row-label">
+          <td>Instalación express</td>
+          <td class="cmp-cell cm-mod"><span class="ci-yes">✓</span></td>
+          <td class="cmp-cell cm-exc"><span class="ci-yes">✓</span></td>
+          <td class="cmp-cell cm-eli"><span class="ci-yes">✓</span></td>
+        </tr>
+        <tr class="cmp-row-label">
+          <td>Sin obra ni polvo</td>
+          <td class="cmp-cell cm-mod"><span class="ci-yes">✓</span></td>
+          <td class="cmp-cell cm-exc"><span class="ci-yes">✓</span></td>
+          <td class="cmp-cell cm-eli"><span class="ci-yes">✓</span></td>
+        </tr>
+        <tr class="cmp-row-label">
+          <td>Retirada de bañera</td>
+          <td class="cmp-cell cm-mod"><span class="ci-yes">✓</span></td>
+          <td class="cmp-cell cm-exc"><span class="ci-yes">✓</span></td>
+          <td class="cmp-cell cm-eli"><span class="ci-yes">✓</span></td>
+        </tr>
+        <tr class="cmp-row-label">
+          <td>Presupuesto sin compromiso</td>
+          <td class="cmp-cell cm-mod"><span class="ci-yes">✓</span></td>
+          <td class="cmp-cell cm-exc"><span class="ci-yes">✓</span></td>
+          <td class="cmp-cell cm-eli"><span class="ci-yes">✓</span></td>
+        </tr>
+        <tr class="cmp-row-label">
+          <td>Visita técnica previa</td>
+          <td class="cmp-cell cm-mod"><span class="ci-yes">✓</span></td>
+          <td class="cmp-cell cm-exc"><span class="ci-yes">✓</span></td>
+          <td class="cmp-cell cm-eli"><span class="ci-yes">✓</span></td>
+        </tr>
+
+        <!-- VENTAJAS EXCLUSIVAS -->
+        <tr class="cmp-section-row">
+          <td colspan="4">Ventajas exclusivas</td>
+        </tr>
+        <tr class="cmp-row-label">
+          <td>Asesoría de diseño incluida</td>
+          <td class="cmp-cell cm-mod"><span class="ci-no">—</span></td>
+          <td class="cmp-cell cm-exc"><span class="ci-yes">✓</span></td>
+          <td class="cmp-cell cm-eli"><span class="ci-yes">✓</span></td>
+        </tr>
+        <tr class="cmp-row-label">
+          <td>Gestor personal de proyecto</td>
+          <td class="cmp-cell cm-mod"><span class="ci-no">—</span></td>
+          <td class="cmp-cell cm-exc"><span class="ci-no">—</span></td>
+          <td class="cmp-cell cm-eli"><span class="ci-yes">✓</span></td>
+        </tr>
+        <tr class="cmp-row-label">
+          <td>Instalación prioritaria</td>
+          <td class="cmp-cell cm-mod"><span class="ci-txt">Agenda estándar</span></td>
+          <td class="cmp-cell cm-exc"><span class="ci-txt">Agenda rápida</span></td>
+          <td class="cmp-cell cm-eli"><span class="ci-gold">Agenda preferente</span></td>
+        </tr>
+        <tr class="cmp-row-label">
+          <td>Línea WhatsApp prioritaria</td>
+          <td class="cmp-cell cm-mod"><span class="ci-no">—</span></td>
+          <td class="cmp-cell cm-exc"><span class="ci-no">—</span></td>
+          <td class="cmp-cell cm-eli"><span class="ci-yes">✓</span></td>
+        </tr>
+
+      </tbody>
+      <tfoot>
+        <tr>
+          <td class="cmp-foot-empty"></td>
+          <td class="cmp-th" style="padding:0 10px 0">
+            <div class="cmp-cta-card cf-mod">
+              <button class="cmp-cta-btn ccb-mod" onclick="document.getElementById('calculadora').scrollIntoView({behavior:'smooth'});setTimeout(()=>{const c=document.querySelector('[data-id=medium]');if(c)c.click();},600)">ELEGIR PLAN</button>
+            </div>
+          </td>
+          <td class="cmp-th" style="padding:0 10px 0">
+            <div class="cmp-cta-card cf-exc">
+              <button class="cmp-cta-btn ccb-exc" onclick="document.getElementById('calculadora').scrollIntoView({behavior:'smooth'});setTimeout(()=>{const c=document.querySelector('[data-id=luxe]');if(c)c.click();},600)">ELEGIR PLAN</button>
+            </div>
+          </td>
+          <td class="cmp-th" style="padding:0 10px 0">
+            <div class="cmp-cta-card cf-eli">
+              <button class="cmp-cta-btn ccb-eli" onclick="document.getElementById('calculadora').scrollIntoView({behavior:'smooth'});setTimeout(()=>{const c=document.querySelector('[data-id=exclusive]');if(c)c.click();},600)">ELEGIR PLAN</button>
+            </div>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <!-- Mobile comparison tabs (hidden on desktop) -->
+  <div class="cmp-mobile" id="cmpMobileD">
+    <div class="cmp-tabs">
+      <button class="cmp-tab-btn tab-mod active" onclick="cmpTab('mod')">⭐<br/>MODERADO</button>
+      <button class="cmp-tab-btn tab-exc" onclick="cmpTab('exc')">✨<br/>EXCLUSIVO</button>
+      <button class="cmp-tab-btn tab-eli" onclick="cmpTab('eli')">🏆<br/>ELITE</button>
+    </div>
+
+    <!-- MODERADO -->
+    <div class="cmp-tab-panel active" id="cmp-mod">
+      <div class="cmp-mob-card mc-mod">
+        <div class="cmp-mob-head">
+          <div class="cmp-plan-ico">⭐</div>
+          <div class="cmp-plan-name">MODERADO</div>
+          <div class="cmp-plan-price">desde <strong>1.690 €</strong></div>
+          <div class="cmp-plan-tag">"Renueva sin gastar de más"</div>
+          <div class="cmp-plan-proof">Ideal en pisos de alquiler y segunda vivienda</div>
+        </div>
+        <div class="cmp-mob-sec">Materiales</div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Plato de ducha</span><span class="cmp-mob-val">Acrílico reforzado</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Mampara</span><span class="cmp-mob-val">Vidrio templado con perfil</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Grifería</span><span class="cmp-mob-val">Monomando cromo</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Alicatado incluido</span><span class="cmp-mob-val">Hasta 50 cm (zócalo)</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Acabado rejilla</span><span class="cmp-mob-val">Color estándar</span></div>
+        <div class="cmp-mob-sec">Servicio e instalación</div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Instalación express</span><span class="cmp-mob-val vm-yes">✓</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Sin obra ni polvo</span><span class="cmp-mob-val vm-yes">✓</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Retirada de bañera</span><span class="cmp-mob-val vm-yes">✓</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Presupuesto sin compromiso</span><span class="cmp-mob-val vm-yes">✓</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Visita técnica previa</span><span class="cmp-mob-val vm-yes">✓</span></div>
+        <div class="cmp-mob-sec">Ventajas exclusivas</div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Asesoría de diseño</span><span class="cmp-mob-val vm-no">—</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Gestor personal</span><span class="cmp-mob-val vm-no">—</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Instalación prioritaria</span><span class="cmp-mob-val">Agenda estándar</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">WhatsApp prioritario</span><span class="cmp-mob-val vm-no">—</span></div>
+        <div class="cmp-mob-foot">
+          <button class="cmp-cta-btn ccb-mod" onclick="document.getElementById('calculadora').scrollIntoView({behavior:'smooth'});setTimeout(()=>{const c=document.querySelector('[data-id=medium]');if(c)c.click();},600)">ELEGIR PLAN</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXCLUSIVO -->
+    <div class="cmp-tab-panel" id="cmp-exc">
+      <div class="cmp-mob-card mc-exc">
+        <div class="cmp-mob-head">
+          <div class="cmp-mob-badge">MÁS POPULAR</div>
+          <div class="cmp-plan-ico">✨</div>
+          <div class="cmp-plan-name">EXCLUSIVO</div>
+          <div class="cmp-plan-price">desde <strong>1.990 €</strong></div>
+          <div class="cmp-plan-tag">"El equilibrio perfecto"</div>
+          <div class="cmp-plan-proof"><strong>El 67%</strong> de nuestros clientes elige este plan</div>
+        </div>
+        <div class="cmp-mob-sec">Materiales</div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Plato de ducha</span><span class="cmp-mob-val">Resina mineral</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Mampara</span><span class="cmp-mob-val">Vidrio templado premium</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Grifería</span><span class="cmp-mob-val">Kit duchón XL cromo</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Alicatado incluido</span><span class="cmp-mob-val">Hasta 50 cm (zócalo)</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Acabado rejilla</span><span class="cmp-mob-val">Oculta o color</span></div>
+        <div class="cmp-mob-sec">Servicio e instalación</div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Instalación express</span><span class="cmp-mob-val vm-yes">✓</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Sin obra ni polvo</span><span class="cmp-mob-val vm-yes">✓</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Retirada de bañera</span><span class="cmp-mob-val vm-yes">✓</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Presupuesto sin compromiso</span><span class="cmp-mob-val vm-yes">✓</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Visita técnica previa</span><span class="cmp-mob-val vm-yes">✓</span></div>
+        <div class="cmp-mob-sec">Ventajas exclusivas</div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Asesoría de diseño</span><span class="cmp-mob-val vm-yes">✓</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Gestor personal</span><span class="cmp-mob-val vm-no">—</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Instalación prioritaria</span><span class="cmp-mob-val">Agenda rápida</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">WhatsApp prioritario</span><span class="cmp-mob-val vm-no">—</span></div>
+        <div class="cmp-mob-foot">
+          <button class="cmp-cta-btn ccb-exc" onclick="document.getElementById('calculadora').scrollIntoView({behavior:'smooth'});setTimeout(()=>{const c=document.querySelector('[data-id=luxe]');if(c)c.click();},600)">ELEGIR PLAN</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ELITE -->
+    <div class="cmp-tab-panel" id="cmp-eli">
+      <div class="cmp-mob-card mc-eli">
+        <div class="cmp-mob-head">
+          <div class="cmp-plan-ico">🏆</div>
+          <div class="cmp-plan-name">ELITE</div>
+          <div class="cmp-plan-price">desde <strong>2.290 €</strong></div>
+          <div class="cmp-plan-tag">"Tu baño de hotel 5 estrellas"</div>
+          <div class="cmp-plan-proof">El favorito en chalets y reformas integrales</div>
+        </div>
+        <div class="cmp-mob-sec">Materiales</div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Plato de ducha</span><span class="cmp-mob-val vm-gold">Resina mineral Premium</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Mampara</span><span class="cmp-mob-val vm-gold">Sin marco · máx. transparencia</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Grifería</span><span class="cmp-mob-val vm-gold">Acero inox. System Touch</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Alicatado incluido</span><span class="cmp-mob-val">Hasta 50 cm (zócalo)</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Acabado rejilla</span><span class="cmp-mob-val vm-gold">Oculta integrada</span></div>
+        <div class="cmp-mob-sec">Servicio e instalación</div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Instalación express</span><span class="cmp-mob-val vm-yes">✓</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Sin obra ni polvo</span><span class="cmp-mob-val vm-yes">✓</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Retirada de bañera</span><span class="cmp-mob-val vm-yes">✓</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Presupuesto sin compromiso</span><span class="cmp-mob-val vm-yes">✓</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Visita técnica previa</span><span class="cmp-mob-val vm-yes">✓</span></div>
+        <div class="cmp-mob-sec">Ventajas exclusivas</div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Asesoría de diseño</span><span class="cmp-mob-val vm-yes">✓</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Gestor personal</span><span class="cmp-mob-val vm-yes">✓</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Instalación prioritaria</span><span class="cmp-mob-val vm-gold">Agenda preferente</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">WhatsApp prioritario</span><span class="cmp-mob-val vm-yes">✓</span></div>
+        <div class="cmp-mob-foot">
+          <button class="cmp-cta-btn ccb-eli" onclick="document.getElementById('calculadora').scrollIntoView({behavior:'smooth'});setTimeout(()=>{const c=document.querySelector('[data-id=exclusive]');if(c)c.click();},600)">ELEGIR PLAN</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ═══════════════════════════════════════
+     REFORMA COMPLETA (planes independientes)
+════════════════════════════════════════ -->
+<section class="services-sec marble-bg" id="reforma-completa">
+  <div style="position:relative;z-index:1;max-width:1100px;margin:0 auto">
+    <div class="sec-head reveal">
+      <span class="sec-label">Renovación integral</span>
+      <h2 class="sec-title">Reforma <em>completa</em> de baño</h2>
+      <p class="sec-desc">¿Quieres renovar tu baño de principio a fin? Elige uno de nuestros tres planes integrales: muebles, sanitarios, alicatado y mampara, todo incluido y llave en mano.</p>
+    </div>
+    <div class="services-grid">
+
+      <!-- ELITE COMPLETO -->
+      <div class="srv-card reveal" data-delay="1">
+        <div class="srv-img-wrap"><img src="plan-elite-completo.png" alt="ELITE COMPLETO" loading="lazy" decoding="async"/></div>
+        <div class="srv-body">
+          <span class="srv-badge">La top de la gama</span>
+          <div class="srv-name">ELITE COMPLETO</div>
+          <div class="srv-gold-line"></div>
+          <div class="srv-desc">Reforma integral de máxima gama. Mueble suspendido de diseño, doble seno, espejo retroiluminado, sanitarios premium y alicatado de gran formato. Acabados de hotel 5 estrellas.</div>
+          <div class="srv-price-block">
+            <span class="srv-price-label">desde</span>
+            <span class="srv-price-num">11.990 €</span>
+            <a href="#" class="srv-btn" onclick="openCompleto('elite');return false;">Pedir presupuesto →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- EXCLUSIVO COMPLETO -->
+      <div class="srv-card reveal" data-delay="2">
+        <div class="srv-img-wrap"><img src="plan-exclusivo-completo.png" alt="EXCLUSIVO COMPLETO" loading="lazy" decoding="async"/></div>
+        <div class="srv-body">
+          <span class="srv-badge">El más elegido</span>
+          <div class="srv-name">EXCLUSIVO COMPLETO</div>
+          <div class="srv-gold-line"></div>
+          <div class="srv-desc">El equilibrio perfecto entre diseño y precio. Mueble a medida, lavabo de porcelana, mampara de vidrio templado y sanitarios de calidad superior. El baño más elegido por nuestros clientes.</div>
+          <div class="srv-price-block">
+            <span class="srv-price-label">desde</span>
+            <span class="srv-price-num">9.990 €</span>
+            <a href="#" class="srv-btn" onclick="openCompleto('exclusivo');return false;">Pedir presupuesto →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODERADO COMPLETO -->
+      <div class="srv-card reveal" data-delay="3">
+        <div class="srv-img-wrap"><img src="plan-moderado-completo.png" alt="MODERADO COMPLETO" loading="lazy" decoding="async"/></div>
+        <div class="srv-body">
+          <span class="srv-badge">Precio/calidad insuperable</span>
+          <div class="srv-name">MODERADO COMPLETO</div>
+          <div class="srv-gold-line"></div>
+          <div class="srv-desc">Renueva tu baño completo sin gastar de más. Mueble moderno, lavabo integrado, alicatado luminoso y sanitarios fiables. La mejor relación calidad-precio del mercado.</div>
+          <div class="srv-price-block">
+            <span class="srv-price-label">desde</span>
+            <span class="srv-price-num">7.990 €</span>
+            <a href="#" class="srv-btn" onclick="openCompleto('moderado');return false;">Pedir presupuesto →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     COMPARATIVA REFORMA COMPLETA
+════════════════════════════════════════ -->
+<section class="cmp-sec reveal">
+  <span class="sec-label">Elige tu reforma completa</span>
+  <h2 class="sec-title">Comparativa de <span class="gold-text">planes completos</span></h2>
+  <p class="sec-sub">Reforma integral llave en mano: muebles, sanitarios, alicatado, suelo y mampara. Compara qué incluye cada plan y elige el tuyo.</p>
+
+  <div class="cmp-wrap">
+    <table class="cmp-table" role="table">
+      <thead>
+        <tr>
+          <th class="cmp-th-empty"></th>
+          <th class="cmp-th">
+            <div class="cmp-head-card ch-mod">
+              <div class="cmp-plan-ico">⭐</div>
+              <div class="cmp-plan-name">MODERADO COMPLETO</div>
+              <div class="cmp-plan-price">desde <strong>7.990 €</strong></div>
+              <div class="cmp-plan-tag">"Tu baño nuevo, sin complicarte"</div>
+              <div class="cmp-plan-proof">Renovación integral con todo lo esencial</div>
+            </div>
+          </th>
+          <th class="cmp-th">
+            <div class="cmp-head-card ch-exc">
+              <div class="cmp-badge-pop">MÁS POPULAR</div>
+              <div class="cmp-plan-ico">✨</div>
+              <div class="cmp-plan-name">EXCLUSIVO COMPLETO</div>
+              <div class="cmp-plan-price">desde <strong>9.990 €</strong></div>
+              <div class="cmp-plan-tag">"El equilibrio perfecto"</div>
+              <div class="cmp-plan-proof"><strong>El 7 de cada 10</strong> elige este plan integral</div>
+            </div>
+          </th>
+          <th class="cmp-th">
+            <div class="cmp-head-card ch-eli">
+              <div class="cmp-plan-ico">🏆</div>
+              <div class="cmp-plan-name">ELITE COMPLETO</div>
+              <div class="cmp-plan-price">desde <strong>11.990 €</strong></div>
+              <div class="cmp-plan-tag">"Tu baño de hotel 5 estrellas"</div>
+              <div class="cmp-plan-proof">El favorito en chalets y viviendas premium</div>
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <!-- MATERIALES Y ACABADOS -->
+        <tr class="cmp-section-row">
+          <td colspan="4">Materiales y acabados</td>
+        </tr>
+        <tr class="cmp-row-label">
+          <td>Plato de ducha</td>
+          <td class="cmp-cell cm-mod"><span class="ci-txt">Resina antideslizante</span></td>
+          <td class="cmp-cell cm-exc"><span class="ci-txt">Resina mineral</span></td>
+          <td class="cmp-cell cm-eli"><span class="ci-gold">Resina mineral Premium a medida</span></td>
+        </tr>
+        <tr class="cmp-row-label">
+          <td>Mampara</td>
+          <td class="cmp-cell cm-mod"><span class="ci-txt">Vidrio templado con perfil</span></td>
+          <td class="cmp-cell cm-exc"><span class="ci-txt">Vidrio templado premium</span></td>
+          <td class="cmp-cell cm-eli"><span class="ci-gold">Sin marco · máxima transparencia</span></td>
+        </tr>
+        <tr class="cmp-row-label">
+          <td>Azulejo de pared</td>
+          <td class="cmp-cell cm-mod"><span class="ci-txt">Estándar 40×120 cm</span></td>
+          <td class="cmp-cell cm-exc"><span class="ci-txt">Premium 40×120 cm</span></td>
+          <td class="cmp-cell cm-eli"><span class="ci-gold">Gran formato / panel XXL</span></td>
+        </tr>
+        <tr class="cmp-row-label">
+          <td>Plaqueta de suelo</td>
+          <td class="cmp-cell cm-mod"><span class="ci-txt">Porcelánico 60×60 cm</span></td>
+          <td class="cmp-cell cm-exc"><span class="ci-txt">Porcelánico 60×60 / 75×75</span></td>
+          <td class="cmp-cell cm-eli"><span class="ci-gold">Gran formato 75×75 / 30×120</span></td>
+        </tr>
+        <tr class="cmp-row-label">
+          <td>Grifería</td>
+          <td class="cmp-cell cm-mod"><span class="ci-txt">Monomando cromo</span></td>
+          <td class="cmp-cell cm-exc"><span class="ci-txt">Kit duchón XL cromo</span></td>
+          <td class="cmp-cell cm-eli"><span class="ci-gold">Acero inox. System Touch</span></td>
+        </tr>
+
+        <!-- MOBILIARIO Y SANITARIOS -->
+        <tr class="cmp-section-row">
+          <td colspan="4">Mobiliario y sanitarios</td>
+        </tr>
+        <tr class="cmp-row-label">
+          <td>Mueble + lavabo</td>
+          <td class="cmp-cell cm-mod"><span class="ci-txt">Mueble 2 cajones + lavabo</span></td>
+          <td class="cmp-cell cm-exc"><span class="ci-txt">Mueble suspendido + lavabo</span></td>
+          <td class="cmp-cell cm-eli"><span class="ci-gold">Mueble premium + lavabo integral</span></td>
+        </tr>
+        <tr class="cmp-row-label">
+          <td>Espejo</td>
+          <td class="cmp-cell cm-mod"><span class="ci-txt">Con foco</span></td>
+          <td class="cmp-cell cm-exc"><span class="ci-txt">Con LED integrado</span></td>
+          <td class="cmp-cell cm-eli"><span class="ci-gold">LED + USB + antivaho</span></td>
+        </tr>
+        <tr class="cmp-row-label">
+          <td>Inodoro</td>
+          <td class="cmp-cell cm-mod"><span class="ci-txt">Completo blanco</span></td>
+          <td class="cmp-cell cm-exc"><span class="ci-txt">Blanco o negro mate</span></td>
+          <td class="cmp-cell cm-eli"><span class="ci-gold">Inteligente disponible</span></td>
+        </tr>
+        <tr class="cmp-row-label">
+          <td>Color de muebles</td>
+          <td class="cmp-cell cm-mod"><span class="ci-txt">Blancos y maderas</span></td>
+          <td class="cmp-cell cm-exc"><span class="ci-txt">Carta de colores</span></td>
+          <td class="cmp-cell cm-eli"><span class="ci-gold">Carta completa premium</span></td>
+        </tr>
+
+        <!-- SERVICIO E INSTALACIÓN -->
+        <tr class="cmp-section-row">
+          <td colspan="4">Servicio e instalación</td>
+        </tr>
+        <tr class="cmp-row-label">
+          <td>Reforma llave en mano</td>
+          <td class="cmp-cell cm-mod"><span class="ci-yes">✓</span></td>
+          <td class="cmp-cell cm-exc"><span class="ci-yes">✓</span></td>
+          <td class="cmp-cell cm-eli"><span class="ci-yes">✓</span></td>
+        </tr>
+        <tr class="cmp-row-label">
+          <td>Retirada de escombros</td>
+          <td class="cmp-cell cm-mod"><span class="ci-yes">✓</span></td>
+          <td class="cmp-cell cm-exc"><span class="ci-yes">✓</span></td>
+          <td class="cmp-cell cm-eli"><span class="ci-yes">✓</span></td>
+        </tr>
+        <tr class="cmp-row-label">
+          <td>Visita técnica previa</td>
+          <td class="cmp-cell cm-mod"><span class="ci-yes">✓</span></td>
+          <td class="cmp-cell cm-exc"><span class="ci-yes">✓</span></td>
+          <td class="cmp-cell cm-eli"><span class="ci-yes">✓</span></td>
+        </tr>
+        <tr class="cmp-row-label">
+          <td>Plazo de instalación</td>
+          <td class="cmp-cell cm-mod"><span class="ci-txt">Agenda estándar</span></td>
+          <td class="cmp-cell cm-exc"><span class="ci-txt">Agenda rápida</span></td>
+          <td class="cmp-cell cm-eli"><span class="ci-gold">Agenda preferente</span></td>
+        </tr>
+        <tr class="cmp-row-label">
+          <td>Garantía</td>
+          <td class="cmp-cell cm-mod"><span class="ci-txt">2 años</span></td>
+          <td class="cmp-cell cm-exc"><span class="ci-txt">3 años</span></td>
+          <td class="cmp-cell cm-eli"><span class="ci-gold">5 años</span></td>
+        </tr>
+
+        <!-- VENTAJAS EXCLUSIVAS -->
+        <tr class="cmp-section-row">
+          <td colspan="4">Ventajas exclusivas</td>
+        </tr>
+        <tr class="cmp-row-label">
+          <td>Asesoría de diseño incluida</td>
+          <td class="cmp-cell cm-mod"><span class="ci-no">—</span></td>
+          <td class="cmp-cell cm-exc"><span class="ci-yes">✓</span></td>
+          <td class="cmp-cell cm-eli"><span class="ci-yes">✓</span></td>
+        </tr>
+        <tr class="cmp-row-label">
+          <td>Diseño 3D del proyecto</td>
+          <td class="cmp-cell cm-mod"><span class="ci-no">—</span></td>
+          <td class="cmp-cell cm-exc"><span class="ci-no">—</span></td>
+          <td class="cmp-cell cm-eli"><span class="ci-yes">✓</span></td>
+        </tr>
+        <tr class="cmp-row-label">
+          <td>Gestor personal de proyecto</td>
+          <td class="cmp-cell cm-mod"><span class="ci-no">—</span></td>
+          <td class="cmp-cell cm-exc"><span class="ci-no">—</span></td>
+          <td class="cmp-cell cm-eli"><span class="ci-yes">✓</span></td>
+        </tr>
+        <tr class="cmp-row-label">
+          <td>Línea WhatsApp prioritaria</td>
+          <td class="cmp-cell cm-mod"><span class="ci-no">—</span></td>
+          <td class="cmp-cell cm-exc"><span class="ci-no">—</span></td>
+          <td class="cmp-cell cm-eli"><span class="ci-yes">✓</span></td>
+        </tr>
+
+      </tbody>
+      <tfoot>
+        <tr>
+          <td class="cmp-foot-empty"></td>
+          <td class="cmp-th" style="padding:0 10px 0">
+            <div class="cmp-cta-card cf-mod">
+              <button class="cmp-cta-btn ccb-mod" onclick="openCompleto('moderado')">ELEGIR PLAN</button>
+            </div>
+          </td>
+          <td class="cmp-th" style="padding:0 10px 0">
+            <div class="cmp-cta-card cf-exc">
+              <button class="cmp-cta-btn ccb-exc" onclick="openCompleto('exclusivo')">ELEGIR PLAN</button>
+            </div>
+          </td>
+          <td class="cmp-th" style="padding:0 10px 0">
+            <div class="cmp-cta-card cf-eli">
+              <button class="cmp-cta-btn ccb-eli" onclick="openCompleto('elite')">ELEGIR PLAN</button>
+            </div>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <!-- Mobile comparison tabs (hidden on desktop) -->
+  <div class="cmp-mobile" id="cmpMobileR">
+    <div class="cmp-tabs">
+      <button class="cmp-tab-btn tabr-mod active" onclick="cmpTabR('mod')">⭐<br/>MODERADO</button>
+      <button class="cmp-tab-btn tabr-exc" onclick="cmpTabR('exc')">✨<br/>EXCLUSIVO</button>
+      <button class="cmp-tab-btn tabr-eli" onclick="cmpTabR('eli')">🏆<br/>ELITE</button>
+    </div>
+
+    <!-- MODERADO COMPLETO -->
+    <div class="cmp-tab-panel active" id="cmpr-mod">
+      <div class="cmp-mob-card mc-mod">
+        <div class="cmp-mob-head">
+          <div class="cmp-plan-ico">⭐</div>
+          <div class="cmp-plan-name">MODERADO COMPLETO</div>
+          <div class="cmp-plan-price">desde <strong>7.990 €</strong></div>
+          <div class="cmp-plan-tag">"Tu baño nuevo, sin complicarte"</div>
+          <div class="cmp-plan-proof">Renovación integral con todo lo esencial</div>
+        </div>
+        <div class="cmp-mob-sec">Materiales y acabados</div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Plato de ducha</span><span class="cmp-mob-val">Resina antideslizante</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Mampara</span><span class="cmp-mob-val">Vidrio templado con perfil</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Azulejo de pared</span><span class="cmp-mob-val">Estándar 40×120 cm</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Plaqueta de suelo</span><span class="cmp-mob-val">Porcelánico 60×60 cm</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Grifería</span><span class="cmp-mob-val">Monomando cromo</span></div>
+        <div class="cmp-mob-sec">Mobiliario y sanitarios</div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Mueble + lavabo</span><span class="cmp-mob-val">Mueble 2 cajones + lavabo</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Espejo</span><span class="cmp-mob-val">Con foco</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Inodoro</span><span class="cmp-mob-val">Completo blanco</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Color de muebles</span><span class="cmp-mob-val">Blancos y maderas</span></div>
+        <div class="cmp-mob-sec">Servicio e instalación</div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Reforma llave en mano</span><span class="cmp-mob-val vm-yes">✓</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Retirada de escombros</span><span class="cmp-mob-val vm-yes">✓</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Visita técnica previa</span><span class="cmp-mob-val vm-yes">✓</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Plazo de instalación</span><span class="cmp-mob-val">Agenda estándar</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Garantía</span><span class="cmp-mob-val">2 años</span></div>
+        <div class="cmp-mob-sec">Ventajas exclusivas</div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Asesoría de diseño</span><span class="cmp-mob-val vm-no">—</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Diseño 3D</span><span class="cmp-mob-val vm-no">—</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Gestor personal</span><span class="cmp-mob-val vm-no">—</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">WhatsApp prioritario</span><span class="cmp-mob-val vm-no">—</span></div>
+        <div class="cmp-mob-foot">
+          <button class="cmp-cta-btn ccb-mod" onclick="openCompleto('moderado')">ELEGIR PLAN</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXCLUSIVO COMPLETO -->
+    <div class="cmp-tab-panel" id="cmpr-exc">
+      <div class="cmp-mob-card mc-exc">
+        <div class="cmp-mob-head">
+          <div class="cmp-mob-badge">MÁS POPULAR</div>
+          <div class="cmp-plan-ico">✨</div>
+          <div class="cmp-plan-name">EXCLUSIVO COMPLETO</div>
+          <div class="cmp-plan-price">desde <strong>9.990 €</strong></div>
+          <div class="cmp-plan-tag">"El equilibrio perfecto"</div>
+          <div class="cmp-plan-proof"><strong>El 7 de cada 10</strong> elige este plan integral</div>
+        </div>
+        <div class="cmp-mob-sec">Materiales y acabados</div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Plato de ducha</span><span class="cmp-mob-val">Resina mineral</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Mampara</span><span class="cmp-mob-val">Vidrio templado premium</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Azulejo de pared</span><span class="cmp-mob-val">Premium 40×120 cm</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Plaqueta de suelo</span><span class="cmp-mob-val">Porcelánico 60×60 / 75×75</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Grifería</span><span class="cmp-mob-val">Kit duchón XL cromo</span></div>
+        <div class="cmp-mob-sec">Mobiliario y sanitarios</div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Mueble + lavabo</span><span class="cmp-mob-val">Mueble suspendido + lavabo</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Espejo</span><span class="cmp-mob-val">Con LED integrado</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Inodoro</span><span class="cmp-mob-val">Blanco o negro mate</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Color de muebles</span><span class="cmp-mob-val">Carta de colores</span></div>
+        <div class="cmp-mob-sec">Servicio e instalación</div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Reforma llave en mano</span><span class="cmp-mob-val vm-yes">✓</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Retirada de escombros</span><span class="cmp-mob-val vm-yes">✓</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Visita técnica previa</span><span class="cmp-mob-val vm-yes">✓</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Plazo de instalación</span><span class="cmp-mob-val">Agenda rápida</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Garantía</span><span class="cmp-mob-val">3 años</span></div>
+        <div class="cmp-mob-sec">Ventajas exclusivas</div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Asesoría de diseño</span><span class="cmp-mob-val vm-yes">✓</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Diseño 3D</span><span class="cmp-mob-val vm-no">—</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Gestor personal</span><span class="cmp-mob-val vm-no">—</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">WhatsApp prioritario</span><span class="cmp-mob-val vm-no">—</span></div>
+        <div class="cmp-mob-foot">
+          <button class="cmp-cta-btn ccb-exc" onclick="openCompleto('exclusivo')">ELEGIR PLAN</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ELITE COMPLETO -->
+    <div class="cmp-tab-panel" id="cmpr-eli">
+      <div class="cmp-mob-card mc-eli">
+        <div class="cmp-mob-head">
+          <div class="cmp-plan-ico">🏆</div>
+          <div class="cmp-plan-name">ELITE COMPLETO</div>
+          <div class="cmp-plan-price">desde <strong>11.990 €</strong></div>
+          <div class="cmp-plan-tag">"Tu baño de hotel 5 estrellas"</div>
+          <div class="cmp-plan-proof">El favorito en chalets y viviendas premium</div>
+        </div>
+        <div class="cmp-mob-sec">Materiales y acabados</div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Plato de ducha</span><span class="cmp-mob-val vm-gold">Resina mineral Premium</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Mampara</span><span class="cmp-mob-val vm-gold">Sin marco · máx. transparencia</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Azulejo de pared</span><span class="cmp-mob-val vm-gold">Gran formato / panel XXL</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Plaqueta de suelo</span><span class="cmp-mob-val vm-gold">Gran formato 75×75 / 30×120</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Grifería</span><span class="cmp-mob-val vm-gold">Acero inox. System Touch</span></div>
+        <div class="cmp-mob-sec">Mobiliario y sanitarios</div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Mueble + lavabo</span><span class="cmp-mob-val vm-gold">Premium + lavabo integral</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Espejo</span><span class="cmp-mob-val vm-gold">LED + USB + antivaho</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Inodoro</span><span class="cmp-mob-val vm-gold">Inteligente disponible</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Color de muebles</span><span class="cmp-mob-val vm-gold">Carta completa premium</span></div>
+        <div class="cmp-mob-sec">Servicio e instalación</div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Reforma llave en mano</span><span class="cmp-mob-val vm-yes">✓</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Retirada de escombros</span><span class="cmp-mob-val vm-yes">✓</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Visita técnica previa</span><span class="cmp-mob-val vm-yes">✓</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Plazo de instalación</span><span class="cmp-mob-val vm-gold">Agenda preferente</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Garantía</span><span class="cmp-mob-val vm-gold">5 años</span></div>
+        <div class="cmp-mob-sec">Ventajas exclusivas</div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Asesoría de diseño</span><span class="cmp-mob-val vm-yes">✓</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Diseño 3D</span><span class="cmp-mob-val vm-yes">✓</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">Gestor personal</span><span class="cmp-mob-val vm-yes">✓</span></div>
+        <div class="cmp-mob-row"><span class="cmp-mob-lbl">WhatsApp prioritario</span><span class="cmp-mob-val vm-yes">✓</span></div>
+        <div class="cmp-mob-foot">
+          <button class="cmp-cta-btn ccb-eli" onclick="openCompleto('elite')">ELEGIR PLAN</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ═══════════════════════════════════════
+     CTA
+════════════════════════════════════════ -->
+<section class="cta-sec" id="contacto">
+  <div class="cta-inner">
+    <div class="reveal">
+      <span class="sec-label">¿Listo para transformar tu baño?</span>
+      <h2 class="cta-title">Tu <em>reforma completa de lujo</em><br/>a un clic de distancia</h2>
+      <p class="cta-sub">Si te interesa saber el presupuesto de alguna reforma en específico, agenda una llamada con nosotros y conseguiremos el mejor precio para ti.</p>
+      <div class="cta-btns">
+        <a href="https://wa.me/34613714927?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20llamada%20para%20hablar%20sobre%20mi%20reforma%20de%20ba%C3%B1o." class="btn-primary" target="_blank" rel="noopener">✦ Agendar llamada</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     CALCULADOR REFORMA COMPLETA
+════════════════════════════════════════ -->
+<section class="calc-sec" id="calculadora-completo" style="display:none">
+  <div class="calc-container" style="max-width:1100px;margin:0 auto">
+    <div class="sec-head reveal">
+      <span class="sec-label">Configura tu reforma</span>
+      <h2 class="sec-title"><span id="rcSecSubtitle">Reforma completa</span> — paso a paso</h2>
+      <p class="sec-desc">Personaliza cada detalle de tu reforma completa y obtén un presupuesto al instante.</p>
+    </div>
+    <div class="calc-layout">
+      <div class="calc-main" id="rcMain">
+        <div class="cstep-header">
+          <div class="cstep-num">Paso <span id="rcStepNum">2</span> de <span id="rcStepTotal">19</span></div>
+          <div class="cstep-title" id="rcStepTitle"></div>
+          <div class="cstep-bar"><div class="cstep-fill" id="rcStepFill" style="width:9%"></div></div>
+        </div>
+        <div id="rcBody"></div>
+        <div class="calc-nav2">
+          <button class="btn-bk2" id="rcPrev" onclick="rcPrev()" disabled>‹ Anterior</button>
+          <button class="btn-nx2" id="rcNext" onclick="rcNext()">Siguiente ›</button>
+        </div>
+      </div>
+      <div class="calc-summary">
+        <div class="cs-ttl">Tu presupuesto</div>
+        <div id="rcSummary"><div class="cs-empty">Completa los pasos para ver el resumen</div></div>
+        <div class="cs-total">
+          <div class="cs-total-lbl">Total estimado</div>
+          <div class="cs-total-price" id="rcTotal">—</div>
+          <div class="cs-total-iva">IVA incluido · Precio orientativo</div>
+        </div>
+        <button class="cs-cta" onclick="rcJumpContact()">Solicitar presupuesto →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
      REVIEWS CAROUSEL
 ════════════════════════════════════════ -->
 <section class="rev-sec">
@@ -2207,17 +3357,14 @@ body{font-display:swap}
       <span class="rev-panel-lbl">Nuestros clientes opinan</span>
       <div class="rev-panel-score">4.9</div>
       <span class="rev-panel-stars">★★★★★</span>
-      <p class="rev-panel-count">Basado en <strong style="color:var(--white)">+320 reseñas</strong><br/>verificadas en Google y Facebook</p>
+      <p class="rev-panel-count">Basado en <strong style="color:var(--white)">+320 reseñas</strong><br/>verificadas en Google</p>
       <div class="rev-plats">
         <div class="rev-plat">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
         </div>
-        <div class="rev-plat">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-        </div>
-        <span class="rev-plat-txt">Google · Facebook</span>
+        <span class="rev-plat-txt">Google</span>
       </div>
-      <a href="#" class="rev-btn">⭐ Deja tu reseña</a>
+      <a href="https://search.google.com/local/writereview?placeid=ChIJz8sj9p8lQg0R1r75hwiMAGY" target="_blank" rel="noopener noreferrer" class="rev-btn">⭐ Deja tu reseña</a>
     </div>
 
     <!-- Carrusel doble fila -->
@@ -2280,23 +3427,6 @@ body{font-display:swap}
 </section>
 
 <!-- ═══════════════════════════════════════
-     CTA
-════════════════════════════════════════ -->
-<section class="cta-sec" id="contacto">
-  <div class="cta-inner">
-    <div class="reveal">
-      <span class="sec-label">¿Listo para transformar tu baño?</span>
-      <h2 class="cta-title">Tu <em>reforma de lujo</em><br/>a un clic de distancia</h2>
-      <p class="cta-sub">Calcula tu presupuesto ahora mismo o llámanos y un especialista te asesorará sin compromiso.</p>
-      <div class="cta-btns">
-        <a href="#calculadora" class="btn-primary">✦ Calcular presupuesto gratis</a>
-        <a href="tel:+34900000000" class="btn-secondary">📅 Agendar llamada ahora</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════
      FOOTER
 ════════════════════════════════════════ -->
 <footer>
@@ -2317,7 +3447,7 @@ body{font-display:swap}
             <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/>
           </svg>
         </a>
-        <a href="#" class="f-soc-btn" aria-label="Facebook">
+        <a href="https://www.facebook.com/duchaymas" target="_blank" rel="noopener noreferrer" class="f-soc-btn" aria-label="Facebook">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
             <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
           </svg>
@@ -2328,7 +3458,7 @@ body{font-display:swap}
       <div class="f-col-title">Servicios</div>
       <ul class="f-links">
         <li><a href="#">Bañera por Ducha</a></li>
-        <li><a href="#">Reforma Completa</a></li>
+        <li><a href="#contacto">Reforma Completa</a></li>
         <li><a href="#">Ducha de Obra Nueva</a></li>
         <li><a href="#">Mamparas a Medida</a></li>
         <li><a href="#">Fontanería</a></li>
@@ -2347,8 +3477,9 @@ body{font-display:swap}
     <div>
       <div class="f-col-title">Contacto</div>
       <ul class="f-links">
-        <li><a href="tel:+34900000000">📞 900 000 000</a></li>
-        <li><a href="mailto:info@duchasmas.es">✉ info@duchasmas.es</a></li>
+        <li><a href="https://maps.google.com/?q=Calle+T%C3%A9llez+19,+28007+Madrid" target="_blank" rel="noopener">📍 Calle Téllez, 19 · 28007 Madrid (Retiro)</a></li>
+        <li><a href="tel:+34602536081">📞 602 53 60 81</a></li>
+        <li><a href="mailto:ducha2125@gmail.com">✉ ducha2125@gmail.com</a></li>
         <li><a href="#">Horario: L-V 8h–19h</a></li>
         <li><a href="#">Zonas de actuación</a></li>
         <li><a href="#">Presupuesto online</a></li>
@@ -2356,26 +3487,32 @@ body{font-display:swap}
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2026 Duchas & Reformas — Todos los derechos reservados</p>
-    <p>
-      <a href="#">Política de privacidad</a> &nbsp;·&nbsp;
-      <a href="#">Aviso legal</a> &nbsp;·&nbsp;
-      <a href="#">Cookies</a>
+    <p class="f-legal">
+      <a href="#" onclick="openLegal('privacidad');return false;">Política de privacidad</a>
+      <span class="f-sep">·</span>
+      <a href="#" onclick="openLegal('legal');return false;">Aviso legal</a>
+      <span class="f-sep">·</span>
+      <a href="#" onclick="openLegal('cookies');return false;">Cookies</a>
     </p>
+    <p>© 2026 Duchas & Reformas — Todos los derechos reservados</p>
   </div>
 </footer>
 
 <!-- ═══════════════════════════════════════
      WHATSAPP BUTTON
 ════════════════════════════════════════ -->
-<a href="https://wa.me/34600000000?text=Hola%20Duchas%20%26%20Reformas%2C%20me%20gustar%C3%ADa%20solicitar%20informaci%C3%B3n%20sobre%20una%20reforma%20de%20ba%C3%B1o." target="_blank" rel="noopener" id="wa-btn" aria-label="Contactar por WhatsApp">
+<a href="https://wa.me/34613714927?text=Hola%20Duchas%20%26%20Reformas%2C%20me%20gustar%C3%ADa%20solicitar%20informaci%C3%B3n%20sobre%20una%20reforma%20de%20ba%C3%B1o." target="_blank" rel="noopener" id="wa-btn" aria-label="Contactar por WhatsApp">
   <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
     <path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.557 4.126 1.528 5.862L.057 23.215a.75.75 0 00.917.931l5.453-1.431A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.71 9.71 0 01-4.953-1.355l-.355-.214-3.676.964.983-3.589-.233-.37A9.712 9.712 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/>
   </svg>
-  <span class="wa-tooltip">¿Hablamos?</span>
   <span class="wa-ping"></span>
 </a>
+<div id="wa-bubble">
+  <button class="wb-close" onclick="document.getElementById('wa-bubble').classList.add('hidden')" aria-label="Cerrar">✕</button>
+  <span class="wb-title">¿Tienes alguna duda?</span>
+  <span class="wb-sub">¡Hablemos ahora! 💬</span>
+</div>
 
 <!-- ═══════════════════════════════════════
      LIVE TOTAL BAR
@@ -2400,7 +3537,7 @@ body{font-display:swap}
     <div class="ck-icon">🍪</div>
     <div class="ck-text">
       <div class="ck-title">Usamos cookies</div>
-      <p class="ck-desc">Utilizamos cookies propias y de terceros para mejorar tu experiencia y analizar el tráfico. Puedes aceptarlas todas o elegir solo las esenciales. Más info en nuestra <a href="#">política de cookies</a>.</p>
+      <p class="ck-desc">Utilizamos cookies propias y de terceros para mejorar tu experiencia y analizar el tráfico. Puedes aceptarlas todas o elegir solo las esenciales. Más info en nuestra <a href="#" onclick="openLegal('cookies');return false;">política de cookies</a>.</p>
     </div>
     <div class="ck-btns">
       <button class="ck-accept" onclick="ckAccept()">Aceptar todas</button>
@@ -2409,14 +3546,57 @@ body{font-display:swap}
   </div>
 </div>
 
+<!-- ═══════════════════════════════════════
+     MODAL LEGAL (privacidad / legal / cookies)
+════════════════════════════════════════ -->
+<div id="legalModal" role="dialog" aria-modal="true" aria-labelledby="lgTitle">
+  <div class="lg-backdrop" onclick="closeLegal()"></div>
+  <div class="lg-box">
+    <div class="lg-head">
+      <h2 class="lg-title" id="lgTitle">—</h2>
+      <button class="lg-close" onclick="closeLegal()" aria-label="Cerrar">✕</button>
+    </div>
+    <div class="lg-body" id="lgBody"></div>
+  </div>
+</div>
+
 <!-- ═══════════════════════════════════════════════
      JAVASCRIPT
 ═══════════════════════════════════════════════ -->
 <script>
 /* ── PRELOADER ── */
-window.addEventListener('load',()=>{
-  setTimeout(()=>document.getElementById('preloader').classList.add('out'),1800);
-},{once:true});
+(function(){
+  const pct=document.getElementById('prePct');
+  if(pct){
+    let s=null;const dur=1400;
+    function tick(ts){
+      if(!s)s=ts;
+      const p=Math.min((ts-s)/dur,1);
+      pct.textContent=Math.floor(p*100)+'%';
+      if(p<1)requestAnimationFrame(tick);else pct.textContent='100%';
+    }
+    setTimeout(()=>requestAnimationFrame(tick),650);
+  }
+  window.addEventListener('load',()=>{
+    setTimeout(()=>document.getElementById('preloader').classList.add('out'),1900);
+  },{once:true});
+})();
+
+/* ── COMPARISON TABS (mobile) ── */
+function cmpTab(id){
+  const w=document.getElementById('cmpMobileD');
+  w.querySelectorAll('.cmp-tab-btn').forEach(b=>b.classList.remove('active'));
+  w.querySelectorAll('.cmp-tab-panel').forEach(p=>p.classList.remove('active'));
+  w.querySelector('.tab-'+id).classList.add('active');
+  document.getElementById('cmp-'+id).classList.add('active');
+}
+function cmpTabR(id){
+  const w=document.getElementById('cmpMobileR');
+  w.querySelectorAll('.cmp-tab-btn').forEach(b=>b.classList.remove('active'));
+  w.querySelectorAll('.cmp-tab-panel').forEach(p=>p.classList.remove('active'));
+  w.querySelector('.tabr-'+id).classList.add('active');
+  document.getElementById('cmpr-'+id).classList.add('active');
+}
 
 /* ── BURGER ── */
 const burger=document.getElementById('burgerBtn');
@@ -2477,20 +3657,45 @@ document.querySelectorAll('.stat').forEach(s=>cntObserver.observe(s));
 ══════════════════════════════ */
 const CSTEPS=[
   {id:'servicio',title:'Elige entre nuestras 3 ofertas',type:'cards',req:true,opts:[
-    {id:'exclusive',ico:'🏆',img:'plan-elite.png',nm:'ELITE',ds:'La top de Duchas & Reformas — acero inoxidable, materiales de máxima gama y acabado premium',price:2290,pl:'desde 2.290 €'},
-    {id:'luxe',     ico:'✨',img:'plan-exclusivo.png',    nm:'EXCLUSIVO',     ds:'Nuestra número 1 — calidad superior con diseño elegante y mampara de vidrio templado',       price:1990,pl:'desde 1.990 €'},
-    {id:'medium',   ico:'⭐',img:'plan-medium.png',nm:'MODERADO',ds:'Precio insuperable — calidad garantizada al mejor precio del mercado',                        price:1690,pl:'desde 1.690 €'},
+    {id:'exclusive',ico:'🏆',img:'plan-elite.png',nm:'ELITE',ds:'La top de Duchas & Reformas — acero inoxidable, materiales de máxima gama y acabado premium',price:2175,pl:'desde 2.290 €'},
+    {id:'luxe',     ico:'✨',img:'plan-exclusivo.png',    nm:'EXCLUSIVO',     ds:'Nuestra número 1 — calidad superior con diseño elegante y mampara de vidrio templado',       price:1890,pl:'desde 1.990 €'},
+    {id:'medium',   ico:'⭐',img:'plan medium foto de plan.PNG',nm:'MODERADO',ds:'Precio insuperable — calidad garantizada al mejor precio del mercado',                        price:1605,pl:'desde 1.690 €'},
   ]},
   {id:'plato',title:'¿Qué plato de ducha quieres poner?',type:'cards-sm',req:true,opts:[
     {id:'rejilla_oculta',img:'rejilla-oculta.jpg',nm:'Rejilla Oculta',price:0,pl:'Incluido',colorOpts:[
       {id:'blanco',  nm:'Blanco',  img:'paso3-blanco.webp',  color:'#F0EDE8',price:0,  pl:'Incluido'},
       {id:'beige',   nm:'Beige',   img:'paso3-beige.webp',   color:'#CCBA9E',price:0,  pl:'Incluido'},
-      {id:'moka',    nm:'Moka',    img:'paso3-moka.webp',    color:'#5A3A25',price:80, pl:'+80 €'},
+      {id:'moka',    nm:'Moka',    img:'paso3-moka.webp',    color:'#5A3A25',price:76, pl:'+80 €'},
       {id:'gris',    nm:'Gris',    img:'paso3-gris.webp',    color:'#8C8C8C',price:0,  pl:'Incluido'},
       {id:'grafito', nm:'Grafito', img:'paso3-grafito.webp', color:'#464646',price:0,  pl:'Incluido'},
-      {id:'perla',   nm:'Perla',   img:'paso3-perla.webp',   color:'#BFD0D3',price:80, pl:'+80 €'},
+      {id:'perla',   nm:'Perla',   img:'paso3-perla.webp',   color:'#BFD0D3',price:76, pl:'+80 €'},
     ]},
     {id:'rejilla_color',img:'rejilla-color.jpg',nm:'Rejilla de Color',price:0,pl:'Incluido',colorOpts:[
+      {id:'blanco',  nm:'Blanco',  img:'paso3-blanco.webp',  color:'#F0EDE8',price:0,pl:'Incluido'},
+      {id:'beige',   nm:'Beige',   img:'paso3-beige.webp',   color:'#CCBA9E',price:0,pl:'Incluido'},
+      {id:'moka',    nm:'Moka',    img:'paso3-moka.webp',    color:'#5A3A25',price:0,pl:'Incluido'},
+      {id:'gris',    nm:'Gris',    img:'paso3-gris.webp',    color:'#8C8C8C',price:0,pl:'Incluido'},
+      {id:'grafito', nm:'Grafito', img:'paso3-grafito.webp', color:'#464646',price:0,pl:'Incluido'},
+      {id:'perla',   nm:'Perla',   img:'paso3-perla.webp',   color:'#BFD0D3',price:0,pl:'Incluido'},
+    ]},
+  ],optsMedium:[
+    {id:'rejilla_vista',img:'rejilla-vista.webp',nm:'Con rejilla a la vista',price:0,pl:'Incluido',colorOpts:[
+      {id:'blanco',  nm:'Blanco',  img:'paso3-blanco.webp',  color:'#F0EDE8',price:0, pl:'Incluido'},
+      {id:'beige',   nm:'Beige',   img:'paso3-beige.webp',   color:'#CCBA9E',price:0, pl:'Incluido'},
+      {id:'moka',    nm:'Moka',    img:'paso3-moka.webp',    color:'#5A3A25',price:76,pl:'+80 €'},
+      {id:'gris',    nm:'Gris',    img:'paso3-gris.webp',    color:'#8C8C8C',price:0, pl:'Incluido'},
+      {id:'grafito', nm:'Grafito', img:'paso3-grafito.webp', color:'#464646',price:0, pl:'Incluido'},
+      {id:'perla',   nm:'Perla',   img:'paso3-perla.webp',   color:'#BFD0D3',price:76,pl:'+80 €'},
+    ]},
+    {id:'rejilla_color',img:'rejilla-color.jpg',nm:'Con rejilla de color',price:28,pl:'+30 €',colorOpts:[
+      {id:'blanco',  nm:'Blanco',  img:'paso3-blanco.webp',  color:'#F0EDE8',price:0,pl:'Incluido'},
+      {id:'beige',   nm:'Beige',   img:'paso3-beige.webp',   color:'#CCBA9E',price:0,pl:'Incluido'},
+      {id:'moka',    nm:'Moka',    img:'paso3-moka.webp',    color:'#5A3A25',price:0,pl:'Incluido'},
+      {id:'gris',    nm:'Gris',    img:'paso3-gris.webp',    color:'#8C8C8C',price:0,pl:'Incluido'},
+      {id:'grafito', nm:'Grafito', img:'paso3-grafito.webp', color:'#464646',price:0,pl:'Incluido'},
+      {id:'perla',   nm:'Perla',   img:'paso3-perla.webp',   color:'#BFD0D3',price:0,pl:'Incluido'},
+    ]},
+    {id:'rejilla_oculta',img:'rejilla-oculta.jpg',nm:'Con rejilla oculta',price:180,pl:'+190 €',colorOpts:[
       {id:'blanco',  nm:'Blanco',  img:'paso3-blanco.webp',  color:'#F0EDE8',price:0,pl:'Incluido'},
       {id:'beige',   nm:'Beige',   img:'paso3-beige.webp',   color:'#CCBA9E',price:0,pl:'Incluido'},
       {id:'moka',    nm:'Moka',    img:'paso3-moka.webp',    color:'#5A3A25',price:0,pl:'Incluido'},
@@ -2505,100 +3710,207 @@ const CSTEPS=[
     {id:'amedida', nm:'A Medida',        sub:'Elige tu tamaño exacto',price:0},
   ],fondo:[
     {id:'f70', val:'70 cm', price:0},
-    {id:'f80', val:'80 cm', price:40},
-    {id:'f90', val:'90 cm', price:80},
-    {id:'f100',val:'100 cm',price:120},
-    {id:'f110',val:'110 cm',price:160},
-    {id:'f120',val:'120 cm',price:200},
+    {id:'f80', val:'80 cm', price:38},
+    {id:'f90', val:'90 cm', price:76},
+    {id:'f100',val:'100 cm',price:114},
+    {id:'f110',val:'110 cm',price:152},
+    {id:'f120',val:'120 cm',price:190},
   ],largo:[
     {id:'l160',val:'160 cm',price:0},
-    {id:'l170',val:'170 cm',price:40},
-    {id:'l180',val:'180 cm',price:80},
-    {id:'l190',val:'190 cm',price:120},
-    {id:'l200',val:'200 cm',price:160},
-    {id:'l210',val:'210 cm',price:200},
-    {id:'l220',val:'220 cm',price:240},
+    {id:'l170',val:'170 cm',price:38},
+    {id:'l180',val:'180 cm',price:76},
+    {id:'l190',val:'190 cm',price:114},
+    {id:'l200',val:'200 cm',price:152},
+    {id:'l210',val:'210 cm',price:190},
+    {id:'l220',val:'220 cm',price:228},
   ]},
   {id:'alicatado',title:'Altura del alicatado',type:'cards-photo',req:true,opts:[
     {id:'zocalo',  img:'alicatado-50cm.png',    nm:'Alicatado hasta 50 cm',  price:0,  pl:'Incluido'},
-    {id:'media',   img:'alicatado-120cm.png',   nm:'Alicatado hasta 120 cm', price:300,pl:'+300 €'},
-    {id:'completa',img:'alicatado-240cm.png',   nm:'Alicatado hasta 240 cm', price:700,pl:'+700 €'},
+    {id:'media',   img:'alicatado-120cm.png',   nm:'Alicatado hasta 120 cm', price:285,pl:'+300 €'},
+    {id:'completa',img:'alicatado-240cm.png',   nm:'Alicatado hasta 240 cm', price:665,pl:'+700 €'},
+  ],optsExclusive:[
+    {id:'zocalo',  img:'alicatado en 50 cm (plan exclusivo).PNG',    nm:'Alicatado hasta 50 cm',  price:0,  pl:'Incluido'},
+    {id:'media',   img:'alicatado en 120 cm (plan exclusivo).PNG',   nm:'Alicatado hasta 120 cm', price:285,pl:'+300 €'},
+    {id:'completa',img:'alicatado en 240 cm (plan exclusivo).PNG',   nm:'Alicatado hasta 240 cm', price:665,pl:'+700 €'},
+  ],optsMedium:[
+    {id:'zocalo',  img:'alicatado a 50 cm (plan medium).PNG',    nm:'Alicatado hasta 50 cm',  price:0,  pl:'Incluido'},
+    {id:'media',   img:'alicatado a 120 cm (plan medium).PNG',   nm:'Alicatado hasta 120 cm', price:285,pl:'+300 €'},
+    {id:'completa',img:'alicatado a 240 cm (plan medium).PNG',   nm:'Alicatado hasta 240 cm', price:665,pl:'+700 €'},
   ]},
   {id:'azulejo',title:'¿Cuál es el tamaño del azulejo que quieres que instalemos en las paredes?',type:'cards-photo',req:true,imgContain:true,opts:[
-    {id:'estandar',img:'azulejo-estandar.webp',nm:'Tamaño estándar',ds:'31x61 cm ó 25x40 cm', price:0,  pl:'Incluido'},
-    {id:'xl',      img:'azulejo-xl.webp',      nm:'Tamaño XL',       ds:'30x90 cm ó 31x91 cm',  price:90, pl:'+90 €'},
-    {id:'xxl',     img:'azulejo-xxl.webp',       nm:'Panel XXL',       ds:'122x244 cm',            price:990,pl:'+990 €'},
+    {id:'estandar',img:'azulejo-estandar.png',nm:'Tamaño estándar',ds:'31x61 cm ó 25x40 cm', price:0,  pl:'Incluido'},
+    {id:'xl',      img:'azulejo-xl.png',      nm:'Tamaño XL',       ds:'30x90 cm ó 31x91 cm',  price:85, pl:'+90 €'},
+    {id:'xxl',     img:'azulejo-xxl.png',       nm:'Panel XXL',       ds:'122x244 cm',            price:940,pl:'+990 €'},
   ]},
   {id:'griferia',title:'¿Qué grifería te gustaría que pusiéramos?',type:'cards-photo',req:true,imgContain:true,opts:[
     {id:'st_redondo',  img:'Kit-duchon-monomando-System-Touch-cuadrado.jpg',     nm:'Kit duchón monomando System Touch redondo',     price:0,  pl:'Incluido'},
     {id:'st_cuadrado', img:'griferia-st-cuadrado.jpg', nm:'Kit duchón termostática System Touch cuadrado', price:0,  pl:'Incluido'},
     {id:'nite_red',    img:'Kit-monomando-duchon-redondo-NITE-XL.jpg',           nm:'Kit monomando Nite XL duchón redondo',           price:0,  pl:'Incluido'},
     {id:'nite_cua',    img:'Kit-termostatico-duchon-cuadrado-NITE-XL.jpg',       nm:'Kit monomando Nite XL duchón cuadrado',          price:0,  pl:'Incluido'},
-    {id:'col_mono',    img:'Columna-hidromasaje-termostatica.jpg',               nm:'Columna hidromasaje monomando acero',             price:190,pl:'+190 €'},
-    {id:'col_termo',   img:'Columna-hidromasaje-termostatica.jpg',               nm:'Columna hidromasaje termostática acero',         price:290,pl:'+290 €'},
-    {id:'lavabo',      img:'Monomando-lavabo-Exclusive.jpg',                     nm:'Monomando lavabo Exclusive*',                    price:150,pl:'+150 €'},
-    {id:'bide',        img:'Monomando-bide-Exclusive.jpg',                       nm:'Monomando bidé Exclusive*',                      price:150,pl:'+150 €'},
-    {id:'valvula',     img:'26.jpg',                                             nm:'Válvula tapón*',                                 price:30, pl:'+30 €'},
+    {id:'col_mono',    img:'Columna-hidromasaje-termostatica.jpg',               nm:'Columna hidromasaje monomando acero',             price:180,pl:'+190 €'},
+    {id:'col_termo',   img:'Columna-hidromasaje-termostatica.jpg',               nm:'Columna hidromasaje termostática acero',         price:275,pl:'+290 €'},
+    {id:'lavabo',      img:'Monomando-lavabo-Exclusive.jpg',                     nm:'Monomando lavabo Exclusive*',                    price:142,pl:'+150 €'},
+    {id:'bide',        img:'Monomando-bide-Exclusive.jpg',                       nm:'Monomando bidé Exclusive*',                      price:142,pl:'+150 €'},
+    {id:'valvula',     img:'26.jpg',                                             nm:'Válvula tapón*',                                 price:28, pl:'+30 €'},
+  ],optsExclusive:[
+    {id:'xl_cromo', img:'griferia-xl-cromo.jpg',         nm:'Kit duchón XL monomando redondo cromo',               price:0,  pl:'Incluido'},
+    {id:'xl_negro', img:'griferia-xl-negro.jpg',         nm:'Kit duchón XL monomando redondo negro',               price:57, pl:'+60 €'},
+    {id:'xl_oro',   img:'griferia-xl-oro.jpg',           nm:'Kit duchón XL monomando redondo oro',                 price:114,pl:'+120 €'},
+    {id:'xl_termo', img:'griferia-xl-termo-negro.jpg',   nm:'Kit duchón XL termostático cuadrado negro',           price:57, pl:'+60 €'},
+    {id:'col_mn',   img:'griferia-col-mono-negro.jpg',   nm:'Columna hidromasaje monomando negro',                 price:180,pl:'+190 €'},
+    {id:'col_tn',   img:'griferia-col-termo-negro.jpg',  nm:'Columna hidromasaje termostático negro',              price:275,pl:'+290 €'},
+    {id:'col_mc',   img:'griferia-col-mono-cromo.jpg',   nm:'Columna hidromasaje monomando cromo',                 price:180,pl:'+190 €'},
+    {id:'col_tc',   img:'griferia-col-termo-cromo.jpg',  nm:'Columna hidromasaje termostático cromo',              price:275,pl:'+290 €'},
+    {id:'col_bn',   img:'griferia-col-blanco-negro.jpg', nm:'Columna hidromasaje termostática blanco con negro',   price:275,pl:'+290 €'},
+    {id:'lav_lx',   img:'griferia-lavabo-luxe.jpg',      nm:'Monomando lavabo Luxe* (cromo, negro u oro)',          price:114,pl:'+120 €'},
+    {id:'bid_lx',   img:'griferia-bide-luxe.jpg',        nm:'Monomando bidé Luxe* (cromo, negro u oro)',            price:114,pl:'+120 €'},
+    {id:'valv_lx',  img:'griferia-valvula.jpg',          nm:'Válvula tapón* (cromo, negro u oro)',                  price:28, pl:'+30 €'},
+  ],optsMedium:[
+    {id:'m_cromo',      img:'med-grif-cromo.jpg',            nm:'Kit duchón monomando redondo (cromo)',                price:0,  pl:'Incluido'},
+    {id:'m_negro',      img:'med-grif-negro.jpg',            nm:'Kit monomando duchón redondo negro',                  price:57, pl:'+60 €'},
+    {id:'m_blanco',     img:'med-grif-blanco.jpg',           nm:'Kit monomando duchón redondo blanco',                 price:57, pl:'+60 €'},
+    {id:'m_niquel',     img:'med-grif-niquel.jpg',           nm:'Kit monomando duchón redondo níquel',                 price:85, pl:'+90 €'},
+    {id:'m_titanio',    img:'med-grif-titanio.jpg',          nm:'Kit monomando duchón redondo titanio',                price:85, pl:'+90 €'},
+    {id:'m_cobre',      img:'med-grif-cobre.jpg',            nm:'Kit monomando duchón redondo cobre',                  price:114,pl:'+120 €'},
+    {id:'m_oro',        img:'med-grif-oro.jpg',              nm:'Kit monomando duchón redondo oro mate',               price:114,pl:'+120 €'},
+    {id:'m_nite_mono',  img:'med-grif-nite-mono.jpg',        nm:'Kit monomando duchón redondo NITE XL',                price:85, pl:'+90 €'},
+    {id:'m_nite_termo', img:'med-grif-nite-termo.jpg',       nm:'Kit termostático duchón cuadrado NITE XL',            price:85, pl:'+90 €'},
+    {id:'m_col_mn',     img:'med-grif-col-mono-negro.jpg',   nm:'Columna hidromasaje monomando negro',                 price:180,pl:'+190 €'},
+    {id:'m_col_tn',     img:'med-grif-col-termo-negro.jpg',  nm:'Columna hidromasaje termostática negro',              price:275,pl:'+290 €'},
+    {id:'m_col_mc',     img:'med-grif-col-mono-cromo.jpg',   nm:'Columna hidromasaje monomando cromo',                 price:180,pl:'+190 €'},
+    {id:'m_col_tc',     img:'med-grif-col-termo-cromo.jpg',  nm:'Columna hidromasaje termostática cromo',              price:275,pl:'+290 €'},
+    {id:'m_col_bn',     img:'med-grif-col-blanco-negro.jpg', nm:'Columna hidromasaje termostática blanco con negro',   price:275,pl:'+290 €'},
+    {id:'m_lavabo',     img:'med-grif-lavabo.jpg',           nm:'Monomando lavabo Medium* (cromo, negro, blanco, níquel, titanio, cobre u oro)', price:85, pl:'+90 €'},
   ]},
   {id:'mampara',title:'Elige tu nueva mampara',type:'cards-photo',req:true,imgContain:true,zoomEffect:true,opts:[
     {id:'m01',img:'1-fijo-ducha-8-mm-70-a-120-cm.jpg',                              nm:'1 fijo 8 mm* 70 a 120 cm (cromo, negro u oro)',                        price:0,  pl:'Incluido'},
     {id:'m02',img:'1-fijo-1-abatible-8-mm-110-a-160-cm.jpg',                        nm:'1 fijo + 1 abatible 8 mm* 110 a 160 cm (cromo, negro u oro)',          price:0,  pl:'Incluido'},
     {id:'m03',img:'1-fijo-1-corredera-8mm-96-a-168-cm.jpg',                         nm:'1 fijo + 1 corredera 8 mm* 96 a 168 cm (cromo o negro)',               price:0,  pl:'Incluido'},
-    {id:'m04',img:'1-fijo-1-corredera-8-mm-101-a-186-cm.jpg',                       nm:'1 fijo + 1 corredera 8 mm* 101 a 186 cm (cromo o negro)',              price:120,pl:'+120 €'},
-    {id:'m05',img:'1-fijo-ducha-8-mm-80-a-120-cm.jpg',                              nm:'1 fijo 8 mm 80 a 120 cm (cromo o negro)',                              price:150,pl:'+150 €'},
-    {id:'m06',img:'1-fijo-1-corredera-6-mm-120-a-200-cm.jpg',                       nm:'1 fijo + 1 corredera 6 mm* 115 a 200 cm (cromo o negro)',              price:290,pl:'+290 €'},
-    {id:'m07',img:'2-fijos-2-correderas-6-mm-150-a-200-cm.jpg',                     nm:'2 fijos + 2 correderas 6 mm 145 a 200 cm (cromo o negro)',             price:390,pl:'+390 €'},
-    {id:'m08',img:'2-fijos-2-correderas-angular-65x90-a-140x140-cm.jpg',            nm:'2 fijos + 2 correderas angular 65 a 100 × 90 a 140 cm (cromo o negro)',price:450,pl:'+450 €'},
-    {id:'m09',img:'1-fijo-1-corredera-8-mm-99-a-185-cm.jpg',                        nm:'1 fijo + 1 corredera 8 mm* 99 a 184 cm (cromo, negro u oro)',          price:190,pl:'+190 €'},
-    {id:'m10',img:'2-fijos-2-correderas-8-mm-132-a-200-cm.jpg',                     nm:'2 fijos + 2 correderas 8 mm* 132 a 200 cm (cromo, negro u oro)',       price:290,pl:'+290 €'},
-    {id:'m11',img:'2-fijos-2-correderas-angular-8-mm-66-a-102-x-86-a-139-cm.jpg',  nm:'2 fijos + 2 correderas angular 8 mm* 66 a 102 × 86 a 139 cm (cromo o negro)',price:350,pl:'+350 €'},
+    {id:'m04',img:'1-fijo-1-corredera-8-mm-101-a-186-cm.jpg',                       nm:'1 fijo + 1 corredera 8 mm* 101 a 186 cm (cromo o negro)',              price:114,pl:'+120 €'},
+    {id:'m05',img:'1-fijo-ducha-8-mm-80-a-120-cm.jpg',                              nm:'1 fijo 8 mm 80 a 120 cm (cromo o negro)',                              price:142,pl:'+150 €'},
+    {id:'m06',img:'1-fijo-1-corredera-6-mm-120-a-200-cm.jpg',                       nm:'1 fijo + 1 corredera 6 mm* 115 a 200 cm (cromo o negro)',              price:275,pl:'+290 €'},
+    {id:'m07',img:'2-fijos-2-correderas-6-mm-150-a-200-cm.jpg',                     nm:'2 fijos + 2 correderas 6 mm 145 a 200 cm (cromo o negro)',             price:370,pl:'+390 €'},
+    {id:'m08',img:'2-fijos-2-correderas-angular-65x90-a-140x140-cm.jpg',            nm:'2 fijos + 2 correderas angular 65 a 100 × 90 a 140 cm (cromo o negro)',price:427,pl:'+450 €'},
+    {id:'m09',img:'1-fijo-1-corredera-8-mm-99-a-185-cm.jpg',                        nm:'1 fijo + 1 corredera 8 mm* 99 a 184 cm (cromo, negro u oro)',          price:180,pl:'+190 €'},
+    {id:'m10',img:'2-fijos-2-correderas-8-mm-132-a-200-cm.jpg',                     nm:'2 fijos + 2 correderas 8 mm* 132 a 200 cm (cromo, negro u oro)',       price:275,pl:'+290 €'},
+    {id:'m11',img:'2-fijos-2-correderas-angular-8-mm-66-a-102-x-86-a-139-cm.jpg',  nm:'2 fijos + 2 correderas angular 8 mm* 66 a 102 × 86 a 139 cm (cromo o negro)',price:332,pl:'+350 €'},
+  ],optsMedium:[
+    {id:'mm01',img:'med-mam-01.jpg',nm:'1 fijo + 1 corredera sin carril inferior 95 a 200 cm (cromo, negro, blanco, níquel, titanio, cobre u oro)',price:0,pl:'Incluido'},
+    {id:'mm02',img:'med-mam-02.jpg',nm:'1 fijo* 70 a 120 cm (cromo, negro, blanco, níquel, titanio, cobre u oro)',price:0,pl:'Incluido'},
+    {id:'mm03',img:'med-mam-03.jpg',nm:'1 fijo enmarcado 90 a 120 cm (cromo, negro, titanio, cobre u oro)',price:0,pl:'Incluido'},
+    {id:'mm04',img:'med-mam-04.jpg',nm:'1 fijo + 1 abatible* 110 a 160 cm (cromo y negro)',price:0,pl:'Incluido'},
+    {id:'mm05',img:'med-mam-05.jpg',nm:'1 fijo industrial perimetral 80 a 120 cm (negro u oro)',price:0,pl:'Incluido'},
+    {id:'mm06',img:'med-mam-06.jpg',nm:'1 fijo industrial líneas 80 a 120 cm (negro)',price:0,pl:'Incluido'},
+    {id:'mm07',img:'med-mam-07.jpg',nm:'1 fijo industrial cuadros 70 a 120 cm (negro)',price:0,pl:'Incluido'},
+    {id:'mm08',img:'med-mam-08.jpg',nm:'1 fijo + 1 corredera free* 95 a 200 cm (cromo, negro, blanco, níquel, titanio, cobre u oro)',price:0,pl:'Incluido'},
+    {id:'mm09',img:'med-mam-09.jpg',nm:'2 plegables* 66 a 94 cm (cromo o negro)',price:0,pl:'Incluido'},
+    {id:'mm10',img:'med-mam-10.jpg',nm:'1 fijo + 1 corredera* 95 a 200 cm (cromo, negro, blanco, níquel, titanio, cobre u oro)',price:0,pl:'Incluido'},
+    {id:'mm11',img:'med-mam-11.jpg',nm:'1 fijo + 1 corredera + 1 fijo* 95 a 200 cm (cromo, negro, blanco, níquel, titanio, cobre u oro)',price:85,pl:'+90 €'},
+    {id:'mm12',img:'med-mam-12.webp',nm:'2 fijos + 2 correderas* 132 a 210 cm (cromo, negro, blanco, níquel, titanio, cobre u oro)',price:180,pl:'+190 €'},
+    {id:'mm13',img:'med-mam-13.jpg',nm:'2 correderas* 112 a 168 cm (cromo)',price:266,pl:'+280 €'},
+    {id:'mm14',img:'med-mam-14.jpg',nm:'2 fijos + 2 correderas* semicircular 80 y 90 cm (cromo o negro)',price:76,pl:'+80 €'},
+    {id:'mm15',img:'med-mam-15.jpg',nm:'2 fijos + 2 correderas angular* 65 a 90 × 65 a 139 cm (cromo, negro, blanco, níquel, titanio, cobre u oro)',price:161,pl:'+170 €'},
+    {id:'mm16',img:'med-mam-16.jpg',nm:'1 fijo + 1 plegable 79,5 a 133 cm (cromo o negro)',price:133,pl:'+140 €'},
+    {id:'mm17',img:'med-mam-17.jpg',nm:'1 fijo + 2 correderas 76,5 a 160,5 cm (cromo)',price:142,pl:'+150 €'},
+    {id:'mm18',img:'med-mam-18.jpg',nm:'1 fijo + 2 correderas 86 a 161 cm (cromo)',price:237,pl:'+250 €'},
+    {id:'mm19',img:'med-mam-19.jpg',nm:'3 correderas 96 a 160 cm (cromo o negro)',price:275,pl:'+290 €'},
+    {id:'mm20',img:'med-mam-20.jpg',nm:'1 abatible 68,2 a 90,2 cm (cromo, negro, blanco, níquel, titanio, cobre u oro)',price:57,pl:'+60 €'},
+    {id:'mm21',img:'med-mam-21.jpg',nm:'1 fijo + 1 abatible 67 a 140 cm (cromo, negro, blanco, níquel, titanio, cobre u oro)',price:114,pl:'+120 €'},
+    {id:'mm22',img:'med-mam-22.jpg',nm:'2 abatibles 62,7 a 166,7 cm (cromo, negro, blanco, níquel, titanio, cobre u oro)',price:218,pl:'+230 €'},
+    {id:'mm23',img:'med-mam-23.jpg',nm:'2 fijos + 2 abatibles 129,5 a 275,5 cm (cromo, negro, blanco, níquel, titanio, cobre u oro)',price:323,pl:'+340 €'},
+    {id:'mm24',img:'med-mam-24.jpg',nm:'2 abatibles angular 43,5 a 85,5 × 43,5 a 85,5 cm (cromo, negro, blanco, níquel, titanio, cobre u oro)',price:294,pl:'+310 €'},
+    {id:'mm25',img:'med-mam-25.jpg',nm:'2 fijos + 2 abatibles angular 67 a 140 × 67 a 140 cm (cromo, negro, blanco, níquel, titanio, cobre u oro)',price:399,pl:'+420 €'},
+    {id:'mm26',img:'med-mam-26.jpg',nm:'1 fijo + 1 corredera + 2 plegables* 67 a 99 × 63 a 89 cm (cromo)',price:370,pl:'+390 €'},
+    {id:'mm27',img:'med-mam-27.jpg',nm:'1 fijo + 1 corredera + 2 plegables 63 a 137 × 66,5 a 89,5 cm (cromo)',price:342,pl:'+360 €'},
   ]},
   {id:'complementos',title:'¿Necesitas un costado para tu mampara nueva?',type:'cards-photo',req:true,imgContain:true,zoomEffect:true,opts:[
     {id:'c70',   img:'colector-70-80cm.jpg',          nm:'Sí, uno de 70 u 80 cm (cromo o negro)',        price:0, pl:'Incluido'},
     {id:'c100',  img:'colector-100cm.jpg',  nm:'Sí, uno a medida hasta 100 cm (cromo o negro)', price:0, pl:'Incluido'},
     {id:'no',    img:'No_lo_necesito.jpg',                                 nm:'No lo necesito',                                price:0, pl:'Incluido'},
+  ],optsMedium:[
+    {id:'c70',   img:'colector-70-80cm.jpg', nm:'Sí, uno de 70 u 80 cm (cromo, negro, blanco u oro mate)',        price:228, pl:'+240 €'},
+    {id:'c100',  img:'colector-100cm.jpg',   nm:'Sí, uno a medida hasta 100 cm (cromo, negro, blanco u oro mate)', price:323, pl:'+340 €'},
+    {id:'no',    img:'No_lo_necesito.jpg',   nm:'No lo necesito',                                                  price:0,   pl:'Incluido'},
   ]},
   {id:'suelo',title:'Elige tus complementos',type:'multi-photo',req:false,imgContain:true,zoomEffect:true,opts:[
-    {id:'p01',img:'comp-rinconera.jpg',                                              nm:'Rinconera acero cromo',                                            price:50},
-    {id:'p02',img:'comp-rinconera-doble.jpg',                                        nm:'Rinconera doble acero cromo',                                      price:90},
-    {id:'p03',img:'comp-estante.jpg',                                                nm:'Estante acero cromo',                                              price:50},
-    {id:'p04',img:'comp-estante-doble.jpg',                                          nm:'Estante doble acero cromo',                                        price:90},
-    {id:'p05',img:'comp-agarrador-30.jpg',                                      nm:'Agarrador cromo o negro 30 cm',                                    price:40},
-    {id:'p06',img:'comp-agarrador-40.jpg',                                      nm:'Agarrador cromo o negro 40 cm',                                    price:50},
-    {id:'p07',img:'comp-rinconera-limpia.jpg',                             nm:'Rinconera + limpiamamparas acero cromo',                           price:70},
-    {id:'p08',img:'comp-estante-limpia.jpg',                               nm:'Estante + limpiamamparas acero cromo',                             price:70},
-    {id:'p09',img:'comp-agarrador-doble.jpg',                                        nm:'Agarrador doble acero cromo',                                      price:60},
-    {id:'p10',img:'comp-asidero-wc.jpg',                                               nm:'Asidero wc plegable',                                              price:180},
-    {id:'p11',img:'comp-silla-sin.jpg',                                     nm:'Silla rectangular sin respaldo',                                   price:70},
-    {id:'p12',img:'comp-silla-con.jpg',                                     nm:'Silla rectangular con respaldo',                                   price:90},
-    {id:'p13',img:'comp-asiento-dos.jpg',                                        nm:'Asiento plegable dos patas',                                       price:150},
-    {id:'p14',img:'comp-asiento-una.jpg',                                         nm:'Asiento plegable una pata',                                        price:280},
-    {id:'p15',img:'comp-estante-grifo.jpg',                           nm:'Estante colgar grifo acero cromo o negro',                         price:60},
-    {id:'p16',img:'comp-estante-doble-grifo.jpg',                             nm:'Estante doble colgar grifo acero cromo',                           price:90},
-    {id:'p17',img:'comp-empotrar-tuberia.jpg',                                             nm:'Empotrar tubería agua',                                            price:250},
-    {id:'p18',img:'comp-desplazar-griferia.jpg',                                       nm:'Desplazar grifería de pared',                                      price:180},
-    {id:'p19',img:'comp-asiento-obra.jpg',                                                   nm:'Asiento de obra',                                                  price:290},
-    {id:'p20',img:'comp-perfil-deco.jpg',                  nm:'Perfil decorativo aluminio plata/blanco/negro',                    price:60},
-    {id:'p21',img:'comp-perfil-tubo-6.jpg',                                       nm:'Perfil tubo plata hasta 6 cm',                                     price:60},
-    {id:'p22',img:'comp-perfil-tubo-12.jpg',                               nm:'Perfil tubo aluminio 8-10-12 cm',                                  price:90},
-    {id:'p23',img:'comp-anular-visto.jpg',                                                  nm:'Anular bidé visto',                                                price:90},
-    {id:'p24',img:'comp-anular-obra.jpg',                                               nm:'Anular bidé de obra',                                              price:180},
-    {id:'p25',img:'comp-secador.jpg',                                   nm:'Secador corporal blanco o negro',                                  price:990},
-    {id:'p26',img:'comp-led-espejo.jpg',                                           nm:'Led integrado en espejo',                                          price:130},
-    {id:'p27',img:'comp-lavabo.jpg',                                       nm:'Lavabo universal + pedestal*',                                     price:150},
-    {id:'p28',img:'comp-conjunto-60.jpg',       nm:'Conjunto Exclusive 60×45 cm (mueble, lavabo, espejo y led)*',      price:590},
-    {id:'p29',img:'comp-conjunto-80.jpg',       nm:'Conjunto Exclusive 80×45 cm (mueble, lavabo, espejo y led)*',      price:690},
-    {id:'p30',img:'comp-conjunto-100.jpg',      nm:'Conjunto Exclusive 100×45 cm (mueble, lavabo, espejo y led)*',     price:790},
-    {id:'p31',img:'comp-inodoro.jpg',                                        nm:'Inodoro completo Exclusive*',                                      price:490},
-    {id:'p32',img:'comp-bide.jpg',                                                    nm:'Bidé Exclusive*',                                                  price:290},
+    {id:'p01',img:'comp-rinconera.jpg',                                              nm:'Rinconera acero cromo',                                            price:47},
+    {id:'p02',img:'comp-rinconera-doble.jpg',                                        nm:'Rinconera doble acero cromo',                                      price:85},
+    {id:'p03',img:'comp-estante.jpg',                                                nm:'Estante acero cromo',                                              price:47},
+    {id:'p04',img:'comp-estante-doble.jpg',                                          nm:'Estante doble acero cromo',                                        price:85},
+    {id:'p05',img:'comp-agarrador-30.jpg',                                      nm:'Agarrador cromo o negro 30 cm',                                    price:38},
+    {id:'p06',img:'comp-agarrador-40.jpg',                                      nm:'Agarrador cromo o negro 40 cm',                                    price:47},
+    {id:'p07',img:'comp-rinconera-limpia.jpg',                             nm:'Rinconera + limpiamamparas acero cromo',                           price:66},
+    {id:'p08',img:'comp-estante-limpia.jpg',                               nm:'Estante + limpiamamparas acero cromo',                             price:66},
+    {id:'p09',img:'comp-agarrador-doble.jpg',                                        nm:'Agarrador doble acero cromo',                                      price:57},
+    {id:'p10',img:'comp-asidero-wc.jpg',                                               nm:'Asidero wc plegable',                                              price:171},
+    {id:'p11',img:'comp-silla-sin.jpg',                                     nm:'Silla rectangular sin respaldo',                                   price:66},
+    {id:'p12',img:'comp-silla-con.jpg',                                     nm:'Silla rectangular con respaldo',                                   price:85},
+    {id:'p13',img:'comp-asiento-dos.jpg',                                        nm:'Asiento plegable dos patas',                                       price:142},
+    {id:'p14',img:'comp-asiento-una.jpg',                                         nm:'Asiento plegable una pata',                                        price:266},
+    {id:'p15',img:'comp-estante-grifo.jpg',                           nm:'Estante colgar grifo acero cromo o negro',                         price:57},
+    {id:'p16',img:'comp-estante-doble-grifo.jpg',                             nm:'Estante doble colgar grifo acero cromo',                           price:85},
+    {id:'p17',img:'comp-empotrar-tuberia.jpg',                                             nm:'Empotrar tubería agua',                                            price:237},
+    {id:'p18',img:'comp-desplazar-griferia.jpg',                                       nm:'Desplazar grifería de pared',                                      price:171},
+    {id:'p19',img:'comp-asiento-obra.jpg',                                                   nm:'Asiento de obra',                                                  price:275},
+    {id:'p20',img:'comp-perfil-deco.jpg',                  nm:'Perfil decorativo aluminio plata/blanco/negro',                    price:57},
+    {id:'p21',img:'comp-perfil-tubo-6.jpg',                                       nm:'Perfil tubo plata hasta 6 cm',                                     price:57},
+    {id:'p22',img:'comp-perfil-tubo-12.jpg',                               nm:'Perfil tubo aluminio 8-10-12 cm',                                  price:85},
+    {id:'p23',img:'comp-anular-visto.jpg',                                                  nm:'Anular bidé visto',                                                price:85},
+    {id:'p24',img:'comp-anular-obra.jpg',                                               nm:'Anular bidé de obra',                                              price:171},
+    {id:'p25',img:'comp-secador.jpg',                                   nm:'Secador corporal blanco o negro',                                  price:940},
+    {id:'p26',img:'comp-led-espejo.jpg',                                           nm:'Led integrado en espejo',                                          price:123},
+    {id:'p27',img:'comp-lavabo.jpg',                                       nm:'Lavabo universal + pedestal*',                                     price:142},
+    {id:'p28',img:'comp-conjunto-60.jpg',       nm:'Conjunto Exclusive 60×45 cm (mueble, lavabo, espejo y led)*',      price:560},
+    {id:'p29',img:'comp-conjunto-80.jpg',       nm:'Conjunto Exclusive 80×45 cm (mueble, lavabo, espejo y led)*',      price:655},
+    {id:'p30',img:'comp-conjunto-100.jpg',      nm:'Conjunto Exclusive 100×45 cm (mueble, lavabo, espejo y led)*',     price:750},
+    {id:'p31',img:'comp-inodoro.jpg',                                        nm:'Inodoro completo Exclusive*',                                      price:465},
+    {id:'p32',img:'comp-bide.jpg',                                                    nm:'Bidé Exclusive*',                                                  price:275},
     {id:'p33',img:'comp-ninguno.jpg',                                         nm:'No deseo ningún complemento',                                      price:0},
+  ],optsMedium:[
+    {id:'m01',img:'med-comp-01.jpg',nm:'Rinconera acero cromo',price:47},
+    {id:'m02',img:'med-comp-02.jpg',nm:'Rinconera doble acero cromo',price:85},
+    {id:'m03',img:'med-comp-03.jpg',nm:'Estante acero cromo',price:47},
+    {id:'m04',img:'med-comp-04.jpg',nm:'Estante doble acero cromo',price:85},
+    {id:'m05',img:'med-comp-05.jpg',nm:'Agarrador cromo o negro 30 cm',price:38},
+    {id:'m06',img:'med-comp-06.jpg',nm:'Agarrador cromo o negro 40 cm',price:47},
+    {id:'m07',img:'med-comp-07.jpg',nm:'Rinconera + limpiamamparas acero cromo',price:66},
+    {id:'m08',img:'med-comp-08.jpg',nm:'Estante + limpiamamparas acero cromo',price:66},
+    {id:'m09',img:'med-comp-09.jpg',nm:'Agarrador doble acero cromo',price:57},
+    {id:'m10',img:'med-comp-10.jpg',nm:'Asidero wc plegable',price:171},
+    {id:'m11',img:'med-comp-11.jpg',nm:'Silla rectangular sin respaldo',price:66},
+    {id:'m12',img:'med-comp-12.jpg',nm:'Silla rectangular con respaldo',price:85},
+    {id:'m13',img:'med-comp-13.jpg',nm:'Asiento plegable dos patas',price:142},
+    {id:'m14',img:'med-comp-14.jpg',nm:'Asiento plegable una pata',price:266},
+    {id:'m15',img:'med-comp-15.jpg',nm:'Estante colgar grifo acero cromo o negro',price:57},
+    {id:'m16',img:'med-comp-16.jpg',nm:'Estante doble colgar grifo acero cromo',price:85},
+    {id:'m17',img:'med-comp-17.jpg',nm:'Empotrar tubería agua',price:237},
+    {id:'m18',img:'med-comp-18.jpg',nm:'Desplazar grifería de pared',price:171},
+    {id:'m19',img:'med-comp-19.jpg',nm:'Asiento de obra',price:275},
+    {id:'m20',img:'med-comp-20.jpg',nm:'Perfil decorativo aluminio plata/blanco/negro',price:57},
+    {id:'m21',img:'med-comp-21.jpg',nm:'Perfil tubo plata hasta 6 cm',price:57},
+    {id:'m22',img:'med-comp-22.jpg',nm:'Perfil tubo aluminio 8-10-12 cm',price:85},
+    {id:'m23',img:'med-comp-23.jpg',nm:'Anular bidé visto',price:85},
+    {id:'m24',img:'med-comp-24.jpg',nm:'Anular bidé de obra',price:171},
+    {id:'m25',img:'med-comp-25.jpg',nm:'Secador corporal blanco o negro',price:940},
+    {id:'m26',img:'med-comp-26.jpg',nm:'Conjunto Medium 60×45 cm (mueble, lavabo, espejo y led)*',price:370},
+    {id:'m27',img:'med-comp-27.jpg',nm:'Conjunto Medium 70×45 cm (mueble, lavabo, espejo y led)*',price:427},
+    {id:'m28',img:'med-comp-28.jpg',nm:'Conjunto Medium 80×45 cm (mueble, lavabo, espejo y led)*',price:465},
+    {id:'m29',img:'med-comp-29.jpg',nm:'Conjunto Medium 100×45 cm (mueble, lavabo, espejo y led)*',price:522},
+    {id:'m30',img:'med-comp-30.jpg',nm:'Led integrado en espejo',price:123},
+    {id:'m31',img:'med-comp-31.jpg',nm:'Conjunto Medium 3 cajones 60×45 cm (mueble, lavabo, espejo y led)*',price:456},
+    {id:'m32',img:'med-comp-32.jpg',nm:'Conjunto Medium 3 cajones 80×45 cm (mueble, lavabo, espejo y led)*',price:551},
+    {id:'m33',img:'med-comp-33.jpg',nm:'Conjunto Medium 3 cajones 100×45 cm (mueble, lavabo, espejo y led)*',price:598},
+    {id:'m34',img:'med-comp-34.jpg',nm:'Inodoro completo Medium*',price:275},
+    {id:'m35',img:'med-comp-35.jpg',nm:'Bidé Medium*',price:180},
+    {id:'m36',img:'med-comp-36.jpg',nm:'Lavabo universal + pedestal*',price:142},
+    {id:'m37',img:'med-comp-37.jpg',nm:'No deseo ningún complemento',price:0},
   ]},
   {id:'plaqueta',title:'¿Quieres poner también el suelo de tu baño nuevo? Elige qué plaqueta quieres · Máximo 4 m²',type:'cards-photo',req:true,imgContain:true,zoomEffect:true,opts:[
-    {id:'s01',img:'plaqueta-45x45.jpg',               nm:'45×45 cm',             price:790, pl:'+790 €'},
-    {id:'s02',img:'plaqueta-65x60.jpg',               nm:'65×60 cm',             price:890, pl:'+890 €'},
-    {id:'s03',img:'plaqueta-15x90.jpg',               nm:'15×90 cm',             price:890, pl:'+890 €'},
-    {id:'s04',img:'plaqueta-20x120.jpg',              nm:'20×120 cm',            price:990, pl:'+990 €'},
-    {id:'s05',img:'plaqueta-25x150.jpg',            nm:'25×150 cm',            price:1190,pl:'+1.190 €'},
+    {id:'s01',img:'plaqueta-45x45.jpg',               nm:'45×45 cm',             price:750, pl:'+790 €'},
+    {id:'s02',img:'plaqueta-65x60.jpg',               nm:'65×60 cm',             price:845, pl:'+890 €'},
+    {id:'s03',img:'plaqueta-15x90.jpg',               nm:'15×90 cm',             price:845, pl:'+890 €'},
+    {id:'s04',img:'plaqueta-20x120.jpg',              nm:'20×120 cm',            price:940, pl:'+990 €'},
+    {id:'s05',img:'plaqueta-25x150.jpg',            nm:'25×150 cm',            price:1130,pl:'+1.190 €'},
     {id:'s06',img:'plaqueta-ninguna.jpg', nm:'Ninguna, dejaré las mías', price:0, pl:'Sin coste'},
   ]},
   {id:'contacto',title:'Tus datos',type:'contact',req:true},
@@ -2671,14 +3983,15 @@ function rCards(s){
   const cur=CS.sel[s.id];
   return'<div class="vopts">'+s.opts.map(o=>{
     const media=o.img
-      ?`<div class="vopt-ico vopt-img-wrap"><img src="${o.img}" alt="${o.nm}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>`
+      ?`<div class="vopt-ico vopt-img-wrap"><img src="${encodeURI(o.img)}" alt="${o.nm}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>`
       :`<div class="vopt-ico">${o.ico}</div>`;
     return`<div class="vopt${cur===o.id?' vsel':''}" onclick="cSel('${s.id}','${o.id}')"><div class="vopt-chk">✓</div>${media}<div class="vopt-body"><div class="vopt-nm">${o.nm}</div><div class="vopt-ds">${o.ds}</div><div class="vopt-pr${o.price===0?' free':''}">${o.pl}</div></div><button class="vopt-nx" onclick="event.stopPropagation();cSelNext('${s.id}','${o.id}')">Elegir este plan ›</button></div>`;
   }).join('')+'</div>';
 }
 function rCardsPhoto(s){
   const cur=CS.sel[s.id];
-  let html='<div class="photo-grid">'+s.opts.map(o=>{
+  const opts=getActiveOpts(s);
+  let html='<div class="photo-grid">'+opts.map(o=>{
     const priceStr=o.price.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';
     const isPaid=o.price>0;
     const dsHtml=o.ds?`<div class="photo-card-ds">${o.ds}</div>`:'';
@@ -2686,26 +3999,34 @@ function rCardsPhoto(s){
     const zoomAttr=s.zoomEffect?' data-zoom="1"':'';
     return`<div class="photo-card${cur===o.id?' vsel':''}" onclick="cSel('${s.id}','${o.id}')"><div class="photo-card-img${imgCls}"${zoomAttr}><img src="${encodeURI(o.img)}" alt="${o.nm}" loading="lazy" decoding="async"/></div><div class="photo-card-lbl"><div class="photo-card-nm">${o.nm}</div>${dsHtml}<div class="photo-card-pr${isPaid?' paid':''}">${isPaid?'+':''}${priceStr}</div></div></div>`;
   }).join('')+'</div>';
-  if(s.note)html+=`<p class="photo-note">ℹ️ ${s.note}</p>`;
+  const note=(CS.sel['servicio']==='medium'&&s.noteMedium)?s.noteMedium:s.note;
+  if(note)html+=`<p class="photo-note">ℹ️ ${note}</p>`;
   return html;
 }
 function rCardsSm(s){
   const cur=CS.sel[s.id];
-  return'<div class="vopts-sm">'+s.opts.map(o=>`
+  return'<div class="vopts-sm">'+getActiveOpts(s).map(o=>`
     <div class="vopt-sm${cur===o.id?' vsel':''}" onclick="cSel('${s.id}','${o.id}')">
       <div class="vopt-sm-chk">✓</div>
-      <img src="${o.img}" alt="${o.nm}" loading="lazy" decoding="async"/>
+      <img src="${encodeURI(o.img)}" alt="${o.nm}" loading="lazy" decoding="async"/>
       <div class="vopt-sm-body">
         <div class="vopt-sm-nm">${o.nm}</div>
         <div class="vopt-sm-pr">${o.pl}</div>
       </div>
     </div>`).join('')+'</div>';
 }
+/* Devuelve el array de opciones activo según el plan elegido */
+function getActiveOpts(s){
+  const plan=CS.sel['servicio'];
+  if(plan==='luxe'&&s.optsExclusive)return s.optsExclusive;
+  if(plan==='medium'&&s.optsMedium)return s.optsMedium;
+  return s.opts||[];
+}
 function getActiveColorOpts(){
   const plateSel=CS.sel['plato'];
   if(!plateSel)return[];
   const platoStep=CSTEPS.find(s=>s.id==='plato');
-  const plato=platoStep?.opts.find(o=>o.id===plateSel);
+  const plato=getActiveOpts(platoStep).find(o=>o.id===plateSel);
   return plato?.colorOpts||[];
 }
 function rColors(s){
@@ -2788,7 +4109,7 @@ function rMultiPhoto(s){
   const cur=CS.sel[s.id]||[];
   const imgCls=s.imgContain?' photo-card-img--contain':'';
   const zoomAttr=s.zoomEffect?' data-zoom="1"':'';
-  return'<p class="skip-note">Opcional — puedes añadir varios o ninguno</p><div class="photo-grid">'+s.opts.map(o=>{
+  return'<p class="skip-note">Opcional — puedes añadir varios o ninguno</p><div class="photo-grid">'+getActiveOpts(s).map(o=>{
     const isSel=cur.includes(o.id);
     const priceStr=o.price.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';
     const isPaid=o.price>0;
@@ -2821,7 +4142,11 @@ function rContact(s){
     <div class="ff"><label>Email</label><input type="email" id="c2_email" placeholder="tu@email.com" value="${d.email||''}"/></div>
     <div class="ff"><label>Provincia</label><select id="c2_prov"><option value="">Selecciona tu provincia...</option>${provs.map(p=>`<option${d.prov===p?' selected':''}>${p}</option>`).join('')}</select></div>
     <div class="ff"><label>Comentarios</label><textarea id="c2_com" placeholder="¿Algo que quieras contarnos sobre tu baño?">${d.com||''}</textarea></div>
-    <p class="privacy-note">Al continuar aceptas nuestra <a href="#">política de privacidad</a>. Tus datos son tratados con total confidencialidad.</p>
+    <label class="legal-check" id="c2_acepto_box" onclick="document.getElementById('c2_acepto_box').classList.remove('lc-error')">
+      <input type="checkbox" id="c2_acepto" ${d.acepto?'checked':''}/>
+      <span class="lc-box"></span>
+      <span class="lc-txt">He leído y acepto el <a href="#" onclick="event.preventDefault();event.stopPropagation();openLegal('legal');">Aviso Legal</a> y la <a href="#" onclick="event.preventDefault();event.stopPropagation();openLegal('privacidad');">Política de Privacidad</a>. <span class="lc-req">*</span></span>
+    </label>
   </div>`;
 }
 
@@ -2857,6 +4182,7 @@ function cSaveContact(){
     email:(document.getElementById('c2_email')?.value||'').trim(),
     prov:(document.getElementById('c2_prov')?.value||'').trim(),
     com:(document.getElementById('c2_com')?.value||'').trim(),
+    acepto:document.getElementById('c2_acepto')?.checked||false,
   };
 }
 
@@ -2874,6 +4200,13 @@ function cPrev(){
   renderStep(CS.step);
   window.scrollTo({top:document.getElementById('calculadora').offsetTop-80,behavior:'smooth'});
 }
+function openPlan(planId){
+  CS.sel['servicio']=planId;
+  CS.step=1;
+  renderStep(1);
+  updateSummary();
+  setTimeout(()=>window.scrollTo({top:document.getElementById('calculadora').offsetTop-80,behavior:'smooth'}),50);
+}
 function cJumpContact(){
   CS.step=CTOTAL-1;
   renderStep(CS.step);
@@ -2885,10 +4218,10 @@ function cCalcTotal(){
   let t=0;
   CSTEPS.forEach(s=>{
     if(!CS.sel[s.id])return;
-    if(s.type==='multi'||s.type==='multi-photo'){(CS.sel[s.id]||[]).forEach(id=>{const o=s.opts.find(x=>x.id===id);if(o)t+=o.price;});}
+    if(s.type==='multi'||s.type==='multi-photo'){(CS.sel[s.id]||[]).forEach(id=>{const o=getActiveOpts(s).find(x=>x.id===id);if(o)t+=o.price;});}
     else if(s.type==='colors-dynamic'){const o=getActiveColorOpts().find(x=>x.id===CS.sel[s.id]);if(o)t+=o.price;}
     else if(s.type==='sizes-v2'){if(CS.sel[s.id]==='amedida'){const f=s.fondo?.find(x=>x.id===CS.sel['tamano_fondo']);const l=s.largo?.find(x=>x.id===CS.sel['tamano_largo']);if(f)t+=f.price;if(l)t+=l.price;}else{const o=s.opts.find(x=>x.id===CS.sel[s.id]);if(o)t+=o.price;}}
-    else if(s.opts){const o=s.opts.find(x=>x.id===CS.sel[s.id]);if(o)t+=o.price;}
+    else if(s.opts){const o=getActiveOpts(s).find(x=>x.id===CS.sel[s.id]);if(o)t+=o.price;}
   });
   return t||null;
 }
@@ -2900,7 +4233,7 @@ function updateSummary(){
     const sel=CS.sel[s.id];
     if(!sel)return;
     if(s.type==='multi'||s.type==='multi-photo'){
-      (sel||[]).forEach(id=>{const o=s.opts.find(x=>x.id===id);if(o)items.push({k:o.nm,v:'+'+fmt2(o.price)});});
+      (sel||[]).forEach(id=>{const o=getActiveOpts(s).find(x=>x.id===id);if(o)items.push({k:o.nm,v:'+'+fmt2(o.price)});});
     }else if(s.type==='dims'&&sel.m2){
       items.push({k:'Superficie baño',v:sel.m2+' m²'});
     }else if(s.type==='colors-dynamic'){
@@ -2913,7 +4246,7 @@ function updateSummary(){
         if(f||l){const tot=(f?f.price:0)+(l?l.price:0);items.push({k:s.title,v:`${f?f.val:'?'} × ${l?l.val:'?'}`+(tot>0?' +'+fmt2(tot):'')});}
       }else{const o=s.opts.find(x=>x.id===sel);if(o)items.push({k:s.title,v:o.nm});}
     }else if(s.opts){
-      const o=s.opts.find(x=>x.id===sel);
+      const o=getActiveOpts(s).find(x=>x.id===sel);
       if(o)items.push({k:s.title,v:o.nm+(o.price>0?' +'+fmt2(o.price):'')});
     }
   });
@@ -2935,6 +4268,12 @@ function cSubmit(){
   const ct=CS.sel['contacto']||{};
   if(!ct.nom){alert('Por favor, introduce tu nombre.');return;}
   if(!ct.tel){alert('Por favor, introduce tu teléfono.');return;}
+  if(!ct.acepto){
+    const box=document.getElementById('c2_acepto_box');
+    if(box){box.classList.add('lc-error');box.scrollIntoView({behavior:'smooth',block:'center'});}
+    alert('Para ver tu presupuesto, debes aceptar el Aviso Legal y la Política de Privacidad.');
+    return;
+  }
   const total=cCalcTotal()||0;
   const min=Math.round(total*.9),max=Math.round(total*1.1);
   const srv=CSTEPS[0].opts.find(x=>x.id===CS.sel['servicio']);
@@ -2944,7 +4283,7 @@ function cSubmit(){
     const sel=CS.sel[s.id];
     if(!sel||s.type==='contact'||s.type==='dims')return;
     if(s.type==='multi'||s.type==='multi-photo'){
-      (sel||[]).forEach(id=>{const o=s.opts.find(x=>x.id===id);if(o){rows+=`<div class="bd-row"><span class="bd-k">+ ${o.nm}</span><span class="bd-v">+${fmt2(o.price)}</span></div>`;lines.push(`+ ${o.nm}: +${fmt2(o.price)}`);}});
+      (sel||[]).forEach(id=>{const o=getActiveOpts(s).find(x=>x.id===id);if(o){rows+=`<div class="bd-row"><span class="bd-k">+ ${o.nm}</span><span class="bd-v">+${fmt2(o.price)}</span></div>`;lines.push(`+ ${o.nm}: +${fmt2(o.price)}`);}});
     }else if(s.type==='sizes-v2'){
       if(sel==='amedida'){
         const f=s.fondo?.find(x=>x.id===CS.sel['tamano_fondo']);
@@ -2954,7 +4293,7 @@ function cSubmit(){
         lines.push(`- ${s.title}: ${f?f.val:'?'}×${l?l.val:'?'}`);
       }else{const o=s.opts.find(x=>x.id===sel);if(o)lines.push(`- ${s.title}: ${o.nm}`);}
     }else{
-      const opts=s.type==='colors-dynamic'?getActiveColorOpts():(s.opts||[]);
+      const opts=s.type==='colors-dynamic'?getActiveColorOpts():getActiveOpts(s);
       const o=opts.find(x=>x.id===sel);
       if(o){if(o.price>0)rows+=`<div class="bd-row"><span class="bd-k">${s.title}</span><span class="bd-v">+${fmt2(o.price)}</span></div>`;lines.push(`- ${s.title}: ${o.nm}`);}
     }
@@ -2969,7 +4308,7 @@ function cSubmit(){
       <div class="result-name">Hola, <strong>${ct.nom}</strong> 👋</div>
       <div class="price-card">
         <div class="price-lbl">Presupuesto estimado</div>
-        <div class="price-range">${fmt2(min)} – ${fmt2(max)}</div>
+        <div class="price-range"><span class="pr-a">${fmt2(min)}</span><span class="pr-dash"> – </span><span class="pr-b">${fmt2(max)}</span></div>
         <div class="price-iva">Precio orientativo · IVA incluido</div>
       </div>
       <div class="breakdown">
@@ -2980,8 +4319,8 @@ function cSubmit(){
       </div>
       <p class="result-note">Este presupuesto es orientativo. Un especialista Duchas & Reformas se pondrá en contacto contigo en menos de 24 h para confirmar el precio exacto tras una visita sin compromiso.</p>
       <div class="res-btns">
-        <a href="https://wa.me/34600000000?text=${waMsg}" class="btn-wa" target="_blank">💬 Confirmar por WhatsApp</a>
-        <a href="tel:+34900000000" class="btn-primary">📅 Agendar llamada ahora</a>
+        <a href="https://wa.me/34613714927?text=${waMsg}" class="btn-wa" target="_blank">💬 Confirmar por WhatsApp</a>
+        <a href="https://wa.me/34613714927?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20llamada%20para%20hablar%20sobre%20mi%20reforma%20de%20ba%C3%B1o." class="btn-primary" target="_blank" rel="noopener">📅 Agendar llamada ahora</a>
       </div>
       <div style="margin-top:18px;text-align:center">
         <button onclick="cReset()" style="background:none;border:1px solid rgba(201,168,76,0.25);color:var(--muted);padding:10px 22px;border-radius:50px;cursor:pointer;font-size:11px;letter-spacing:2px;text-transform:uppercase;transition:all .25s" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold-lt)'" onmouseout="this.style.borderColor='rgba(201,168,76,0.25)';this.style.color='var(--muted)'">↺ Calcular otro presupuesto</button>
@@ -3007,8 +4346,6 @@ function cReset(){
   renderStep(0);updateSummary();
   window.scrollTo({top:document.getElementById('calculadora').offsetTop-80,behavior:'smooth'});
 }
-calcObserver.observe(_calcSec);
-
 /* ── GOLDEN PARTICLES ── */
 (function(){
   const canvas = document.getElementById('goldCanvas');
@@ -3096,68 +4433,6 @@ calcObserver.observe(_calcSec);
   })();
 })();
 
-/* ── STEAM CURSOR EFFECT ── */
-(function(){
-  const canvas = document.getElementById('steamCanvas');
-  const hero   = document.querySelector('.hero');
-  if(!canvas||!hero) return;
-  const ctx = canvas.getContext('2d');
-  let W=0, H=0, parts=[];
-
-  function resize(){
-    W = canvas.width  = hero.offsetWidth;
-    H = canvas.height = hero.offsetHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize, {passive:true});
-
-  function Puff(x,y){
-    this.x  = x + (Math.random()-.5)*24;
-    this.y  = y + (Math.random()-.5)*16;
-    this.r  = 18 + Math.random()*22;
-    this.vx = (Math.random()-.5)*1.2;
-    this.vy = -(0.8 + Math.random()*1.8);
-    this.alpha = 0.55 + Math.random()*0.25;
-    this.life  = 1;
-    this.decay = 0.014 + Math.random()*0.01;
-    this.grow  = 0.4  + Math.random()*0.5;
-  }
-  Puff.prototype.update = function(){
-    this.x += this.vx;
-    this.y += this.vy;
-    this.vy *= 0.985;
-    this.vx += (Math.random()-.5)*0.15;
-    this.r  += this.grow;
-    this.life -= this.decay;
-  };
-  Puff.prototype.draw = function(){
-    const a = this.life * this.alpha;
-    const g = ctx.createRadialGradient(this.x,this.y,0,this.x,this.y,this.r);
-    g.addColorStop(0,   `rgba(210,230,245,${a})`);
-    g.addColorStop(0.45,`rgba(190,215,235,${a*0.55})`);
-    g.addColorStop(1,   `rgba(170,205,225,0)`);
-    ctx.beginPath();
-    ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
-    ctx.fillStyle = g;
-    ctx.fill();
-  };
-
-  window.addEventListener('mousemove', e=>{
-    const rect = hero.getBoundingClientRect();
-    const mx   = e.clientX - rect.left;
-    const my   = e.clientY - rect.top;
-    if(mx<0||my<0||mx>W||my>H) return; // solo dentro del hero
-    for(let i=0;i<5;i++) parts.push(new Puff(mx,my));
-  },{passive:true});
-
-  (function loop(){
-    ctx.clearRect(0,0,W,H);
-    parts = parts.filter(p=>p.life>0);
-    parts.forEach(p=>{p.update();p.draw();});
-    requestAnimationFrame(loop);
-  })();
-})();
-
 /* ── PASSIVE SCROLL para analytics/header ── */
 let lastScroll=0;
 /* ── COOKIES ── */
@@ -3173,7 +4448,600 @@ window.addEventListener('scroll',()=>{
   if(Math.abs(y-lastScroll)<4)return; // throttle
   lastScroll=y;
 },{passive:true});
+
+/* ═══════════════════════════════════════
+   POLÍTICAS LEGALES (placeholders entre paréntesis)
+════════════════════════════════════════ */
+function ph(t){return`<span class="lg-ph">(${t})</span>`;}
+const LEGAL_UPDATED='Última actualización: 10 de junio de 2026';
+const LEGAL={
+  privacidad:{
+    title:'Política de Privacidad',
+    body:`
+      <p>En <strong>Duchas &amp; Reformas</strong> nos tomamos muy en serio la protección de tus datos personales. Esta Política de Privacidad describe cómo recopilamos, usamos y protegemos tu información conforme al Reglamento (UE) 2016/679 (RGPD) y a la Ley Orgánica 3/2018 (LOPDGDD).</p>
+      <h3>1. Responsable del tratamiento</h3>
+      <ul>
+        <li><strong>Titular:</strong> S&amp;M REAVITEC, S.L.</li>
+        <li><strong>NIF/CIF:</strong> B88831581</li>
+        <li><strong>Domicilio:</strong> Calle Sol, 6, 3º — 10600 Plasencia (Cáceres)</li>
+        <li><strong>Email:</strong> <a href="mailto:ducha2125@gmail.com">ducha2125@gmail.com</a></li>
+        <li><strong>Teléfono:</strong> 602 53 60 81</li>
+      </ul>
+      <h3>2. Datos que recopilamos</h3>
+      <p>Recopilamos los datos que nos facilitas voluntariamente a través del formulario de presupuesto y de contacto: nombre, teléfono, correo electrónico, provincia y los detalles de la reforma que deseas realizar. También podemos recopilar datos de navegación mediante cookies (ver Política de Cookies).</p>
+      <h3>3. Finalidad del tratamiento</h3>
+      <ul>
+        <li>Elaborar y enviarte el presupuesto solicitado.</li>
+        <li>Atender tus consultas y gestionar la relación comercial.</li>
+        <li>Contactarte por teléfono, email o WhatsApp en relación con tu solicitud.</li>
+        <li>Enviarte comunicaciones comerciales solo si has dado tu consentimiento.</li>
+      </ul>
+      <h3>4. Legitimación</h3>
+      <p>La base legal para el tratamiento es tu <strong>consentimiento</strong> al enviar el formulario y la <strong>ejecución de medidas precontractuales</strong> a petición tuya (elaboración del presupuesto).</p>
+      <h3>5. Conservación de los datos</h3>
+      <p>Conservaremos tus datos durante el tiempo necesario para atender tu solicitud y, posteriormente, durante los plazos legalmente exigidos. Cuando ya no sean necesarios, serán suprimidos de forma segura.</p>
+      <h3>6. Destinatarios</h3>
+      <p>Tus datos no se cederán a terceros salvo obligación legal. Podrán acceder a ellos los proveedores de servicios tecnológicos que nos prestan soporte (alojamiento web, herramientas de comunicación), siempre bajo contrato de encargo de tratamiento.</p>
+      <h3>7. Tus derechos</h3>
+      <p>Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición, limitación y portabilidad escribiendo a <a href="mailto:ducha2125@gmail.com">ducha2125@gmail.com</a>, indicando el derecho que deseas ejercer. También puedes presentar una reclamación ante la Agencia Española de Protección de Datos (<a href="https://www.aepd.es" target="_blank" rel="noopener">www.aepd.es</a>).</p>
+      <div class="lg-upd">${LEGAL_UPDATED}</div>
+    `
+  },
+  legal:{
+    title:'Aviso Legal',
+    body:`
+      <p>El presente Aviso Legal regula el uso del sitio web <strong>duchasreformas.com</strong> (en adelante, "el Sitio Web"), titularidad de la persona/entidad que se identifica a continuación.</p>
+      <h3>1. Datos identificativos</h3>
+      <ul>
+        <li><strong>Titular:</strong> S&amp;M REAVITEC, S.L.</li>
+        <li><strong>NIF/CIF:</strong> B88831581</li>
+        <li><strong>Domicilio:</strong> Calle Sol, 6, 3º — 10600 Plasencia (Cáceres)</li>
+        <li><strong>Actividad:</strong> Reforma e instalación de duchas y baños</li>
+        <li><strong>Email:</strong> <a href="mailto:ducha2125@gmail.com">ducha2125@gmail.com</a></li>
+        <li><strong>Teléfono:</strong> 602 53 60 81</li>
+        <li><strong>Datos registrales (si aplica):</strong> Sociedad constituida mediante escritura pública de fecha 01/06/2026, inscrita en el Registro Mercantil de Cáceres.</li>
+      </ul>
+      <h3>2. Objeto</h3>
+      <p>El Sitio Web tiene por objeto ofrecer información sobre los servicios de reforma de duchas y baños, así como facilitar la solicitud de presupuestos online. El acceso y uso del Sitio Web atribuye la condición de usuario e implica la aceptación de las condiciones recogidas en este Aviso Legal.</p>
+      <h3>3. Propiedad intelectual e industrial</h3>
+      <p>Todos los contenidos del Sitio Web (textos, imágenes, diseño gráfico, logotipos, código fuente) son titularidad de S&amp;M REAVITEC, S.L. o de terceros que han autorizado su uso, y están protegidos por la normativa de propiedad intelectual e industrial. Queda prohibida su reproducción, distribución o transformación sin autorización expresa.</p>
+      <h3>4. Responsabilidad</h3>
+      <p>Los presupuestos calculados en el Sitio Web son orientativos y no constituyen una oferta vinculante. El precio definitivo se confirmará tras una visita técnica sin compromiso. El titular no se hace responsable de los daños derivados del uso indebido del Sitio Web ni de la indisponibilidad temporal del mismo por causas técnicas.</p>
+      <h3>5. Legislación aplicable</h3>
+      <p>El presente Aviso Legal se rige por la legislación española. Para cualquier controversia, las partes se someten a los Juzgados y Tribunales de Plasencia (Cáceres).</p>
+      <div class="lg-upd">${LEGAL_UPDATED}</div>
+    `
+  },
+  cookies:{
+    title:'Política de Cookies',
+    body:`
+      <p>Este sitio web utiliza cookies para mejorar la experiencia de usuario y analizar el uso del Sitio Web. A continuación te explicamos qué son y cómo las usamos.</p>
+      <h3>1. ¿Qué son las cookies?</h3>
+      <p>Las cookies son pequeños archivos de texto que se almacenan en tu dispositivo al visitar una web. Permiten recordar tus preferencias y obtener información sobre la navegación.</p>
+      <h3>2. Tipos de cookies que utilizamos</h3>
+      <ul>
+        <li><strong>Cookies técnicas (necesarias):</strong> imprescindibles para el funcionamiento del Sitio Web y para recordar tus preferencias de consentimiento. No requieren consentimiento.</li>
+        <li><strong>Cookies de análisis:</strong> actualmente este sitio web <strong>no utiliza</strong> cookies de análisis ni herramientas de medición de terceros (como Google Analytics). Si en el futuro se incorporasen, se solicitaría tu consentimiento previo y se actualizaría esta política.</li>
+        <li><strong>Cookies de terceros:</strong> actualmente <strong>no se utilizan</strong> cookies de terceros en este sitio web.</li>
+      </ul>
+      <h3>3. Gestión y desactivación</h3>
+      <p>Puedes aceptar o rechazar las cookies no esenciales desde el banner que aparece al acceder al Sitio Web. Además, puedes configurar tu navegador para bloquear o eliminar las cookies en cualquier momento:</p>
+      <ul>
+        <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener">Google Chrome</a></li>
+        <li><a href="https://support.mozilla.org/es/kb/cookies-informacion-que-los-sitios-web-guardan" target="_blank" rel="noopener">Mozilla Firefox</a></li>
+        <li><a href="https://support.apple.com/es-es/guide/safari/sfri11471/mac" target="_blank" rel="noopener">Safari</a></li>
+        <li><a href="https://support.microsoft.com/es-es/microsoft-edge" target="_blank" rel="noopener">Microsoft Edge</a></li>
+      </ul>
+      <h3>4. Actualizaciones</h3>
+      <p>Podemos modificar esta Política de Cookies en función de nuevas exigencias legislativas o por cambios en las cookies utilizadas. Te recomendamos revisarla periódicamente.</p>
+      <div class="lg-upd">${LEGAL_UPDATED}</div>
+    `
+  }
+};
+function openLegal(key){
+  const data=LEGAL[key];if(!data)return;
+  document.getElementById('lgTitle').textContent=data.title;
+  document.getElementById('lgBody').innerHTML=data.body;
+  const m=document.getElementById('legalModal');
+  m.classList.add('open');
+  document.body.style.overflow='hidden';
+  m.querySelector('.lg-body').scrollTop=0;
+}
+function closeLegal(){
+  document.getElementById('legalModal').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLegal();});
+
+/* ════════════════════════════════════════════════
+   CONFIGURADOR REFORMA COMPLETA (independiente)
+   ════════════════════════════════════════════════ */
+const RPLANS={
+  elite:    {nm:'ELITE COMPLETO',     base:11990},
+  exclusivo:{nm:'EXCLUSIVO COMPLETO', base:9990},
+  moderado: {nm:'MODERADO COMPLETO',  base:7990},
+};
+const RSTEPS=[
+  /* Paso 1 — selección de plan */
+  {id:'plan',title:'Elige tu plan de reforma completa',type:'rcards',req:true,opts:[
+    {id:'elite',    img:'plan-elite-completo.png',    nm:'ELITE COMPLETO',     ds:'La top de la gama — acabados de hotel 5 estrellas',  pl:'desde 11.990 €'},
+    {id:'exclusivo',img:'plan-exclusivo-completo.png',nm:'EXCLUSIVO COMPLETO', ds:'El equilibrio perfecto entre diseño y precio',       pl:'desde 9.990 €'},
+    {id:'moderado', img:'plan-moderado-completo.png', nm:'MODERADO COMPLETO',  ds:'La mejor relación calidad-precio del mercado',       pl:'desde 7.990 €'},
+  ]},
+  /* Paso 2 — modelo plato ducha */
+  {id:'rejilla',title:'Modelo de plato de ducha',type:'cards-sm',req:true,opts:[
+    {id:'oculta',img:'rejilla-oculta.jpg',  nm:'Rejilla oculta',                        price:0,pl:'Incluido'},
+    {id:'vista', img:'rejilla-vista.webp',  nm:'Rejilla vista mismo color que el plato',price:0,pl:'Incluido'},
+  ]},
+  /* Paso 3 — color del plato */
+  {id:'color_plato',title:'Color del plato de ducha',type:'colors-img',req:true,opts:[
+    {id:'blanco',  img:'paso3-blanco.webp',  nm:'Blanco',  price:0},
+    {id:'beige',   img:'paso3-beige.webp',   nm:'Beige',   price:0},
+    {id:'gris',    img:'paso3-gris.webp',    nm:'Gris',    price:0},
+    {id:'grafito', img:'paso3-grafito.webp', nm:'Grafito', price:0},
+    {id:'moka',    img:'paso3-moka.webp',    nm:'Moka',    price:80},
+    {id:'perla',   img:'paso3-perla.webp',   nm:'Perla',   price:80},
+  ]},
+  /* Paso 4 — tamaño del plato */
+  {id:'tamano_r',title:'Tamaño del plato',type:'sizes-v2',req:true,
+    opts:[
+      {id:'estandar',nm:'Tamaño Estándar',sub:'Hasta 70 × 160 cm',price:0},
+      {id:'amedida', nm:'A Medida',        sub:'Elige el tamaño exacto',price:0},
+    ],
+    fondo:[
+      {id:'f70', val:'70 cm', price:0},
+      {id:'f80', val:'80 cm', price:38},
+      {id:'f90', val:'90 cm', price:76},
+      {id:'f100',val:'100 cm',price:114},
+      {id:'f110',val:'110 cm',price:152},
+      {id:'f120',val:'120 cm',price:190},
+    ],
+    largo:[
+      {id:'l160',val:'160 cm',price:0},
+      {id:'l170',val:'170 cm',price:38},
+      {id:'l180',val:'180 cm',price:76},
+      {id:'l190',val:'190 cm',price:114},
+      {id:'l200',val:'200 cm',price:152},
+      {id:'l210',val:'210 cm',price:190},
+      {id:'l220',val:'220 cm',price:228},
+    ],
+  },
+  /* Paso 5 — modelo de mampara */
+  {id:'mampara_r',title:'Modelo de mampara',type:'cards-photo',req:true,imgContain:true,zoomEffect:true,opts:[
+    {id:'r1', img:'1-fijo-1-corredera-6-mm-95-a-180-cm.jpg.webp',                       nm:'1 fijo + 1 corredera 6 mm · 95 a 180 cm cromo',                        price:0},
+    {id:'r2', img:'2-fijos-2-correderas-6-mm-132-a-210-cm.jpg.webp',                    nm:'2 fijos + 2 correderas 6 mm · 132 a 210 cm cromo',                     price:190},
+    {id:'r3', img:'2-fijos-2-correderas-angular-6-mm-65-a-90-x-65-a-120-cm.jpg.webp',   nm:'2 fijos + 2 correderas angular 6 mm · 65 a 90 × 65 a 120 cm cromo',    price:290},
+    {id:'r4', img:'1-fijo-1-corredera-8-mm-106-a-166-cm.jpg.webp',                      nm:'1 fijo + 1 corredera 8 mm · 106 a 166 cm cromo',                       price:190},
+    {id:'r5', img:'2-fijos-2-correderas-8-mm-136-a-186-cm.jpg.webp',                    nm:'2 fijos + 2 correderas 8 mm · 136 a 186 cm cromo',                     price:290},
+    {id:'r6', img:'1-fijo-8-mm-70-a-120-cm-1.jpg.webp',                                 nm:'1 fijo 8 mm · 70 a 120 cm cromo',                                      price:0},
+    {id:'r7', img:'1-fijo-8-mm-70-a-120-cm_02.jpg.webp',                                nm:'1 fijo 8 mm · 70 a 120 cm cromo',                                      price:0},
+    {id:'r8', img:'1-fijo-1-corredera-10-8-mm-113-a-182-cm.jpg.webp',                   nm:'1 fijo + 1 corredera 10-8 mm · 113 a 182 cm cromo',                    price:390},
+    {id:'r9', img:'2-fijos-2-correderas-10-8-mm-134-a-233-cm.jpg.webp',                 nm:'2 fijos + 2 correderas 10-8 mm · 134 a 233 cm cromo',                  price:790},
+    {id:'r10',img:'1-fijo-1-corredera-free-1-8-mm-111-a-180-cm.jpg.webp',               nm:'1 fijo + 1 corredera free 10-8 mm · 111 a 180 cm cromo',               price:390},
+    {id:'r11',img:'2-fijos-2-corredera-angular-10-8-mm-65-a-90-x-85-a-153-cm.jpg.webp', nm:'2 fijos + 2 correderas angular 10-8 mm · 65 a 90 × 85 a 153 cm cromo',  price:890},
+  ]},
+  /* Paso 6 — costado de la mampara */
+  {id:'costado_r',title:'Costado de la mampara',type:'cards-photo',req:true,imgContain:true,zoomEffect:true,opts:[
+    {id:'c70',  img:'con-costado70u80cm.jpg', nm:'Costado 70 u 80 cm cromo',          price:290},
+    {id:'c100', img:'con-costado100cm.jpg',   nm:'Costado a medida hasta 100 cm cromo',price:390},
+    {id:'cno',  img:'sin-costado.jpg.webp',   nm:'Ninguno',                            price:0},
+  ]},
+  /* Paso 7 — color de la mampara */
+  {id:'color_mampara_r',title:'Color de la mampara',type:'cards-photo',req:true,imgContain:true,zoomEffect:true,opts:[
+    {id:'cromo', img:'color-mampara-cromo.jpg', nm:'Color mampara cromo', price:0},
+  ]},
+  /* Paso 8 — cristal de la mampara */
+  {id:'cristal_r',title:'Cristal de la mampara',type:'cards-photo',req:true,imgContain:true,zoomEffect:true,note:'Dependiendo del modelo de mampara puede ser que no sea compatible el acabado elegido.',opts:[
+    {id:'transparente', img:'cristal-transparente.jpg', nm:'Cristal transparente', price:0},
+    {id:'serigrafiado', img:'cristal-serigrafiado.jpg', nm:'Cristal serigrafiado', price:150},
+  ]},
+  /* Paso 9 — modelo de grifería */
+  {id:'griferia_r',title:'Modelo de grifería',type:'cards-photo',req:true,imgContain:true,zoomEffect:true,opts:[
+    {id:'g1', img:'Kit-duchon-XL-monomando-redondo-cromo.jpg.webp',        nm:'Kit duchón XL monomando redondo cromo',     price:0},
+    {id:'g2', img:'Kit-duchon-XL-termostatico-cuadrado-cromo.jpg.webp',    nm:'Kit duchón XL termostático cuadrado cromo', price:0},
+    {id:'g3', img:'Columna-hidromasaje-monomando.jpg.webp',                nm:'Columna hidromasaje monomando cromo',       price:0},
+    {id:'g4', img:'Columna-hidromasaje-termostatica.jpg.webp',             nm:'Columna hidromasaje termostática cromo',    price:0},
+    {id:'g5', img:'Columna-hidromasaje-monomando-negro.jpg.webp',          nm:'Columna hidromasaje monomando negro',       price:0},
+    {id:'g6', img:'Columna-hidromasaje-monomando-negro.jpg.webp',          nm:'Columna hidromasaje termostática negro',    price:0},
+    {id:'g7', img:'Columna-hidromasaje-termostatica-blanco-con-negro.jpg.webp', nm:'Columna hidromasaje termostática blanco con negro', price:0},
+  ]},
+  /* Paso 10 — modelo de azulejos o paneles */
+  {id:'azulejos_r',title:'Modelo de azulejos o paneles',type:'cards-photo',req:true,imgContain:true,zoomEffect:true,opts:[
+    {id:'azulejos', img:'azulejos40x120cm.jpg',          nm:'Azulejos 40x120 cm',            price:0},
+    {id:'paneles',  img:'panelesdealuminioxxl-122x244.jpg', nm:'Paneles aluminio XXL 122x244 cm', price:1990},
+  ]},
+  /* Paso 11 — modelo de azulejos de pared (hasta 2) */
+  {id:'azulejos_pared_r',title:'Modelo de azulejos de pared',type:'multi-photo',req:true,max:2,imgContain:true,zoomEffect:true,opts:[
+    {id:'bernini_marfil',     img:'Bernini marfil 40x120 cm.jpg',          nm:'Bernini marfil 40x120 cm',          price:0},
+    {id:'phedra_iris',        img:'Phedra iris 40x120 cm.jpg',             nm:'Phedra iris 40x120 cm',             price:0},
+    {id:'mattei_blanco',      img:'Mattei blanco 40x120 cm.jpg',           nm:'Mattei blanco 40x120 cm',           price:0},
+    {id:'fontana_blanco',     img:'Fontana blanco 40x120 cm.jpg',          nm:'Fontana blanco 40x120 cm',          price:0},
+    {id:'absolute_blanco',    img:'Absolute blanco 40x120 cm.jpg',         nm:'Absolute blanco 40x120 cm',         price:0},
+    {id:'forest_blanco',      img:'Forest blanco 40x120 cm.jpg',           nm:'Forest blanco 40x120 cm',           price:0},
+    {id:'rockwell_blanco',    img:'Rockwell blanco 40x120 cm.jpg',         nm:'Rockwell blanco 40x120 cm',         price:0},
+    {id:'avra_blanco',        img:'Avra blanco 40x120 cm.jpg',             nm:'Avra blanco 40x120 cm',             price:0},
+    {id:'rockwell_marfil',    img:'Rockwell marfil 40x120 cm.jpg',         nm:'Rockwell marfil 40x120 cm',         price:0},
+    {id:'avra_marfil',        img:'Avra marfil 40x120 cm.jpg',             nm:'Avra marfil 40x120 cm',             price:0},
+    {id:'integra_marfil',     img:'Integra marfil 40x120 cm.jpg',          nm:'Integra marfil 40x120 cm',          price:0},
+    {id:'linear_marfil',      img:'Linear marfil 40x120 cm.jpg',           nm:'Linear marfil 40x120 cm',           price:0},
+    {id:'byblos_arena',       img:'Byblos arena 40x120 cm.jpg',            nm:'Byblos arena 40x120 cm',            price:0},
+    {id:'misten_arena',       img:'Misten arena 40x120 cm.jpg',            nm:'Misten arena 40x120 cm',            price:0},
+    {id:'sunset_blanco',      img:'Sunset blanco 40x120 cm.jpg',           nm:'Sunset blanco 40x120 cm',           price:0},
+    {id:'arkan_blanco',       img:'Arkan blanco 40x120 cm.jpg',            nm:'Arkan blanco 40x120 cm',            price:0},
+    {id:'sunset_ceniza',      img:'Sunset ceniza 40x120 cm.jpg',           nm:'Sunset ceniza 40x120 cm',           price:0},
+    {id:'arkan_ceniza',       img:'Arkan ceniza 40x120 cm.jpg',            nm:'Arkan ceniza 40x120 cm',            price:0},
+    {id:'cavallina_blanco',   img:'Cavallina blanco 40x120 cm.jpg',        nm:'Cavallina blanco 40x120 cm',        price:0},
+    {id:'cavallina_g_blanco', img:'Cavallina graphic blanco 40x120 cm.jpg',nm:'Cavallina graphic blanco 40x120 cm',price:0},
+    {id:'cavallina_marfil',   img:'Cavallina marfil 40x120 cm.jpg',        nm:'Cavallina marfil 40x120 cm',        price:0},
+    {id:'cavallina_g_marfil', img:'Cavallina graphic marfil 40x120 cm.jpg',nm:'Cavallina graphic marfil 40x120 cm',price:0},
+    {id:'byblos_ceniza',      img:'Byblos ceniza 40x120 cm.jpg',           nm:'Byblos ceniza 40x120 cm',           price:0},
+    {id:'misten_ceniza',      img:'Misten ceniza 40x120 cm.jpg',           nm:'Misten ceniza 40x120 cm',           price:0},
+  ]},
+  // Paso 12: modelo plaqueta de suelo (cards-photo)
+  {id:'suelo_r',title:'Modelo de plaqueta de suelo',type:'cards-photo',req:true,imgContain:true,zoomEffect:true,opts:[
+    {id:'cavallina_blanco_s', img:'Cavallina blanco 60x60 cm.webp',  nm:'Cavallina blanco 60x60 cm', price:0},
+    {id:'cavallina_marfil_s', img:'Cavallina marfil 60x60 cm.webp',  nm:'Cavallina marfil 60x60 cm', price:0},
+    {id:'byblos_ceniza_s',    img:'Byblos ceniza 60x60 cm.webp',     nm:'Byblos ceniza 60x60 cm',    price:0},
+    {id:'byblos_arena_s',     img:'Byblos arena 60x60 cm.webp',      nm:'Byblos arena 60x60 cm',     price:0},
+    {id:'sunset_beige_s',     img:'Sunset beige 60x60 cm.webp',      nm:'Sunset beige 60x60 cm',     price:0},
+    {id:'sunset_gris_s',      img:'Sunset gris 60x60 cm.webp',       nm:'Sunset gris 60x60 cm',      price:0},
+    {id:'rockwell_blanco_s',  img:'Rockwell blanco 75x75 cm.webp',   nm:'Rockwell blanco 75x75 cm',  price:0},
+    {id:'rockwell_beige_s',   img:'Rockwell beige 75x75 cm.webp',    nm:'Rockwell beige 75x75 cm',   price:0},
+    {id:'mattei_blanco_s',    img:'Mattei blanco 75x75 cm.webp',     nm:'Mattei blanco 75x75 cm',    price:0},
+    {id:'venatto_almond_s',   img:'Venatto almond 30x120 cm.webp',   nm:'Venatto almond 30x120 cm',  price:0},
+    {id:'venatto_oak_s',      img:'Venatto oak 30x120 cm.webp',      nm:'Venatto oak 30x120 cm',     price:0},
+    {id:'venatto_titanium_s', img:'Venatto titanium 30x120 cm.webp', nm:'Venatto titanium 30x120 cm',price:0},
+  ]},
+  // Paso 13: modelo de inodoro (cards-photo)
+  {id:'inodoro_r',title:'Modelo de inodoro',type:'cards-photo',req:true,imgContain:true,zoomEffect:true,opts:[
+    {id:'blanco_brillo', img:'Inodoro completo blanco brillo con cisterna vista y asiento.jpg', nm:'Inodoro completo blanco brillo con cisterna vista y asiento', price:0},
+    {id:'blanco_mate',   img:'Inodoro completo blanco mate con cisterna vista y asiento.jpg',   nm:'Inodoro completo blanco mate con cisterna vista y asiento',   price:200},
+    {id:'negro_mate',    img:'Inodoro completo negro mate con cisterna vista y asiento.jpg',    nm:'Inodoro completo negro mate con cisterna vista y asiento',    price:200},
+    {id:'inteligente',   img:'Inodoro inteligente blanco brillo con cisterna integrada, asiento y mando.jpg', nm:'Inodoro inteligente blanco brillo con cisterna integrada, asiento y mando', price:1290},
+  ]},
+  // Paso 14: modelo de mueble (mueble, lavabo y espejo con luz)
+  {id:'mueble_r',title:'Modelo de mueble',subtitle:'(mueble, lavabo y espejo con luz)',type:'cards-photo',req:true,imgContain:true,zoomEffect:true,opts:[
+    {id:'lavabo_integral', img:'Mueble 2 cajones 60, 80 o 100 cm (tiradores en cromo, negro u oro) con lavabo integral.jpg', nm:'Mueble 2 cajones 60, 80 o 100 cm (tiradores en cromo, negro u oro) con lavabo integral', price:0},
+    {id:'lavabo_bowl',     img:'Mueble 2 cajones 60, 80 o 100 cm (tiradores en cromo, negro u oro) con lavabo en bowl.jpg',  nm:'Mueble 2 cajones 60, 80 o 100 cm (tiradores en cromo, negro u oro) con lavabo en bowl',  price:0},
+  ]},
+  // Paso 15: color de muebles (colors-img)
+  {id:'color_mueble_r',title:'Color de muebles',type:'colors-img',req:true,opts:[
+    {id:'verde_pure',     img:'Verde pure.jpg',     nm:'Verde pure',     price:0},
+    {id:'terracota_pure', img:'Terracota pure.jpg', nm:'Terracota pure', price:0},
+    {id:'azul_talco_pure',img:'Azul talco pure.jpg',nm:'Azul talco pure',price:0},
+    {id:'nogal_artico',   img:'Nogal ártico.jpg',   nm:'Nogal ártico',   price:0},
+    {id:'nogal_toffee',   img:'Nogal toffee.jpg',   nm:'Nogal toffee',   price:0},
+    {id:'blanco_mate',    img:'Blanco mate.jpg',    nm:'Blanco mate',    price:0},
+    {id:'arena_mate',     img:'Arena mate.jpg',     nm:'Arena mate',     price:0},
+    {id:'habana_mate',    img:'Habana mate.jpg',    nm:'Habana mate',    price:0},
+    {id:'azul_ocean',     img:'Azul ocean.jpg',     nm:'Azul ocean',     price:0},
+  ]},
+  // Paso 16: lavabo integral (cards-photo)
+  {id:'lavabo_r',title:'Lavabo integral',type:'cards-photo',req:true,imgContain:true,zoomEffect:true,opts:[
+    {id:'blanco_brillo_l', img:'Lavabo blanco brillo 60, 80 o 100 cm.jpg', nm:'Lavabo blanco brillo 60, 80 o 100 cm', price:0},
+    {id:'blanco_mate_l',   img:'Lavabo blanco mate 60, 80 o 100 cm.jpg',   nm:'Lavabo blanco mate 60, 80 o 100 cm',   price:0},
+    {id:'negro_mate_l',    img:'Lavabo negro mate 60, 80 o 100 cm.jpg',    nm:'Lavabo negro mate 60, 80 o 100 cm',    price:0},
+  ]},
+  // Paso 17: modelo de espejo (cards-photo)
+  {id:'espejo_r',title:'Modelo de espejo',type:'cards-photo',req:true,imgContain:true,zoomEffect:true,opts:[
+    {id:'espejo_foco', img:'Espejo con foco 60, 80 o 100 cm.jpg',          nm:'Espejo con foco 60, 80 o 100 cm',          price:0},
+    {id:'espejo_led',  img:'Espejo con LED integrado 60, 80 o 100 cm.jpg', nm:'Espejo con LED integrado 60, 80 o 100 cm', price:0},
+    {id:'espejo_usb',  img:'Espejo con LED+USB+antivaho 60, 80 o 100 cm.jpg', nm:'Espejo con LED+USB+antivaho 60, 80 o 100 cm', price:0},
+  ]},
+  // Paso 18: complementos de baño (multi-photo, seleccion ilimitada)
+  {id:'complementos_r',title:'Complementos de baño',subtitle:'(selecciona los que quieras)',type:'multi-photo',req:false,imgContain:true,zoomEffect:true,opts:[
+    {id:'monomando_lavabo', img:'Monomando lavabo cromo.jpg',     nm:'Monomando lavabo cromo',     price:0},
+    {id:'grifo_extra',      img:'Grifo lavabo extra cromo.jpg',   nm:'Grifo lavabo extra cromo',   price:150},
+    {id:'kit_wc_bide',      img:'Kit monomando wc-bidé cromo.jpg',nm:'Kit monomando wc-bidé cromo',price:350},
+    {id:'valvula_tapon',    img:'Válvula tapón cromo.jpg',        nm:'Válvula tapón cromo',        price:0},
+    {id:'valvula_extra',    img:'Válvula tapón extra cromo.jpg',  nm:'Válvula tapón extra cromo',  price:30},
+    {id:'hornacina_30',     img:'Hornacina_ 30x30x10 cm cromo.jpg',nm:'Hornacina* 30x30x10 cm cromo',price:120},
+    {id:'hornacina_60',     img:'Hornacina_ 60x30x10 cm cromo.jpg',nm:'Hornacina* 60x30x10 cm cromo',price:180},
+    {id:'columna_2p',       img:'Columna 2 puertas 35x162x24 cm.jpg',nm:'Columna 2 puertas 35x162x24 cm',price:430},
+    {id:'mueble_abierto',   img:'Mueble alto abierto 20x80x15 cm.jpg',nm:'Mueble alto abierto 20x80x15 cm',price:200},
+    {id:'mueble_1p',        img:'Mueble alto 1 puerta 35x80x15 cm.jpg',nm:'Mueble alto 1 puerta 35x80x15 cm',price:270},
+    {id:'mueble_2p',        img:'Mueble alto 2 puertas 50x80x15 cm.jpg',nm:'Mueble alto 2 puertas 50x80x15 cm',price:330},
+    {id:'estante_grifo',    img:'Estante colgar grifo cromo.jpg', nm:'Estante colgar grifo cromo', price:60},
+    {id:'agarrador_30',     img:'Agarrador 30 cm cromo.jpg',      nm:'Agarrador 30 cm cromo',      price:50},
+    {id:'accesorios_4',     img:'4 accesorios cromo.jpg',         nm:'4 accesorios cromo',         price:250},
+    {id:'rad_agua',         img:'Radiador toallero agua 50x75 cm cromo.jpg',nm:'Radiador toallero agua 50x75 cm cromo',price:490},
+    {id:'rad_redondo',      img:'Radiador toallero eléctrico digital redondo 50x63 cm cromo.jpg',nm:'Radiador toallero eléctrico digital redondo 50x63 cm cromo',price:220},
+    {id:'rad_cuadrado',     img:'Radiador toallero eléctrico digital cuadrado 50x63 cm cromo.jpg',nm:'Radiador toallero eléctrico digital cuadrado 50x63 cm cromo',price:270},
+    {id:'punto_luz',        img:'Punto luz extra.jpg',            nm:'Punto luz extra',            price:80},
+    {id:'bide_blanco_b',    img:'Bidé blanco brillo con grifo y válvula.jpg',nm:'Bidé blanco brillo con grifo y válvula',price:690},
+    {id:'bide_blanco_m',    img:'Bidé blanco mate con grifo y válvula.jpg', nm:'Bidé blanco mate con grifo y válvula', price:790},
+    {id:'bide_negro_m',     img:'Bidé negro mate con grifo y válvula.jpg',  nm:'Bidé negro mate con grifo y válvula',  price:790},
+    {id:'techo_sin_reg',    img:'Techo pladur sin registro.jpg',  nm:'Techo pladur sin registro',  price:690},
+    {id:'techo_con_reg',    img:'Techo pladur con registro.jpg',  nm:'Techo pladur con registro',  price:790},
+    {id:'altavoz_bt',       img:'Altavoz bluetooth.jpg',          nm:'Altavoz bluetooth',          price:190},
+    {id:'tira_led',         img:'Tira led techo.jpg',             nm:'Tira led techo',             price:390},
+    {id:'asiento_obra',     img:'Asiento de obra.jpg',            nm:'Asiento de obra',            price:290},
+    {id:'perfil_tubo_6',    img:'Perfil tubo 2, 4 o 6 cm cromo.jpg',  nm:'Perfil tubo 2, 4 o 6 cm cromo',  price:60},
+    {id:'perfil_tubo_12',   img:'Perfil tubo 8, 10 o 12 cm cromo.jpg',nm:'Perfil tubo 8, 10 o 12 cm cromo',price:90},
+    {id:'perfil_deco',      img:'Perfil decorativo aluminio cromo o blanco.jpg',nm:'Perfil decorativo aluminio cromo o blanco',price:60},
+    {id:'sistema_corredera',img:'Cambiar a sistema corredera (puerta, molduras, tirador y pintura no incluidos).jpg',nm:'Cambiar a sistema corredera (puerta, molduras, tirador y pintura no incluidos)',price:950},
+  ]},
+  // Paso 19: tus datos (formulario de contacto / presupuesto final)
+  {id:'contacto_r',title:'Tus datos',type:'contact-r',req:true},
+];
+const RCTOTAL=RSTEPS.length;
+const RS={step:1,sel:{},plan:'elite'};
+
+function openCompleto(planId){
+  RS.plan=planId; RS.sel={plan:planId}; RS.step=1;
+  const sec=document.getElementById('calculadora-completo');
+  sec.style.display='block';
+  document.getElementById('rcSecSubtitle').textContent=RPLANS[planId].nm;
+  rcRender(RS.step);
+  rcUpdateSummary();
+  setTimeout(()=>window.scrollTo({top:sec.offsetTop-80,behavior:'smooth'}),50);
+}
+function rcRender(idx){
+  const s=RSTEPS[idx];
+  document.getElementById('rcStepNum').textContent=idx+1;
+  document.getElementById('rcStepTitle').innerHTML=s.title+(s.subtitle?` <span style="font-size:.7em;font-weight:400;color:var(--muted);display:inline-block">${s.subtitle}</span>`:'');
+  document.getElementById('rcStepFill').style.width=((idx+1)/RCTOTAL*100).toFixed(2)+'%';
+  const prev=document.getElementById('rcPrev');
+  const next=document.getElementById('rcNext');
+  prev.disabled=idx===0;
+  const isLast=idx===RSTEPS.length-1;
+  next.textContent=isLast?'Ver mi presupuesto ›':'Siguiente ›';
+  let cur;
+  if(s.type==='rcards')cur=RS.plan;
+  else if(s.type==='multi-photo')cur=(RS.sel[s.id]&&RS.sel[s.id].length)?true:false;
+  else cur=RS.sel[s.id];
+  next.disabled=s.req&&!cur;
+  /* disabled logic for sizes-v2 */
+  if(s.type==='sizes-v2'){
+    const t=RS.sel[s.id];
+    next.disabled=!t||(t==='amedida'&&(!RS.sel[s.id+'_fondo']||!RS.sel[s.id+'_largo']));
+  }
+  /* el formulario de contacto nunca bloquea el boton (se valida al enviar) */
+  if(s.type==='contact-r')next.disabled=false;
+  let html='';
+  if(s.type==='rcards')          html=rcRenderCards(s);
+  else if(s.type==='cards-sm')   html=rcRenderCardsSm(s);
+  else if(s.type==='cards-photo')html=rcRenderCardsPhoto(s);
+  else if(s.type==='colors-img') html=rcRenderColors(s);
+  else if(s.type==='multi-photo')html=rcRenderMultiPhoto(s);
+  else if(s.type==='sizes-v2')   html=rcRenderSizesV2(s);
+  else if(s.type==='contact-r')  html=rcRenderContact(s);
+  document.getElementById('rcBody').innerHTML=html;
+}
+function rcRenderCards(s){
+  const cur=RS.plan;
+  return'<div class="vopts">'+s.opts.map(o=>{
+    const media=`<div class="vopt-ico vopt-img-wrap"><img src="${encodeURI(o.img)}" alt="${o.nm}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>`;
+    return`<div class="vopt${cur===o.id?' vsel':''}" onclick="rcSelPlan('${o.id}')"><div class="vopt-chk">✓</div>${media}<div class="vopt-body"><div class="vopt-nm">${o.nm}</div><div class="vopt-ds">${o.ds}</div><div class="vopt-pr">${o.pl}</div></div><button class="vopt-nx" onclick="event.stopPropagation();rcSelPlanNext('${o.id}')">Elegir este plan ›</button></div>`;
+  }).join('')+'</div>';
+}
+function rcSelPlan(id){RS.plan=id;RS.sel.plan=id;document.getElementById('rcSecSubtitle').textContent=RPLANS[id].nm;rcRender(RS.step);rcUpdateSummary();}
+function rcSelPlanNext(id){RS.plan=id;RS.sel.plan=id;RS.step=1;document.getElementById('rcSecSubtitle').textContent=RPLANS[id].nm;rcRender(RS.step);rcUpdateSummary();window.scrollTo({top:document.getElementById('calculadora-completo').offsetTop-80,behavior:'smooth'});}
+function rcRenderCardsSm(s){
+  const cur=RS.sel[s.id];
+  return'<div class="vopts-sm">'+s.opts.map(o=>`
+    <div class="vopt-sm${cur===o.id?' vsel':''}" onclick="rcSel('${s.id}','${o.id}')">
+      <div class="vopt-sm-chk">✓</div>
+      <img src="${encodeURI(o.img)}" alt="${o.nm}" loading="lazy" decoding="async"/>
+      <div class="vopt-sm-body">
+        <div class="vopt-sm-nm">${o.nm}</div>
+        <div class="vopt-sm-pr">${o.pl}</div>
+      </div>
+    </div>`).join('')+'</div>';
+}
+function rcRenderCardsPhoto(s){
+  const cur=RS.sel[s.id];
+  let html='<div class="photo-grid">'+(s.opts||[]).map(o=>{
+    const isPaid=o.price>0;
+    const prStr=o.price.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';
+    const imgCls=s.imgContain?' photo-card-img--contain':s.imgSm?' photo-card-img--sm':'';
+    const zoomAttr=s.zoomEffect?' data-zoom="1"':'';
+    return`<div class="photo-card${cur===o.id?' vsel':''}" onclick="rcSel('${s.id}','${o.id}')"><div class="photo-card-img${imgCls}"${zoomAttr}><img src="${encodeURI(o.img)}" alt="${o.nm}" loading="lazy" decoding="async"/></div><div class="photo-card-lbl"><div class="photo-card-nm">${o.nm}</div><div class="photo-card-pr${isPaid?' paid':''}">${isPaid?'+':''}${prStr}</div></div></div>`;
+  }).join('')+'</div>';
+  if(s.note)html+=`<p class="photo-note">ℹ️ ${s.note}</p>`;
+  return html;
+}
+function rcRenderColors(s){
+  const cur=RS.sel[s.id];
+  return'<div class="csw-img-grid">'+s.opts.map(o=>{
+    const priceStr=(o.price>0?'+':'')+o.price.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';
+    const prCls=o.price>0?'paid':'';
+    return`<div class="csw-img-card${cur===o.id?' vsel':''}" onclick="rcSel('${s.id}','${o.id}')"><img src="${encodeURI(o.img)}" alt="${o.nm}" loading="lazy" decoding="async"/><div class="csw-lbl"><div class="csw-lbl-nm">${o.nm}</div><div class="csw-lbl-pr ${prCls}">${priceStr}</div></div></div>`;
+  }).join('')+'</div>';
+}
+function rcRenderSizesV2(s){
+  const cur=RS.sel[s.id];
+  const curF=RS.sel[s.id+'_fondo'];
+  const curL=RS.sel[s.id+'_largo'];
+  let html=`<div class="szv2-main">`;
+  html+=`<div class="szv2-main-card${cur==='estandar'?' vsel':''}" onclick="rcSel('${s.id}','estandar')">${traySVG('70 × 160 cm','both')}<div class="szv2-main-nm">Tamaño Estándar</div><div class="szv2-main-sub">Hasta 70 × 160 cm — Incluido</div></div>`;
+  html+=`<div class="szv2-main-card${cur==='amedida'?' vsel':''}" onclick="rcSel('${s.id}','amedida')">${traySVG('A medida')}<div class="szv2-main-nm">A Medida</div><div class="szv2-main-sub">Elige el tamaño exacto</div></div>`;
+  html+=`</div>`;
+  if(cur==='amedida'){
+    html+=`<div class="szv2-sub"><div class="szv2-sub-ttl">Medida del fondo</div><div class="szv2-grid">`;
+    html+=s.fondo.map(o=>{
+      const pr=o.price>0?`+${o.price.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})} €`:`0,00 €`;
+      return`<div class="szv2-card${curF===o.id?' vsel':''}" onclick="rcSel('${s.id}_fondo','${o.id}');rcRender(RS.step)"><div class="szv2-img">${traySVG(o.val,'top')}</div><div class="szv2-nm">${o.val} de fondo</div><div class="szv2-pr${o.price>0?' paid':''}">${pr}</div></div>`;
+    }).join('');
+    html+=`</div><div class="szv2-sub-ttl" style="margin-top:26px">Medida del largo</div><div class="szv2-grid">`;
+    html+=s.largo.map(o=>{
+      const pr=o.price>0?`+${o.price.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})} €`:`0,00 €`;
+      return`<div class="szv2-card${curL===o.id?' vsel':''}" onclick="rcSel('${s.id}_largo','${o.id}');rcRender(RS.step)"><div class="szv2-img">${traySVG(o.val,'right')}</div><div class="szv2-nm">${o.val} de largo</div><div class="szv2-pr${o.price>0?' paid':''}">${pr}</div></div>`;
+    }).join('');
+    html+=`</div></div>`;
+  }
+  return html;
+}
+function rcRenderMultiPhoto(s){
+  const sel=RS.sel[s.id]||[];
+  const imgCls=s.imgContain?' photo-card-img--contain':'';
+  const zoomAttr=s.zoomEffect?' data-zoom="1"':'';
+  const noteTop=s.max?`<p class="skip-note">Elige hasta ${s.max} modelo${s.max>1?'s':''} · ${sel.length}/${s.max} seleccionado${sel.length===1?'':'s'}</p>`:'';
+  return noteTop+'<div class="photo-grid">'+s.opts.map(o=>{
+    const isSel=sel.includes(o.id);
+    const isPaid=o.price>0;
+    const prStr=o.price.toLocaleString('es-ES',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';
+    return`<div class="photo-card${isSel?' vsel':''}" onclick="rcSelMulti('${s.id}','${o.id}')"><div class="photo-card-img${imgCls}"${zoomAttr}><img src="${encodeURI(o.img)}" alt="${o.nm}" loading="lazy" decoding="async"/></div><div class="photo-card-lbl"><div class="photo-card-nm">${o.nm}</div><div class="photo-card-pr${isPaid?' paid':''}">${isPaid?'+':''}${prStr}</div></div></div>`;
+  }).join('')+'</div>';
+}
+function rcSel(stepId,optId){RS.sel[stepId]=optId;rcRender(RS.step);rcUpdateSummary();}
+function rcSelMulti(stepId,optId){
+  const s=RSTEPS.find(x=>x.id===stepId);
+  if(!RS.sel[stepId])RS.sel[stepId]=[];
+  const arr=RS.sel[stepId];const i=arr.indexOf(optId);
+  if(i>-1)arr.splice(i,1);
+  else{if(s&&s.max&&arr.length>=s.max)return;arr.push(optId);}
+  rcRender(RS.step);rcUpdateSummary();
+}
+function rcNext(){
+  if(RS.step===RSTEPS.length-1){rcSaveContact();rcSubmit();return;}
+  RS.step++;rcRender(RS.step);rcUpdateSummary();
+  window.scrollTo({top:document.getElementById('calculadora-completo').offsetTop-80,behavior:'smooth'});
+}
+function rcJumpContact(){
+  RS.step=RSTEPS.length-1;rcRender(RS.step);rcUpdateSummary();
+  window.scrollTo({top:document.getElementById('calculadora-completo').offsetTop-80,behavior:'smooth'});
+}
+function rcPrev(){
+  if(RS.step===0)return;
+  RS.step--;rcRender(RS.step);rcUpdateSummary();
+  window.scrollTo({top:document.getElementById('calculadora-completo').offsetTop-80,behavior:'smooth'});
+}
+function rcTotal(){
+  let t=RPLANS[RS.plan].base;
+  RSTEPS.forEach(s=>{
+    if(s.type==='rcards'||s.type==='contact-r'||!RS.sel[s.id])return;
+    if(s.type==='multi-photo'){(RS.sel[s.id]||[]).forEach(id=>{const o=s.opts.find(x=>x.id===id);if(o)t+=o.price;});}
+    else if(s.type==='sizes-v2'){
+      if(RS.sel[s.id]==='amedida'){
+        const f=s.fondo?.find(x=>x.id===RS.sel[s.id+'_fondo']);
+        const l=s.largo?.find(x=>x.id===RS.sel[s.id+'_largo']);
+        if(f)t+=f.price; if(l)t+=l.price;
+      }
+    }
+    else if(s.opts){const o=s.opts.find(x=>x.id===RS.sel[s.id]);if(o)t+=o.price;}
+  });
+  return t;
+}
+function rcUpdateSummary(){
+  const plan=RPLANS[RS.plan];
+  const items=[{k:'Plan',v:plan.nm}];
+  RSTEPS.forEach(s=>{
+    if(s.type==='rcards'||!RS.sel[s.id])return;
+    if(s.type==='multi-photo'){(RS.sel[s.id]||[]).forEach(id=>{const o=s.opts.find(x=>x.id===id);if(o)items.push({k:o.nm,v:'+'+fmt2(o.price)});});}
+    else if(s.opts){const o=s.opts.find(x=>x.id===RS.sel[s.id]);if(o)items.push({k:s.title,v:o.nm+(o.price>0?' +'+fmt2(o.price):'')});}
+  });
+  document.getElementById('rcSummary').innerHTML=items.map(i=>`<div class="cs-row"><span class="cs-key">${i.k}</span><span class="cs-val">${i.v}</span></div>`).join('');
+  document.getElementById('rcTotal').textContent=fmt2(rcTotal());
+}
+/* ── FORMULARIO DE CONTACTO ── */
+function rcRenderContact(s){
+  const d=RS.sel[s.id]||{};
+  const provs=['Madrid','Barcelona','Valencia','Sevilla','Alicante','Málaga','Murcia','Zaragoza','Bilbao','Asturias','Otra'];
+  return`<div class="ctform">
+    <div class="form-row">
+      <div class="ff"><label>Nombre *</label><input type="text" id="rc2_nom" placeholder="Tu nombre" value="${d.nom||''}"/></div>
+      <div class="ff"><label>Apellidos</label><input type="text" id="rc2_ape" placeholder="Apellidos" value="${d.ape||''}"/></div>
+    </div>
+    <div class="ff"><label>Teléfono *</label><input type="tel" id="rc2_tel" placeholder="600 000 000" value="${d.tel||''}"/></div>
+    <div class="ff"><label>Email</label><input type="email" id="rc2_email" placeholder="tu@email.com" value="${d.email||''}"/></div>
+    <div class="ff"><label>Provincia</label><select id="rc2_prov"><option value="">Selecciona tu provincia...</option>${provs.map(p=>`<option${d.prov===p?' selected':''}>${p}</option>`).join('')}</select></div>
+    <div class="ff"><label>Comentarios</label><textarea id="rc2_com" placeholder="¿Algo que quieras contarnos sobre tu baño?">${d.com||''}</textarea></div>
+    <label class="legal-check" id="rc2_acepto_box" onclick="document.getElementById('rc2_acepto_box').classList.remove('lc-error')">
+      <input type="checkbox" id="rc2_acepto" ${d.acepto?'checked':''}/>
+      <span class="lc-box"></span>
+      <span class="lc-txt">He leído y acepto el <a href="#" onclick="event.preventDefault();event.stopPropagation();openLegal('legal');">Aviso Legal</a> y la <a href="#" onclick="event.preventDefault();event.stopPropagation();openLegal('privacidad');">Política de Privacidad</a>. <span class="lc-req">*</span></span>
+    </label>
+  </div>`;
+}
+function rcSaveContact(){
+  RS.sel['contacto_r']={
+    nom:(document.getElementById('rc2_nom')?.value||'').trim(),
+    ape:(document.getElementById('rc2_ape')?.value||'').trim(),
+    tel:(document.getElementById('rc2_tel')?.value||'').trim(),
+    email:(document.getElementById('rc2_email')?.value||'').trim(),
+    prov:(document.getElementById('rc2_prov')?.value||'').trim(),
+    com:(document.getElementById('rc2_com')?.value||'').trim(),
+    acepto:document.getElementById('rc2_acepto')?.checked||false,
+  };
+}
+/* ── SUBMIT / RESULTADO ── */
+function rcSubmit(){
+  const ct=RS.sel['contacto_r']||{};
+  if(!ct.nom){alert('Por favor, introduce tu nombre.');return;}
+  if(!ct.tel){alert('Por favor, introduce tu teléfono.');return;}
+  if(!ct.acepto){
+    const box=document.getElementById('rc2_acepto_box');
+    if(box){box.classList.add('lc-error');box.scrollIntoView({behavior:'smooth',block:'center'});}
+    alert('Para ver tu presupuesto, debes aceptar el Aviso Legal y la Política de Privacidad.');
+    return;
+  }
+  const plan=RPLANS[RS.plan];
+  const total=rcTotal()||0;
+  const min=Math.round(total*.9),max=Math.round(total*1.1);
+  let rows='';
+  const lines=[`Hola Duchas & Reformas 👋, soy ${ct.nom}.`,`Presupuesto de *${plan.nm}* (reforma completa) calculado en vuestra web:`];
+  RSTEPS.forEach(s=>{
+    const sel=RS.sel[s.id];
+    if(!sel||s.type==='rcards'||s.type==='contact-r')return;
+    if(s.type==='multi-photo'){
+      (sel||[]).forEach(id=>{const o=s.opts.find(x=>x.id===id);if(o){rows+=`<div class="bd-row"><span class="bd-k">+ ${o.nm}</span><span class="bd-v">+${fmt2(o.price)}</span></div>`;lines.push(`+ ${o.nm}: +${fmt2(o.price)}`);}});
+    }else if(s.opts){
+      const o=s.opts.find(x=>x.id===sel);
+      if(o){if(o.price>0)rows+=`<div class="bd-row"><span class="bd-k">${s.title}</span><span class="bd-v">+${fmt2(o.price)}</span></div>`;lines.push(`- ${s.title}: ${o.nm}`);}
+    }
+  });
+  lines.push(`- Estimado: ${fmt2(min)} – ${fmt2(max)}`);
+  lines.push(`Teléfono: ${ct.tel}`);
+  const waMsg=encodeURIComponent(lines.join('\n'));
+  document.getElementById('rcMain').innerHTML=`
+    <div class="rbox2">
+      <span class="result-ico">🏆</span>
+      <div class="panel-title" style="margin-bottom:8px">Tu presupuesto orientativo</div>
+      <div class="result-name">Hola, <strong>${ct.nom}</strong> 👋</div>
+      <div class="price-card">
+        <div class="price-lbl">Presupuesto estimado</div>
+        <div class="price-range"><span class="pr-a">${fmt2(min)}</span><span class="pr-dash"> – </span><span class="pr-b">${fmt2(max)}</span></div>
+        <div class="price-iva">Precio orientativo · IVA incluido</div>
+      </div>
+      <div class="breakdown">
+        <div class="bd-title">Desglose</div>
+        <div class="bd-row"><span class="bd-k">Plan base: ${plan.nm}</span><span class="bd-v">${fmt2(plan.base)}</span></div>
+        ${rows}
+        <div class="bd-row"><span class="bd-k">Total estimado</span><span class="bd-v">${fmt2(total)}</span></div>
+      </div>
+      <p class="result-note">Este presupuesto es orientativo. Un especialista Duchas & Reformas se pondrá en contacto contigo en menos de 24 h para confirmar el precio exacto tras una visita sin compromiso.</p>
+      <div class="res-btns">
+        <a href="https://wa.me/34613714927?text=${waMsg}" class="btn-wa" target="_blank">💬 Confirmar por WhatsApp</a>
+        <a href="https://wa.me/34613714927?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20llamada%20para%20hablar%20sobre%20mi%20reforma%20de%20ba%C3%B1o." class="btn-primary" target="_blank" rel="noopener">📅 Agendar llamada ahora</a>
+      </div>
+      <div style="margin-top:18px;text-align:center">
+        <button onclick="rcReset()" style="background:none;border:1px solid rgba(201,168,76,0.25);color:var(--muted);padding:10px 22px;border-radius:50px;cursor:pointer;font-size:11px;letter-spacing:2px;text-transform:uppercase;transition:all .25s" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold-lt)'" onmouseout="this.style.borderColor='rgba(201,168,76,0.25)';this.style.color='var(--muted)'">↺ Calcular otro presupuesto</button>
+      </div>
+    </div>`;
+  window.scrollTo({top:document.getElementById('calculadora-completo').offsetTop-80,behavior:'smooth'});
+}
+/* ── RESET ── */
+function rcReset(){
+  RS.step=1;RS.sel={plan:RS.plan};
+  document.getElementById('rcMain').innerHTML=`
+    <div class="cstep-header">
+      <div class="cstep-num">Paso <span id="rcStepNum">1</span> de <span id="rcStepTotal">${RCTOTAL}</span></div>
+      <div class="cstep-title" id="rcStepTitle"></div>
+      <div class="cstep-bar"><div class="cstep-fill" id="rcStepFill" style="width:5%"></div></div>
+    </div>
+    <div id="rcBody"></div>
+    <div class="calc-nav2">
+      <button class="btn-bk2" id="rcPrev" onclick="rcPrev()" disabled>‹ Anterior</button>
+      <button class="btn-nx2" id="rcNext" onclick="rcNext()">Siguiente ›</button>
+    </div>`;
+  rcRender(RS.step);rcUpdateSummary();
+  window.scrollTo({top:document.getElementById('calculadora-completo').offsetTop-80,behavior:'smooth'});
+}
 </script>
-<div style="text-align:center;padding:14px 10px;font:500 13px/1.45 system-ui,-apple-system,sans-serif;background:#0a0a18;color:#9aa0b5;border-top:1px solid rgba(255,255,255,.08)">Dise&#241;ado por <a href="https://www.losvisionarioscompany.com" target="_blank" rel="noopener" style="color:#9f67ff;text-decoration:none">Los Visionarios Company</a></div>
+
+<!-- ═══════════════════════════════════════
+     MODAL CONFIGURADOR REFORMA COMPLETA
+════════════════════════════════════════ -->
 </body>
 </html>
